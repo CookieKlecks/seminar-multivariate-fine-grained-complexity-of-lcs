@@ -14,10 +14,10 @@
 
 %meta data fields: their content will be used for the title page (content of the optional arguments appear in parts in the footline)
  %(title and author will also be added automatically as PDF meta information)
-\author[F.\,N. Name]{First name Name}
-\title[Short title]{Title of Presentation}
-\subtitle{Subtitle of Presentation}
-\institute[Name of Division, Institute, Business Unit]{Name of Division, Institute, Business Unit}
+\author[C.\, Knoesel]{Cedrico Knoesel}
+\title[Multivariate Fine-Grained Complexity of LCS]{Multivariate Fine-Grained Complexity of Longest Common Subsequence}
+\subtitle{By: Karl Bingmann \& Marvin Künnemann}
+\institute[]{}
 \logo{\includegraphics[height=13mm]{beamericonarticle}}%e.g. insitute logo or project logo
                                           %(the beamericonarticle graphic comes from the beamer package
                                           % and must in case of need b replaced by your individual logo)
@@ -27,24 +27,29 @@
 \begin{document}
 
 %several suggestions for the title page:
-\frame[empty]{\titlepage}
+%\frame[empty]{\titlepage}
 
-\frame[empty,noKITlogo]{\titlepage}
+%\frame[empty,noKITlogo]{\titlepage}
 
-\frame[KITgreen]{\titlepage}
+%\frame[KITgreen]{\titlepage}
 
 \frame[KITgreenhalf]{\titlepage}
 
-\frame[KITgreenhalfdarkblue]{\titlepage}
+%\frame[KITgreenhalfdarkblue]{\titlepage}
 
-\titlegraphic{\includegraphics[width=\paperwidth,height=0.55\paperheight,trim=0 0 -2 0]{beamericononline}}%
-\frame[KITgreenbottom]{\titlepage}
-
+%\titlegraphic{\includegraphics[width=\paperwidth,height=0.55\paperheight,trim=0 0 -2 0]{beamericononline}}%
+%\frame[KITgreenbottom]{\titlepage}
 
 \begin{frame}[KITgreenTOC,t]{\fontsize{10}{10}\selectfont\textcolor{KITwhite}{Content}\hfill\lower2.5mm\hbox{\scalebox{0.72}{\KITlogo}}\kern3mm}
   \vspace*{-5mm}%
   \tableofcontents
 \end{frame}
+
+
+\include{sections/reduction/small_lcs}
+
+
+
 
 \section{Slides with only text}
 
