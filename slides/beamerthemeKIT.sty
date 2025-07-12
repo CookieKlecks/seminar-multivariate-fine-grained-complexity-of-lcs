@@ -1,0 +1,2471 @@
+%%
+%% This is file `beamerthemeKIT.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% KITstyles.dtx  (with options: `slides')
+%% -----------------------------------------------------------------
+%% Author:     le-tex publishing services
+%% Maintainer: le-tex publishing services
+%% 
+%% This file is part of the KITstyles package for
+%% preparing reports, posters, letters or slides
+%% for Karlsruhe Institute of Technology (KIT)
+%% 
+%%       Copyright (C) 2022--2025 Karlsruhe Institute of Technology
+%% -----------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[2021/11/15]
+\ProvidesPackage{beamerthemeKIT}
+    [2025/03/17 v1.10 KIT BEAMER slides style]
+
+\ifx\directlua\undefined\else\ifnum\luatexversion>84\relax
+  \usepackage{luatex85}
+\fi\fi
+\emergencystretch1em
+\@ifl@t@r\fmtversion{2020-10-01}{}{%
+  \protected\def\@centercr{\ifhmode \unskip\else \@nolnerr\fi
+       \par\@ifstar{\nobreak\@xcentercr}\@xcentercr}}
+\clubpenalty\@M
+\widowpenalty\@M
+\DeclareMathSizes{3.78bp}{3.78bp}{3.78bp}{3.78bp}
+\DeclareMathSizes{4.24bp}{4.25bp}{3.78bp}{3.78bp}
+\DeclareMathSizes{5.20bp}{5.20bp}{4.25bp}{3.78bp}
+\DeclareMathSizes{5.67bp}{5.67bp}{4.25bp}{3.78bp}
+\DeclareMathSizes{6.61bp}{6.61bp}{4.67bp}{3.78bp}
+\DeclareMathSizes{7.58bp}{7.58bp}{5.20bp}{3.78bp}
+\DeclareMathSizes{8.52bp}{8.52bp}{6.00bp}{4.25bp}
+\DeclareMathSizes{9.47bp}{9.47bp}{6.61bp}{4.67bp}
+\DeclareMathSizes{9.92bp}{9.92bp}{6.61bp}{4.67bp}
+\DeclareMathSizes{16.55bp}{16.55bp}{11.7bp}{8.52bp}
+\DeclareMathSizes{23.64bp}{23.64bp}{16.55bp}{11.7bp}
+\def\fussy{%
+  \emergencystretch1em
+  \tolerance 200%
+  \hfuzz .1\p@
+  \vfuzz\hfuzz}
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\@ifclassloaded{beamer}
+  {\relax}
+  {\PackageWarningNoLine{beamerthemeKIT}
+     {You are not using the document class 'beamer'.\MessageBreak
+      See package documentation}}
+\DeclareOption{helvet}{\let\@helvet\relax}
+\DeclareOption{heros}{\let\@heros\relax}
+\DeclareOption{cursor}{\let\@cursor\relax}
+\DeclareOption{librefranklin}{\let\@librefranklin\relax}
+\newif\ifbeamer@noKITlogo
+\beamer@noKITlogofalse
+\DeclareOption{noKITlogo}{\beamer@noKITlogotrue\let\n@KITlogo\relax}
+\ProcessOptions
+\@tempswatrue
+\@ifclasswith{beamer}{aspectratio=2013}{\@tempswafalse}{}
+\@ifclasswith{beamer}{aspectratio=1610}{\@tempswafalse}{}
+\@ifclasswith{beamer}{aspectratio=149}{\@tempswafalse}{}
+\@ifclasswith{beamer}{aspectratio=141}{\@tempswafalse}{}
+\@ifclasswith{beamer}{aspectratio=54}{\@tempswafalse}{}
+\@ifclasswith{beamer}{aspectratio=43}{\@tempswafalse}{}
+\@ifclasswith{beamer}{aspectratio=32}{\@tempswafalse}{}
+\if@tempswa
+  \setlength\beamer@paperwidth{160mm}%
+  \setlength\beamer@paperheight{90mm}%
+\fi
+\setbeamersize{%
+  text margin left=4.96mm,
+  text margin right=4.72mm}
+\renewcommand\normalsize{%
+   \@setfontsize\normalsize{6.61bp}{9bp}%
+   \abovedisplayskip 6.5bp \@plus2bp \@minus4bp
+   \abovedisplayshortskip \z@ \@plus2bp
+   \belowdisplayshortskip 4bp \@plus2bp \@minus2bp
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\normalsize
+\ifx\MakeRobust\@undefined \else
+    \MakeRobust\normalsize
+\fi
+\DeclareRobustCommand\small{%
+   \@setfontsize\small{5.67bp}{8bp}%
+   \abovedisplayskip 6bp \@plus2bp \@minus3bp
+   \abovedisplayshortskip \z@ \@plus1bp
+   \belowdisplayshortskip 3bp \@plus1bp \@minus1bp
+   \belowdisplayskip \abovedisplayskip
+}
+\DeclareRobustCommand\footnotesize{%
+   \@setfontsize\footnotesize{5.20bp}{7bp}%
+   \abovedisplayskip 5bp \@plus2bp \@minus2bp
+   \abovedisplayshortskip \z@ \@plus1bp
+   \belowdisplayshortskip 2bp \@plus1bp \@minus1bp
+   \belowdisplayskip \abovedisplayskip
+}
+\DeclareRobustCommand\scriptsize{\@setfontsize\scriptsize{4.25bp}{6bp}}
+\DeclareRobustCommand\tiny{\@setfontsize\tiny{3.78bp}{5.5bp}}
+\DeclareRobustCommand\large{\@setfontsize\large{7.58bp}{10bp}}
+\DeclareRobustCommand\Large{\@setfontsize\Large{9.47bp}{12bp}}
+\DeclareRobustCommand\LARGE{\@setfontsize\LARGE{16.55bp}{18bp}}
+\DeclareRobustCommand\huge{\@setfontsize\huge{23.64bp}{27bp}}
+\DeclareRobustCommand\Huge{\@setfontsize\Huge{30bp}{36bp}}
+\parindent\z@
+\def\showinmm#1{%
+  \@tempdima=0.35146 #1\relax
+  \edef\@tempa{\strip@pt\@tempdima\space mm}
+  \show\@tempa}
+\newdimen\gridwidth
+\gridwidth4mm
+\partopsep\medskipamount
+\parsep\z@
+\topsep\z@
+\def\@listi  {\leftmargin\leftmargini
+              \labelwidth\leftmargini
+              \advance\labelwidth-\labelsep
+              \itemsep\smallskipamount
+              \ifhmode\itemsep\z@\fi\topsep-\medskipamount%\itemsep u. \parskip neutralisieren, damit kein Abstand in Listen innerhalb von Absätzen
+             }
+\let\@listI\@listi
+\@listi
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep
+              \itemsep\z@}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+\parskip\medskipamount
+\leftmargini3.31mm
+\leftmarginii\leftmargini
+\leftmarginiii\leftmargini
+\labelwidth\dimexpr\leftmargini-\labelsep
+\def\beamer@enum@{%
+  \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+  \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+  \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+  \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+  \expandafter
+    \list
+      {\usebeamertemplate{\beamer@enumtempl}}
+      {\usecounter\@enumctr%
+        \def\makelabel##1{{\rlap{{%
+                \usebeamerfont*{enumerate \beameritemnestingprefix item}%
+                \usebeamercolor[fg]{enumerate \beameritemnestingprefix item}##1}}\hss}}}%
+  \beamer@cramped%
+  \RaggedRight%
+  \beamer@firstlineitemizeunskip%
+}
+\renewcommand{\itemize}[1][]{%
+  \ifblank{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+    \advance\@itemdepth\@ne
+    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+    \list
+      {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+      {\def\makelabel##1{%
+          {%
+            \rlap{{%
+                \usebeamerfont*{itemize \beameritemnestingprefix item}%
+                \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}\hss%
+          }%
+        }%
+      }
+  \fi%
+  \beamer@cramped%
+  \RaggedRight%
+  \beamer@firstlineitemizeunskip%
+}
+\protected\def\KITlogo{%
+  \@ifstar{\@ifstar{\scalebox{0.4724}{\KITl@go{KITblack}{KITblack}}}%
+                   {\scalebox{0.4724}{\KITl@go{KITwhite}{KITwhite}}}}%
+          {\scalebox{0.4724}{\KITl@go{KITblack}{KITgreen}}}}
+\def\KITl@go#1#2{%
+  \pgfpicture
+  \pgfpathmoveto{\pgfqpoint{0mm}{0mm}}
+  \pgfpathlineto{\pgfqpoint{34.57mm}{0mm}}
+  \pgfpathlineto{\pgfqpoint{34.57mm}{12.7mm}}
+  \pgfpathlineto{\pgfqpoint{0mm}{12.7mm}}
+  \pgfpathclose
+  \pgfusepath{clip}
+  \pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{26.18mm}{12.42mm}}
+  \pgfpathlineto{\pgfqpoint{34.24mm}{12.42mm}}
+  \pgfpathlineto{\pgfqpoint{34.24mm}{9.68mm}}
+  \pgfpathlineto{\pgfqpoint{31.88mm}{9.68mm}}
+  \pgfpathlineto{\pgfqpoint{31.88mm}{0.24mm}}
+  \pgfpathlineto{\pgfqpoint{28.53mm}{0.24mm}}
+  \pgfpathlineto{\pgfqpoint{28.53mm}{9.68mm}}
+  \pgfpathlineto{\pgfqpoint{26.18mm}{9.68mm}}
+  \pgfpathlineto{\pgfqpoint{26.18mm}{12.42mm}}
+  \pgfpathclose
+  \pgfpathmoveto{\pgfqpoint{22.02mm}{12.42mm}}
+  \pgfpathlineto{\pgfqpoint{25.37mm}{12.42mm}}
+  \pgfpathlineto{\pgfqpoint{25.37mm}{0.25mm}}
+  \pgfpathlineto{\pgfqpoint{22.02mm}{0.25mm}}
+  \pgfpathlineto{\pgfqpoint{22.02mm}{12.42mm}}
+  \pgfpathclose
+  \pgfpathmoveto{\pgfqpoint{12.42mm}{12.42mm}}
+  \pgfpathlineto{\pgfqpoint{12.52mm}{12.42mm}}
+  \pgfpathlineto{\pgfqpoint{12.5mm}{0.25mm}}
+  \pgfpathlineto{\pgfqpoint{12.5mm}{0.25mm}}
+  \pgfpathlineto{\pgfqpoint{9.53mm}{12.07mm}}
+  \pgfpathcurveto{\pgfqpoint{10.46mm}{12.29mm}}{\pgfqpoint{11.42mm}{12.42mm}}{\pgfqpoint{12.42mm}{12.42mm}}
+  \pgfpathlineto{\pgfqpoint{12.42mm}{12.42mm}}
+  \pgfpathclose
+  \pgfpathmoveto{\pgfqpoint{17.6mm}{12.43mm}}
+  \pgfpathlineto{\pgfqpoint{21.43mm}{12.43mm}}
+  \pgfpathlineto{\pgfqpoint{16.49mm}{6.3mm}}
+  \pgfpathlineto{\pgfqpoint{21.46mm}{0.25mm}}
+  \pgfpathlineto{\pgfqpoint{17.74mm}{0.25mm}}
+  \pgfpathlineto{\pgfqpoint{13.31mm}{4.99mm}}
+  \pgfpathlineto{\pgfqpoint{13.31mm}{7.7mm}}
+  \pgfpathlineto{\pgfqpoint{17.6mm}{12.43mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfsetfillcolor{#2}
+  \pgfpathmoveto{\pgfqpoint{12.49mm}{0.28mm}}
+  \pgfpathlineto{\pgfqpoint{12.49mm}{0.28mm}}
+  \pgfpathlineto{\pgfqpoint{12.49mm}{0.28mm}}
+  \pgfpathlineto{\pgfqpoint{12.49mm}{0.28mm}}
+  \pgfpathclose
+  \pgfpathmoveto{\pgfqpoint{0.5mm}{3.25mm}}
+  \pgfpathlineto{\pgfqpoint{12.49mm}{0.28mm}}
+  \pgfpathlineto{\pgfqpoint{0.11mm}{0.28mm}}
+  \pgfpathcurveto{\pgfqpoint{0.13mm}{1.3mm}}{\pgfqpoint{0.25mm}{2.3mm}}{\pgfqpoint{0.5mm}{3.25mm}}
+  \pgfpathlineto{\pgfqpoint{0.5mm}{3.25mm}}
+  \pgfpathclose
+  \pgfpathmoveto{\pgfqpoint{2.93mm}{7.97mm}}
+  \pgfpathlineto{\pgfqpoint{12.49mm}{0.28mm}}
+  \pgfpathlineto{\pgfqpoint{1.31mm}{5.44mm}}
+  \pgfpathcurveto{\pgfqpoint{1.74mm}{6.35mm}}{\pgfqpoint{2.29mm}{7.2mm}}{\pgfqpoint{2.93mm}{7.97mm}}
+  \pgfpathlineto{\pgfqpoint{2.93mm}{7.97mm}}
+  \pgfpathclose
+  \pgfpathmoveto{\pgfqpoint{7.28mm}{11.29mm}}
+  \pgfpathlineto{\pgfqpoint{12.49mm}{0.28mm}}
+  \pgfpathlineto{\pgfqpoint{4.71mm}{9.72mm}}
+  \pgfpathcurveto{\pgfqpoint{5.49mm}{10.34mm}}{\pgfqpoint{6.35mm}{10.86mm}}{\pgfqpoint{7.28mm}{11.29mm}}
+  \pgfpathlineto{\pgfqpoint{7.28mm}{11.29mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \endpgfpicture}
+\DeclareRobustCommand*\KITdashedrule[2][0pt]{%
+  \pgfpicture{0em}{-#1}{#2}{\dimexpr0.4bp-#1}%
+  \pgfsetlinewidth{0.4bp}%
+  \pgfsetdash{{0.25em}{0.175em}{0.25em}{0.175em}}{0em}%
+  \pgfpathmoveto{\pgfpoint{0em}{0em}}%
+  \pgfpathlineto{\pgfpoint{#2}{0em}}%
+  \pgfusepath{stroke}%
+  \endpgfpicture}
+\usepgflibrary{arrows.meta}
+\pgfkeys{KIT /.tip = {Straight Barb[angle=80:1em,line cap=round]}}
+\DeclareRobustCommand*\KITlongarrow[2][0pt]{%
+  \pgfpicture{0em}{\dimexpr-0.21mm-#1}{#2}{3ex}%
+  \pgfsetstrokecolor{KITiceblue}%
+  \pgfsetlinewidth{0.42mm}%
+  \pgfsetarrows{-KIT}%
+  \pgfpathmoveto{\pgfpoint{0em}{0em}}%
+  \pgfpathlineto{\pgfpoint{#2}{0em}}%
+  \pgfusepath{stroke}%
+  \endpgfpicture}
+\setbeamercolor{block body}{fg=KITwhite,bg=KITdarkblue}
+\setbeamercolor{block title}{fg=KITwhite,bg=KITdarkblue}
+\setbeamercolor{block body alerted}{fg=KITwhite,bg=KITgreen}
+\setbeamercolor{block title alerted}{fg=KITwhite,bg=KITgreen}
+\setbeamercolor{block body example}{fg=KITdarkblue,bg=KITiceblue}
+\setbeamercolor{block title example}{fg=KITdarkblue,bg=KITiceblue}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamerfont{block title alerted}{series=\bfseries}
+\setbeamerfont{block title example}{series=\bfseries}
+\defbeamertemplate*{block begin}{KIT}
+{
+  \par\vskip\medskipamount%
+  \if!\insertblocktitle!\else
+    \begin{beamercolorbox}[colsep=1ex]{block title}
+      \usebeamerfont*{block title}\insertblocktitle\ifhmode\strut\fi%
+    \end{beamercolorbox}%
+    {\parskip0pt\par\vskip-1ex}%
+  \fi
+  \ifbeamercolorempty[bg]{block title}
+  {}
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep=1ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\defbeamertemplate*{block end}{KIT}
+{\end{beamercolorbox}\vskip\smallskipamount}
+\defbeamertemplate*{block alerted begin}{KIT}
+{
+  \par\vskip\medskipamount%
+  \if!\insertblocktitle!\else
+    \begin{beamercolorbox}[colsep=1ex]{block title alerted}
+      \usebeamerfont*{block title alerted}\insertblocktitle\ifhmode\strut\fi%
+    \end{beamercolorbox}%
+    {\parskip0pt\par\vskip-1ex}%
+  \fi
+  \ifbeamercolorempty[bg]{block title alerted}
+  {}
+  {\ifbeamercolorempty[bg]{block body alerted}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[colsep=1ex,vmode]{block body alerted}%
+    \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\defbeamertemplate*{block alerted end}{KIT}
+{\end{beamercolorbox}\vskip\smallskipamount}
+\defbeamertemplate*{block example begin}{KIT}
+{
+  \par\vskip\medskipamount%
+  \if!\insertblocktitle!\else
+    \begin{beamercolorbox}[colsep=1ex]{block title example}
+      \usebeamerfont*{block title example}\insertblocktitle\ifhmode\strut\fi%
+    \end{beamercolorbox}%
+    {\parskip0pt\par\vskip-1ex}%
+  \fi
+  \ifbeamercolorempty[bg]{block title example}
+  {}
+  {\ifbeamercolorempty[bg]{block body example}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body example}%
+  \begin{beamercolorbox}[colsep=1ex,vmode]{block body example}%
+    \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\defbeamertemplate*{block example end}{KIT}
+{\end{beamercolorbox}\vskip\smallskipamount}
+\def\provideblock#1#2{%
+  \newenvironment<>{#1block}
+   {\par\vskip\medskipamount%
+    \begingroup
+      \setbeamercolor{block body}{bg=KIT#1,fg=KIT#2}%
+      \begin{beamercolorbox}[colsep=1ex]{block body}}
+   {\end{beamercolorbox}%
+    \endgroup}
+    \vskip\smallskipamount}
+\def\providebox#1#2{%
+  \newenvironment<>{#1box}
+   {\par\vskip\medskipamount%
+    \begingroup
+      \setbeamercolor{block body}{bg=KIT#2,fg=KIT#1}%
+      \def\colorbox{\fcolorbox{fg}}%this is brutal -- but short
+      \begin{beamercolorbox}[colsep=1ex]{block body}}
+   {\end{beamercolorbox}%
+    \endgroup}
+    \vskip\smallskipamount}
+\provideblock{darkblue}{white}
+\provideblock{green}{white}
+\provideblock{iceblue}{darkblue}
+\provideblock{icegray}{darkblue}
+\provideblock{pinegreen}{white}
+\provideblock{cyan}{white}
+\provideblock{blue}{white}
+\provideblock{lightgreen}{white}
+\provideblock{forestgreen}{white}
+\provideblock{black}{white}
+\provideblock{purple}{white}
+\provideblock{orange}{white}
+\provideblock{yellow}{red}
+\provideblock{red}{white}
+\provideblock{brown}{purple}
+\providebox{darkblue}{white}
+\providebox{green}{white}
+\providebox{iceblue}{white}
+\providebox{black}{white}
+\providebox{red}{white}
+\def\inserttheoremblockenv{alertblock}
+\def\th@definition{%
+  \normalfont % body font
+  \def\inserttheoremblockenv{block}}
+\def\th@example{%
+  \normalfont % body font
+  \def\inserttheoremblockenv{exampleblock}}
+\defbeamertemplate*{proof begin}{KIT}{\begin{greenbox}{\itshape\insertproofname}\enskip}
+\defbeamertemplate*{proof end}{KIT}{\end{greenbox}}
+\setbeamercolor{qed symbol}{fg=KITgreen}
+\setbeamerfont{frametitle}{parent=structure,family=\franklin,series=\titleseries,size=\LARGE}
+\setbeamerfont{framesubtitle}{parent=frametitle,size=\LARGE}
+\setbeamerfont{title}{series=\bfseries,size=\huge,parent=structure}
+\setbeamerfont{subtitle}{series=\bfseries,size=\Large,parent=structure}
+\setbeamerfont{institute}{size=\normalsize,parent=structure}
+\setbeamerfont{footline}{size=\footnotesize}
+\setbeamerfont{itemize/enumerate subbody}{size=\relax}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\relax}
+\setbeamerfont{section in toc}{family=\franklin,size=\LARGE}
+\setbeamerfont{subsection in toc}{size=\large}
+\setbeamercolor{structure}{fg=KITdarkblue}
+\setbeamercolor{normal text}{fg=KITdarkblue}
+\setbeamercolor{alerted text}{fg=KITred}
+\setbeamercolor{example text}{fg=KITgreen}
+\setbeamercolor{item}{fg=KITgreen}
+\setbeamercolor{framesubtitle}{fg=KITiceblue}
+\setbeamercolor{footline}{fg=KITiceblue}
+\setbeamercolor{navigation symbols}{fg=KITiceblue}
+\setbeamercolor{navigation symbols dimmed}{fg=KITiceblue!60}
+\setbeamercolor{title}{fg=KITgreen}
+\setbeamercolor{section in toc}{fg=KITwhite}
+\defbeamertemplate*{itemize item}{KIT}{\usebeamerfont*{itemize item}\bfseries\vrule\@width0.76mm\@height1.26mm\@depth-0.5mm}
+\defbeamertemplate*{itemize subitem}{KIT}{\usebeamerfont*{itemize subitem}\bfseries\textendash}
+\defbeamertemplate*{itemize subsubitem}{KIT}{\usebeamerfont*{itemize subsubitem}\bfseries\textendash}
+\AddToHook{begindocument/end}[beamer]%
+ {\def\theenumii{\@alph\c@enumii}%
+  \def\theenumiii{\@roman\c@enumiii}}
+\def\insertsubenumlabel{\theenumii.}
+\def\insertsubsubenumlabel{\theenumiii.}
+\defbeamertemplate*{enumerate subitem}{KIT}{\insertsubenumlabel}
+\defbeamertemplate*{enumerate subsubitem}{KIT}{\insertsubsubenumlabel}
+\defbeamertemplate*{title page}{KIT}[1][]
+ {\vbox to\paperheight{%
+    \advance\rightskip3mm
+    \vspace*{2mm}%
+    \ifbeamer@noKITlogo
+      \ifx\n@KITlogo\relax\else\global\beamer@noKITlogofalse\fi
+    \else
+      \leavevmode\null\hfill
+      \smash[b]{\lower6mm\hbox{\scalebox{0.72}{%
+      \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreen
+        \KITlogo*
+      \else
+        \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalfdarkblue
+          \KITlogo*
+        \else
+          \KITlogo
+        \fi
+      \fi}}}%
+    \fi
+    \par\vskip6mm
+    \leavevmode\null\hfill\insertlogo\par
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalf\else
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalfdarkblue\else\vfill\fi\fi
+    \begingroup
+      \usebeamertemplate{title}
+      \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalf\vfill\fi
+      \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalfdarkblue\vfill\fi
+      \vskip1em\par
+      \usebeamertemplate{author}
+      \usebeamertemplate{institute}
+      \usebeamertemplate{date}
+    \endgroup
+    \vspace*{7mm}}}
+\defbeamertemplate*{title}{KIT}[1][]{%
+  \begin{beamercolorbox}[sep=0pt,left,#1]{title}
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalf\hsize0.5\hsize\color{KITgreen!20}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalfdarkblue\hsize0.5\hsize\color{KITgreen!20}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreen\color{KITgreen!20}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenbottom\color{KITgreen!20}\fi
+    \usebeamerfont{title}%
+    \inserttitle
+    \par%
+    \ifx\insertsubtitle\@empty%
+    \else%
+      \vskip0.25em%
+      {\usebeamerfont{subtitle}\insertsubtitle\par}%
+    \fi%
+  \end{beamercolorbox}%
+}
+\defbeamertemplate*{author}{KIT}[1][]{%
+  \begin{beamercolorbox}[sep=0pt,left,#1]{author}
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalf\hsize0.5\hsize\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalfdarkblue\hsize0.5\hsize\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreen\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenbottom\color{KITwhite}\fi
+    \usebeamerfont{author}\insertauthor
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{institute}{KIT}[1][]{%
+  \begin{beamercolorbox}[sep=0pt,left,#1]{institute}
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalf\hsize0.5\hsize\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalfdarkblue\hsize0.5\hsize\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreen\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenbottom\color{KITwhite}\fi
+    \usebeamerfont{institute}\insertinstitute
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{date}{KIT}[1][]{%
+  \begin{beamercolorbox}[sep=0pt,left,#1]{date}
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalf\hsize0.5\hsize\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenhalfdarkblue\hsize0.5\hsize\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreen\color{KITwhite}\fi
+    \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenbottom\color{KITwhite}\fi
+    \usebeamerfont{date}\insertdate
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{section in toc}{KIT}{%
+  \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenTOC\leftskip0.1\paperwidth\rightskip0.22\paperwidth\fi
+  \leavevmode%
+  % prevents the period to be printed with the first/last section option
+  \ifnum\beamer@tempcount>\beamer@toclastsection
+  \else
+    \ifnum\beamer@tempcount>0
+      \@tempdima6mm\advance\leftskip\@tempdima\null\nobreak\hskip-\@tempdima
+      \hb@xt@\@tempdima{\inserttocsectionnumber.\hfil}%
+    \fi
+  \fi%
+  \hypersetup{linkcolor=KITgreen!20}\inserttocsection\par%
+}
+\setbeamertemplate{section in toc}[KIT]
+\defbeamertemplate{subsection in toc}{KIT}
+ {\expandafter\ifx\beamer@frametemplate\beamer@frametemplate@KITgreenTOC\leftskip0.1\paperwidth\rightskip0.22\paperwidth\fi
+  \leavevmode\advance\leftskip6mm\hypersetup{linkcolor=KITwhite}\inserttocsubsection\par}
+\setbeamertemplate{subsection in toc}[KIT]
+\defbeamertemplate*{section page}{KIT}[1][]
+{
+  \begingroup
+    {\usebeamerfont{section name}%
+     \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@lightgreen
+       \color{KITcyan}%
+     \else
+       \usebeamercolor[fg]{section name}%
+     \fi
+     \iflanguage{ngerman}{Abschnitt}{\sectionname}~\insertsectionnumber}
+    \vskip1em\par
+    \begin{beamercolorbox}[#1]{section title}
+      \expandafter\ifx\beamer@frametemplate\beamer@frametemplate@lightgreen\else
+        \hypersetup{linkcolor=KITgreen,citecolor=KITgreen,urlcolor=KITgreen}%
+      \fi
+      \usebeamerfont{section title}\insertsectionhead\par
+    \end{beamercolorbox}
+  \endgroup
+}
+\define@key{beamerframe}{empty}[true]{%
+  \beamer@plainframetrue%
+  \def\beamer@frametemplate{\beamer@frametemplate@empty}}
+\def\beamer@frametemplate@empty{%
+  \def\beamer@entrycode{\vspace*{-\headheight}}%
+  \def\beamer@exitcode{\vspace*{-\footheight}\thispagestyle{empty}}}
+\def\beamer@frametemplate@plain{%
+  \def\beamer@entrycode{\vspace*{-\headheight}}%
+  \def\beamer@exitcode{\vspace*{-\footheight}\thispagestyle{plain}}}
+\define@key{beamerframe}{noKITlogo}[false]{\beamer@noKITlogotrue}
+\newif\ifbeamer@whiteKITlogo \beamer@whiteKITlogofalse
+\define@key{beamerframe}{whiteKITlogo}[false]{\beamer@whiteKITlogotrue}
+\defbeamertemplate*{headline}{KIT}{\leavevmode\vrule\@width\z@\@height4mm}
+\defbeamertemplate*{sidebar right}{KIT}{}
+\defbeamertemplate*{frametitle}{KIT}[1][left]
+{%
+  \ifbeamer@noKITlogo
+    \global\let\footline@noKITlogo\@undefined
+    \ifx\n@KITlogo\relax\else\global\beamer@noKITlogofalse\fi
+  \else
+    \global\let\footline@noKITlogo\relax
+    \ifbeamer@whiteKITlogo
+      \global\let\footline@whiteKITlogo\relax
+    \else
+      \global\let\footline@whiteKITlogo\@undefined
+    \fi
+  \fi
+  \parbox[b][10.5mm][c]{\hsize}{%
+    \usebeamerfont{frametitle}%
+    \strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par}%
+      \fi
+    }}%
+}
+\defbeamertemplate*{footline}{KIT}
+ {\hskip\Gm@lmargin
+  \hb@xt@7.5mm{\insertpagenumber\hss}%
+  \hb@xt@15mm{\insertshortdate\hss}%
+  \vrule\@width\z@\@depth2.83mm\relax
+  \hypersetup{linkcolor=KITiceblue}%
+  \insertshortauthor
+  \enskip\textendash\enskip
+  \insertshorttitle
+  \vrule\@width\z@\@depth1.9mm
+  \hfill\lower0.4ex\hbox{\insertnavigationsymbols}\hfill
+  \ifx\footline@noKITlogo\relax
+    \lower0.5mm\hbox{\resizebox*{8.98mm}{!}{\ifx\footline@whiteKITlogo\relax\KITl@go{KITwhite}{KITwhite}\relax\else\KITl@go{KITblack}{KITgreen}\fi}}%
+  \else
+    \null
+  \fi
+  \kern\Gm@rmargin}
+\def\ps@empty{%
+  \let\@mkboth\@gobbletwo%
+  \def\@oddhead{\begingroup%
+    \setbox\beamer@tempbox=\hbox{\usebeamertemplate***{background canvas}\hyper@pagetransition\hyper@pageduration}%
+    \beamer@tempdim=\ht\beamer@tempbox%
+    \setbox\beamer@tempbox=\hbox{\lower\beamer@tempdim\hbox{\box\beamer@tempbox}}%
+    \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
+    \setbox\@tempboxa=\hbox{\usebeamertemplate***{background}}%
+    \beamer@tempdim=\ht\@tempboxa%
+    \setbox\@tempboxa=\hbox{\lower\beamer@tempdim\hbox{\box\@tempboxa}}%
+    \wd\@tempboxa=0pt\ht\@tempboxa=0pt\dp\@tempboxa=0pt%
+    \vbox{\hbox{\hskip-\Gm@lmargin\raise\headheight\box\beamer@tempbox\raise\headheight\box\@tempboxa}\hfil}%
+    \endgroup}
+  \def\@oddfoot{\setbox\beamer@tempbox=\hbox{\vrule\@width\z@\@depth1.9mm}}
+  \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
+\def\ps@KITgreen{%
+  \let\@mkboth\@gobbletwo%
+  \def\@oddhead{\smash{%
+    \kern-\beamer@rightsidebar\kern-\beamer@leftmargin
+    \rlap{\textcolor{KITgreen}{\vrule\@width\paperwidth\@height0.1\paperheight\@depth\paperheight}}}\hfill}%
+  \def\@oddfoot{\setbox\beamer@tempbox=\hbox{\vrule\@width\z@\@depth1.9mm}}
+  \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
+\define@key{beamerframe}{KITgreen}[true]{\def\beamer@frametemplate{\beamer@frametemplate@KITgreen}}
+\def\beamer@frametemplate@KITgreen{%
+  \def\beamer@entrycode{\vspace*{-\headheight}\color{KITicegray!50!black}}%
+  \def\beamer@exitcode{\normalcolor\vspace*{-\footheight}\thispagestyle{KITgreen}}}
+\def\ps@KITgreenhalf{%
+  \let\@mkboth\@gobbletwo%
+  \def\@oddhead{\smash{%
+    \kern-\beamer@rightsidebar\kern-\beamer@leftmargin
+    \rlap{\textcolor{KITgreen}{\vrule\@width0.5\paperwidth\@height0.1\paperheight\@depth\paperheight}%
+          \raisebox{\dimexpr0.047\paperheight-\height}{\inserttitlegraphic}}}\hfill}%
+  \def\@oddfoot{\setbox\beamer@tempbox=\hbox{\vrule\@width\z@\@depth1.9mm}}
+  \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
+\define@key{beamerframe}{KITgreenhalf}[true]{\def\beamer@frametemplate{\beamer@frametemplate@KITgreenhalf}}
+\def\beamer@frametemplate@KITgreenhalf{%
+  \def\beamer@entrycode{\vspace*{-\headheight}\color{KITicegray!50!black}}%
+  \def\beamer@exitcode{\normalcolor\vspace*{-\footheight}\thispagestyle{KITgreenhalf}}}
+\def\ps@KITgreenhalfdarkblue{%
+  \let\@mkboth\@gobbletwo%
+  \def\@oddhead{\smash{%
+    \kern-\beamer@rightsidebar\kern-\beamer@leftmargin
+    \rlap{\textcolor{KITgreen}{\vrule\@width0.5\paperwidth\@height0.1\paperheight\@depth\paperheight}%
+          \textcolor{KITdarkblue}{\vrule\@width0.5\paperwidth\@height0.1\paperheight\@depth\paperheight}}}\hfill}%
+  \def\@oddfoot{\setbox\beamer@tempbox=\hbox{\vrule\@width\z@\@depth1.9mm}}
+  \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
+\define@key{beamerframe}{KITgreenhalfdarkblue}[true]{\def\beamer@frametemplate{\beamer@frametemplate@KITgreenhalfdarkblue}}
+\def\beamer@frametemplate@KITgreenhalfdarkblue{%
+  \def\beamer@entrycode{\vspace*{-\headheight}\color{KITicegray!50!black}}%
+  \def\beamer@exitcode{\normalcolor\vspace*{-\footheight}\thispagestyle{KITgreenhalfdarkblue}}}
+\def\ps@KITgreenbottom{%
+  \let\@mkboth\@gobbletwo%
+  \def\@oddhead{\smash{%
+    \kern-\beamer@rightsidebar\kern-\beamer@leftmargin
+    \rlap{\raisebox{\dimexpr0.044\paperheight-\height}{\inserttitlegraphic}}%
+    \rlap{\textcolor{KITgreen}{\vrule\@width\paperwidth\@height-0.5\paperheight\@depth\paperheight}}}\hfill}%
+  \def\@oddfoot{\setbox\beamer@tempbox=\hbox{\vrule\@width\z@\@depth1.9mm}}
+  \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
+\define@key{beamerframe}{KITgreenbottom}[true]{\def\beamer@frametemplate{\beamer@frametemplate@KITgreenbottom}}
+\def\beamer@frametemplate@KITgreenbottom{%
+  \def\beamer@entrycode{\vspace*{-\headheight}\color{KITicegray!50!black}}%
+  \def\beamer@exitcode{\normalcolor\vspace*{-\footheight}\thispagestyle{KITgreenbottom}}}
+\def\ps@KITgreenTOC{%
+  \let\@mkboth\@gobbletwo%
+  \def\@oddhead{\smash{%
+    \kern-\beamer@rightsidebar\kern-\beamer@leftmargin
+    \rlap{\textcolor{KITgreen}{\vrule\@width0.8\paperwidth\@height0.1\paperheight\@depth\paperheight}}}\hfill}%
+  \def\@oddfoot{\setbox\beamer@tempbox=\hbox{\vrule\@width\z@\@depth1.9mm}}
+  \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
+\define@key{beamerframe}{KITgreenTOC}[true]{\def\beamer@frametemplate{\beamer@frametemplate@KITgreenTOC}}
+\def\beamer@frametemplate@KITgreenTOC{%
+  \def\beamer@entrycode{\vspace*{-\headheight}\color{KITicegray!50!black}}%
+  \def\beamer@exitcode{\normalcolor\vspace*{-\footheight}\thispagestyle{KITgreenTOC}}}
+\ifx\XeTeXcharclass\@undefined
+  \ifx\directlua\undefined\ifnum\pdfoutput>\z@
+    \IfFileExists{dummy-space.pfb}{\pdfinterwordspaceon}{}
+    \usepackage{cmap}
+  \fi\fi
+  \InputIfFileExists{glyphtounicode.tex}{}{}
+  \pdfgentounicode=1
+\fi
+\@ifpackageloaded{amsmath}
+ {\def\@arrayparboxrestore{%
+   \let\if@nobreak\iffalse
+   \let\if@noskipsec\iffalse
+   \let\par\@@par
+   \let\-\@dischyph
+   \let\'\@acci\let\`\@accii\let\=\@acciii
+   \parindent\z@ \parskip\z@skip
+   \everypar{}%
+   \linewidth\hsize
+   \@totalleftmargin\z@
+   \leftskip\z@skip \rightskip\z@skip \@rightskip\z@skip
+   \parfillskip\@flushglue
+   \lineskip\normallineskip
+   \lineskiplimit\normallineskiplimit
+   \baselineskip\normalbaselineskip
+   \sloppy}}
+ {}
+\usepackage[document]{ragged2e}
+\@ifpackageloaded{amsmath}
+ {\@xp\def\@xp\@arrayparboxrestore\@xp{\@arrayparboxrestore
+  \ingather@false\inalign@false \default@tag
+  \let\spread@equation\@spread@equation
+  \let\reset@equation\@empty
+  \def\print@eqnum{\tagform@\theequation}%
+  \def\incr@eqnum{\refstepcounter{equation}\let\incr@eqnum\@empty}}}
+ {}
+\usepackage{eqparbox}
+\usepackage{amsmath}
+\ifx\directlua\undefined\ifx\XeTeXcharclass\undefined
+  \let\addfontfeature\@gobble
+  \let\addfontfeatures\@gobble
+  \usepackage[T1]{fontenc}
+\fi\fi
+\usepackage{textcomp}
+\def\familydefault{\sfdefault}
+\AtEndOfPackage{\let\rmdefault\sfdefault}
+\ifx\directlua\undefined\ifx\XeTeXcharclass\undefined
+  \else \usepackage{fontspec}[2019/03/15] \let\fontspecl@aded\relax \XeTeXtracingfonts=1\fi
+  \else \usepackage{fontspec}[2019/03/15] \let\fontspecl@aded\relax\fi
+\ifx\fontspecl@aded\relax
+  \ifx\XeTeXcharclass\undefined
+    \usepackage{lualatex-math}[2022/01/01]%loading before unicode-math in order to require bug-free version 1.12
+  \fi
+  \usepackage[math-style=ISO]{unicode-math}[2019/03/04 v0.8o]
+\fi
+\DeclareRobustCommand\titleseries{%
+  \not@math@alphabet\titleseries\relax
+  \expand@font@defaults
+  \ifx\f@family\rmdef@ult      \fontseries\mdseries@rm
+    \else\ifx\f@family\sfdef@ult \fontseries\mdseries@sf
+    \else\ifx\f@family\ttdef@ult \fontseries\mdseries@tt
+    \else                        \fontseries\mdseries@sf
+  \fi\fi\fi
+  \UseHook{mdseries}%
+  \selectfont}
+\ifx\fontspecl@aded\@undefined
+  \usepackage[medium,scale=0.93]{librefranklin}
+  \let\franklin\librefranklin
+\else
+  \IfFontExistsTF{Franklin Gothic Medium}
+  {\typeout{(Franklin Gothic found)}}
+  {\IfFontExistsTF{./fonts/0000.ttf}%XeTeX on Overleaf only
+    {\typeout{(Franklin Gothic found by file name)}
+      \global\let\@franklinbyfile\relax}
+    {\global\let\@librefranklin\relax}}
+  \ifx\@librefranklin\@undefined
+    \ifx\@franklinbyfile\relax
+      \newfontfamily\franklin{Franklin Gothic Medium}
+    \else
+      \newfontfamily\franklin[
+      % UprightFont    = *- ,
+      % ItalicFont     = *- ,
+      BoldFont       = Franklin Gothic Demi ,
+      % BoldItalicFont =
+      ]
+      {Franklin Gothic Medium}
+    \fi
+  \else
+    \usepackage[medium,scale=0.93]{librefranklin}
+    \let\franklin\librefranklin
+  \fi
+\fi
+\ifx\fontspecl@aded\@undefined
+  \ifx\@heros\@undefined
+    \IfFileExists{helvet.sty}
+     {\usepackage{helvet}}
+     {\usepackage{tgheros}}
+  \else
+    \usepackage{tgheros}
+  \fi
+\else
+  \ifx\@heros\@undefined
+    \ifx\@helvet\@undefined
+      \IfFontExistsTF{Arial}
+       {\typeout{(Arial found)}}
+       {\IfFontExistsTF{./fonts/arial.ttf}%XeTeX on Overleaf only
+         {\typeout{(Arial found by file name)}
+          \global\let\@arialbyfile\relax}
+         {\global\let\@helvet\relax}}
+    \fi
+    \ifx\@helvet\@undefined
+      \ifx\@arialbyfile\@undefined
+        \setmainfont{Arial}
+        \setsansfont{Arial}
+      \else
+        \setmainfont{arial}%
+          [Extension = .ttf, Path=./fonts/,
+           UprightFont = *,
+           ItalicFont = *i,
+           BoldFont = *bd,
+           BoldItalicFont = *bi ]
+        \setsansfont{arial}%
+          [Extension = .ttf, Path=./fonts/,
+           UprightFont = *,
+           ItalicFont = *i,
+           BoldFont = *bd,
+           BoldItalicFont = *bi ]
+      \fi
+    \else
+      \IfFontExistsTF{Helvetica}
+       {\typeout{(Helvetica found)}}
+       {\IfFontExistsTF{./fonts/14459.ttf}%XeTeX on Overleaf only
+         {\typeout{(Helvetica found by file name)}
+          \global\let\@helvetbyfile\relax}
+         {\global\let\@heros\relax}}
+    \fi
+  \fi
+  \ifx\@heros\@undefined
+    \ifx\@helvet\relax
+      \ifx\@helvetbyfile\@undefined
+        \setmainfont{Helvetica}
+        \setsansfont{Helvetica}
+      \else
+        \setmainfont{14459}%
+          [Extension = .ttf, Path=./fonts/,
+           UprightFont = 14459,
+           ItalicFont = 14460,
+           BoldFont = 14461,
+           BoldItalicFont = 14462 ]
+        \setsansfont{14459}%
+          [Extension = .ttf, Path=./fonts/,
+           UprightFont = 14459,
+           ItalicFont = 14460,
+           BoldFont = 14461,
+           BoldItalicFont = 14462 ]
+      \fi
+    \fi
+  \else
+    \IfFontExistsTF{TeX Gyre Heros}
+     {}
+     {\global\let\@herosbyfile\relax}%XeTeX on MAC only
+    \ifx\@herosbyfile\@undefined
+      \setmainfont{TeX Gyre Heros}
+      \setsansfont{TeX Gyre Heros}
+    \else
+      \setmainfont{texgyreheros}[ Extension = .otf ,
+        UprightFont = *-regular ,
+        ItalicFont = *-italic ,
+        BoldFont = *-bold ,
+        BoldItalicFont = *-bolditalic ]
+      \setsansfont{texgyreheros}[ Extension = .otf ,
+        UprightFont = *-regular ,
+        ItalicFont = *-italic ,
+        BoldFont = *-bold ,
+        BoldItalicFont = *-bolditalic ]
+    \fi
+  \fi
+\fi
+\ifx\fontspecl@aded\@undefined
+  \ifx\@cursor\@undefined
+    \IfFileExists{courier.sty}
+     {\usepackage{courier}}
+     {\usepackage{tgcursor}}
+  \else
+    \usepackage{tgcursor}
+  \fi
+\else
+  \ifx\@cursor\@undefined
+    \IfFontExistsTF{Courier}
+     {\typeout{(Courier found)}}
+     {\IfFontExistsTF{./fonts/4483.ttf}%XeTeX on Overleaf only
+       {\typeout{(Courier found by file name)}
+        \global\let\@courierbyfile\relax}
+       {\global\let\@cursor\relax}}
+  \fi
+  \ifx\@cursor\@undefined
+    \ifx\@courierbyfile\@undefined
+      \setmonofont{Courier}
+    \else
+      \setmonofont{4483}%
+        [Extension = .ttf, Path=./fonts/,
+         UprightFont = 4483,
+         ItalicFont = 4484,
+         BoldFont = 4486,
+         BoldItalicFont = 4487 ]
+    \fi
+  \else
+    \IfFontExistsTF{TeX Gyre Cursor}
+     {}
+     {\global\let\@cursorbyfile\relax}%XeTeX on MAC only
+    \ifx\@cursorbyfile\@undefined
+      \setmonofont{TeX Gyre Cursor}
+    \else
+      \setmonofont{texgyrecursor}[ Extension = .otf ,
+        UprightFont = *-regular ,
+        ItalicFont = *-italic ,
+        BoldFont = *-bold ,
+        BoldItalicFont = *-bolditalic ]
+    \fi
+  \fi
+\fi
+\ifx\fontspecl@aded\@undefined
+  \usepackage{amssymb}
+  \let\old@sfdefault\sfdefault
+  \let\old@f@encoding\f@encoding\def\f@encoding{OT1}%avoid questionable package warning
+  \usepackage{sansmathfonts}
+  \let\sfdefault\old@sfdefault
+  \let\f@encoding\old@f@encoding
+  \usepackage[italic,itgreek,defaultmathsizes,mathaccents]{mathastext}
+  \DeclareMathDelimiter{\mst@varfam@backslash}{\mathalpha}{symbols}{"6E}{largesymbols}{"0F}
+  \let\upGamma\Gamma
+  \let\upDelta\Delta
+  \let\upTheta\Theta
+  \let\upLambda\Lambda
+  \let\upXi\Xi
+  \let\upPi\Pi
+  \let\upSigma\Sigma
+  \let\upUpsilon\Upsilon
+  \let\upPhi\Phi
+  \let\upPsi\Psi
+  \let\upOmega\Omega
+  \DeclareMathSymbol{\Gamma}{\mathalpha}{letters}{"00}
+  \DeclareMathSymbol{\Delta}{\mathalpha}{letters}{"01}
+  \DeclareMathSymbol{\Theta}{\mathalpha}{letters}{"02}
+  \DeclareMathSymbol{\Lambda}{\mathalpha}{letters}{"03}
+  \DeclareMathSymbol{\Xi}{\mathalpha}{letters}{"04}
+  \DeclareMathSymbol{\Pi}{\mathalpha}{letters}{"05}
+  \DeclareMathSymbol{\Sigma}{\mathalpha}{letters}{"06}
+  \DeclareMathSymbol{\Upsilon}{\mathalpha}{letters}{"07}
+  \DeclareMathSymbol{\Phi}{\mathalpha}{letters}{"08}
+  \DeclareMathSymbol{\Psi}{\mathalpha}{letters}{"09}
+  \DeclareMathSymbol{\Omega}{\mathalpha}{letters}{"0A}
+  \let\varGamma\Gamma
+  \let\varDelta\Delta
+  \let\varTheta\Theta
+  \let\varLambda\Lambda
+  \let\varXi\Xi
+  \let\varPi\Pi
+  \let\varSigma\Sigma
+  \let\varUpsilon\Upsilon
+  \let\varPhi\Phi
+  \let\varPsi\Psi
+  \let\varOmega\Omega
+\else
+  \IfFontExistsTF{FiraMath-Regular.otf}
+    {\setmathfont{FiraMath-Regular.otf}[
+       Scale=1,
+       %Numbers={Lining,Monospaced},%still (2022-04) not available
+       %BoldFont=FiraMath-Medium.otf%still (2022-04) not available
+       ]}
+    {\setmathfont{latinmodern-math.otf}}
+    \setmathfontface\mathrm{texgyreheros-bold.otf}[version=bold]
+    \setmathfontface\mathit{texgyreheros-bolditalic.otf}[version=bold]
+    \setmathfontface\mathsf{texgyreheros-bold.otf}[version=bold]
+    \setmathfontface\mathbf{texgyreheros-bold.otf}[version=bold]
+\fi
+\ifx\directlua\undefined\ifx\XeTeXcharclass\undefined
+  \@ifpackagewith{inputenc}{utf8}
+    {\DeclareUnicodeCharacter{2007}{\leavevmode\hphantom{0}}}
+    {\ifx\inputencoding\@undefined
+       \@ifl@t@r\fmtversion{2018-11-30}{\DeclareUnicodeCharacter{2007}{\leavevmode\hphantom{0}}}{}%
+     \fi}
+\fi\fi
+\let\old@classoptionslist\@classoptionslist
+\edef\@classoptionslist{ngerman,\old@classoptionslist}
+\ifdefined\@raw@classoptionslist
+  \let\old@raw@classoptionslist\@raw@classoptionslist
+  \edef\@raw@classoptionslist{ngerman,\old@raw@classoptionslist}
+\fi
+\usepackage{babel}
+\addto\captionsngerman{%
+  \def\contentsname{Inhalt}}
+\AtEndOfPackage{%
+\iflanguage{ngerman}
+  {\babelprovide[hyphenrules=ngerman-x-latest]{ngerman}%
+   \@ifpackagelater{babel}{2023/01/01}{}
+    {\ifx\bbl@KVP@hyphenrules\@nnil\else\ifnum\bbl@savelocaleid=\localeid
+          \language\@nameuse{l@\languagename}%
+     \fi\fi}}
+  {}}
+\iflanguage{ngerman}{\trans@use@and@alias{ngerman}{German}}{}
+\def\datengerman{\def\today{\two@digits{\number\day}.\two@digits{\number\month}.\number\year}}
+\def\dateUKenglish{\def\today{\two@digits{\number\day}/\two@digits{\number\month}/\expandafter\@thirdofthree\number\year}}
+\let\datebritish\dateUKenglish
+\let\dateUSenglish\dateUKenglish
+\let\dateamerican\dateUKenglish
+\PassOptionsToPackage{RGB}{xcolor}
+\usepackage{xcolor}
+\definecolor{KITgreen}     {RGB}{0,150,130}%(dunkel)blaugruen
+\definecolor{KITwhite}        {RGB}{255,255,255}%weiß
+\definecolor{KITdarkblue} {RGB}{0,45,76}%dunkelblauText
+\definecolor{KITiceblue}    {RGB}{168,185,196}%eisblauHintergrund
+\definecolor{KITicegray}  {RGB}{218,225,230}%eisblauText
+\definecolor{KITpinegreen}{RGB}{0,90,80}%dunkeblaugrün
+\definecolor{KITcyan}      {RGB}{35,161,224}%blau
+\definecolor{KITblue}     {RGB}{12,83,126}%dunkeblauAkzent
+\definecolor{KITlightgreen}{RGB}{140,182,60}%gelbgrün
+\definecolor{KITforestgreen}     {RGB}{39,103,56}%dunkelgrün
+\definecolor{KITblack}     {RGB}{0,0,0}%schwarz
+\definecolor{KITpurple}    {RGB}{163,16,124}%pink
+\definecolor{KITorange}    {RGB}{223,155,27}%orange
+\definecolor{KITyellow}    {RGB}{252,229,0}%gelb
+\definecolor{KITred}       {RGB}{211,0,21}
+\definecolor{KITbrown}     {RGB}{167,130,46}%braun
+\RequirePackage{array}
+\newcolumntype{e}{!{\extracolsep{\fill}}}
+\RequirePackage{multirow}
+\RequirePackage{bigstrut}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+\RequirePackage{colortbl}
+\def\gridrulecolor#1#{\KIT@grc{#1}}
+\def\KIT@grc#1#2{%
+  \ifdim\baselineskip=\z@\noalign\fi
+  {\gdef\KIT@grc@{\color#1{#2}}}}
+\let\KIT@grc@\relax
+\gridrulecolor{KITicegray}
+\def\KIThline{%
+  \noalign{\ifnum0=`}\fi
+              \let\hskip\vskip
+               \let\vrule\hrule
+               \let\@width\@height
+  {\KIT@grc@\vline}%
+  \futurelet\reserved@a\@xhline}
+\def\KIT@xarraycr{\@ifnextchar [%
+  \@argarraycr {\ifnum 0=`{}\fi\cr\KIThline}}
+\def\@xargarraycr#1{\unskip\gdef\do@row@strut
+  {\@tempdima #1\advance\@tempdima \dp\@arstrutbox
+   \vrule \@depth\@tempdima \@width\z@\global\let\do@row@strut\relax}%
+ \ifnum\@multicnt >\z@ \do@row@strut \fi
+ \cr
+ \KIThline}
+\def\@yargarraycr#1{\cr\KIThline\noalign{\@vspace@calcify{#1}}}
+\def\KITrule{\noalign{\ifnum0=`}\fi
+  \@aboverulesep=\z@
+  \global\@belowrulesep=\z@
+  \global\@thisruleclass=\@ne
+  \global\@thisrulewidth=0.378mm\relax
+  \vskip-0.2mm\relax
+  {\color{KITgreen}\hrule\@height\@thisrulewidth}%
+  \ifx\@footnotetext\TX@trial@ftn\else
+    \global\let\KIT@cell@leavevmode\relax
+    \global\let\KITtablefont\@empty
+  \fi
+  \futurenonspacelet\@tempa\@BTendrule}
+\def\KITsumrule{\noalign{\ifnum0=`}\fi
+  \@aboverulesep=\z@
+  \global\@belowrulesep=\z@
+  \global\@thisruleclass=\@ne
+  \global\@thisrulewidth=0.4pt\relax
+  \vskip-0.4pt\relax
+  {\color{KITgreen}\hrule\@height\@thisrulewidth}%
+  \ifx\@footnotetext\TX@trial@ftn\else
+    \gdef\KITtablefont{\color{KITgreen}\bfseries}%
+  \fi
+  \futurenonspacelet\@tempa\@BTendrule}
+\newcolumntype{I}{!{\color{KITgreen}\vrule\@width0.378mm}}
+\let\KITtablefont\@empty
+\let\STD@classz\@classz
+\def\KIT@classz{%
+  \expandafter\ifx\d@llarbegin\begingroup
+    \toks\count@ = \expandafter{%
+      \expandafter\ifvmode\expandafter\KIT@cell@leavevmode\expandafter\fi
+      \expandafter\KITtablefont
+      \the\toks\count@}%
+   \fi
+   \STD@classz}
+\def\KITtabular{\def\@halignto{}\@KITtabular}
+\expandafter\def\csname KITtabular*\endcsname#1{%
+       \setlength\dimen@{#1}%
+       \edef\@halignto{to\the\dimen@}\@KITtabular}
+\def\@KITtabular{%
+  \@ifnextchar[{\@@KITtabular}{\@@KITtabular[c]}}
+\def\@@KITtabular[#1]{%
+  \def\@tabular@vpos{#1}%
+  \footnotesize
+  \let\@classz\KIT@classz
+  \let\@xarraycr\KIT@xarraycr
+  \@tempdima=\arraystretch\p@ \@tempdima=2.6\@tempdima
+  \edef\arraystretch{\strip@pt\@tempdima}%
+  \extrarowheight-\arraystretch ex\relax \extrarowheight0.15\extrarowheight
+  \arrayrulewidth0.1275mm
+  \lightrulewidth=.378mm
+  \collect@body\@@@KITtabular}
+\def\@@@KITtabular#1{\@@@@KITtabular#1\midrule\@nil}
+\def\@@@@KITtabular#1#2\midrule#3\@nil{%
+  \if!#3!%
+    \let\KITrule\@empty
+    \@@@@@@KITtabular{{#1}}{}{#2}%
+  \else
+    \if!#2!%
+      \let\KITrule\@empty
+      \@@@@@KITtabular{#1}{}#3%
+    \else
+      \global\let\KIT@cell@leavevmode\leavevmode
+      \def\KITtablefont{\color{KITgreen}\large\bfseries}%
+      \@@@@@KITtabular{#1}{#2}#3%
+    \fi
+  \fi}
+\def\@@@@@KITtabular#1#2#3\midrule{\@@@@@@KITtabular{{#1}}{#2}{#3}}
+\def\@@@@@@KITtabular#1#2#3{%
+  \leavevmode
+  \UseTaggingSocket{tbl/hmode/begin}%
+  \hbox \bgroup $\col@sep\tabcolsep \let\d@llarbegin\begingroup%$
+                                    \let\d@llarend\endgroup
+  \CT@start
+  \@array[\@tabular@vpos]{#1}#2\KITrule#3}
+\let\endKITtabular\endtabular
+\expandafter\let\csname endKITtabular*\endcsname=\endtabular
+\def\KITtabularx#1{
+  \def\TX@{KITtabularx}%
+  \def\@tabularx@targetwidth{#1}%
+  \@ifnextchar[{\@@KITtabularx}{\@@KITtabularx[c]}}
+\def\@@KITtabularx[#1]{%
+  \def\@tabularx@vpos{#1}%
+  \footnotesize
+  \let\@classz\KIT@classz
+  \let\@xarraycr\KIT@xarraycr
+  \@tempdima=\arraystretch\p@ \@tempdima=2.6\@tempdima
+  \edef\arraystretch{\strip@pt\@tempdima}%
+  \extrarowheight-\arraystretch ex\relax \extrarowheight0.15\extrarowheight
+  \arrayrulewidth0.1275mm
+  \lightrulewidth=.378mm
+  \collect@body\@@@KITtabularx}
+\def\@@@KITtabularx#1{\@@@@KITtabularx#1\midrule\@nil}
+\def\@@@@KITtabularx#1#2\midrule#3\@nil{%
+  \if!#3!%
+    \let\KITrule\@empty
+    \@@@@@@KITtabularx{{#1}}{}{#2}
+  \else
+    \if!#2!%
+      \let\KITrule\@empty
+      \@@@@@KITtabularx{#1}{}#3%
+    \else
+      \global\let\KIT@cell@leavevmode\leavevmode
+      \@@@@@KITtabularx{#1}%
+                       {\gdef\KITtablefont{\color{KITgreen}\large\bfseries}\KITtablefont\ignorespaces#2}%
+                       \global\let\KITtablefont\@empty#3%
+    \fi
+  \fi}
+\def\@@@@@KITtabularx#1#2#3\midrule{\@@@@@@KITtabularx{{#1}}{#2}{#3}}
+\def\@@@@@@KITtabularx#1#2#3{%
+  \begin{tabularx}{\@tabularx@targetwidth}[\@tabularx@vpos]{#1}#2\KITrule#3\space\end{tabularx}}
+\let\endKITtabularx\relax
+\usepackage{graphicx}
+\RequirePackage{xkeyval}
+\RequirePackage{media9}
+\RequirePackage{zref-abspage}
+\define@boolkey{simplemedia}{autoplay}{\def\simplemediaautoplay{#1}}
+\define@boolkey{simplemedia}{showGUI}{\def\simplemediashowGUI{#1}}
+\presetkeys{simplemedia}{autoplay=false,showGUI=false}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \simplemedia[<options>]{<poster or text>}{<media file>}{MIME type}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ExplSyntaxOn
+\newcommand\simplemedia[4][]{%
+  \setkeys{simplemedia}{#1}%
+  \leavevmode
+  \pbs_pdfobj:nnn{}{fstream}{{}{#3}}
+  \pbs_pdfobj:nnn{}{dict}{
+    /Type/Filespec/F~(#3)/UF~(#3)
+    /EF~<</F~\pbs_pdflastobj:>>
+  }
+  %
+  \pbs_pdfobj:nnn{}{dict}{
+      /CT~(#4)% content type, page 764, table 9.9
+      /D~\pbs_pdflastobj:% full file specification, page 764, table 9.9
+      /N~(Media~clip~from~#3)% name of media clip, page 764, table 9.8
+      /P~<</TF (TEMPACCESS)>>% media permissions, page 764, table 9.9
+      /S~/MCD% subtype media-clip-data, page 764, table 9.8
+  }
+  %
+  \pbs_pdfobj:nnn{}{dict}{
+      /C~\pbs_pdflastobj:% media clip dictionary, page 762, table 9.6
+      /N~(RenditionFrom#3)% name of rendition, page 759, table 9.1
+      /P~<<% media play parameters dictionary, page 762, table 9.6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        /BE~<</C~\simplemediashowGUI~%C: display a player-specific controller user interface, page 769, table 9.15
+        /A~true>>~%A: automatically play when activated, page 770, table 9.15
+        % select player (not used here)
+%%        <</PID~<</U~(vnd.adobe.swname:ADBE_MCI)~>>~>>~% PID: software identifier object, page 779
+      ~>>
+      /S~/MR% subtype of rendition, page 759, table 9.1
+  }
+  %
+  \tl_set:Nx\mediarendition{\pbs_pdflastobj:}
+  %
+  \pbs_pdfobj:nnn{}{dict}{}% obj-number created for later use
+  \tl_set:Nx\renditionactionplay{\pbs_pdflastobj:}%
+  %
+  \pbs_pdfobj:nnn{}{dict}{}% obj-number created for later use
+  \tl_set:Nx\renditionactionstop{\pbs_pdflastobj:}%
+  %
+  \hbox_set:Nn\l_tmpa_box{#2}% size of annotation
+  \tl_set:Nx\l_box_wd_tl{\dim_use:N\box_wd:N\l_tmpa_box}
+  \tl_set:Nx\l_box_ht_tl{\dim_use:N\box_ht:N\l_tmpa_box}
+  \tl_set:Nx\l_box_dp_tl{\dim_use:N\box_dp:N\l_tmpa_box}
+  \pbs_pdfxform:nnnnn{1}{1}{}{}{\l_tmpa_box}
+  %
+  \tl_set:Nx\l_simplem_current_page_tl{\zref@extract{simplem@\int_use:N\g_simplem_id_int}{abspage}}
+  \pbs_pdfannot:nnnn{\l_box_wd_tl}{\l_box_ht_tl}{\l_box_dp_tl}{
+      /T~(AnnotationFrom#3)~% title of screen annotation, page 640, table 8.38
+      /Subtype~/Screen~% Subtype Screen, page 616, table 8.20 and page 640, table 8.38
+      /BS~<</W~1/S/S>>% Borderstyle
+      /C~[0.039216~0.039216~0.039216]% color used background, title bar, border, page 607, table 8.15
+      /Contents~(EmbeddedAudiofile#3)% Text to be displayed, page 606, table 8.15
+      /NM~(audioscreenannot:#3)% annotation name, page 606, table 8.15
+      /AP~<</N~\pbs_pdflastxform:>>% appearance dictionary, page 606, table 8.15
+      /F~4~%Annotation flag, page 606, table 8.15 and page 608, table 8.16
+      /A~\renditionactionplay~% Action to be performed, page 640
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      % autoplay is realised by "additional action" (page 640),
+      % PageOpen (PO) -> play "Play Rendition"
+      % PageClose (PC) -> play "Stop Rendition" (see page 650)
+      /AA~<<\ifKV@simplemedia@autoplay~/PO~\renditionactionplay~\fi~/PC~\renditionactionstop~>>~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \int_compare:nT{\l_simplem_current_page_tl>0}{
+        /P~\exp_args:Ne\pdf_pageobject_ref:n{\l_simplem_current_page_tl}
+      }
+      /CA~1%constant opacity value, page 618
+  }
+  % Rendition Action: "Play Rendition"
+  \pbs_pdfobj:nnn{\renditionactionplay}{dict}{%
+      /R~\mediarendition%
+      /S~/Rendition
+      /OP~4%operation to perform (page 669): 4 = play rendition specified by R
+      /AN~\pbs_pdflastann:%
+  }
+  % Rendition Action: "Stop Rendition"
+  \pbs_pdfobj:nnn{\renditionactionstop}{dict}{%
+      /R~\mediarendition%
+      /S~/Rendition
+      /OP~1%operation to perform (page 669): 1 = stop rendition specified by R
+      /AN~\pbs_pdflastann:%
+  }
+  %
+  \phantom{#2}
+  \zref@labelbyprops{simplem@\int_use:N\g_simplem_id_int}{abspage}
+  \int_gincr:N\g_simplem_id_int
+}%
+\int_new:N\g_simplem_id_int
+\ExplSyntaxOff
+\def\KITsymb@lbg#1{%
+  \pgfpathmoveto{\pgfqpoint{0mm}{0mm}}
+  \pgfpathlineto{\pgfqpoint{12.35mm}{0mm}}
+  \pgfpathlineto{\pgfqpoint{12.35mm}{12.35mm}}
+  \pgfpathlineto{\pgfqpoint{0mm}{12.35mm}}
+  \pgfpathclose
+  \pgfusepath{clip}
+  \pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{0.19mm}{6.32mm}}
+  \pgfpathcurveto{\pgfqpoint{0.19mm}{9.64mm}}{\pgfqpoint{2.89mm}{12.33mm}}{\pgfqpoint{6.23mm}{12.33mm}}
+  \pgfpathcurveto{\pgfqpoint{9.56mm}{12.33mm}}{\pgfqpoint{12.26mm}{9.64mm}}{\pgfqpoint{12.26mm}{6.32mm}}
+  \pgfpathcurveto{\pgfqpoint{12.26mm}{3mm}}{\pgfqpoint{9.56mm}{0.31mm}}{\pgfqpoint{6.23mm}{0.31mm}}
+  \pgfpathcurveto{\pgfqpoint{2.89mm}{0.31mm}}{\pgfqpoint{0.19mm}{3mm}}{\pgfqpoint{0.19mm}{6.32mm}}
+  \pgfpathlineto{\pgfqpoint{0.19mm}{6.32mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfsetlinewidth{0.53mm}
+  \pgfsetmiterlimit{3.863703}}
+\def\KITarr@ws#1{%
+  \pgfsetstrokecolor{#1}\pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{2.92mm}{6.32mm}}
+  \pgfpathlineto{\pgfqpoint{7.65mm}{6.32mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{7.41mm}{8.08mm}}
+  \pgfpathlineto{\pgfqpoint{9.53mm}{6.32mm}}
+  \pgfpathlineto{\pgfqpoint{7.41mm}{4.55mm}}
+  \pgfpathlineto{\pgfqpoint{7.41mm}{8.08mm}}
+  \pgfpathclose
+  \pgfusepath{fill}}
+\def\KITarr@wd#1{%
+  \pgfsetstrokecolor{#1}\pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{3.91mm}{8.64mm}}
+  \pgfpathlineto{\pgfqpoint{7.24mm}{5.32mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{8.32mm}{6.74mm}}
+  \pgfpathlineto{\pgfqpoint{8.58mm}{3.99mm}}
+  \pgfpathlineto{\pgfqpoint{5.83mm}{4.24mm}}
+  \pgfpathlineto{\pgfqpoint{8.32mm}{6.74mm}}
+  \pgfpathclose
+  \pgfusepath{fill}}
+\NewDocumentCommand\KITarrowE{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \KITarr@ws{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITarrowS{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgftransformrotate{270}
+  \KITsymb@lbg{#2}
+  \KITarr@ws{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITarrowW{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgftransformrotate{180}
+  \KITsymb@lbg{#2}
+  \KITarr@ws{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITarrowN{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgftransformrotate{90}
+  \KITsymb@lbg{#2}
+  \KITarr@ws{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITarrowSE{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \KITarr@wd{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITarrowSW{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgftransformrotate{270}
+  \KITsymb@lbg{#2}
+  \KITarr@wd{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITarrowNW{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgftransformrotate{180}
+  \KITsymb@lbg{#2}
+  \KITarr@wd{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITarrowNE{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgftransformrotate{90}
+  \KITsymb@lbg{#2}
+  \KITarr@wd{#1}
+  \endpgfpicture}}
+\NewDocumentCommand\KITcheck{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \pgfsetstrokecolor{#1}
+  \pgfpathmoveto{\pgfqpoint{2.96mm}{5.86mm}}
+  \pgfpathlineto{\pgfqpoint{4.97mm}{3.86mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{9.5mm}{8.76mm}}
+  \pgfpathlineto{\pgfqpoint{4.6mm}{3.89mm}}
+  \pgfusepath{stroke}
+  \endpgfpicture}}
+\NewDocumentCommand\KITcross{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \pgfsetstrokecolor{#1}
+  \pgfpathmoveto{\pgfqpoint{3.79mm}{8.76mm}}
+  \pgfpathlineto{\pgfqpoint{8.69mm}{3.89mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{8.69mm}{8.76mm}}
+  \pgfpathlineto{\pgfqpoint{3.79mm}{3.89mm}}
+  \pgfusepath{stroke}
+  \endpgfpicture}}
+\NewDocumentCommand\KITminus{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \pgfsetstrokecolor{#1}
+  \pgfpathmoveto{\pgfqpoint{4.07mm}{6.31mm}}
+  \pgfpathlineto{\pgfqpoint{8.38mm}{6.31mm}}
+  \pgfusepath{stroke}
+  \endpgfpicture}}
+\NewDocumentCommand\KITplus{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \pgfsetstrokecolor{#1}
+  \pgfpathmoveto{\pgfqpoint{4.08mm}{6.33mm}}
+  \pgfpathlineto{\pgfqpoint{8.39mm}{6.33mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{6.21mm}{8.49mm}}
+  \pgfpathlineto{\pgfqpoint{6.21mm}{4.2mm}}
+  \pgfusepath{stroke}
+  \endpgfpicture}}
+\NewDocumentCommand\KITequal{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \pgfsetstrokecolor{#1}
+  \pgfpathmoveto{\pgfqpoint{4.1mm}{7.01mm}}
+  \pgfpathlineto{\pgfqpoint{8.41mm}{7.01mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{4.1mm}{5.65mm}}
+  \pgfpathlineto{\pgfqpoint{8.41mm}{5.65mm}}
+  \pgfusepath{stroke}
+  \endpgfpicture}}
+\NewDocumentCommand\KITsymbol{O{KITgreen!20}D(){KITdarkblue}m}
+ {\scalebox{0.4724}{\pgfpicture
+  \KITsymb@lbg{#2}
+  \pgftext[center,at=\pgfpoint{6.1mm}{6.4mm}]{\textcolor{#1}{\LARGE\bfseries\mathversion{bold}#3}}%
+  \endpgfpicture}}
+\NewDocumentCommand\KITbook{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgfsetfillcolor{#2}
+  \pgfpathmoveto{\pgfqpoint{-5mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{16.64mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{16.64mm}{17.41mm}}
+  \pgfpathlineto{\pgfqpoint{-5mm}{17.41mm}}
+  \pgfpathclose
+  \pgfusepath{fill,clip}
+  \pgfsetlinewidth{0.7mm}
+  \pgfsetstrokecolor{#1}\pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{11.21mm}{3.89mm}}
+  \pgfpathlineto{\pgfqpoint{11.21mm}{7.9mm}}
+  \pgfpathcurveto{\pgfqpoint{11.21mm}{10.26mm}}{\pgfqpoint{11.21mm}{11.43mm}}{\pgfqpoint{10.48mm}{12.17mm}}
+  \pgfpathcurveto{\pgfqpoint{9.74mm}{12.9mm}}{\pgfqpoint{8.56mm}{12.9mm}}{\pgfqpoint{6.2mm}{12.9mm}}
+  \pgfpathlineto{\pgfqpoint{5.57mm}{12.9mm}}
+  \pgfpathcurveto{\pgfqpoint{3.21mm}{12.9mm}}{\pgfqpoint{2.03mm}{12.9mm}}{\pgfqpoint{1.29mm}{12.17mm}}
+  \pgfpathcurveto{\pgfqpoint{0.56mm}{11.43mm}}{\pgfqpoint{0.56mm}{10.26mm}}{\pgfqpoint{0.56mm}{7.9mm}}
+  \pgfpathlineto{\pgfqpoint{0.56mm}{2.28mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{11.56mm}{3.93mm}}
+  \pgfpathlineto{\pgfqpoint{10.86mm}{3.93mm}}
+  \pgfpathlineto{\pgfqpoint{10.86mm}{3.58mm}}
+  \pgfpathlineto{\pgfqpoint{10.89mm}{3.45mm}}
+  \pgfpathlineto{\pgfqpoint{10.96mm}{3.33mm}}
+  \pgfpathlineto{\pgfqpoint{11.08mm}{3.26mm}}
+  \pgfpathlineto{\pgfqpoint{11.21mm}{3.23mm}}
+  \pgfpathlineto{\pgfqpoint{11.35mm}{3.26mm}}
+  \pgfpathlineto{\pgfqpoint{11.46mm}{3.33mm}}
+  \pgfpathlineto{\pgfqpoint{11.54mm}{3.45mm}}
+  \pgfpathlineto{\pgfqpoint{11.56mm}{3.58mm}}
+  \pgfpathlineto{\pgfqpoint{11.56mm}{3.93mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{0.91mm}{2.33mm}}
+  \pgfpathlineto{\pgfqpoint{0.21mm}{2.33mm}}
+  \pgfpathlineto{\pgfqpoint{0.21mm}{1.98mm}}
+  \pgfpathlineto{\pgfqpoint{0.23mm}{1.84mm}}
+  \pgfpathlineto{\pgfqpoint{0.31mm}{1.73mm}}
+  \pgfpathlineto{\pgfqpoint{0.42mm}{1.65mm}}
+  \pgfpathlineto{\pgfqpoint{0.56mm}{1.63mm}}
+  \pgfpathlineto{\pgfqpoint{0.69mm}{1.65mm}}
+  \pgfpathlineto{\pgfqpoint{0.81mm}{1.73mm}}
+  \pgfpathlineto{\pgfqpoint{0.88mm}{1.84mm}}
+  \pgfpathlineto{\pgfqpoint{0.91mm}{1.98mm}}
+  \pgfpathlineto{\pgfqpoint{0.91mm}{2.33mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{10.91mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{2.12mm}{3.56mm}}
+  \pgfpathcurveto{\pgfqpoint{1.26mm}{3.56mm}}{\pgfqpoint{0.56mm}{2.86mm}}{\pgfqpoint{0.56mm}{2mm}}
+  \pgfpathcurveto{\pgfqpoint{0.56mm}{1.14mm}}{\pgfqpoint{1.26mm}{0.44mm}}{\pgfqpoint{2.12mm}{0.44mm}}
+  \pgfpathlineto{\pgfqpoint{10.91mm}{0.44mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{10.86mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{10.86mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{11.21mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{11.35mm}{3.24mm}}
+  \pgfpathlineto{\pgfqpoint{11.46mm}{3.31mm}}
+  \pgfpathlineto{\pgfqpoint{11.54mm}{3.43mm}}
+  \pgfpathlineto{\pgfqpoint{11.56mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{11.54mm}{3.7mm}}
+  \pgfpathlineto{\pgfqpoint{11.46mm}{3.81mm}}
+  \pgfpathlineto{\pgfqpoint{11.35mm}{3.89mm}}
+  \pgfpathlineto{\pgfqpoint{11.21mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{10.86mm}{3.91mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{10.86mm}{0.79mm}}
+  \pgfpathlineto{\pgfqpoint{10.86mm}{0.08mm}}
+  \pgfpathlineto{\pgfqpoint{11.21mm}{0.08mm}}
+  \pgfpathlineto{\pgfqpoint{11.35mm}{0.11mm}}
+  \pgfpathlineto{\pgfqpoint{11.46mm}{0.19mm}}
+  \pgfpathlineto{\pgfqpoint{11.54mm}{0.3mm}}
+  \pgfpathlineto{\pgfqpoint{11.56mm}{0.44mm}}
+  \pgfpathlineto{\pgfqpoint{11.54mm}{0.57mm}}
+  \pgfpathlineto{\pgfqpoint{11.46mm}{0.69mm}}
+  \pgfpathlineto{\pgfqpoint{11.35mm}{0.76mm}}
+  \pgfpathlineto{\pgfqpoint{11.21mm}{0.79mm}}
+  \pgfpathlineto{\pgfqpoint{10.86mm}{0.79mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{10.91mm}{0.46mm}}
+  \pgfpathcurveto{\pgfqpoint{10.17mm}{0.6mm}}{\pgfqpoint{9.62mm}{1.14mm}}{\pgfqpoint{9.62mm}{2mm}}
+  \pgfpathcurveto{\pgfqpoint{9.62mm}{2.86mm}}{\pgfqpoint{10.18mm}{3.4mm}}{\pgfqpoint{10.91mm}{3.53mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{10.9mm}{0.82mm}}
+  \pgfpathlineto{\pgfqpoint{10.82mm}{0.12mm}}
+  \pgfpathlineto{\pgfqpoint{11.17mm}{0.09mm}}
+  \pgfpathlineto{\pgfqpoint{11.31mm}{0.1mm}}
+  \pgfpathlineto{\pgfqpoint{11.43mm}{0.16mm}}
+  \pgfpathlineto{\pgfqpoint{11.52mm}{0.27mm}}
+  \pgfpathlineto{\pgfqpoint{11.56mm}{0.4mm}}
+  \pgfpathlineto{\pgfqpoint{11.55mm}{0.54mm}}
+  \pgfpathlineto{\pgfqpoint{11.49mm}{0.66mm}}
+  \pgfpathlineto{\pgfqpoint{11.38mm}{0.75mm}}
+  \pgfpathlineto{\pgfqpoint{11.25mm}{0.79mm}}
+  \pgfpathlineto{\pgfqpoint{10.9mm}{0.82mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{10.82mm}{3.87mm}}
+  \pgfpathlineto{\pgfqpoint{10.9mm}{3.17mm}}
+  \pgfpathlineto{\pgfqpoint{11.25mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{11.38mm}{3.25mm}}
+  \pgfpathlineto{\pgfqpoint{11.49mm}{3.34mm}}
+  \pgfpathlineto{\pgfqpoint{11.55mm}{3.46mm}}
+  \pgfpathlineto{\pgfqpoint{11.56mm}{3.6mm}}
+  \pgfpathlineto{\pgfqpoint{11.52mm}{3.73mm}}
+  \pgfpathlineto{\pgfqpoint{11.43mm}{3.84mm}}
+  \pgfpathlineto{\pgfqpoint{11.31mm}{3.9mm}}
+  \pgfpathlineto{\pgfqpoint{11.17mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{10.82mm}{3.87mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfsetroundjoin
+  \pgfpathmoveto{\pgfqpoint{7.46mm}{9.77mm}}
+  \pgfpathlineto{\pgfqpoint{4.31mm}{9.77mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{7.41mm}{10.12mm}}
+  \pgfpathlineto{\pgfqpoint{7.41mm}{9.42mm}}
+  \pgfpathlineto{\pgfqpoint{7.76mm}{9.42mm}}
+  \pgfpathlineto{\pgfqpoint{7.9mm}{9.44mm}}
+  \pgfpathlineto{\pgfqpoint{8.01mm}{9.52mm}}
+  \pgfpathlineto{\pgfqpoint{8.09mm}{9.64mm}}
+  \pgfpathlineto{\pgfqpoint{8.12mm}{9.77mm}}
+  \pgfpathlineto{\pgfqpoint{8.09mm}{9.9mm}}
+  \pgfpathlineto{\pgfqpoint{8.01mm}{10.02mm}}
+  \pgfpathlineto{\pgfqpoint{7.9mm}{10.1mm}}
+  \pgfpathlineto{\pgfqpoint{7.76mm}{10.12mm}}
+  \pgfpathlineto{\pgfqpoint{7.41mm}{10.12mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{4.36mm}{9.42mm}}
+  \pgfpathlineto{\pgfqpoint{4.36mm}{10.12mm}}
+  \pgfpathlineto{\pgfqpoint{4.01mm}{10.12mm}}
+  \pgfpathlineto{\pgfqpoint{3.87mm}{10.1mm}}
+  \pgfpathlineto{\pgfqpoint{3.76mm}{10.02mm}}
+  \pgfpathlineto{\pgfqpoint{3.68mm}{9.9mm}}
+  \pgfpathlineto{\pgfqpoint{3.65mm}{9.77mm}}
+  \pgfpathlineto{\pgfqpoint{3.68mm}{9.64mm}}
+  \pgfpathlineto{\pgfqpoint{3.76mm}{9.52mm}}
+  \pgfpathlineto{\pgfqpoint{3.87mm}{9.44mm}}
+  \pgfpathlineto{\pgfqpoint{4.01mm}{9.42mm}}
+  \pgfpathlineto{\pgfqpoint{4.36mm}{9.42mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.56mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{4.31mm}{7.3mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{5.51mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{5.51mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{5.86mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{6mm}{6.98mm}}
+  \pgfpathlineto{\pgfqpoint{6.11mm}{7.06mm}}
+  \pgfpathlineto{\pgfqpoint{6.19mm}{7.17mm}}
+  \pgfpathlineto{\pgfqpoint{6.22mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{6.19mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{6.11mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{6mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{5.86mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{5.51mm}{7.66mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{4.36mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{4.36mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{4.01mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{3.87mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{3.76mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{3.68mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{3.65mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{3.68mm}{7.17mm}}
+  \pgfpathlineto{\pgfqpoint{3.76mm}{7.06mm}}
+  \pgfpathlineto{\pgfqpoint{3.87mm}{6.98mm}}
+  \pgfpathlineto{\pgfqpoint{4.01mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{4.36mm}{6.95mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \endpgfpicture}}
+\NewDocumentCommand\KITbulb{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgfsetfillcolor{#2}
+  \pgfpathmoveto{\pgfqpoint{-5mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{16.64mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{16.64mm}{17.41mm}}
+  \pgfpathlineto{\pgfqpoint{-5mm}{17.71mm}}
+  \pgfpathclose
+  \pgfusepath{fill,clip}
+  \pgfsetlinewidth{0.7mm}
+  \pgfsetstrokecolor{#1}\pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{1.08mm}{5.68mm}}
+  \pgfpathcurveto{\pgfqpoint{0.72mm}{6.36mm}}{\pgfqpoint{0.52mm}{7.03mm}}{\pgfqpoint{0.52mm}{7.96mm}}
+  \pgfpathcurveto{\pgfqpoint{0.52mm}{10.68mm}}{\pgfqpoint{2.76mm}{12.9mm}}{\pgfqpoint{5.53mm}{12.9mm}}
+  \pgfpathcurveto{\pgfqpoint{8.3mm}{12.9mm}}{\pgfqpoint{10.55mm}{10.68mm}}{\pgfqpoint{10.55mm}{7.96mm}}
+  \pgfpathcurveto{\pgfqpoint{10.55mm}{7.03mm}}{\pgfqpoint{10.35mm}{6.36mm}}{\pgfqpoint{9.99mm}{5.68mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{1.37mm}{5.89mm}}
+  \pgfpathlineto{\pgfqpoint{0.75mm}{5.55mm}}
+  \pgfpathlineto{\pgfqpoint{0.93mm}{5.24mm}}
+  \pgfpathlineto{\pgfqpoint{1.02mm}{5.13mm}}
+  \pgfpathlineto{\pgfqpoint{1.14mm}{5.07mm}}
+  \pgfpathlineto{\pgfqpoint{1.28mm}{5.06mm}}
+  \pgfpathlineto{\pgfqpoint{1.41mm}{5.1mm}}
+  \pgfpathlineto{\pgfqpoint{1.51mm}{5.19mm}}
+  \pgfpathlineto{\pgfqpoint{1.57mm}{5.32mm}}
+  \pgfpathlineto{\pgfqpoint{1.58mm}{5.45mm}}
+  \pgfpathlineto{\pgfqpoint{1.54mm}{5.58mm}}
+  \pgfpathlineto{\pgfqpoint{1.37mm}{5.89mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{10.31mm}{5.55mm}}
+  \pgfpathlineto{\pgfqpoint{9.7mm}{5.89mm}}
+  \pgfpathlineto{\pgfqpoint{9.53mm}{5.58mm}}
+  \pgfpathlineto{\pgfqpoint{9.48mm}{5.45mm}}
+  \pgfpathlineto{\pgfqpoint{9.49mm}{5.32mm}}
+  \pgfpathlineto{\pgfqpoint{9.56mm}{5.19mm}}
+  \pgfpathlineto{\pgfqpoint{9.66mm}{5.1mm}}
+  \pgfpathlineto{\pgfqpoint{9.79mm}{5.06mm}}
+  \pgfpathlineto{\pgfqpoint{9.93mm}{5.07mm}}
+  \pgfpathlineto{\pgfqpoint{10.05mm}{5.13mm}}
+  \pgfpathlineto{\pgfqpoint{10.14mm}{5.24mm}}
+  \pgfpathlineto{\pgfqpoint{10.31mm}{5.55mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfsetmiterlimit{3.863703}
+  \pgfpathmoveto{\pgfqpoint{2.63mm}{3.49mm}}
+  \pgfpathcurveto{\pgfqpoint{2.58mm}{3.66mm}}{\pgfqpoint{2.55mm}{3.75mm}}{\pgfqpoint{2.55mm}{3.82mm}}
+  \pgfpathcurveto{\pgfqpoint{2.56mm}{3.97mm}}{\pgfqpoint{2.65mm}{4.1mm}}{\pgfqpoint{2.79mm}{4.15mm}}
+  \pgfpathcurveto{\pgfqpoint{2.85mm}{4.18mm}}{\pgfqpoint{2.95mm}{4.18mm}}{\pgfqpoint{3.13mm}{4.18mm}}
+  \pgfpathlineto{\pgfqpoint{7.94mm}{4.18mm}}
+  \pgfpathcurveto{\pgfqpoint{8.12mm}{4.18mm}}{\pgfqpoint{8.21mm}{4.18mm}}{\pgfqpoint{8.28mm}{4.15mm}}
+  \pgfpathcurveto{\pgfqpoint{8.42mm}{4.1mm}}{\pgfqpoint{8.51mm}{3.97mm}}{\pgfqpoint{8.52mm}{3.82mm}}
+  \pgfpathcurveto{\pgfqpoint{8.52mm}{3.75mm}}{\pgfqpoint{8.49mm}{3.66mm}}{\pgfqpoint{8.43mm}{3.49mm}}
+  \pgfpathcurveto{\pgfqpoint{8.33mm}{3.16mm}}{\pgfqpoint{8.27mm}{3mm}}{\pgfqpoint{8.19mm}{2.87mm}}
+  \pgfpathcurveto{\pgfqpoint{8.02mm}{2.6mm}}{\pgfqpoint{7.75mm}{2.4mm}}{\pgfqpoint{7.44mm}{2.32mm}}
+  \pgfpathcurveto{\pgfqpoint{7.29mm}{2.29mm}}{\pgfqpoint{7.12mm}{2.29mm}}{\pgfqpoint{6.78mm}{2.29mm}}
+  \pgfpathlineto{\pgfqpoint{4.28mm}{2.29mm}}
+  \pgfpathcurveto{\pgfqpoint{3.95mm}{2.29mm}}{\pgfqpoint{3.78mm}{2.29mm}}{\pgfqpoint{3.63mm}{2.32mm}}
+  \pgfpathcurveto{\pgfqpoint{3.32mm}{2.4mm}}{\pgfqpoint{3.05mm}{2.6mm}}{\pgfqpoint{2.88mm}{2.87mm}}
+  \pgfpathcurveto{\pgfqpoint{2.79mm}{3mm}}{\pgfqpoint{2.74mm}{3.16mm}}{\pgfqpoint{2.63mm}{3.49mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{7.41mm}{2.29mm}}
+  \pgfpathlineto{\pgfqpoint{7.33mm}{1.89mm}}
+  \pgfpathcurveto{\pgfqpoint{7.24mm}{1.45mm}}{\pgfqpoint{7.2mm}{1.23mm}}{\pgfqpoint{7.1mm}{1.06mm}}
+  \pgfpathcurveto{\pgfqpoint{6.95mm}{0.79mm}}{\pgfqpoint{6.7mm}{0.59mm}}{\pgfqpoint{6.4mm}{0.5mm}}
+  \pgfpathcurveto{\pgfqpoint{6.21mm}{0.44mm}}{\pgfqpoint{5.99mm}{0.44mm}}{\pgfqpoint{5.53mm}{0.44mm}}
+  \pgfpathcurveto{\pgfqpoint{5.08mm}{0.44mm}}{\pgfqpoint{4.86mm}{0.44mm}}{\pgfqpoint{4.67mm}{0.5mm}}
+  \pgfpathcurveto{\pgfqpoint{4.37mm}{0.59mm}}{\pgfqpoint{4.12mm}{0.79mm}}{\pgfqpoint{3.97mm}{1.06mm}}
+  \pgfpathcurveto{\pgfqpoint{3.87mm}{1.23mm}}{\pgfqpoint{3.82mm}{1.45mm}}{\pgfqpoint{3.74mm}{1.89mm}}
+  \pgfpathlineto{\pgfqpoint{3.65mm}{2.29mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{5.56mm}{4.48mm}}
+  \pgfpathlineto{\pgfqpoint{5.56mm}{7mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{5.91mm}{4.53mm}}
+  \pgfpathlineto{\pgfqpoint{5.2mm}{4.53mm}}
+  \pgfpathlineto{\pgfqpoint{5.2mm}{4.18mm}}
+  \pgfpathlineto{\pgfqpoint{5.23mm}{4.04mm}}
+  \pgfpathlineto{\pgfqpoint{5.31mm}{3.93mm}}
+  \pgfpathlineto{\pgfqpoint{5.42mm}{3.85mm}}
+  \pgfpathlineto{\pgfqpoint{5.56mm}{3.83mm}}
+  \pgfpathlineto{\pgfqpoint{5.69mm}{3.85mm}}
+  \pgfpathlineto{\pgfqpoint{5.8mm}{3.93mm}}
+  \pgfpathlineto{\pgfqpoint{5.88mm}{4.04mm}}
+  \pgfpathlineto{\pgfqpoint{5.91mm}{4.18mm}}
+  \pgfpathlineto{\pgfqpoint{5.91mm}{4.53mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.2mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{5.91mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{5.91mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{5.88mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{5.8mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{5.69mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{5.56mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{5.42mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{5.31mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{5.23mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{5.2mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{5.2mm}{6.95mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \endpgfpicture}}
+\NewDocumentCommand\KIThandshake{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgfsetfillcolor{#2}
+  \pgfpathmoveto{\pgfqpoint{-5mm}{-5.5mm}}
+  \pgfpathlineto{\pgfqpoint{16.64mm}{-5.5mm}}
+  \pgfpathlineto{\pgfqpoint{16.64mm}{15.81mm}}
+  \pgfpathlineto{\pgfqpoint{-5mm}{15.81mm}}
+  \pgfpathclose
+  \pgfusepath{fill,clip}
+  \pgfsetlinewidth{0.7mm}
+  \pgfsetroundjoin
+  \pgfsetstrokecolor{#1}\pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{12.89mm}{8.17mm}}
+  \pgfpathlineto{\pgfqpoint{11.46mm}{8.17mm}}
+  \pgfpathcurveto{\pgfqpoint{11.08mm}{8.17mm}}{\pgfqpoint{10.89mm}{8.17mm}}{\pgfqpoint{10.71mm}{8.23mm}}
+  \pgfpathcurveto{\pgfqpoint{10.54mm}{8.28mm}}{\pgfqpoint{10.38mm}{8.38mm}}{\pgfqpoint{10.07mm}{8.59mm}}
+  \pgfpathcurveto{\pgfqpoint{9.6mm}{8.9mm}}{\pgfqpoint{9.06mm}{9.26mm}}{\pgfqpoint{8.8mm}{9.34mm}}
+  \pgfpathcurveto{\pgfqpoint{8.53mm}{9.42mm}}{\pgfqpoint{8.25mm}{9.42mm}}{\pgfqpoint{7.69mm}{9.42mm}}
+  \pgfpathcurveto{\pgfqpoint{6.92mm}{9.42mm}}{\pgfqpoint{6.42mm}{9.42mm}}{\pgfqpoint{6.08mm}{9.28mm}}
+  \pgfpathcurveto{\pgfqpoint{5.73mm}{9.13mm}}{\pgfqpoint{5.46mm}{8.86mm}}{\pgfqpoint{4.92mm}{8.33mm}}
+  \pgfpathlineto{\pgfqpoint{4.44mm}{7.85mm}}
+  \pgfpathcurveto{\pgfqpoint{4.32mm}{7.73mm}}{\pgfqpoint{4.26mm}{7.67mm}}{\pgfqpoint{4.22mm}{7.61mm}}
+  \pgfpathcurveto{\pgfqpoint{4.08mm}{7.39mm}}{\pgfqpoint{4.1mm}{7.1mm}}{\pgfqpoint{4.26mm}{6.89mm}}
+  \pgfpathcurveto{\pgfqpoint{4.3mm}{6.84mm}}{\pgfqpoint{4.37mm}{6.78mm}}{\pgfqpoint{4.51mm}{6.68mm}}
+  \pgfpathcurveto{\pgfqpoint{5mm}{6.28mm}}{\pgfqpoint{5.72mm}{6.32mm}}{\pgfqpoint{6.17mm}{6.77mm}}
+  \pgfpathlineto{\pgfqpoint{6.94mm}{7.54mm}}
+  \pgfpathlineto{\pgfqpoint{7.57mm}{7.54mm}}
+  \pgfpathlineto{\pgfqpoint{11.32mm}{3.78mm}}
+  \pgfpathcurveto{\pgfqpoint{11.67mm}{3.44mm}}{\pgfqpoint{11.67mm}{2.88mm}}{\pgfqpoint{11.32mm}{2.53mm}}
+  \pgfpathcurveto{\pgfqpoint{10.98mm}{2.19mm}}{\pgfqpoint{10.42mm}{2.19mm}}{\pgfqpoint{10.07mm}{2.53mm}}
+  \pgfpathlineto{\pgfqpoint{9.98mm}{2.63mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{12.85mm}{8.53mm}}
+  \pgfpathlineto{\pgfqpoint{12.85mm}{7.82mm}}
+  \pgfpathlineto{\pgfqpoint{13.2mm}{7.82mm}}
+  \pgfpathlineto{\pgfqpoint{13.33mm}{7.85mm}}
+  \pgfpathlineto{\pgfqpoint{13.45mm}{7.93mm}}
+  \pgfpathlineto{\pgfqpoint{13.53mm}{8.04mm}}
+  \pgfpathlineto{\pgfqpoint{13.55mm}{8.17mm}}
+  \pgfpathlineto{\pgfqpoint{13.53mm}{8.31mm}}
+  \pgfpathlineto{\pgfqpoint{13.45mm}{8.42mm}}
+  \pgfpathlineto{\pgfqpoint{13.33mm}{8.5mm}}
+  \pgfpathlineto{\pgfqpoint{13.2mm}{8.53mm}}
+  \pgfpathlineto{\pgfqpoint{12.85mm}{8.53mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{9.76mm}{2.35mm}}
+  \pgfpathlineto{\pgfqpoint{10.26mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{10.01mm}{3.09mm}}
+  \pgfpathlineto{\pgfqpoint{9.89mm}{3.17mm}}
+  \pgfpathlineto{\pgfqpoint{9.76mm}{3.2mm}}
+  \pgfpathlineto{\pgfqpoint{9.63mm}{3.17mm}}
+  \pgfpathlineto{\pgfqpoint{9.51mm}{3.09mm}}
+  \pgfpathlineto{\pgfqpoint{9.43mm}{2.98mm}}
+  \pgfpathlineto{\pgfqpoint{9.41mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{9.43mm}{2.71mm}}
+  \pgfpathlineto{\pgfqpoint{9.51mm}{2.6mm}}
+  \pgfpathlineto{\pgfqpoint{9.76mm}{2.35mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{8.1mm}{4.51mm}}
+  \pgfpathlineto{\pgfqpoint{9.54mm}{3.06mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{7.88mm}{4.22mm}}
+  \pgfpathlineto{\pgfqpoint{8.38mm}{4.72mm}}
+  \pgfpathlineto{\pgfqpoint{8.13mm}{4.97mm}}
+  \pgfpathlineto{\pgfqpoint{8.02mm}{5.05mm}}
+  \pgfpathlineto{\pgfqpoint{7.88mm}{5.08mm}}
+  \pgfpathlineto{\pgfqpoint{7.75mm}{5.05mm}}
+  \pgfpathlineto{\pgfqpoint{7.63mm}{4.97mm}}
+  \pgfpathlineto{\pgfqpoint{7.56mm}{4.86mm}}
+  \pgfpathlineto{\pgfqpoint{7.53mm}{4.72mm}}
+  \pgfpathlineto{\pgfqpoint{7.56mm}{4.59mm}}
+  \pgfpathlineto{\pgfqpoint{7.63mm}{4.47mm}}
+  \pgfpathlineto{\pgfqpoint{7.88mm}{4.22mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{9.76mm}{3.34mm}}
+  \pgfpathlineto{\pgfqpoint{9.26mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{9.51mm}{2.6mm}}
+  \pgfpathlineto{\pgfqpoint{9.62mm}{2.52mm}}
+  \pgfpathlineto{\pgfqpoint{9.76mm}{2.49mm}}
+  \pgfpathlineto{\pgfqpoint{9.89mm}{2.52mm}}
+  \pgfpathlineto{\pgfqpoint{10.01mm}{2.6mm}}
+  \pgfpathlineto{\pgfqpoint{10.08mm}{2.71mm}}
+  \pgfpathlineto{\pgfqpoint{10.11mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{10.09mm}{2.98mm}}
+  \pgfpathlineto{\pgfqpoint{10.01mm}{3.09mm}}
+  \pgfpathlineto{\pgfqpoint{9.76mm}{3.34mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{9.93mm}{2.6mm}}
+  \pgfpathcurveto{\pgfqpoint{10.09mm}{2.27mm}}{\pgfqpoint{10.11mm}{1.94mm}}{\pgfqpoint{9.76mm}{1.59mm}}
+  \pgfpathcurveto{\pgfqpoint{9.41mm}{1.25mm}}{\pgfqpoint{8.85mm}{1.25mm}}{\pgfqpoint{8.51mm}{1.59mm}}
+  \pgfpathlineto{\pgfqpoint{8.1mm}{2mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{9.66mm}{2.36mm}}
+  \pgfpathlineto{\pgfqpoint{10.25mm}{2.75mm}}
+  \pgfpathlineto{\pgfqpoint{10.05mm}{3.04mm}}
+  \pgfpathlineto{\pgfqpoint{9.96mm}{3.14mm}}
+  \pgfpathlineto{\pgfqpoint{9.83mm}{3.19mm}}
+  \pgfpathlineto{\pgfqpoint{9.69mm}{3.19mm}}
+  \pgfpathlineto{\pgfqpoint{9.56mm}{3.14mm}}
+  \pgfpathlineto{\pgfqpoint{9.47mm}{3.04mm}}
+  \pgfpathlineto{\pgfqpoint{9.41mm}{2.91mm}}
+  \pgfpathlineto{\pgfqpoint{9.41mm}{2.78mm}}
+  \pgfpathlineto{\pgfqpoint{9.47mm}{2.65mm}}
+  \pgfpathlineto{\pgfqpoint{9.66mm}{2.36mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{7.88mm}{1.72mm}}
+  \pgfpathlineto{\pgfqpoint{8.38mm}{2.22mm}}
+  \pgfpathlineto{\pgfqpoint{8.13mm}{2.47mm}}
+  \pgfpathlineto{\pgfqpoint{8.02mm}{2.54mm}}
+  \pgfpathlineto{\pgfqpoint{7.88mm}{2.57mm}}
+  \pgfpathlineto{\pgfqpoint{7.75mm}{2.54mm}}
+  \pgfpathlineto{\pgfqpoint{7.63mm}{2.47mm}}
+  \pgfpathlineto{\pgfqpoint{7.56mm}{2.35mm}}
+  \pgfpathlineto{\pgfqpoint{7.53mm}{2.22mm}}
+  \pgfpathlineto{\pgfqpoint{7.56mm}{2.08mm}}
+  \pgfpathlineto{\pgfqpoint{7.63mm}{1.97mm}}
+  \pgfpathlineto{\pgfqpoint{7.88mm}{1.72mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{8.06mm}{1.97mm}}
+  \pgfpathcurveto{\pgfqpoint{8.21mm}{1.64mm}}{\pgfqpoint{8.23mm}{1.31mm}}{\pgfqpoint{7.88mm}{0.97mm}}
+  \pgfpathcurveto{\pgfqpoint{7.54mm}{0.62mm}}{\pgfqpoint{6.98mm}{0.62mm}}{\pgfqpoint{6.63mm}{0.97mm}}
+  \pgfpathlineto{\pgfqpoint{5.91mm}{1.69mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{7.78mm}{1.73mm}}
+  \pgfpathlineto{\pgfqpoint{8.37mm}{2.12mm}}
+  \pgfpathlineto{\pgfqpoint{8.18mm}{2.41mm}}
+  \pgfpathlineto{\pgfqpoint{8.08mm}{2.51mm}}
+  \pgfpathlineto{\pgfqpoint{7.95mm}{2.56mm}}
+  \pgfpathlineto{\pgfqpoint{7.82mm}{2.56mm}}
+  \pgfpathlineto{\pgfqpoint{7.69mm}{2.51mm}}
+  \pgfpathlineto{\pgfqpoint{7.59mm}{2.41mm}}
+  \pgfpathlineto{\pgfqpoint{7.54mm}{2.29mm}}
+  \pgfpathlineto{\pgfqpoint{7.54mm}{2.15mm}}
+  \pgfpathlineto{\pgfqpoint{7.59mm}{2.02mm}}
+  \pgfpathlineto{\pgfqpoint{7.78mm}{1.73mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.69mm}{1.41mm}}
+  \pgfpathlineto{\pgfqpoint{6.19mm}{1.9mm}}
+  \pgfpathlineto{\pgfqpoint{5.94mm}{2.15mm}}
+  \pgfpathlineto{\pgfqpoint{5.83mm}{2.23mm}}
+  \pgfpathlineto{\pgfqpoint{5.69mm}{2.26mm}}
+  \pgfpathlineto{\pgfqpoint{5.56mm}{2.23mm}}
+  \pgfpathlineto{\pgfqpoint{5.44mm}{2.15mm}}
+  \pgfpathlineto{\pgfqpoint{5.37mm}{2.04mm}}
+  \pgfpathlineto{\pgfqpoint{5.34mm}{1.91mm}}
+  \pgfpathlineto{\pgfqpoint{5.37mm}{1.77mm}}
+  \pgfpathlineto{\pgfqpoint{5.44mm}{1.66mm}}
+  \pgfpathlineto{\pgfqpoint{5.69mm}{1.41mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{7.67mm}{2.43mm}}
+  \pgfpathlineto{\pgfqpoint{6.85mm}{3.25mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{7.88mm}{2.72mm}}
+  \pgfpathlineto{\pgfqpoint{7.39mm}{2.22mm}}
+  \pgfpathlineto{\pgfqpoint{7.63mm}{1.97mm}}
+  \pgfpathlineto{\pgfqpoint{7.75mm}{1.89mm}}
+  \pgfpathlineto{\pgfqpoint{7.88mm}{1.87mm}}
+  \pgfpathlineto{\pgfqpoint{8.02mm}{1.89mm}}
+  \pgfpathlineto{\pgfqpoint{8.13mm}{1.97mm}}
+  \pgfpathlineto{\pgfqpoint{8.21mm}{2.08mm}}
+  \pgfpathlineto{\pgfqpoint{8.24mm}{2.22mm}}
+  \pgfpathlineto{\pgfqpoint{8.21mm}{2.35mm}}
+  \pgfpathlineto{\pgfqpoint{8.13mm}{2.47mm}}
+  \pgfpathlineto{\pgfqpoint{7.88mm}{2.72mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{6.63mm}{2.97mm}}
+  \pgfpathlineto{\pgfqpoint{7.13mm}{3.46mm}}
+  \pgfpathlineto{\pgfqpoint{6.88mm}{3.71mm}}
+  \pgfpathlineto{\pgfqpoint{6.77mm}{3.79mm}}
+  \pgfpathlineto{\pgfqpoint{6.63mm}{3.82mm}}
+  \pgfpathlineto{\pgfqpoint{6.5mm}{3.79mm}}
+  \pgfpathlineto{\pgfqpoint{6.38mm}{3.71mm}}
+  \pgfpathlineto{\pgfqpoint{6.31mm}{3.6mm}}
+  \pgfpathlineto{\pgfqpoint{6.28mm}{3.46mm}}
+  \pgfpathlineto{\pgfqpoint{6.31mm}{3.33mm}}
+  \pgfpathlineto{\pgfqpoint{6.38mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{6.63mm}{2.97mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.38mm}{1.72mm}}
+  \pgfpathlineto{\pgfqpoint{5.88mm}{2.22mm}}
+  \pgfpathlineto{\pgfqpoint{5.63mm}{2.47mm}}
+  \pgfpathlineto{\pgfqpoint{5.52mm}{2.54mm}}
+  \pgfpathlineto{\pgfqpoint{5.38mm}{2.57mm}}
+  \pgfpathlineto{\pgfqpoint{5.25mm}{2.54mm}}
+  \pgfpathlineto{\pgfqpoint{5.13mm}{2.47mm}}
+  \pgfpathlineto{\pgfqpoint{5.06mm}{2.35mm}}
+  \pgfpathlineto{\pgfqpoint{5.03mm}{2.22mm}}
+  \pgfpathlineto{\pgfqpoint{5.06mm}{2.08mm}}
+  \pgfpathlineto{\pgfqpoint{5.13mm}{1.97mm}}
+  \pgfpathlineto{\pgfqpoint{5.38mm}{1.72mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.69mm}{2.4mm}}
+  \pgfpathlineto{\pgfqpoint{5.2mm}{1.91mm}}
+  \pgfpathlineto{\pgfqpoint{5.44mm}{1.66mm}}
+  \pgfpathlineto{\pgfqpoint{5.56mm}{1.58mm}}
+  \pgfpathlineto{\pgfqpoint{5.69mm}{1.55mm}}
+  \pgfpathlineto{\pgfqpoint{5.83mm}{1.58mm}}
+  \pgfpathlineto{\pgfqpoint{5.94mm}{1.66mm}}
+  \pgfpathlineto{\pgfqpoint{6.02mm}{1.77mm}}
+  \pgfpathlineto{\pgfqpoint{6.05mm}{1.91mm}}
+  \pgfpathlineto{\pgfqpoint{6.02mm}{2.04mm}}
+  \pgfpathlineto{\pgfqpoint{5.94mm}{2.15mm}}
+  \pgfpathlineto{\pgfqpoint{5.69mm}{2.4mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.87mm}{1.66mm}}
+  \pgfpathcurveto{\pgfqpoint{6.02mm}{1.33mm}}{\pgfqpoint{6.04mm}{1mm}}{\pgfqpoint{5.69mm}{0.65mm}}
+  \pgfpathcurveto{\pgfqpoint{5.35mm}{0.31mm}}{\pgfqpoint{4.79mm}{0.31mm}}{\pgfqpoint{4.44mm}{0.65mm}}
+  \pgfpathlineto{\pgfqpoint{2.68mm}{2.45mm}}
+  \pgfpathcurveto{\pgfqpoint{2.31mm}{2.82mm}}{\pgfqpoint{2.13mm}{3mm}}{\pgfqpoint{1.9mm}{3.1mm}}
+  \pgfpathcurveto{\pgfqpoint{1.67mm}{3.19mm}}{\pgfqpoint{1.44mm}{3.19mm}}{\pgfqpoint{1mm}{3.19mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{5.6mm}{1.42mm}}
+  \pgfpathlineto{\pgfqpoint{6.18mm}{1.81mm}}
+  \pgfpathlineto{\pgfqpoint{5.99mm}{2.1mm}}
+  \pgfpathlineto{\pgfqpoint{5.89mm}{2.2mm}}
+  \pgfpathlineto{\pgfqpoint{5.76mm}{2.25mm}}
+  \pgfpathlineto{\pgfqpoint{5.63mm}{2.25mm}}
+  \pgfpathlineto{\pgfqpoint{5.5mm}{2.2mm}}
+  \pgfpathlineto{\pgfqpoint{5.4mm}{2.1mm}}
+  \pgfpathlineto{\pgfqpoint{5.35mm}{1.97mm}}
+  \pgfpathlineto{\pgfqpoint{5.35mm}{1.84mm}}
+  \pgfpathlineto{\pgfqpoint{5.4mm}{1.71mm}}
+  \pgfpathlineto{\pgfqpoint{5.6mm}{1.42mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{1.04mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{1.04mm}{3.55mm}}
+  \pgfpathlineto{\pgfqpoint{0.69mm}{3.55mm}}
+  \pgfpathlineto{\pgfqpoint{0.56mm}{3.52mm}}
+  \pgfpathlineto{\pgfqpoint{0.44mm}{3.44mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{3.33mm}}
+  \pgfpathlineto{\pgfqpoint{0.34mm}{3.19mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{3.06mm}}
+  \pgfpathlineto{\pgfqpoint{0.44mm}{2.95mm}}
+  \pgfpathlineto{\pgfqpoint{0.55mm}{2.87mm}}
+  \pgfpathlineto{\pgfqpoint{0.69mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{1.04mm}{2.84mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{12.89mm}{3.17mm}}
+  \pgfpathlineto{\pgfqpoint{11.96mm}{3.17mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{12.85mm}{3.52mm}}
+  \pgfpathlineto{\pgfqpoint{12.85mm}{2.82mm}}
+  \pgfpathlineto{\pgfqpoint{13.2mm}{2.82mm}}
+  \pgfpathlineto{\pgfqpoint{13.33mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{13.45mm}{2.92mm}}
+  \pgfpathlineto{\pgfqpoint{13.53mm}{3.03mm}}
+  \pgfpathlineto{\pgfqpoint{13.55mm}{3.17mm}}
+  \pgfpathlineto{\pgfqpoint{13.53mm}{3.3mm}}
+  \pgfpathlineto{\pgfqpoint{13.45mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{13.33mm}{3.49mm}}
+  \pgfpathlineto{\pgfqpoint{13.2mm}{3.52mm}}
+  \pgfpathlineto{\pgfqpoint{12.85mm}{3.52mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{12mm}{2.82mm}}
+  \pgfpathlineto{\pgfqpoint{12mm}{3.52mm}}
+  \pgfpathlineto{\pgfqpoint{11.65mm}{3.52mm}}
+  \pgfpathlineto{\pgfqpoint{11.52mm}{3.49mm}}
+  \pgfpathlineto{\pgfqpoint{11.4mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{11.33mm}{3.3mm}}
+  \pgfpathlineto{\pgfqpoint{11.3mm}{3.17mm}}
+  \pgfpathlineto{\pgfqpoint{11.33mm}{3.03mm}}
+  \pgfpathlineto{\pgfqpoint{11.4mm}{2.92mm}}
+  \pgfpathlineto{\pgfqpoint{11.52mm}{2.84mm}}
+  \pgfpathlineto{\pgfqpoint{11.65mm}{2.82mm}}
+  \pgfpathlineto{\pgfqpoint{12mm}{2.82mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{4.45mm}{8.19mm}}
+  \pgfpathlineto{\pgfqpoint{1mm}{8.19mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{4.4mm}{8.54mm}}
+  \pgfpathlineto{\pgfqpoint{4.4mm}{7.83mm}}
+  \pgfpathlineto{\pgfqpoint{4.76mm}{7.83mm}}
+  \pgfpathlineto{\pgfqpoint{4.89mm}{7.86mm}}
+  \pgfpathlineto{\pgfqpoint{5.01mm}{7.94mm}}
+  \pgfpathlineto{\pgfqpoint{5.08mm}{8.05mm}}
+  \pgfpathlineto{\pgfqpoint{5.11mm}{8.19mm}}
+  \pgfpathlineto{\pgfqpoint{5.08mm}{8.32mm}}
+  \pgfpathlineto{\pgfqpoint{5.01mm}{8.44mm}}
+  \pgfpathlineto{\pgfqpoint{4.89mm}{8.51mm}}
+  \pgfpathlineto{\pgfqpoint{4.76mm}{8.54mm}}
+  \pgfpathlineto{\pgfqpoint{4.4mm}{8.54mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{1.04mm}{7.83mm}}
+  \pgfpathlineto{\pgfqpoint{1.04mm}{8.54mm}}
+  \pgfpathlineto{\pgfqpoint{0.69mm}{8.54mm}}
+  \pgfpathlineto{\pgfqpoint{0.56mm}{8.51mm}}
+  \pgfpathlineto{\pgfqpoint{0.44mm}{8.44mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{8.32mm}}
+  \pgfpathlineto{\pgfqpoint{0.34mm}{8.19mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{8.05mm}}
+  \pgfpathlineto{\pgfqpoint{0.44mm}{7.94mm}}
+  \pgfpathlineto{\pgfqpoint{0.56mm}{7.86mm}}
+  \pgfpathlineto{\pgfqpoint{0.69mm}{7.83mm}}
+  \pgfpathlineto{\pgfqpoint{1.04mm}{7.83mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \endpgfpicture}}
+\NewDocumentCommand\KITmeet{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgfsetfillcolor{#2}
+  \pgfpathmoveto{\pgfqpoint{-4mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{17.64mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{17.64mm}{17.41mm}}
+  \pgfpathlineto{\pgfqpoint{-4mm}{17.41mm}}
+  \pgfpathclose
+  \pgfusepath{fill,clip}
+  \pgfsetlinewidth{0.7mm}
+  \pgfsetroundjoin
+  \pgfsetstrokecolor{#1}
+  \pgfpathmoveto{\pgfqpoint{3.83mm}{10.43mm}}
+  \pgfpathlineto{\pgfqpoint{3.83mm}{11.05mm}}
+  \pgfpathcurveto{\pgfqpoint{3.83mm}{11.94mm}}{\pgfqpoint{3.83mm}{12.38mm}}{\pgfqpoint{4.1mm}{12.66mm}}
+  \pgfpathcurveto{\pgfqpoint{4.37mm}{12.93mm}}{\pgfqpoint{4.82mm}{12.93mm}}{\pgfqpoint{5.7mm}{12.93mm}}
+  \pgfpathlineto{\pgfqpoint{8.19mm}{12.93mm}}
+  \pgfpathcurveto{\pgfqpoint{9.07mm}{12.93mm}}{\pgfqpoint{9.51mm}{12.93mm}}{\pgfqpoint{9.79mm}{12.66mm}}
+  \pgfpathcurveto{\pgfqpoint{10.06mm}{12.38mm}}{\pgfqpoint{10.06mm}{11.94mm}}{\pgfqpoint{10.06mm}{11.05mm}}
+  \pgfpathlineto{\pgfqpoint{10.06mm}{10.43mm}}
+  \pgfpathcurveto{\pgfqpoint{10.06mm}{9.54mm}}{\pgfqpoint{10.06mm}{9.1mm}}{\pgfqpoint{9.79mm}{8.82mm}}
+  \pgfpathcurveto{\pgfqpoint{9.51mm}{8.55mm}}{\pgfqpoint{9.07mm}{8.55mm}}{\pgfqpoint{8.19mm}{8.55mm}}
+  \pgfpathlineto{\pgfqpoint{7.57mm}{8.55mm}}
+  \pgfpathlineto{\pgfqpoint{5.7mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{5.7mm}{8.55mm}}
+  \pgfpathcurveto{\pgfqpoint{4.82mm}{8.55mm}}{\pgfqpoint{4.37mm}{8.55mm}}{\pgfqpoint{4.1mm}{8.82mm}}
+  \pgfpathcurveto{\pgfqpoint{3.83mm}{9.1mm}}{\pgfqpoint{3.83mm}{9.54mm}}{\pgfqpoint{3.83mm}{10.43mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfsetmiterlimit{3.863703}
+  \pgfpathmoveto{\pgfqpoint{1.68mm}{2.47mm}}
+  \pgfpathcurveto{\pgfqpoint{1.29mm}{2.21mm}}{\pgfqpoint{0.26mm}{1.67mm}}{\pgfqpoint{0.89mm}{0.99mm}}
+  \pgfpathcurveto{\pgfqpoint{1.19mm}{0.66mm}}{\pgfqpoint{1.53mm}{0.43mm}}{\pgfqpoint{1.96mm}{0.43mm}}
+  \pgfpathlineto{\pgfqpoint{3.19mm}{0.43mm}}
+  \pgfpathlineto{\pgfqpoint{4.41mm}{0.43mm}}
+  \pgfpathcurveto{\pgfqpoint{4.84mm}{0.43mm}}{\pgfqpoint{5.18mm}{0.66mm}}{\pgfqpoint{5.49mm}{0.99mm}}
+  \pgfpathcurveto{\pgfqpoint{6.11mm}{1.67mm}}{\pgfqpoint{5.08mm}{2.21mm}}{\pgfqpoint{4.69mm}{2.47mm}}
+  \pgfpathcurveto{\pgfqpoint{3.77mm}{3.09mm}}{\pgfqpoint{2.6mm}{3.09mm}}{\pgfqpoint{1.68mm}{2.47mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{9.2mm}{2.47mm}}
+  \pgfpathcurveto{\pgfqpoint{8.8mm}{2.21mm}}{\pgfqpoint{7.77mm}{1.67mm}}{\pgfqpoint{8.4mm}{0.99mm}}
+  \pgfpathcurveto{\pgfqpoint{8.71mm}{0.66mm}}{\pgfqpoint{9.05mm}{0.43mm}}{\pgfqpoint{9.48mm}{0.43mm}}
+  \pgfpathlineto{\pgfqpoint{10.7mm}{0.43mm}}
+  \pgfpathlineto{\pgfqpoint{11.92mm}{0.43mm}}
+  \pgfpathcurveto{\pgfqpoint{12.35mm}{0.43mm}}{\pgfqpoint{12.69mm}{0.66mm}}{\pgfqpoint{13mm}{0.99mm}}
+  \pgfpathcurveto{\pgfqpoint{13.63mm}{1.67mm}}{\pgfqpoint{12.6mm}{2.21mm}}{\pgfqpoint{12.21mm}{2.47mm}}
+  \pgfpathcurveto{\pgfqpoint{11.29mm}{3.09mm}}{\pgfqpoint{10.12mm}{3.09mm}}{\pgfqpoint{9.2mm}{2.47mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{4.45mm}{5.73mm}}
+  \pgfpathcurveto{\pgfqpoint{4.45mm}{5.04mm}}{\pgfqpoint{3.88mm}{4.48mm}}{\pgfqpoint{3.19mm}{4.48mm}}
+  \pgfpathcurveto{\pgfqpoint{2.49mm}{4.48mm}}{\pgfqpoint{1.93mm}{5.04mm}}{\pgfqpoint{1.93mm}{5.73mm}}
+  \pgfpathcurveto{\pgfqpoint{1.93mm}{6.43mm}}{\pgfqpoint{2.49mm}{6.99mm}}{\pgfqpoint{3.19mm}{6.99mm}}
+  \pgfpathcurveto{\pgfqpoint{3.88mm}{6.99mm}}{\pgfqpoint{4.45mm}{6.43mm}}{\pgfqpoint{4.45mm}{5.73mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{11.96mm}{5.73mm}}
+  \pgfpathcurveto{\pgfqpoint{11.96mm}{5.04mm}}{\pgfqpoint{11.4mm}{4.48mm}}{\pgfqpoint{10.7mm}{4.48mm}}
+  \pgfpathcurveto{\pgfqpoint{10.01mm}{4.48mm}}{\pgfqpoint{9.44mm}{5.04mm}}{\pgfqpoint{9.44mm}{5.73mm}}
+  \pgfpathcurveto{\pgfqpoint{9.44mm}{6.43mm}}{\pgfqpoint{10.01mm}{6.99mm}}{\pgfqpoint{10.7mm}{6.99mm}}
+  \pgfpathcurveto{\pgfqpoint{11.4mm}{6.99mm}}{\pgfqpoint{11.96mm}{6.43mm}}{\pgfqpoint{11.96mm}{5.73mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \endpgfpicture}}
+\NewDocumentCommand\KITmolecule{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgfsetfillcolor{#2}
+  \pgfpathmoveto{\pgfqpoint{-4mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{17.64mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{17.64mm}{17.41mm}}
+  \pgfpathlineto{\pgfqpoint{-4mm}{17.41mm}}
+  \pgfpathclose
+  \pgfusepath{fill,clip}
+  \pgfsetlinewidth{0.7mm}
+  \pgfsetroundjoin
+  \pgfsetstrokecolor{#1}\pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{9.45mm}{6.05mm}}
+  \pgfpathcurveto{\pgfqpoint{9.45mm}{4.68mm}}{\pgfqpoint{8.33mm}{3.56mm}}{\pgfqpoint{6.95mm}{3.56mm}}
+  \pgfpathcurveto{\pgfqpoint{5.57mm}{3.56mm}}{\pgfqpoint{4.45mm}{4.68mm}}{\pgfqpoint{4.45mm}{6.05mm}}
+  \pgfpathcurveto{\pgfqpoint{4.45mm}{7.42mm}}{\pgfqpoint{5.57mm}{8.54mm}}{\pgfqpoint{6.95mm}{8.54mm}}
+  \pgfpathcurveto{\pgfqpoint{8.33mm}{8.54mm}}{\pgfqpoint{9.45mm}{7.42mm}}{\pgfqpoint{9.45mm}{6.05mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{8.21mm}{11.64mm}}
+  \pgfpathcurveto{\pgfqpoint{8.21mm}{10.95mm}}{\pgfqpoint{7.64mm}{10.39mm}}{\pgfqpoint{6.95mm}{10.39mm}}
+  \pgfpathcurveto{\pgfqpoint{6.25mm}{10.39mm}}{\pgfqpoint{5.69mm}{10.95mm}}{\pgfqpoint{5.69mm}{11.64mm}}
+  \pgfpathcurveto{\pgfqpoint{5.69mm}{12.33mm}}{\pgfqpoint{6.25mm}{12.9mm}}{\pgfqpoint{6.95mm}{12.9mm}}
+  \pgfpathcurveto{\pgfqpoint{7.64mm}{12.9mm}}{\pgfqpoint{8.21mm}{12.33mm}}{\pgfqpoint{8.21mm}{11.64mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{3.21mm}{1.67mm}}
+  \pgfpathcurveto{\pgfqpoint{3.21mm}{0.99mm}}{\pgfqpoint{2.65mm}{0.44mm}}{\pgfqpoint{1.95mm}{0.44mm}}
+  \pgfpathcurveto{\pgfqpoint{1.26mm}{0.44mm}}{\pgfqpoint{0.69mm}{0.99mm}}{\pgfqpoint{0.69mm}{1.67mm}}
+  \pgfpathcurveto{\pgfqpoint{0.69mm}{2.35mm}}{\pgfqpoint{1.26mm}{2.9mm}}{\pgfqpoint{1.95mm}{2.9mm}}
+  \pgfpathcurveto{\pgfqpoint{2.65mm}{2.9mm}}{\pgfqpoint{3.21mm}{2.35mm}}{\pgfqpoint{3.21mm}{1.67mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{13.2mm}{1.67mm}}
+  \pgfpathcurveto{\pgfqpoint{13.2mm}{0.99mm}}{\pgfqpoint{12.65mm}{0.44mm}}{\pgfqpoint{11.97mm}{0.44mm}}
+  \pgfpathcurveto{\pgfqpoint{11.28mm}{0.44mm}}{\pgfqpoint{10.73mm}{0.99mm}}{\pgfqpoint{10.73mm}{1.67mm}}
+  \pgfpathcurveto{\pgfqpoint{10.73mm}{2.35mm}}{\pgfqpoint{11.28mm}{2.9mm}}{\pgfqpoint{11.97mm}{2.9mm}}
+  \pgfpathcurveto{\pgfqpoint{12.65mm}{2.9mm}}{\pgfqpoint{13.2mm}{2.35mm}}{\pgfqpoint{13.2mm}{1.67mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{6.95mm}{8.82mm}}
+  \pgfpathlineto{\pgfqpoint{6.95mm}{10.08mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{7.3mm}{8.87mm}}
+  \pgfpathlineto{\pgfqpoint{6.6mm}{8.87mm}}
+  \pgfpathlineto{\pgfqpoint{6.6mm}{8.52mm}}
+  \pgfpathlineto{\pgfqpoint{6.62mm}{8.38mm}}
+  \pgfpathlineto{\pgfqpoint{6.7mm}{8.27mm}}
+  \pgfpathlineto{\pgfqpoint{6.81mm}{8.19mm}}
+  \pgfpathlineto{\pgfqpoint{6.95mm}{8.16mm}}
+  \pgfpathlineto{\pgfqpoint{7.08mm}{8.19mm}}
+  \pgfpathlineto{\pgfqpoint{7.2mm}{8.27mm}}
+  \pgfpathlineto{\pgfqpoint{7.27mm}{8.38mm}}
+  \pgfpathlineto{\pgfqpoint{7.3mm}{8.52mm}}
+  \pgfpathlineto{\pgfqpoint{7.3mm}{8.87mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{6.6mm}{10.03mm}}
+  \pgfpathlineto{\pgfqpoint{7.3mm}{10.03mm}}
+  \pgfpathlineto{\pgfqpoint{7.3mm}{10.39mm}}
+  \pgfpathlineto{\pgfqpoint{7.27mm}{10.52mm}}
+  \pgfpathlineto{\pgfqpoint{7.2mm}{10.64mm}}
+  \pgfpathlineto{\pgfqpoint{7.08mm}{10.71mm}}
+  \pgfpathlineto{\pgfqpoint{6.95mm}{10.74mm}}
+  \pgfpathlineto{\pgfqpoint{6.81mm}{10.71mm}}
+  \pgfpathlineto{\pgfqpoint{6.7mm}{10.64mm}}
+  \pgfpathlineto{\pgfqpoint{6.62mm}{10.52mm}}
+  \pgfpathlineto{\pgfqpoint{6.6mm}{10.39mm}}
+  \pgfpathlineto{\pgfqpoint{6.6mm}{10.03mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{10.79mm}{2.77mm}}
+  \pgfpathlineto{\pgfqpoint{9.08mm}{3.98mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{10.95mm}{3.08mm}}
+  \pgfpathlineto{\pgfqpoint{10.55mm}{2.51mm}}
+  \pgfpathlineto{\pgfqpoint{10.83mm}{2.31mm}}
+  \pgfpathlineto{\pgfqpoint{10.96mm}{2.25mm}}
+  \pgfpathlineto{\pgfqpoint{11.1mm}{2.25mm}}
+  \pgfpathlineto{\pgfqpoint{11.22mm}{2.3mm}}
+  \pgfpathlineto{\pgfqpoint{11.32mm}{2.39mm}}
+  \pgfpathlineto{\pgfqpoint{11.38mm}{2.52mm}}
+  \pgfpathlineto{\pgfqpoint{11.38mm}{2.65mm}}
+  \pgfpathlineto{\pgfqpoint{11.33mm}{2.78mm}}
+  \pgfpathlineto{\pgfqpoint{11.24mm}{2.88mm}}
+  \pgfpathlineto{\pgfqpoint{10.95mm}{3.08mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{8.92mm}{3.66mm}}
+  \pgfpathlineto{\pgfqpoint{9.33mm}{4.24mm}}
+  \pgfpathlineto{\pgfqpoint{9.04mm}{4.44mm}}
+  \pgfpathlineto{\pgfqpoint{8.91mm}{4.5mm}}
+  \pgfpathlineto{\pgfqpoint{8.78mm}{4.5mm}}
+  \pgfpathlineto{\pgfqpoint{8.65mm}{4.45mm}}
+  \pgfpathlineto{\pgfqpoint{8.55mm}{4.36mm}}
+  \pgfpathlineto{\pgfqpoint{8.49mm}{4.23mm}}
+  \pgfpathlineto{\pgfqpoint{8.49mm}{4.09mm}}
+  \pgfpathlineto{\pgfqpoint{8.54mm}{3.96mm}}
+  \pgfpathlineto{\pgfqpoint{8.63mm}{3.86mm}}
+  \pgfpathlineto{\pgfqpoint{8.92mm}{3.66mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{3.11mm}{2.77mm}}
+  \pgfpathlineto{\pgfqpoint{4.81mm}{3.98mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{3.35mm}{2.51mm}}
+  \pgfpathlineto{\pgfqpoint{2.94mm}{3.08mm}}
+  \pgfpathlineto{\pgfqpoint{2.66mm}{2.88mm}}
+  \pgfpathlineto{\pgfqpoint{2.56mm}{2.78mm}}
+  \pgfpathlineto{\pgfqpoint{2.51mm}{2.65mm}}
+  \pgfpathlineto{\pgfqpoint{2.52mm}{2.52mm}}
+  \pgfpathlineto{\pgfqpoint{2.57mm}{2.39mm}}
+  \pgfpathlineto{\pgfqpoint{2.67mm}{2.3mm}}
+  \pgfpathlineto{\pgfqpoint{2.8mm}{2.25mm}}
+  \pgfpathlineto{\pgfqpoint{2.94mm}{2.25mm}}
+  \pgfpathlineto{\pgfqpoint{3.06mm}{2.31mm}}
+  \pgfpathlineto{\pgfqpoint{3.35mm}{2.51mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{4.57mm}{4.24mm}}
+  \pgfpathlineto{\pgfqpoint{4.98mm}{3.66mm}}
+  \pgfpathlineto{\pgfqpoint{5.26mm}{3.86mm}}
+  \pgfpathlineto{\pgfqpoint{5.36mm}{3.96mm}}
+  \pgfpathlineto{\pgfqpoint{5.41mm}{4.09mm}}
+  \pgfpathlineto{\pgfqpoint{5.4mm}{4.23mm}}
+  \pgfpathlineto{\pgfqpoint{5.35mm}{4.36mm}}
+  \pgfpathlineto{\pgfqpoint{5.25mm}{4.45mm}}
+  \pgfpathlineto{\pgfqpoint{5.12mm}{4.5mm}}
+  \pgfpathlineto{\pgfqpoint{4.98mm}{4.5mm}}
+  \pgfpathlineto{\pgfqpoint{4.86mm}{4.44mm}}
+  \pgfpathlineto{\pgfqpoint{4.57mm}{4.24mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \endpgfpicture}}
+\NewDocumentCommand\KITteacher{O{KITgreen!20}D(){KITdarkblue}}
+ {\scalebox{0.4724}{\pgfpicture
+  \pgfsetfillcolor{#2}
+  \pgfpathmoveto{\pgfqpoint{-4.5mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{17.14mm}{-4mm}}
+  \pgfpathlineto{\pgfqpoint{17.14mm}{17.41mm}}
+  \pgfpathlineto{\pgfqpoint{-4.5mm}{17.41mm}}
+  \pgfpathclose
+  \pgfusepath{fill,clip}
+  \pgfsetlinewidth{0.7mm}
+  \pgfsetroundjoin
+  \pgfsetstrokecolor{#1}\pgfsetfillcolor{#1}
+  \pgfpathmoveto{\pgfqpoint{0.91mm}{12.9mm}}
+  \pgfpathlineto{\pgfqpoint{9.37mm}{12.9mm}}
+  \pgfpathcurveto{\pgfqpoint{10.55mm}{12.9mm}}{\pgfqpoint{11.14mm}{12.9mm}}{\pgfqpoint{11.51mm}{12.53mm}}
+  \pgfpathcurveto{\pgfqpoint{11.88mm}{12.17mm}}{\pgfqpoint{11.88mm}{11.58mm}}{\pgfqpoint{11.88mm}{10.41mm}}
+  \pgfpathlineto{\pgfqpoint{11.88mm}{6.67mm}}
+  \pgfpathcurveto{\pgfqpoint{11.88mm}{5.5mm}}{\pgfqpoint{11.88mm}{4.91mm}}{\pgfqpoint{11.51mm}{4.54mm}}
+  \pgfpathcurveto{\pgfqpoint{11.14mm}{4.18mm}}{\pgfqpoint{10.55mm}{4.18mm}}{\pgfqpoint{9.37mm}{4.18mm}}
+  \pgfpathlineto{\pgfqpoint{5.29mm}{4.18mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{0.96mm}{12.54mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{13.25mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{13.25mm}}
+  \pgfpathlineto{\pgfqpoint{0.47mm}{13.22mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{13.15mm}}
+  \pgfpathlineto{\pgfqpoint{0.28mm}{13.03mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{12.9mm}}
+  \pgfpathlineto{\pgfqpoint{0.28mm}{12.76mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{12.65mm}}
+  \pgfpathlineto{\pgfqpoint{0.47mm}{12.57mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{12.54mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{12.54mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.34mm}{3.83mm}}
+  \pgfpathlineto{\pgfqpoint{5.34mm}{4.53mm}}
+  \pgfpathlineto{\pgfqpoint{4.99mm}{4.53mm}}
+  \pgfpathlineto{\pgfqpoint{4.85mm}{4.5mm}}
+  \pgfpathlineto{\pgfqpoint{4.74mm}{4.43mm}}
+  \pgfpathlineto{\pgfqpoint{4.66mm}{4.31mm}}
+  \pgfpathlineto{\pgfqpoint{4.64mm}{4.18mm}}
+  \pgfpathlineto{\pgfqpoint{4.66mm}{4.04mm}}
+  \pgfpathlineto{\pgfqpoint{4.74mm}{3.93mm}}
+  \pgfpathlineto{\pgfqpoint{4.85mm}{3.85mm}}
+  \pgfpathlineto{\pgfqpoint{4.99mm}{3.83mm}}
+  \pgfpathlineto{\pgfqpoint{5.34mm}{3.83mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{5.9mm}{10.08mm}}
+  \pgfpathlineto{\pgfqpoint{9.05mm}{10.08mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{5.95mm}{9.73mm}}
+  \pgfpathlineto{\pgfqpoint{5.95mm}{10.43mm}}
+  \pgfpathlineto{\pgfqpoint{5.6mm}{10.43mm}}
+  \pgfpathlineto{\pgfqpoint{5.46mm}{10.4mm}}
+  \pgfpathlineto{\pgfqpoint{5.35mm}{10.33mm}}
+  \pgfpathlineto{\pgfqpoint{5.27mm}{10.21mm}}
+  \pgfpathlineto{\pgfqpoint{5.25mm}{10.08mm}}
+  \pgfpathlineto{\pgfqpoint{5.27mm}{9.94mm}}
+  \pgfpathlineto{\pgfqpoint{5.35mm}{9.83mm}}
+  \pgfpathlineto{\pgfqpoint{5.46mm}{9.75mm}}
+  \pgfpathlineto{\pgfqpoint{5.6mm}{9.73mm}}
+  \pgfpathlineto{\pgfqpoint{5.95mm}{9.73mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{9mm}{10.43mm}}
+  \pgfpathlineto{\pgfqpoint{9mm}{9.73mm}}
+  \pgfpathlineto{\pgfqpoint{9.36mm}{9.73mm}}
+  \pgfpathlineto{\pgfqpoint{9.49mm}{9.75mm}}
+  \pgfpathlineto{\pgfqpoint{9.61mm}{9.83mm}}
+  \pgfpathlineto{\pgfqpoint{9.68mm}{9.94mm}}
+  \pgfpathlineto{\pgfqpoint{9.71mm}{10.08mm}}
+  \pgfpathlineto{\pgfqpoint{9.68mm}{10.21mm}}
+  \pgfpathlineto{\pgfqpoint{9.61mm}{10.33mm}}
+  \pgfpathlineto{\pgfqpoint{9.49mm}{10.4mm}}
+  \pgfpathlineto{\pgfqpoint{9.36mm}{10.43mm}}
+  \pgfpathlineto{\pgfqpoint{9mm}{10.43mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{0.6mm}{3.86mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{6.06mm}}
+  \pgfpathcurveto{\pgfqpoint{0.6mm}{6.64mm}}{\pgfqpoint{0.6mm}{6.94mm}}{\pgfqpoint{0.79mm}{7.12mm}}
+  \pgfpathcurveto{\pgfqpoint{0.97mm}{7.3mm}}{\pgfqpoint{1.27mm}{7.3mm}}{\pgfqpoint{1.86mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{2.81mm}{7.3mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{0.96mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{0.28mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{3.31mm}}
+  \pgfpathlineto{\pgfqpoint{0.47mm}{3.23mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{0.74mm}{3.23mm}}
+  \pgfpathlineto{\pgfqpoint{0.85mm}{3.31mm}}
+  \pgfpathlineto{\pgfqpoint{0.93mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{3.91mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{2.76mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{6.98mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{7.06mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{7.17mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{7.66mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{0.91mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{2.81mm}{3.56mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{0.96mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{0.47mm}{3.88mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{3.81mm}}
+  \pgfpathlineto{\pgfqpoint{0.28mm}{3.69mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{0.28mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{3.31mm}}
+  \pgfpathlineto{\pgfqpoint{0.47mm}{3.23mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{3.21mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{2.76mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{3.23mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{3.31mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{3.69mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{3.81mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{3.88mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{3.91mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{0.6mm}{3.25mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{0.74mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{0.25mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{0.93mm}{3.69mm}}
+  \pgfpathlineto{\pgfqpoint{0.85mm}{3.81mm}}
+  \pgfpathlineto{\pgfqpoint{0.74mm}{3.88mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{0.47mm}{3.88mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{3.81mm}}
+  \pgfpathlineto{\pgfqpoint{0.28mm}{3.69mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{3.21mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{0.96mm}{0.79mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{0.79mm}}
+  \pgfpathlineto{\pgfqpoint{0.25mm}{0.44mm}}
+  \pgfpathlineto{\pgfqpoint{0.28mm}{0.3mm}}
+  \pgfpathlineto{\pgfqpoint{0.36mm}{0.19mm}}
+  \pgfpathlineto{\pgfqpoint{0.47mm}{0.11mm}}
+  \pgfpathlineto{\pgfqpoint{0.6mm}{0.08mm}}
+  \pgfpathlineto{\pgfqpoint{0.74mm}{0.11mm}}
+  \pgfpathlineto{\pgfqpoint{0.85mm}{0.19mm}}
+  \pgfpathlineto{\pgfqpoint{0.93mm}{0.3mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{0.44mm}}
+  \pgfpathlineto{\pgfqpoint{0.96mm}{0.79mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{3.12mm}{3.86mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{7mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{3.47mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{2.79mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{2.87mm}{3.31mm}}
+  \pgfpathlineto{\pgfqpoint{2.98mm}{3.23mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{3.23mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{3.31mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{3.42mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{3.91mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{2.76mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{2.98mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{2.87mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{2.79mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{6.95mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{3.12mm}{3.25mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{0.74mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{2.76mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{3.21mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{3.69mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{3.81mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{3.88mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{3.91mm}}
+  \pgfpathlineto{\pgfqpoint{2.98mm}{3.88mm}}
+  \pgfpathlineto{\pgfqpoint{2.87mm}{3.81mm}}
+  \pgfpathlineto{\pgfqpoint{2.79mm}{3.69mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{3.56mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{3.21mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{3.47mm}{0.79mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{0.79mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{0.44mm}}
+  \pgfpathlineto{\pgfqpoint{2.79mm}{0.3mm}}
+  \pgfpathlineto{\pgfqpoint{2.87mm}{0.19mm}}
+  \pgfpathlineto{\pgfqpoint{2.98mm}{0.11mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{0.08mm}}
+  \pgfpathlineto{\pgfqpoint{3.25mm}{0.11mm}}
+  \pgfpathlineto{\pgfqpoint{3.36mm}{0.19mm}}
+  \pgfpathlineto{\pgfqpoint{3.44mm}{0.3mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{0.44mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{0.79mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{3.42mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{5mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{6.58mm}{7.3mm}}
+  \pgfusepath{stroke}
+  \pgfpathmoveto{\pgfqpoint{3.47mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{2.98mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{2.87mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{2.79mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{2.76mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{2.79mm}{7.17mm}}
+  \pgfpathlineto{\pgfqpoint{2.87mm}{7.06mm}}
+  \pgfpathlineto{\pgfqpoint{2.98mm}{6.98mm}}
+  \pgfpathlineto{\pgfqpoint{3.12mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{3.47mm}{6.95mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfpathmoveto{\pgfqpoint{6.53mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{6.53mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{6.88mm}{6.95mm}}
+  \pgfpathlineto{\pgfqpoint{7.02mm}{6.98mm}}
+  \pgfpathlineto{\pgfqpoint{7.13mm}{7.06mm}}
+  \pgfpathlineto{\pgfqpoint{7.21mm}{7.17mm}}
+  \pgfpathlineto{\pgfqpoint{7.23mm}{7.3mm}}
+  \pgfpathlineto{\pgfqpoint{7.21mm}{7.44mm}}
+  \pgfpathlineto{\pgfqpoint{7.13mm}{7.55mm}}
+  \pgfpathlineto{\pgfqpoint{7.02mm}{7.63mm}}
+  \pgfpathlineto{\pgfqpoint{6.88mm}{7.66mm}}
+  \pgfpathlineto{\pgfqpoint{6.53mm}{7.66mm}}
+  \pgfpathclose
+  \pgfusepath{fill}
+  \pgfsetmiterlimit{3.863703}
+  \pgfpathmoveto{\pgfqpoint{3.12mm}{10.1mm}}
+  \pgfpathcurveto{\pgfqpoint{3.12mm}{9.41mm}}{\pgfqpoint{2.56mm}{8.85mm}}{\pgfqpoint{1.86mm}{8.85mm}}
+  \pgfpathcurveto{\pgfqpoint{1.17mm}{8.85mm}}{\pgfqpoint{0.6mm}{9.41mm}}{\pgfqpoint{0.6mm}{10.1mm}}
+  \pgfpathcurveto{\pgfqpoint{0.6mm}{10.79mm}}{\pgfqpoint{1.17mm}{11.36mm}}{\pgfqpoint{1.86mm}{11.36mm}}
+  \pgfpathcurveto{\pgfqpoint{2.56mm}{11.36mm}}{\pgfqpoint{3.12mm}{10.79mm}}{\pgfqpoint{3.12mm}{10.1mm}}
+  \pgfpathclose
+  \pgfusepath{stroke}
+  \endpgfpicture}}
+\urlstyle{same}
+\hypersetup{%
+  breaklinks,unicode
+  ,pdfborder={0 0 0},colorlinks
+  ,linkcolor=KITblue
+  ,citecolor=KITgreen
+  ,urlcolor=KITgreen
+ }
+\ifHy@draft
+  \Hy@AtBeginDocument{\let\hyper@anchorstart\@gobble}%confronting a hyperref problem
+\else
+  \iflanguage{ngerman}{\hypersetup{pdflang={de-DE-1996}}}{}%
+\fi
+\ifx\XeTeXcharclass\@undefined\ifnum\pdfoutput=\z@
+  \usepackage[hyphenbreaks]{breakurl}
+  \bgroup
+    \catcode`\&=12\relax
+    \hyper@normalise\burl@addtocharlistafter{=}
+  \egroup
+  \burl@defifstructure
+\fi\fi
+\IfFileExists{doi.sty}
+  {\usepackage{doi}%
+   \renewcommand*{\doitext}{}}
+  {\def\doi##1{\href{http://dx.doi.org/##1}{##1}}}
+\endinput
+%%
+%% End of file `beamerthemeKIT.sty'.

@@ -1,0 +1,737 @@
+\documentclass[
+ %beamer-class options that do not change the layout can be added here
+ UKenglish%,french%,ngerman(already default) ... %--- activate one (or more) language options as needed
+ ]{beamer}%for detailed information see: texdoc beamer
+\usetheme[%
+ %noKITlogo, %--- activate to suppress the KIT logo on every standard slide
+ %helvet, heros, %--- use one of these to have a fallback font as default
+ %librefranklin %--- activate to have the fallback title font as default
+ %cursor %--- activate to have the fallback typewriter font as default
+ ]{KIT}
+
+\graphicspath{{images/}}% this command from the graphics package allows to add folders (here subfolder "images") to be searched for graphic/image files
+%\setbeamertemplate{navigation symbols}{}%--- activate to suppress the navigation symbols
+
+%meta data fields: their content will be used for the title page (content of the optional arguments appear in parts in the footline)
+ %(title and author will also be added automatically as PDF meta information)
+\author[F.\,N. Name]{First name Name}
+\title[Short title]{Title of Presentation}
+\subtitle{Subtitle of Presentation}
+\institute[Name of Division, Institute, Business Unit]{Name of Division, Institute, Business Unit}
+\logo{\includegraphics[height=13mm]{beamericonarticle}}%e.g. insitute logo or project logo
+                                          %(the beamericonarticle graphic comes from the beamer package
+                                          % and must in case of need b replaced by your individual logo)
+\titlegraphic{\includegraphics[height=\paperheight,trim=0 0 0 -9]{beamericononline}}%
+%\date[\today]{} %--- activate to suppress date on title page
+
+\begin{document}
+
+%several suggestions for the title page:
+\frame[empty]{\titlepage}
+
+\frame[empty,noKITlogo]{\titlepage}
+
+\frame[KITgreen]{\titlepage}
+
+\frame[KITgreenhalf]{\titlepage}
+
+\frame[KITgreenhalfdarkblue]{\titlepage}
+
+\titlegraphic{\includegraphics[width=\paperwidth,height=0.55\paperheight,trim=0 0 -2 0]{beamericononline}}%
+\frame[KITgreenbottom]{\titlepage}
+
+
+\begin{frame}[KITgreenTOC,t]{\fontsize{10}{10}\selectfont\textcolor{KITwhite}{Content}\hfill\lower2.5mm\hbox{\scalebox{0.72}{\KITlogo}}\kern3mm}
+  \vspace*{-5mm}%
+  \tableofcontents
+\end{frame}
+
+\section{Slides with only text}
+
+\begin{frame}[c]%<-- change vertical alignment: t(op) or c(enter) or b(ottom)
+  \frametitle{Slide Title}
+  \framesubtitle{Slide Subtitle}
+
+  Normal text has this font size.
+
+  {\large Large text with \textbf{highlight in text in bold}, with \emph{emphasized phrases in italics} and with \alert{bemear's alert mark-up for text in red}\par}
+  
+  \begin{itemize}
+  \item Bullet point lists
+    \begin{itemize}
+    \item Bullet point list on list level 2
+    \end{itemize}
+  \end{itemize}
+  \begin{enumerate}
+  \item Numbered lists
+    \begin{enumerate}
+    \item Numbered list on list level 2
+    \end{enumerate}
+  \end{enumerate}
+
+  {\Large\bfseries\color{KITgreen}Highlights and key statements should be \emph{L}arge, bold and KIT-green.\par}
+
+  {\footnotesize Text in the size of footnotes is for references and marginal notes \dots{}\par}
+
+  {\scriptsize \dots{} or smaller in the size of scripts \dots{}\par}
+
+  {\tiny \dots{} or even tiny.\par}
+\end{frame}
+
+\begin{frame}[c]
+  \frametitle{Slide Title}
+  \advance\RaggedRightRightskip0.35\hsize\RaggedRight
+  {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
+
+  \bigskip\large
+  It took me a long time to realize what it means to be a dummy copy: you make no
+  sense. You stand out now and then by being completely out of context.
+  
+  \begin{itemize}
+  \item But does that make me a bad copy?
+  \item I know that I’ll never stand a chance of appearing in the Economist
+  \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
+  \end{itemize}
+
+  It took me a long time to realize what it means to typeset a list with leading text.
+  \begin{enumerate}
+  \item But does that make me a bad copy?
+  \item I know that I’ll never stand a chance of appearing in the Economist
+  \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column[t]{0.49\hsize}\parskip\medskipamount
+    {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
+
+    \bigskip\large
+    It took me a long time to realize what it means to be a dummy copy: you make no
+    sense. You stand out now and then by being completely out of context.
+    
+    \begin{itemize}
+    \item But does that make me a bad copy?
+    \item I know that I’ll never stand a chance of appearing in the Economist
+    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
+    \end{itemize}
+
+    \column[t]{0.49\hsize}\parskip\medskipamount
+    {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
+
+    \bigskip\large
+    It took me a long time to realize what it means to be a dummy copy: you make no
+    sense. You stand out now and then by being completely out of context.
+    
+    \begin{itemize}
+    \item But does that make me a bad copy?
+    \item I know that I’ll never stand a chance of appearing in the Economist
+    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
+      \begin{itemize}
+      \item But does that make me any less important? I’m a dummy! But I enjoy being a copy
+      \item But does that make me any less important? I’m a dummy! But I enjoy being a copy
+      \end{itemize}
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column{0.32\hsize}\parskip\medskipamount
+    {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
+
+    \bigskip\large
+    It took me a long time to realize what it means to be a dummy copy: you make no
+    sense. You stand out now and then by being completely out of context.
+    
+    \begin{itemize}
+    \item But does that make me a bad copy?
+    \item I know that I’ll never stand a chance of appearing in the Economist
+    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
+    \end{itemize}
+    \column{0.33\hsize}
+    \column{0.33\hsize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[b]{Slide Title\vrule width0pt height15.5\baselineskip}
+  \begin{columns}[onlytextwidth]
+    \column{0.5\hsize}
+    \column{0.5\hsize}\parskip\medskipamount
+
+    \large
+    It took me a long time to realize what it means to be a dummy copy: you make no
+    sense. You stand out now and then by being completely out of context.
+
+    \bigskip
+    \begin{itemize}
+    \item But does that make me a bad copy?
+    \item I know that I’ll never stand a chance of appearing in the Economist
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\section{Slides with images}
+\subsection{Within the text area}
+
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column[b]{0.32\hsize}
+    \includegraphics[width=\hsize]{beamericonbook}
+    
+    \medskip\large
+    It took me a long time to realize what it means to be a dummy copy: you make no
+    sense. 
+    \column[b]{0.32\hsize}
+    \begin{figure}
+      \includegraphics[width=\hsize,trim=0 0.9 0 0]{beamericonbook}
+      \caption{An image with a caption}
+    \end{figure}
+    
+    \medskip\large
+    It took me a long time to realize what it means to be a dummy copy: you make no
+    sense. 
+    \column[b]{0.32\hsize}
+    Use special versions of the KIT logo when superimposed on pictures:\par\smallskip
+    \textcolor{KITforestgreen!75!black}{\rule[-0.5\baselineskip]{9em}{3\baselineskip}}\llap{\KITlogo*\kern1em}
+    \hfill
+    \textcolor{KITlightgreen!40}{\rule[-0.5\baselineskip]{9em}{3\baselineskip}}\llap{\KITlogo**\kern1em}
+
+    \bigskip
+    Superimposed picture sources should be colored adequately:\par\smallskip
+    \begin{pgfpicture}
+      \pgfdeclareverticalshading{myshadingD}{80pt}{color(0pt)=(KITblue!50!black); color(50pt)=(KITblue!20)}
+      \pgftext[at=\pgfpoint{1cm}{0cm}] {\pgfuseshading{myshadingD}}
+    \end{pgfpicture}\raise1mm\llap{\textcolor{KITwhite}{\tiny\textcopyright{} TikZ and PGF manual}\kern1mm}
+    
+    \medskip\large
+    It took me a long time to realize what it means to be a dummy copy: you make no
+    sense. 
+  \end{columns}
+\end{frame}
+
+\subsection{Exceeding the text area}
+
+{\setbeamertemplate{navigation symbols}{}
+\begin{frame}[b,whiteKITlogo]{Slide Title}%<- changig the color of the KIT logo in the footline
+  \begin{columns}
+    \column[b]{0.34\hsize}
+    It took me a long time to realize what it means to be a dummy copy: you make no sense.
+    You stand out now and then by being completely out of context.
+
+    \bigskip
+    \begin{itemize}
+    \item But does that make me a bad copy?
+    \item I know that I’ll never stand a chance of appearing in the Economist
+    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
+    \end{itemize}
+    \vspace*{7\baselineskip}
+    \column[b]{0.33\hsize}
+    \fbox{\includegraphics[width=\hsize,trim=0.5 0.9 0.8 1]{beamericonbook}}%
+    \column[b]{0.33\hsize}
+    \smash[t]{\fbox{\includegraphics[width=\hsize,trim=0.5 0.9 0.8 1]{beamericonbook}}}\\[-1pt]
+    \fbox{\includegraphics[width=\hsize,trim=0.5 0.9 0.8 1]{beamericonbook}}%
+  \end{columns}%
+  \vspace*{-7.2mm}%
+\end{frame}}
+
+\begin{frame}{A full-width image}
+  \framesubtitle{(next slide shows a full-size image)}
+  \hspace*{-4.96mm}%
+  \includegraphics[width=\paperwidth,height=0.85\textheight,trim=3.7 3.6 2.8 2.9]{beamericononline}\kern-4.72mm
+\end{frame}
+
+%Here is an example for a full-page image:
+{\setbeamertemplate{background}
+ {\includegraphics[width=\paperwidth,height=\paperheight,trim=3.7 3.6 2.8 2.9]{beamericononline}}% 
+ \frame[empty]{}}
+
+\section{Design elements}
+\subsection{Colors and Pictograms}
+
+\def\1#1{%
+  \textcolor{KIT#1}{\rule{0.09\hsize}{4mm}}\lower0.5\baselineskip\llap{\hbox to0.09\hsize{\hss\tiny KIT#1\hss}}
+  %\lower1\baselineskip\llap{\hbox to0.09\hsize{\hss\fontsize{3}{1}\selectfont \extractcolorspec{KIT#1}\temp\temp\hss}}%
+  \ignorespaces}%
+\begin{frame}[t,fragile]{Colors}
+  \leavevmode{\Large Theme colors\par}\smallskip
+  \1{white}\1{darkblue}\1{iceblue}\1{icegray}\1{green}\1{pinegreen}\1{cyan}\1{blue}\1{lightgreen}\1{forestgreen}\break
+  \1{white!95!black}\1{darkblue!10}\1{iceblue!20} \1{icegray!90!black}\1{green!20} \1{pinegreen!10}\1{cyan!20} \1{blue!20} \1{lightgreen!20} \1{forestgreen!20}\break
+  \1{white!85!black}\1{darkblue!25}\1{iceblue!40} \1{icegray!75!black}\1{green!40} \1{pinegreen!25}\1{cyan!40} \1{blue!40} \1{lightgreen!40} \1{forestgreen!40}\break
+  \1{white!75!black}\1{darkblue!50}\1{iceblue!60} \1{icegray!50!black}\1{green!60} \1{pinegreen!50}\1{cyan!60} \1{blue!60} \1{lightgreen!60} \1{forestgreen!60}\break
+  \1{white!65!black}\1{darkblue!75}\1{iceblue!75!black}\1{icegray!25!black}\1{green!75!black}\1{pinegreen!75}\1{cyan!75!black}\1{blue!75!black}\1{lightgreen!75!black}\1{forestgreen!75!black}\break
+  \1{white!50!black}\1{darkblue!90}\1{iceblue!50!black}\1{icegray!10!black}\1{green!50!black}\1{pinegreen!90}\1{cyan!50!black}\1{blue!50!black}\1{lightgreen!50!black}\1{forestgreen!50!black}%
+  \par\bigskip
+  {\Large Custom colors\par}\smallskip
+  \1{black}\1{purple}\1{orange}\1{yellow}\1{red}\1{brown}\hfill~\footnotesize Do not use standard colors like \verb|\color{green}|.\par
+\end{frame}
+
+\begin{frame}{Design Elements}
+  \begin{columns}
+    \column{0.48\hsize}\parskip\medskipamount
+    \KITarrowE\quad
+    \KITarrowS\quad
+    \KITarrowW\quad
+    \KITarrowN\qquad
+    \KITarrowN[KITlightgreen]\par
+    \KITarrowSE\quad
+    \KITarrowSW\quad
+    \KITarrowNW\quad
+    \KITarrowNE\qquad
+    \KITarrowNE(KITlightgreen)\par
+    \KITcross\quad
+    \KITplus\quad
+    \KITminus\quad
+    \KITequal\qquad
+    \KITequal[KITred](KITpinegreen)\par
+    \KITcheck\quad
+    \KITsymbol{1}\quad
+    \KITsymbol{$\int$}\quad
+    \KITsymbol{€}\qquad
+    \KITsymbol[KITwhite]{€}\par
+    \KITbook\quad
+    \KITbulb\quad
+    \KIThandshake\qquad
+    \KIThandshake[KITyellow]\qquad
+    \KIThandshake[KITgreen](KITwhite)\par
+    \KITmeet\quad
+    \KITmolecule\quad
+    \KITteacher\qquad
+    \KITteacher[KITyellow](KITblack)\qquad
+    \KITteacher[KITdarkblue](KITwhite)
+    \column{0.48\hsize}\parskip\medskipamount
+    \textcolor{KITdarkblue}{\rule{0.5\hsize}{0.4bp}}\par
+    \textcolor{KITgreen}{\rule[1ex]{0.5\hsize}{0.4bp}}\par
+    \textcolor{KITiceblue}{\rule[1ex]{0.5\hsize}{0.4bp}}\par
+    \textcolor{KITicegray}{\rule[1ex]{0.5\hsize}{0.4bp}}\par
+    \textcolor{KITdarkblue}{\KITdashedrule{0.5\hsize}}\par
+    \textcolor{KITgreen}{\KITdashedrule[1ex]{0.5\hsize}}\par
+    \textcolor{KITiceblue}{\KITdashedrule[1ex]{0.5\hsize}}\par
+    \textcolor{KITicegray}{\KITdashedrule[1ex]{0.5\hsize}}\par
+    \KITlongarrow{0.5\hsize}\par
+    \KITlongarrow[1ex]{0.5\hsize}\par
+  \end{columns}
+\end{frame}
+
+\subsection{Blocks and Special Elements}
+
+\begin{frame}{Beamer's standard blocks}
+  \begin{block}{Block}
+    Beamer's standard block in KIT-like design.
+  \end{block}
+
+  \begin{alertblock}{Alert block}
+    Beamer's standard alert block in KIT-like design.
+  \end{alertblock}
+
+  \begin{exampleblock}{Example block}
+    Beamer's standard example block in KIT-like design.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{More Blocks in KIT Colors}
+  \begin{columns}
+    \column{.5\textwidth}
+    \begin{darkblueblock}
+      Darkblue block\strut
+    \end{darkblueblock}
+    \begin{darkbluebox}
+      Darkblue box\strut
+    \end{darkbluebox}
+    \begin{greenblock}
+      Green block\strut
+    \end{greenblock}
+    \begin{greenbox}
+      Green box\strut
+    \end{greenbox}
+    \begin{iceblueblock}
+      Iceblue block\strut
+    \end{iceblueblock}
+    \begin{icebluebox}
+      Iceblue box\strut
+    \end{icebluebox}
+    \begin{icegrayblock}
+      Icegray block\strut
+    \end{icegrayblock}
+    \column{.24\textwidth}
+    \begin{pinegreenblock}
+      Pinegreen block\strut
+    \end{pinegreenblock}
+    \begin{cyanblock}
+      Cyan block\strut
+    \end{cyanblock}
+    \begin{blueblock}
+      Blue block\strut
+    \end{blueblock}
+    \begin{lightgreenblock}
+      Lightgreen block\strut
+    \end{lightgreenblock}
+    \begin{forestgreenblock}
+      Forestgreen block\strut
+    \end{forestgreenblock}
+    \column{.24\textwidth}
+    \begin{blackblock}
+      Black block\strut
+    \end{blackblock}
+    \begin{blackbox}
+      Black box\strut
+    \end{blackbox}
+    \begin{purpleblock}
+      Purple block\strut
+    \end{purpleblock}
+    \begin{orangeblock}
+      Orange block\strut
+    \end{orangeblock}
+    \begin{yellowblock}
+      Yellow block\strut
+    \end{yellowblock}
+    \begin{redblock}
+      Red block\strut
+    \end{redblock}
+    \begin{redbox}
+      Red box\strut
+    \end{redbox}
+    \begin{brownblock}
+      Brown block\strut
+    \end{brownblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Beamer's Theorem-like Environments}
+  \begin{definition}%[title add]
+    Beamer's definition environment in KIT-like design.
+  \end{definition}
+
+  \begin{theorem}%[title add]
+    Beamer's theorem environment in KIT-like design.
+  \end{theorem}
+
+  \begin{example}[title add]
+    Beamer's example environment in KIT-like design.
+  \end{example}
+
+  \begin{proof}%[special title]
+    Beamer's proof environment in KIT-like design.
+  \end{proof}
+\end{frame}
+
+\begin{frame}[fragile]%<- Option "fragile" for frames with verbatim material
+  \frametitle{An Algorithm For Finding Prime Numbers}
+\begin{verbatim}
+int main (void)
+{
+std::vector<bool> is_prime (100, true);
+for (int i = 2; i < 100; i++)
+if (is_prime[i])
+{
+std::cout << i << " ";
+for (int j = i; j < 100; is_prime [j] = false, j+=i);
+}
+return 0;
+}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Video Display}
+  \centering
+  %Here are 4 video examples:
+  %1. Simple link to a video file:
+      %\href{./video.avi}{\includegraphics[width=0.4\hsize]{beamericononline}}
+  %2. Link to a video file with the help of beamer/multimedia (multimedia package required):
+      %\movie[externalviewer]{\includegraphics[width=0.4\hsize]{beamericononline}}{example-movie.mp4}
+  %3. Video embedding with the help of the media9 package:
+      % \includemedia[
+      %  width=0.4\linewidth,height=0.4\linewidth,keepaspectratio,
+      %  addresource=example-movie.mp4,
+      %  flashvars={source=example-movie.mp4}
+      %  ]{\includegraphics[width=0.4\hsize]{beamericononline}}{VPlayer.swf}
+  %4. Video embedding without using flash player:
+      %\simplemedia[showGUI=true]{\fboxsep1.5bp\colorbox{white}{\includegraphics[width=0.4\hsize]{beamericononline}}}{example-movie.mp4}{video/mp4}
+  %See the MpiCcpPo doc for further information.
+\end{frame}
+
+\begin{frame}{Slide Title}
+  \begin{KITtabular}{lll}
+    Column title & Column title & Column title \\\midrule
+    I am a dummy copy & I am a dummy copy & I am a dummy copy \\
+    I am a dummy copy & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabular}
+  
+  \begin{KITtabular*}{\hsize}{lell}
+    Column title & Column title & Column title \\\midrule
+    I am a dummy copy & I am a dummy copy & I am a dummy copy \\
+    I am a dummy copy & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabular*}
+
+  \begin{KITtabularx}{\hsize}{llX}
+    Column title & Column title & Column title \\\midrule
+    I am a dummy copy &  I am a dummy copy & I am a dummy copy \\
+    I am a dummy copy I am a dummy copy I am a dummy copy & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabularx}
+\end{frame}
+
+\begin{frame}{Slide Title}
+  \begin{KITtabular}{>{\color{KITgreen}\large\bfseries}lIll}
+    Line title & I am a dummy copy & I am a dummy copy \\
+    Line title & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabular}\qquad\hfill
+  \begin{KITtabular}{>{\color{KITgreen}\large\bfseries}lIll}
+    Column title & Column title & Column title \\\midrule
+    Line title & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabular}
+  
+  \begin{KITtabular*}{0.4\hsize}{>{\color{KITgreen}\large\bfseries}lIll}
+    Line title & I am a dummy copy & I am a dummy copy \\
+    Line title & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabular*}\qquad\hfill
+  \begin{KITtabular*}{0.4\hsize}{>{\color{KITgreen}\large\bfseries}lIll}
+    Column title & Column title & Column title \\\midrule
+    Line title & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabular*}
+
+  \begin{KITtabularx}{0.4\hsize}{>{\color{KITgreen}\large\bfseries}lIll}
+    Line title & I am a dummy copy & I am a dummy copy \\
+    Line title & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabularx}\qquad\hfill
+  \begin{KITtabularx}{0.4\hsize}{>{\color{KITgreen}\large\bfseries}lIll}
+    Column title & Column title & Column title \\\midrule
+    Line title & I am a dummy copy & I am a dummy copy \\
+  \end{KITtabularx}
+\end{frame}
+
+\begin{frame}{Slide Title}
+  \begin{KITtabular}{rrrrrr}
+    Column title      & Column title      & Column title      & Column title      & Column title      & Column title      \\\midrule
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\\KITsumrule
+    10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
+  \end{KITtabular}
+\end{frame}
+
+\begin{frame}{Formulas}
+  $\frac{1}{k}\log_2 c(f)\;\tfrac{1}{k}\log_2 c(f)\; \sqrt{\frac{1}{k}\log_2 c(f)}\;\sqrt{\dfrac{1}{k}\log_2 c(f)}$\hfill
+  $\displaystyle\sum_{\substack{0\le i\le m\\0<j<n}}P(i,j)$\hfill
+  $2^k-\binom{k}{1}2^{k-1}+\binom{k}{2}2^{k-2}$
+
+  $\biggl[\sum_i a_i\Bigl\lvert\sum_j x_{ij}\Bigr\rvert^p\biggr]^{1/p}$\hfill
+  $A_1=N_0(\lambda;\Omega’)-\phi(\lambda;\Omega’)$\hfill
+  $A \xleftarrow{n+\mu-1} B \xrightarrow[T]{n\pm i-1} C$
+  
+  A displayed equation:
+  \begin{equation}\label{e:barwq}\begin{split}
+      H_c&=\frac{1}{2n} \sum^n_{l=0}(-1)^{l}(n-{l})^{p-2}\sum_{l _1+\dots+ l _p=l}\prod^p_{i=1} \binom{n_i}{l _i}\\[-1ex]
+      &\quad\cdot[(n-l )-(n_i-l _i)]^{n_i-l _i}\cdot\Bigl[(n-l )^2-\sum^p_{j=1}(n_i-l _i)^2\Bigr].
+    \end{split}\end{equation}
+  
+  A group of displayed equations:
+  \begin{align}
+    x&=y  & X&=Y  & a&=b+c\\
+    x’&=y’  & X’&=Y’  & a’&=b\\
+    x+x’&=y+y’ & X+X’&=Y+Y’ & a’b&=c’b
+  \end{align}
+\end{frame}
+
+\def\KITpanel#1{{%
+  \fboxsep3mm
+  \colorbox{KITgreen}{%
+    \advance\hsize-2\fboxsep
+    \hbox to\hsize{\vbox{\color{KITwhite}%
+        \textcolor{KITgreen!20}{\footnotesize Step #1\hfill\rotatebox{135}{\vrule width0.4bp height2.5mm\vrule width2.5mm height0.4bp}}%
+        \par\bigskip
+        \large\textbf{I am a dummy copy. And I’ve been a dummy copy since my birth.}\par\smallskip
+        It took me a long time to realize what it means to be a dummy copy: you make no sense. You stand out now and then by being completely out of context.\par
+        \vspace*{3\baselineskip}}}}}}
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column{.31\textwidth}
+    \KITpanel{1}%
+    \column{.31\textwidth}
+    \KITpanel{2}%
+    \column{.31\textwidth}
+    \KITpanel{3}%
+  \end{columns}
+\end{frame}
+
+\def\KITpanel#1{{%
+  \fboxsep3mm
+  \colorbox{KITgreen}{%
+    \advance\hsize-2\fboxsep
+    \hbox to\hsize{\vbox{\color{KITwhite}%
+        \textcolor{KITgreen!20}{\footnotesize Step #1\hfill\rotatebox{135}{\vrule width0.4bp height2.5mm\vrule width2.5mm height0.4bp}}%
+        \par\bigskip
+        \large\textbf{I am a dummy copy.}\par\smallskip
+        It took me a long time to realize what it means to be a dummy copy: you make no sense. You stand out now and then by being completely out of context.\par
+        \vspace*{3\baselineskip}}}}}}
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column{.23\textwidth}
+    \KITpanel{1}%
+    \column{.23\textwidth}
+    \KITpanel{2}%
+    \column{.23\textwidth}
+    \KITpanel{3}%
+    \column{.23\textwidth}
+    \KITpanel{4}%
+  \end{columns}
+\end{frame}
+
+\def\KITpanel#1{{%
+  \fboxsep3mm
+  \colorbox{KITgreen}{%
+    \advance\hsize-2\fboxsep
+    \hbox to\hsize{\vbox{\color{KITwhite}%
+        \textcolor{KITgreen!20}{\footnotesize Step #1\hfill\rotatebox{135}{\vrule width0.4bp height2.5mm\vrule width2.5mm height0.4bp}}%
+        \par\bigskip
+        \large\textbf{I am a dummy copy.}\break
+        It took me a long time to realize what it means to be a dummy copy.\par
+        }}}}\par\bigskip}
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column{.31\textwidth}
+    \KITpanel{1}%
+    \column{.31\textwidth}
+    \KITpanel{2}%
+    \column{.31\textwidth}
+    \KITpanel{3}%
+  \end{columns}
+  \begin{columns}[onlytextwidth]
+    \column{.31\textwidth}
+    \KITpanel{4}%
+    \column{.31\textwidth}
+    \KITpanel{5}%
+    \column{.31\textwidth}
+    \KITpanel{6}%
+  \end{columns}
+\end{frame}
+
+\def\KITpanel#1{{%
+  \fboxsep3mm
+  \colorbox{KITgreen}{%
+    \advance\hsize-2\fboxsep
+    \hbox to\hsize{\vbox{\color{KITwhite}%
+        \textcolor{KITgreen!20}{\footnotesize Step #1\hfill\rotatebox{135}{\vrule width0.4bp height2.5mm\vrule width2.5mm height0.4bp}}%
+        \par\bigskip
+        \large\bfseries I am a dummy copy.\break
+        And I've been a dummy copy since my~birth.\par
+        }}}}\par\bigskip}
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column{.23\textwidth}
+    \KITpanel{1}%
+    \column{.23\textwidth}
+    \KITpanel{2}%
+    \column{.23\textwidth}
+    \KITpanel{3}%
+    \column{.23\textwidth}
+    \KITpanel{4}%
+  \end{columns}
+  \begin{columns}[onlytextwidth]
+    \column{.23\textwidth}
+    \KITpanel{5}%
+    \column{.23\textwidth}
+    \KITpanel{6}%
+    \column{.23\textwidth}
+    \KITpanel{7}%
+    \column{.23\textwidth}
+    \KITpanel{8}%
+  \end{columns}
+\end{frame}
+
+\def\KITpanel#1{{%
+  \fboxsep3mm
+  \colorbox{KITgreen}{%
+    \advance\hsize-2\fboxsep
+    \hbox to\hsize{\vbox{\centering\color{KITwhite}%
+        \csname KIT#1\endcsname[KITgreen!20](KITgreen)\par
+        \fontsize{31}{31}\selectfont 33\,\%\par\bigskip
+        {\color{KITgreen!20}\hrule}\bigskip
+        \large I am a dummy copy.\break
+        And I've been a dummy copy since my birth.\par
+        \vspace*{3\baselineskip}}}}}}
+\begin{frame}{Slide Title}
+  \begin{columns}[onlytextwidth]
+    \column{.23\textwidth}
+    \KITpanel{meet}%
+    \column{.23\textwidth}
+    \KITpanel{handshake}%
+    \column{.23\textwidth}
+    \KITpanel{molecule}%
+    \column{.23\textwidth}
+    \KITpanel{bulb}%
+  \end{columns}
+\end{frame}
+
+\def\KITpanel[#1]#2#3{%
+  \large
+  \csname KIT#2\endcsname[KITgreen!20](#1)\par
+  \parbox[t][2\baselineskip][t]{\hsize}{\raggedright\textbf{#3}}\par\bigskip
+  {\color{#1}\hrule}\bigskip
+  \textbf{I am a dummy copy.}\par\smallskip
+  It took me a long time to realize what it means to be a dummy copy.\par}
+\begin{frame}{Slide Title}
+  \leavevmode\rlap{\KITlongarrow{\hsize}}\par\vskip-2\baselineskip
+  \begin{columns}[onlytextwidth]
+    \column{.15\textwidth}
+    \KITpanel[KITgreen]{meet}{January\break 2025}%
+    \column{.15\textwidth}
+    \KITpanel[KITpinegreen]{bulb}{February\break 2025}%
+    \column{.15\textwidth}
+    \KITpanel[KITdarkblue]{handshake}{March – May 2025}%
+    \column{.15\textwidth}
+    \KITpanel[KITgreen]{molecule}{June –\break July 2025}%
+    \column{.15\textwidth}
+    \KITpanel[KITpinegreen]{book}{August –\break October 2025}%
+    \column{.15\textwidth}
+    \KITpanel[KITdarkblue]{teacher}{November – December 2025}%
+  \end{columns}
+\end{frame}
+
+{\setbeamertemplate{navigation symbols}{}
+\begin{frame}[b,whiteKITlogo]{Contact}
+  \vfill
+  {\Large\bfseries\color{KITgreen} Name\par}
+  {\footnotesize Position, title or function\par}
+  \bigskip
+  {\large +49 000 1234567\\
+    info@kit.edu\par}
+  \bigskip
+  {\bfseries\footnotesize Karlsruher Institut für Technologie\par}
+  {\footnotesize Kaiserstraße 12\\
+    76131 Karlsruhe\\
+    Germany\par}
+  ~\hfill\smash{\lower7mm\hbox{\includegraphics[height=\paperheight,trim=5.48 4.24 3.00 6.26,clip]{beamericonarticle}}}\kern-4.72mm %0.9 1.8 1.9 1
+  % replace dummy image with photo!
+\end{frame}}
+
+\def\KITteamember#1{%change this definition to insert photos of your team members!
+  \fbox{\hbox to\dimexpr\hsize-2\fboxsep{\hss\scalebox{2.12}{\csname KIT#1\endcsname[KITdarkblue](KITgreen!20)}\vrule width0pt height12\baselineskip depth5\baselineskip\hss}}\par\medskip
+  {\Large\bfseries\color{KITgreen}Name\par}\smallskip
+  \footnotesize Position, title or function}
+\begin{frame}{Team}
+  \begin{columns}[onlytextwidth]
+    \column{.23\textwidth}
+    \KITteamember{bulb}%
+    \column{.23\textwidth}
+    \KITteamember{teacher}%
+    \column{.23\textwidth}
+    \KITteamember{book}%
+    \column{.23\textwidth}
+    \KITteamember{meet}%
+  \end{columns}
+\end{frame}
+
+\begin{frame}[empty]%please customize the final slide for your needs
+  \vfill
+  \centerline{\KITlogo}\par
+  \vfill
+\end{frame}
+
+\end{document}
