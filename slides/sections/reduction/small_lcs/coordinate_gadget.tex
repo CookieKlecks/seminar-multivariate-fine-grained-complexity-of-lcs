@@ -1,0 +1,162 @@
+\begin{frame}[t]
+	\frametitle{Reduction}
+	\framesubtitle{Coordinate Gadget}
+	\large
+	
+	\begin{definition}[Coordinate Gadget]
+		For an OV-instance $\mathcal{A} = \{a_1, ..., a_A\}$ and $\mathcal{B} = \{b_1, ..., b_B\}$, we define:
+		\begin{columns}[onlytextwidth]
+	    \column[t]{0.49\hsize}\parskip\medskipamount
+		\[
+			\cg{a_i}{k} :=
+			\begin{cases}
+			\cgZeroX & \text{if } a_i[k] = 0 \\
+			\cgOneX & \text{if } a_i[k] = 1
+			\end{cases}
+			\quad 1 \leq k \leq D,
+		\]
+
+	    \column[t]{0.49\hsize}\parskip\medskipamount
+		\[
+			\text{CG}(b_j, k) :=
+			\begin{cases}
+			\cgZeroY & \text{if } b_j[k] = 0 \\
+			\cgOneY & \text{if } b_j[k] = 1
+			\end{cases}
+			\quad 1 \leq k \leq D,
+		\]
+		\end{columns}
+	\end{definition}
+	
+	\vspace{14pt}
+  	
+  	\begin{figure}
+  	\Large
+  	\centering
+	\only<1-5>{% necessary if used with externalization to "inform" tikz that several drawings are needed
+  	\begin{tikzpicture}[node distance=0cm]
+		\tikzstyle{base} = [anchor=west]
+		\tikzstyle{text element} = []
+		\tikzstyle{number} = [inner sep=1pt, minimum height=14pt]  
+		\tikzstyle{highlight number} = [number, fill=KITgreen]  
+		\tikzstyle{highlight number warn} = [number, fill=KITorange]  
+		\tikzstyle{highlight box} = [draw]  	
+  	
+  		\node[base, text element] (cgZeroX) at (0,0) {$\cgZeroX$};
+  		\node[base, text element] (cgZeroX_eq) at (cgZeroX.east) {$=$};
+  		\node[base, number] (cgZeroX_a) at (cgZeroX_eq.east) {$1$};
+  		\node[base, number] (cgZeroX_b) at (cgZeroX_a.east) {$0$};
+  		\node[base, number] (cgZeroX_c) at (cgZeroX_b.east) {$0$};
+  		\node[base, number] (cgZeroX_d) at (cgZeroX_c.east) {$1$};
+  		\node[base, number] (cgZeroX_e) at (cgZeroX_d.east) {$1$};
+  		
+  		\only<2>{
+	  		\node[base, highlight number] (cgZeroX_a) at (cgZeroX_eq.east) {$1$};
+	  		\node[base, highlight number] (cgZeroX_b) at (cgZeroX_a.east) {$0$};
+	  		\node[base, highlight number] (cgZeroX_c) at (cgZeroX_b.east) {$0$};
+	  		\node[base, highlight number] (cgZeroX_d) at (cgZeroX_c.east) {$1$};
+  		}
+  		
+  		\only<3>{
+	  	\node[base, highlight number] (cgZeroX_b) at (cgZeroX_a.east) {$0$};
+	  	\node[base, highlight number] (cgZeroX_c) at (cgZeroX_b.east) {$0$};
+	  	\node[base, highlight number] (cgZeroX_d) at (cgZeroX_c.east) {$1$};
+  		\node[base, highlight number] (cgZeroX_e) at (cgZeroX_d.east) {$1$};
+  		}
+  		
+  		
+  		% === cgOneX ===
+	  \node[base, text element] (cgOneX) at ([yshift=-1cm]cgZeroX.west) {$\cgOneX$};
+	  \node[base, text element] (cgOneX_eq) at (cgOneX.east) {$=$};
+	  \node[base, number] (cgOneX_a) at (cgOneX_eq.east) {$1$};
+	  \node[base, number] (cgOneX_b) at (cgOneX_a.east) {$1$};
+	  \node[base, number] (cgOneX_c) at (cgOneX_b.east) {$1$};
+	  \node[base, number] (cgOneX_d) at (cgOneX_c.east) {$0$};
+	  \node[base, number] (cgOneX_e) at (cgOneX_d.east) {$0$};
+	  
+	  \only<4>{
+		\node[base, highlight number] (cgOneX_b) at (cgOneX_a.east) {$1$};
+	  	\node[base, highlight number] (cgOneX_c) at (cgOneX_b.east) {$1$};
+	  	\node[base, highlight number] (cgOneX_d) at (cgOneX_c.east) {$0$};
+	  	\node[base, highlight number] (cgOneX_e) at (cgOneX_d.east) {$0$};
+	  }
+	  \only<5>{
+	  	\node[base, highlight number warn] (cgOneX_a) at (cgOneX_eq.east) {$1$};
+		\node[base, highlight number warn] (cgOneX_b) at (cgOneX_a.east) {$1$};
+	  	\node[base, highlight number warn] (cgOneX_c) at (cgOneX_b.east) {$1$};
+	  }
+	
+	  % === cgZeroY ===
+	  \node[base, text element] (cgZeroY) at (6,0) {$\cgZeroY$};
+	  \node[base, text element] (cgZeroY_eq) at (cgZeroY.east) {$=$};
+	  \node[base, number] (cgZeroY_a) at (cgZeroY_eq.east) {$1$};
+	  \node[base, number] (cgZeroY_b) at (cgZeroY_a.east) {$1$};
+	  \node[base, number] (cgZeroY_c) at (cgZeroY_b.east) {$0$};
+	  \node[base, number] (cgZeroY_d) at (cgZeroY_c.east) {$0$};
+	  \node[base, number] (cgZeroY_e) at (cgZeroY_d.east) {$1$};
+	  
+	  \only<2>{
+	  \node[base, highlight number] (cgZeroY_b) at (cgZeroY_a.east) {$1$};
+	  \node[base, highlight number] (cgZeroY_c) at (cgZeroY_b.east) {$0$};
+	  \node[base, highlight number] (cgZeroY_d) at (cgZeroY_c.east) {$0$};
+	  \node[base, highlight number] (cgZeroY_e) at (cgZeroY_d.east) {$1$};
+	  }
+	  \only<4>{
+	  \node[base, highlight number] (cgZeroY_a) at (cgZeroY_eq.east) {$1$};
+	  \node[base, highlight number] (cgZeroY_b) at (cgZeroY_a.east) {$1$};
+	  \node[base, highlight number] (cgZeroY_c) at (cgZeroY_b.east) {$0$};
+	  \node[base, highlight number] (cgZeroY_d) at (cgZeroY_c.east) {$0$};
+	  }
+	
+	  % === cgOneY ===
+	  \node[base, text element] (cgOneY) at ([yshift=-1cm]cgZeroY.west) {$\cgOneY$};
+	  \node[base, text element] (cgOneY_eq) at (cgOneY.east) {$=$};
+	  \node[base, number] (cgOneY_a) at (cgOneY_eq.east) {$0$};
+	  \node[base, number] (cgOneY_b) at (cgOneY_a.east) {$0$};
+	  \node[base, number] (cgOneY_c) at (cgOneY_b.east) {$1$};
+	  \node[base, number] (cgOneY_d) at (cgOneY_c.east) {$1$};
+	  \node[base, number] (cgOneY_e) at (cgOneY_d.east) {$1$};
+	  
+	  \only<3>{
+	  \node[base, highlight number] (cgOneY_a) at (cgOneY_eq.east) {$0$};
+	  \node[base, highlight number] (cgOneY_b) at (cgOneY_a.east) {$0$};
+	  \node[base, highlight number] (cgOneY_c) at (cgOneY_b.east) {$1$};
+	  \node[base, highlight number] (cgOneY_d) at (cgOneY_c.east) {$1$};
+	  }
+	  \only<5>{
+	  \node[base, highlight number warn] (cgOneY_c) at (cgOneY_b.east) {$1$};
+	  \node[base, highlight number warn] (cgOneY_d) at (cgOneY_c.east) {$1$};
+	  \node[base, highlight number warn] (cgOneY_e) at (cgOneY_d.east) {$1$};
+	  }
+	  
+	  
+	  % ===== Boxes ==========
+	  
+	  	\node<2-3>[highlight box, fit=(cgZeroX.west) (cgZeroX.north) (cgZeroX.south) (cgZeroX_e.east)] (boxCgZeroX) {};
+	  \node<4-5>[highlight box, fit=(cgOneX.west) (cgOneX.north) (cgOneX.south) (cgOneX_e.east)] (boxCgOneX) {};
+	  \node<2,4>[highlight box, fit=(cgZeroY.west) (cgZeroY.north) (cgZeroY.south) (cgZeroY_e.east)] (boxCgZeroY) {};
+	  \node<3,5>[highlight box, fit=(cgOneY.west) (cgOneY.north) (cgOneY.south) (cgOneY_e.east)] (boxCgOneY) {};
+  
+  	\path<2>[] (boxCgZeroX) edge (boxCgZeroY);
+  	\path<3>[] (boxCgZeroX) edge (boxCgOneY);
+  	\path<4>[] (boxCgOneX) edge (boxCgZeroY);
+  	\path<5>[] (boxCgOneX) edge (boxCgOneY);
+  	
+  	\end{tikzpicture}
+  	
+  	}
+  	\end{figure}
+  	
+  	\vspace{14pt}
+  	
+  	\begin{columns}[onlytextwidth]
+	\column{0.25\textwidth}
+		\only<2->{$L(\cgZeroX, \cgZeroY) = 4$}
+	\column{0.25\textwidth}
+		\only<3->{$L(\cgZeroX, \cgOneY) = 4$}
+	\column{0.25\textwidth}
+    	\only<4->{$L(\cgOneX, \cgZeroY) = 4$}
+	\column{0.25\textwidth}
+  		\only<5->{$L(\cgOneX, \cgOneY) = 3$}
+	\end{columns}
+\end{frame}

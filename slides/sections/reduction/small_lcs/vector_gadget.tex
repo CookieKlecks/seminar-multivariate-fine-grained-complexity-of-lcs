@@ -1,0 +1,95 @@
+\begin{frame}
+	\frametitle{Reduction}
+	\framesubtitle{Vector Gadget}
+	
+	\begin{definition}[Guarding of Input Strings]
+		For strings $x_1, ..., x_n$ and $y_1, ..., y_m$ with $n \geq m$, we define:
+		\begin{columns}[onlytextwidth]
+	    \column[t]{0.7\hsize}
+	    \vspace{-8pt}
+		\begin{align*}
+			\guardX{x_1, ..., x_n} &:=& 				  &G(x_1)\; 0^{\gamma_3}\; G(x_2)\; 0^{\gamma_3}\; \cdots\; G(x_{n-1})\; 0^{\gamma_3}\; G(x_n) \\
+			\guardY{y_1, ..., y_m} &:=& 0^{n\gamma_4}\; &G(y_1)\; 0^{\gamma_3}\; G(y_2)\; 0^{\gamma_3}\; \cdots\; G(y_{m-1})\; 0^{\gamma_3}\; G(y_m)\; 0^{n\gamma_4}
+		\end{align*}
+
+	    \column[t]{0.29\hsize}
+	    \vspace{3pt}
+		\begin{displaymath}
+			G(x) = 1^{\gamma_2}0^{\gamma_1}x0^{\gamma_1}1^{\gamma_2}
+		\end{displaymath}
+		\end{columns}
+		
+		with sufficiently large $\gamma_1, \gamma_2, \gamma_3, \gamma_4$
+	
+	\end{definition}
+	
+	\visible<2->{
+	\begin{example}
+	\begin{figure}
+	\centering
+	\only<2-8>{
+	\begin{tikzpicture}[x=1.5em]
+		\tikzstyle{base} = [minimum width=1.5em, inner sep=1pt]
+		\tikzstyle{text element} = []
+		\tikzstyle{number} = [minimum height=14pt]  
+		\tikzstyle{guard} = [fill=KITicegray]  
+		\tikzstyle{big guard} = [fill=KITicegray!75!black]
+		\tikzstyle{input} = [fill=KITgreen]
+		
+		\node[base, text element] (eqX) at (0,0) {$=$};
+		\node[base, text element, anchor=east] (gx) at (eqX.west) {$\guardX{1,0,1}$};
+		
+		
+		
+		
+		\exVGguardOne{eqX}{4}{x_first_left_one}
+		\exVGguardZero{eqX}{5}
+		\node[base, number, input] at ($(eqX) + (6,0)$) {$1$};
+		\exVGguardZero{eqX}{7}
+		\exVGguardOne{eqX}{8}
+		\exVGbigGuardZero{eqX}{9}
+		\exVGguardOne{eqX}{10}
+		\exVGguardZero{eqX}{11}
+		\node[base, number, input] at ($(eqX) + (12,0)$) {$0$};
+		\exVGguardZero{eqX}{13}
+		\exVGguardOne{eqX}{14}
+		\exVGbigGuardZero{eqX}{15}
+		\exVGguardOne{eqX}{16}
+		\exVGguardZero{eqX}{17}
+		\node[base, number, input] at ($(eqX) + (18,0)$) {$1$};
+		\exVGguardZero{eqX}{19}
+		\exVGguardOne{eqX}{20}
+		
+		
+		
+		\node[base, text element] (eqY) at (0,-1) {$=$};
+		\node[base, text element, anchor=east] (gy) at (eqY.west) {$\guardY{1,1}$};
+		\exVGendGuardY{eqY}{2}
+		
+		\exVGguardOne{eqY}{6}{y_first_left_one}
+		\exVGguardZero{eqY}{7}
+		\node[base, number, input] at ($(eqY) + (8,0)$) {$1$};
+		\exVGguardZero{eqY}{9}
+		\exVGguardOne{eqY}{10}
+		
+		\exVGbigGuardZero{eqY}{12}
+		
+		\exVGguardOne{eqY}{14}
+		\exVGguardZero{eqY}{15}
+		\node[base, number, input] at ($(eqY) + (16,0)$) {$1$};
+		\exVGguardZero{eqY}{17}
+		\exVGguardOne{eqY}{18}
+		
+		\exVGendGuardY{eqY}{22}
+		
+		\only<3>{
+			%\path[draw] (y_first_left_one.north east) -- (x_first_left_one);
+		}
+	
+	\end{tikzpicture}
+	}
+	\end{figure}
+	\end{example}
+	}
+
+\end{frame}
