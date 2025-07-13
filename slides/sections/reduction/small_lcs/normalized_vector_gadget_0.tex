@@ -1,0 +1,148 @@
+\newcommand{\vgWithDummy}[7]{%
+	\node[cell] (#1_1) at (base) {#2};
+	\node[cell] (#1_2) at ($(base) + (1,0)$) {#3};
+	\node[cell] (#1_3) at ($(base) + (2,0)$) {#4};
+    \node (#1_dots) at ($(base) + (3,0)$) {$\cdots$};
+    \node[cell] (#1_4) at ($(base) + (4,0)$) {#5};
+    \node[cell] (#1_dummy) at ($(base) + (5,0)$) {#6};
+        
+    \node[] (#1_vector) at ($(base) + (2,0) #7 (0,12pt)$) {vector coordinates};
+        
+    \coordinate (#1_line_top) at ($(#1_dummy.west) + (0,14pt)$);
+    \coordinate (#1_line_bot) at ($(#1_dummy.west) - (0,14pt)$);
+    \path[draw, thick] (#1_line_top) -- (#1_line_bot);
+        
+    \node[] (#1_dummy_text) at ($(base) + (5.5,0) #7 (0,12pt)$) {dummy};
+    
+		\begin{pgfonlayer}{mid}
+    \node[box vg, fit=(#1_1) (#1_vector) (#1_dummy_text) (#1_line_top.north) (#1_line_bot.south)] (#1_box) {};
+    \end{pgfonlayer}
+}
+
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, fill=blue!10, inner sep=3pt},
+    edge/.style={green!70!black, thick},
+    labelstyle/.style={font=\scriptsize},
+    x=2em
+]
+
+\tikzstyle{cell} = [draw, fill=KITwhite, rounded corners=0, rectangle, minimum width=2em, minimum height=14pt, anchor=center, inner sep=1pt]
+\tikzstyle{box vg} = [draw, fill=KITiceblue, inner sep=5pt, rounded corners]
+\tikzstyle{box nvg} = [draw, fill=KITicegray, inner sep=5pt, rounded corners]
+\tikzstyle{good edge} = [draw, color=KITgreen]
+\tikzstyle{bad edge} = [draw, color=KITorange]
+
+
+
+\coordinate (base) at (0,2);
+\vgWithDummy{a}{$\cgZeroX$}{$\cgOneX$}{$\cgZeroX$}{$\cgOneX$}{$\cgZeroX$}{+}
+\node[above=2pt of a_box.north] (vgai) {$\vg{a_i}$}; 
+
+\coordinate (base) at ($(a_dummy.east) + (2.5,0)$);
+\vgWithDummy{s}{$\cgZeroX$}{$\cgZeroX$}{$\cgZeroX$}{$\cgZeroX$}{$\cgOneX$}{+}
+\node[above=2pt of s_box.north] (S) {$S$}; 
+
+
+\begin{pgfonlayer}{bg}
+    \node[box nvg, draw, fit=(a_box) (s_box) (vgai) (S)] (nvgai) {};
+    \node[above=2pt of nvgai.north] {$\nvg{a_i}$}; 
+\end{pgfonlayer}
+ 
+
+
+
+
+\path ($(a_1.south)!0.5!(s_1.south)$) ++(0,-2.2) coordinate (base);
+\vgWithDummy{b}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{-}
+\node[below=2pt of b_box.south] (vgbj) {$\vg{b_j}$}; 
+
+\begin{pgfonlayer}{bg}
+    \node[box nvg, draw, fit=(b_box) (vgbj)] (nvgbj) {};
+    \node[below=2pt of nvgbj.south] {$\nvg{b_j}$}; 
+\end{pgfonlayer}
+
+
+\draw[good edge] (a_1.south) edge node[fill=KITwhite] {$\rho_0$} (b_1.north);
+\draw[good edge] (a_2.south) edge node[fill=KITwhite] {$\rho_0$} (b_2.north);
+\draw[good edge] (a_3.south) edge node[fill=KITwhite] {$\rho_0$} (b_3.north);
+\draw[good edge] (a_4.south) edge node[fill=KITwhite] {$\rho_0$} (b_4.north);
+\draw[good edge] (a_dummy.south) edge node[fill=KITwhite] {$\rho_0$} (b_dummy.north);
+
+
+\draw[good edge] (s_1.south) edge node[fill=KITwhite] {$\rho_0$} (b_1.north);
+\draw[good edge] (s_2.south) edge node[fill=KITwhite] {$\rho_0$} (b_2.north);
+\draw[good edge] (s_3.south) edge node[fill=KITwhite] {$\rho_0$} (b_3.north);
+\draw[good edge] (s_4.south) edge node[fill=KITwhite] {$\rho_0$} (b_4.north);
+\draw[bad edge] (s_dummy.south) edge node[fill=KITwhite] {$\rho_1$} (b_dummy.north);
+
+
+% Top NVG(a_i)
+%\node[box, label=above:{$\text{NVG}(a_i)$}] (nvgai) at (0,0) {
+%  \begin{tikzpicture}[]
+%     VG(a_i)
+%    \node[box, label=above:{$\text{VG}(a_i)$}] (vgai) at (0,0) {
+%      \begin{tikzpicture}[x=2em]
+%        \node[cell] (a1_1) at (0,0) {$\cgZeroX$};
+%        \node[cell] (a1_2) at (1,0) {$\cgOneX$};
+%        \node[cell] (a1_3) at (2,0) {$\cgZeroX$};
+%        \node (dots1) at (3,0) {$\cdots$};
+%        \node[cell] (a1_4) at (4,0) {$\cgOneX$};
+%        \node[cell] (dummy) at (5,0) {$\cgZeroX$};
+%        
+%        \node[] at (2,12pt) {vector coordinates};
+%        
+%        \path[draw, thick] ($(dummy.west) + (0,14pt)$) -- ($(dummy.west) - (0,14pt)$);
+%        
+%        \node[] at (5.5,12pt) {dummy};
+%      \end{tikzpicture}
+%    };
+%
+%    % S-box
+%    \node[box, right=0.5cm of vgai.east, label=above:{$S$}] (s) {
+%      \begin{tikzpicture}[x=2em]
+%        \node[cell] (s_1) at (0,0) {$\cgZeroX$};
+%        \node[cell] (s_2) at (1,0) {$\cgZeroX$};
+%        \node[cell] (s_3) at (2,0) {$\cgZeroX$};
+%        \node (s_dots) at (2.5,0) {$\cdots$};
+%        \node[cell] (s_4) at (4,0) {$\cgZeroX$};
+%        \node[cell] (s_dummy) at (5,0) {$\cgOneX$};
+%        
+%        \node[] at (-0.5,12pt) {vector coordinates};
+%        
+%        \path[draw, thick] ($(s_dummy.west) + (0,14pt)$) -- ($(s_dummy.west) - (0,14pt)$);
+%        
+%        \node[] at (4.5,12pt) {dummy};
+%      \end{tikzpicture}
+%    };
+%
+%  \end{tikzpicture}
+%};
+%
+%% Bottom NVG(b_j)
+%\node[box, below=2cm of nvgai, label=below:{$\text{NVG}(b_j)$}] (nvgbj) {
+%  \begin{tikzpicture}[]
+%    \node[box, label=above:{$\text{VG}(b_j)$}] (vgbj) at (0,0) {
+%      \begin{tikzpicture}[x=2em]
+%        \node[cell] (b1_1) at (0,0) {$\cgOneY$};
+%        \node[cell] (b1_2) at (1,0) {$\cgZeroY$};
+%        \node[cell] (b1_3) at (2,0) {$\cgOneY$};
+%        \node (b_dots) at (3,0) {$\cdots$};
+%        \node[cell] (b1_4) at (4,0) {$\cgZeroY$};
+%        \node[cell] (b_dummy) at (5,0) {$\cgOneY$};
+%        
+%        \node[] at (2,-11pt) {vector coordinates};
+%        
+%        \path[draw, thick] ($(dummy.west) + (0,14pt)$) -- ($(dummy.west) - (0,14pt)$);
+%        
+%        \node[] at (5.5,-11pt) {dummy};
+%      \end{tikzpicture}
+%    };
+%  \end{tikzpicture}
+%};
+
+% Draw green ρ₀ edges
+%\foreach \i/\j in {a2/b1, a1/b2, a3/b3, a4/b4, a5/b5} {
+%  \draw[edge] (\i.south) -- node[labelstyle, midway, left] {$\rho_0$} (\j.north);
+%}
+
+\end{tikzpicture}

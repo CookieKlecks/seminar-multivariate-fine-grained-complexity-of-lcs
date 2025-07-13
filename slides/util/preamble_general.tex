@@ -9,7 +9,14 @@
 \usetikzlibrary{shapes.geometric} 
 \usetikzlibrary {calc} 
 \usetikzlibrary{math} 
-\usetikzlibrary {quotes} % for "label" on edges
+\usetikzlibrary {quotes} % for "label" on edges 
+\usetikzlibrary {positioning} 
+\usetikzlibrary{backgrounds}
+
+% Define a background layer
+\pgfdeclarelayer{bg}
+\pgfdeclarelayer{mid}
+\pgfsetlayers{bg,mid,main}
 
 
 % Paket zum Setzen von Algorithmen in Pseudocode mit kleinen Stilanpassungen
