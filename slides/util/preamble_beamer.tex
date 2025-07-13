@@ -1,0 +1,52 @@
+\newlength{\nodeDistance}\setlength{\nodeDistance}{1.5cm} % default distance between two nodes
+\newlength{\partitionRadius}\setlength{\partitionRadius}{0.4cm} % default radius of partition line
+
+\tikzstyle{highlight} = [color=kit-red80]
+\tikzstyle{dim} = [thin, color=kit-gray40]
+\tikzstyle{tight} = [inner sep = 0.2ex]
+
+\tikzstyle{node} = [draw,circle]
+\tikzstyle{edge} = [draw, inner sep = 0.2ex]
+\tikzstyle{cut edge} = []
+
+\tikzstyle{color A} = [color=kit-orange100]
+\tikzstyle{color B} = [color=kit-lightgreen100]
+\tikzstyle{color C} = [color=kit-cyan100]
+\tikzstyle{color D} = [color=kit-purple80]
+
+\tikzstyle{partition} = [dashed, thick]
+\tikzstyle{partition A} = [partition, color A]
+\tikzstyle{partition B} = [partition, color B]
+\tikzstyle{partition C} = [partition, color C]
+
+% Ident algorithm2e code. Necessary because probably \parident is not defined
+\setlength{\algomargin}{2ex}
+
+
+% Using overlays in TikZ pictures.
+% Inspired from https://tex.stackexchange.com/a/55849
+
+% Keys to support piece-wise uncovering of elements in TikZ pictures:
+% \node[visible on=<2->](foo){Foo}
+% \node[visible on=<{2,4}>](bar){Bar}   % put braces around comma expressions
+%
+% Internally works by setting opacity=0 when invisible, which has the 
+% adavantage (compared to \node<2->(foo){Foo} that the node is always there, hence
+% always consumes space plus that coordinate (foo) is always available.
+%
+% The actual command that implements the invisibility can be overriden
+% by altering the style invisible. For instance \tikzsset{invisible/.style={opacity=0.2}}
+% would dim the "invisible" parts. Alternatively, the color might be set to white, if the
+% output driver does not support transparencies (e.g., PS) 
+%
+\tikzset{
+  invisible/.style={opacity=0},
+  invisible text/.style={text opacity=0},
+  %
+  visible on/.style={alt={#1}{}{invisible}},
+  text visible on/.style={alt={#1}{}{invisible text}},
+  %
+  alt/.code n args={3}{%
+	\alt#1{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}

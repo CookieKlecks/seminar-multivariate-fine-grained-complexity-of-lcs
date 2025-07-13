@@ -1,0 +1,41 @@
+% TikZ für Graphiken in LaTeX
+\usepackage{tikz}
+\usetikzlibrary {arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary {graphs}
+\usetikzlibrary {fit}
+\usetikzlibrary {shapes}
+\usetikzlibrary{shapes.arrows} 
+\usetikzlibrary{shapes.geometric} 
+\usetikzlibrary {calc} 
+\usetikzlibrary{math} 
+\usetikzlibrary {quotes} % for "label" on edges
+
+
+% Paket zum Setzen von Algorithmen in Pseudocode mit kleinen Stilanpassungen
+\usepackage[ruled,vlined,linesnumbered,norelsize]{algorithm2e}
+\DontPrintSemicolon
+\def\NlSty#1{\textnormal{\fontsize{8}{10}\selectfont{}#1}}
+\SetKwSty{texttt}
+\SetCommentSty{emph}
+\def\listalgorithmcfname{List of Algorithms}
+\def\algorithmautorefname{Algorithm}
+\def\algorithmcflinename{Line}
+\let\chapter=\section % repariert ein Problem mit algorithm2e
+
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\tikzexternalize % Externalizes all tikz figures to PDFs
+\tikzsetexternalprefix{build_tikz/} % Prefix of the directory on which all externalized figures are stored
+
+
+\usepackage{subcaption}
+
+
+\usepackage{siunitx} % for numbers and units
+\usepackage{pifont}
+\usepackage{marvosym}
+
+\usepackage{blindtext}
+

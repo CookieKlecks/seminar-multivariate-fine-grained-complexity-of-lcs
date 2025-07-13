@@ -1,0 +1,20 @@
+
+% Coordinate gadgets
+\newcommand{\cgZeroX}{\mathbf{0_x}}
+\newcommand{\cgOneX}{\mathbf{1_x}}
+\newcommand{\cgZeroY}{\mathbf{0_y}}
+\newcommand{\cgOneY}{\mathbf{1_y}}
+\newcommand{\cg}[2]{\text{CG}(#1,#2)}
+
+
+% Vector Gadges
+\newcommand{\guardX}[1]{G_X(#1)}
+\newcommand{\guardY}[1]{G_Y(#1)}
+% example:
+\newcommand{\exVGguardOne}[3]{\node[base, number, guard] (#3) at ($(#1) + (#2,0)$) {$1^{\gamma_2}$};}
+\newcommand{\exVGguardZero}[2]{
+		\node[base, number, guard] at ($(#1) + (#2,0)$) {$0^{\gamma_1}$};}
+\newcommand{\exVGbigGuardZero}[2]{
+		\node[base, number, big guard] at ($(#1) + (#2,0)$) {$0^{\gamma_3}$};}
+\newcommand{\exVGendGuardY}[2]{
+		\node[base, number, big guard] at ($(#1) + (#2,0)$) {$0^{n\gamma_4}$};}

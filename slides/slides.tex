@@ -24,6 +24,13 @@
 \titlegraphic{\includegraphics[height=\paperheight,trim=0 0 0 -9]{beamericononline}}%
 %\date[\today]{} %--- activate to suppress date on title page
 
+
+
+\input{./util/commands}
+\input{./util/preamble_general}
+\input{./util/preamble_beamer}
+
+
 \begin{document}
 
 %several suggestions for the title page:
@@ -53,58 +60,6 @@
 
 \section{Slides with only text}
 
-\begin{frame}[c]%<-- change vertical alignment: t(op) or c(enter) or b(ottom)
-  \frametitle{Slide Title}
-  \framesubtitle{Slide Subtitle}
-
-  Normal text has this font size.
-
-  {\large Large text with \textbf{highlight in text in bold}, with \emph{emphasized phrases in italics} and with \alert{bemear's alert mark-up for text in red}\par}
-  
-  \begin{itemize}
-  \item Bullet point lists
-    \begin{itemize}
-    \item Bullet point list on list level 2
-    \end{itemize}
-  \end{itemize}
-  \begin{enumerate}
-  \item Numbered lists
-    \begin{enumerate}
-    \item Numbered list on list level 2
-    \end{enumerate}
-  \end{enumerate}
-
-  {\Large\bfseries\color{KITgreen}Highlights and key statements should be \emph{L}arge, bold and KIT-green.\par}
-
-  {\footnotesize Text in the size of footnotes is for references and marginal notes \dots{}\par}
-
-  {\scriptsize \dots{} or smaller in the size of scripts \dots{}\par}
-
-  {\tiny \dots{} or even tiny.\par}
-\end{frame}
-
-\begin{frame}[c]
-  \frametitle{Slide Title}
-  \advance\RaggedRightRightskip0.35\hsize\RaggedRight
-  {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
-
-  \bigskip\large
-  It took me a long time to realize what it means to be a dummy copy: you make no
-  sense. You stand out now and then by being completely out of context.
-  
-  \begin{itemize}
-  \item But does that make me a bad copy?
-  \item I know that I’ll never stand a chance of appearing in the Economist
-  \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
-  \end{itemize}
-
-  It took me a long time to realize what it means to typeset a list with leading text.
-  \begin{enumerate}
-  \item But does that make me a bad copy?
-  \item I know that I’ll never stand a chance of appearing in the Economist
-  \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
-  \end{enumerate}
-\end{frame}
 
 \begin{frame}{Slide Title}
   \begin{columns}[onlytextwidth]
