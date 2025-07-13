@@ -25,3 +25,18 @@
 
 % Normalised Vector Gadget
 \newcommand{\nvg}[1]{\text{NVG}(#1)}
+
+
+
+
+
+% ====== General KIT template commands =============
+\def\KITpanel#1#2#3{{%
+  \fboxsep3mm
+  \colorbox{#3}{%
+    \advance\hsize-2\fboxsep
+    \hbox to\hsize{\vbox{\color{KITblack}%
+        \par\smallskip
+        {\large\textbf{#1}}\break
+        #2\par
+        }}}}\par\bigskip\bigskip}

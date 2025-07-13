@@ -1,0 +1,62 @@
+\begin{frame}
+	\frametitle{Proving Multivariate Fine-Grained Complexity}
+	\framesubtitle{Methodology}
+
+	\begin{itemize}
+		\item<1-> Paper provides framework to tackle \textbf{multivariate fine-grained complexity analysis} in \textbf{general}
+		\item<2-> Checklist for general approach for problem $\mathbb{B}$:
+	\end{itemize}
+	
+	\vspace{1cm}	
+	
+	\begin{columns}[onlytextwidth]
+	\column[t]{0.3\textwidth}
+	\only<2-4>{
+	\KITpanel{1. Define Parameters}{%
+		\begin{itemize}
+			\item List parameters of problem $\mathbb{B}$
+		\end{itemize}
+	}{KITiceblue}}
+	\only<5->{
+	\KITpanel{1. Define Parameters}{%
+		\begin{itemize}
+			\item List parameters of problem $\mathbb{B}$
+		\end{itemize}
+	}{KITlightgreen}}
+	
+	\column[t]{0.3\textwidth}
+	\only<3->{
+	\KITpanel{2. Find Parameter Relations}{%
+		\begin{itemize}
+			\item Bound parameters of $\mathbb{B}$
+			\item Proof non-triviality of fully bounded parameter space
+		\end{itemize}
+	}{KITiceblue}
+	}
+	
+	\column[t]{0.3\textwidth}
+	\only<4->{
+	\KITpanel{3. Find Reduction(s) from $\mathbb{A} \rightarrow \mathbb{B}$}{%
+		\begin{itemize}
+			\item Check reductions span full parameter space
+			\item Derive lower bound for all parameter setting
+		\end{itemize}
+	}{KITiceblue}
+	}
+	\end{columns}	
+	
+	
+%	 \begin{enumerate}
+%		\item<3-> \color<10->{KITlightgreen}\textbf{Define parameters}\quad \only<10->{\KITcheck[KITwhite](KITlightgreen)}
+%		\item<4-> \textbf{Find parameter relations}
+%		\begin{enumerate}
+%			\item<5-> Bound parameters
+%			\item<6-> Proof non-triviality of fully bounded parameter space
+%		\end{enumerate}
+%		\item<7-> \textbf{Find reduction(s) from $\mathbb{A} \rightarrow \mathbb{B}$}
+%		\begin{enumerate}
+%			\item<8-> Check reductions span full parameter space
+%			\item<9-> Derive lower bound for every parameter setting
+%		\end{enumerate}
+%	\end{enumerate}
+\end{frame}

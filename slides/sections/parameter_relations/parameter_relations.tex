@@ -1,0 +1,71 @@
+\begin{frame}
+	\frametitle{Find Parameter Relations}
+	
+	\begin{columns}[onlytextwidth]
+	\column[t]{0.49\textwidth}
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Relation} & \textbf{Restriction} \\
+		\midrule
+		$L \leq m \leq n$     &  \\
+		$L \leq d \leq M$     &  \\
+		$\Delta \leq n$       &  \\
+		$\delta \leq m$       &  \\
+		$\delta \leq \Delta$  &  \\
+		\midrule
+		$\delta = m - L$      &  \\
+		$\Delta = n - L$      &  \\
+		\midrule
+		$d \leq Lm$               & \\
+		$d \leq L^2 |\Sigma|$     & \\
+		\alt<2->{\color{KITgreen}$\boxed{d \leq 2L(\Delta + 1)}$}{$d \leq 2L(\Delta + 1)$}   & \\
+		$|\Sigma| \leq d$         & \\
+		$\dfrac{L^2}{|\Sigma|} \leq M \leq 2Ln$ & \\
+		\midrule
+		$M \geq Lm/4$             & if $|\Sigma| = 2$ \\
+		$M \geq nd/(5L)$          & if $|\Sigma| = 2$ \\
+		\midrule
+		$M \geq md/(80L)$         & if $|\Sigma| = 3$ \\
+		\bottomrule
+	\end{tabular}
+	
+	\column[t]{0.49\textwidth}
+	Todo: Overview/Explanation of parameters
+	\end{columns}
+
+\end{frame}
+
+
+\input{sections/parameter_relations/proof_dominant_pairs}
+
+
+\begin{frame}
+	\frametitle{Find Parameter Relations}
+	\framesubtitle{Overview}	
+	
+	\begin{columns}[onlytextwidth]
+	\column[t]{0.3\textwidth}
+	\KITpanel{1. Define Parameters}{%
+		\begin{itemize}
+			\item List parameters of problem $\mathbb{B}$
+		\end{itemize}
+	}{KITlightgreen}
+	
+	\column[t]{0.3\textwidth}
+	\KITpanel{\color{KITwhite}2. Find Parameter Relations}{%
+		\begin{itemize}
+		\color{KITwhite}
+			\item Bound parameters of $\mathbb{B}$
+			\item Proof non-triviality of fully bounded parameter space
+		\end{itemize}
+	}{KITdarkblue}
+	
+	\column[t]{0.3\textwidth}
+	\KITpanel{3. Find Reduction(s) from $\mathbb{A} \rightarrow \mathbb{B}$}{%
+		\begin{itemize}
+			\item Check reductions span full parameter space
+			\item Derive lower bound for all parameter setting
+		\end{itemize}
+	}{KITiceblue}
+	\end{columns}
+\end{frame}
