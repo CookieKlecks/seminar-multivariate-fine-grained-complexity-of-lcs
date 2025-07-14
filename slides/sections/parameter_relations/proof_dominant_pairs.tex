@@ -6,19 +6,18 @@
 	For every LCS instance it holds that $d \leq 2L(\Delta + 1)$
 	\end{theorem}
 	
-	\begin{proof}
-	\color{black}
-	\vspace{1ex}
+	\begin{proof}%
+	\color{black}%
+	\vspace{1ex}%
 	\begin{columns}[onlytextwidth]
+	\column[t]{0.01\textwidth}
 	\column[t]{0.49\textwidth}
 	Fix LCS $z$ of $x$ and $y$
 	\begin{itemize}
 		\color{black}
-		\setlength{\itemindent}{1em}
 		\item Per definition $z$ obtainable by:
 		\begin{itemize}
 			\color{black}
-			\setlength{\itemindent}{1em}
 			\item Deleting at most $\Delta$ positions from $x$ or
 			\item Deleting at most $\delta$ positions from $y$
 		\end{itemize}
@@ -34,18 +33,15 @@
 	
 	\begin{itemize}
 	\color{black}
-		\setlength{\itemindent}{1em}
 		\item If $L[i,j] = k$:
 		\begin{itemize}
 			\color{black}
-			\setlength{\itemindent}{1em}
 			\item $k \leq i \leq k + \Delta$ or
 			\item $k \leq j \leq k + \delta$
 		\end{itemize}
 		\item For each $i' \in \{k, \ldots, k + \Delta\}$ and $j' \in \{k, \ldots, k + \delta\}$:
 		\begin{itemize}
 			\color{black}
-			\setlength{\itemindent}{1em}
 			\item At most one $k$-dominant pair $(i',j)$ or $(i,j')$
 		\end{itemize}
 	\end{itemize}
