@@ -1,3 +1,8 @@
+\newcommand<>{\emphBeamer}[1]{\textbf#2{#1}}
+\newcommand<>{\emphTheorem}[1]{\textbf#2{\textcolor{black}{#1}}}
+
+\newcommand{\bigO}[1]{\mathcal{O}(#1)}
+
 % General LCS
 \newcommand{\lcs}[1]{\text{LCS}(#1)}
 \newcommand{\lcsy}[1]{\text{LCS}^\gamma(#1)}
@@ -25,13 +30,13 @@
 		\node[base, number, big guard] (#3) at ($(#1) + (#2,0)$) {$0^{n\gamma_4}$};}
 		
 		
-\newcommand{\vg}[1]{VG(#1)}
+\newcommand{\vg}[1]{\text{\textsc{Vg}}(#1)}
 
 
 % Normalised Vector Gadget
-\newcommand{\nvg}[1]{\text{NVG}(#1)}
+\newcommand{\nvg}[1]{\text{\textsc{Nvg}}(#1)}
 
-
+% Full reduction
 
 
 

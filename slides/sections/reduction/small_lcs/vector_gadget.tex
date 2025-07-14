@@ -136,52 +136,52 @@
 	\frametitle{Reduction}
 	\framesubtitle{Vector Gadget}
 	
-	\only<1>{
-	\begin{definition}[Guarding of Input Strings]
-		For strings $x_1, ..., x_n$ and $y_1, ..., y_m$ with $n \geq m$, we define:
-		\begin{columns}[onlytextwidth]
-	    \column[t]{0.7\hsize}
-	    \vspace{-8pt}
-		\begin{align*}
-			\guardX{x_1, ..., x_n} &:=& 				  &G(x_1)\; 0^{\gamma_3}\; G(x_2)\; 0^{\gamma_3}\; \cdots\; G(x_{n-1})\; 0^{\gamma_3}\; G(x_n) \\
-			\guardY{y_1, ..., y_m} &:=& 0^{n\gamma_4}\; &G(y_1)\; 0^{\gamma_3}\; G(y_2)\; 0^{\gamma_3}\; \cdots\; G(y_{m-1})\; 0^{\gamma_3}\; G(y_m)\; 0^{n\gamma_4}
-		\end{align*}
-
-	    \column[t]{0.29\hsize}
-	    \vspace{3pt}
-		\begin{displaymath}
-			G(x) = 1^{\gamma_2}0^{\gamma_1}x0^{\gamma_1}1^{\gamma_2}
-		\end{displaymath}
-		\end{columns}
-		
-		with sufficiently large $\gamma_1, \gamma_2, \gamma_3, \gamma_4$
+%	\only<1>{
+%	\begin{definition}[Guarding of Input Strings]
+%		For strings $x_1, ..., x_n$ and $y_1, ..., y_m$ with $n \geq m$, we define:
+%		\begin{columns}[onlytextwidth]
+%	    \column[t]{0.7\hsize}
+%	    \vspace{-8pt}
+%		\begin{align*}
+%			\guardX{x_1, ..., x_n} &:=& 				  &G(x_1)\; 0^{\gamma_3}\; G(x_2)\; 0^{\gamma_3}\; \cdots\; G(x_{n-1})\; 0^{\gamma_3}\; G(x_n) \\
+%			\guardY{y_1, ..., y_m} &:=& 0^{n\gamma_4}\; &G(y_1)\; 0^{\gamma_3}\; G(y_2)\; 0^{\gamma_3}\; \cdots\; G(y_{m-1})\; 0^{\gamma_3}\; G(y_m)\; 0^{n\gamma_4}
+%		\end{align*}
+%
+%	    \column[t]{0.29\hsize}
+%	    \vspace{3pt}
+%		\begin{displaymath}
+%			G(x) = 1^{\gamma_2}0^{\gamma_1}x0^{\gamma_1}1^{\gamma_2}
+%		\end{displaymath}
+%		\end{columns}
+%		
+%		with sufficiently large $\gamma_1, \gamma_2, \gamma_3, \gamma_4$
+%	
+%	\end{definition}
+%	} % end of only
+%	
+%	\begin{definition}[Vector Gadget]
+%	For the two vectors $a_i$ and $b_j$, we define:
+%	
+%	\begin{columns}[onlytextwidth]
+%	    \column[t]{0.49\hsize}
+%	    \[
+%	    	\vg{a_i} := \guardX{\cg{a_i}{1}, ..., \cg{a_i}{D}}
+%	    \]
+%	    \column[t]{0.49\hsize}
+%	    \[
+%	    	\vg{b_j} := \guardY{\cg{b_j}{1}, ..., \cg{b_j}{D}}
+%	    \]
+%	
+%	\end{columns}
+%		
+%	\end{definition}
 	
-	\end{definition}
-	} % end of only
-	
-	\begin{definition}[Vector Gadget]
-	For the two vectors $a_i$ and $b_j$, we define:
-	
-	\begin{columns}[onlytextwidth]
-	    \column[t]{0.49\hsize}
-	    \[
-	    	\vg{a_i} := \guardX{\cg{a_i}{1}, ..., \cg{a_i}{D}}
-	    \]
-	    \column[t]{0.49\hsize}
-	    \[
-	    	\vg{b_j} := \guardY{\cg{b_j}{1}, ..., \cg{b_j}{D}}
-	    \]
-	
-	\end{columns}
-		
-	\end{definition}
-	
-	\only<2->{
+	\only<1->{
 	\begin{example}
 	%Let $a_i = (0,0,1)$ and $b_j = (1,1,0)$.
 	\begin{figure}
 	\centering
-	\only<2-4>{
+	\only<1-4>{
 	\begin{tikzpicture}[x=1.5em]
 		\tikzstyle{base} = [minimum width=1.5em, inner sep=1pt]
 		\tikzstyle{text element} = []
@@ -194,7 +194,7 @@
 		\tikzstyle{input edge} = [color=KITgreen]
 		
 		\node[base, text element] (eqX) at (0,0) {$=$};
-		\node[base, text element, anchor=east] (gx) at (eqX.west) {$\vg{a_1} = \vg{(0,0,1)}$};
+		\node[base, text element, anchor=east] (gx) at (eqX.west) {$\vg{a_i} = \vg{(0,0,1)}$};
 		
 		
 		
@@ -276,8 +276,13 @@
 	
 	\only<4->{
 	\begin{theorem}
-		For any two vectors $a_i, b_j \in \{0,1\}^D$:
-		if $\langle a_i, b_j \rangle = 0$: $\quad L(\vg{a_i}, \vg{b_j}) = \rho_0$, $\quad$ otherwise: $\quad L(\vg{a_i}, \vg{b_j}) < \rho_0$
+		For any two vectors $a_i, b_j \in \{0,1\}^D$, we can construct \emphBeamer{vector gadgets} $\vg{a_i}$ and $\vg{b_j}$, such that:
+		\begin{align*}
+			\text{if } \langle a_i, b_j \rangle = 0&:&			L(\vg{a_i}, \vg{b_j}) = \rho_0\\
+			\text{otherwise}&:&									L(\vg{a_i}, \vg{b_j}) < \rho_0
+		\end{align*}				
+		
+		and $|\vg{a_i}| \leq \bigO{D}$.
 	\end{theorem}
 	} % end of only
 

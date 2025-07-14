@@ -59,151 +59,13 @@
 
 \include{sections/reduction/small_lcs}
 
+\include{sections/reduction/large_lcs}
 
 
 
-\section{Slides with only text}
 
 
-\begin{frame}{Slide Title}
-  \begin{columns}[onlytextwidth]
-    \column[t]{0.49\hsize}\parskip\medskipamount
-    {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
 
-    \bigskip\large
-    It took me a long time to realize what it means to be a dummy copy: you make no
-    sense. You stand out now and then by being completely out of context.
-    
-    \begin{itemize}
-    \item But does that make me a bad copy?
-    \item I know that I’ll never stand a chance of appearing in the Economist
-    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
-    \end{itemize}
-
-    \column[t]{0.49\hsize}\parskip\medskipamount
-    {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
-
-    \bigskip\large
-    It took me a long time to realize what it means to be a dummy copy: you make no
-    sense. You stand out now and then by being completely out of context.
-    
-    \begin{itemize}
-    \item But does that make me a bad copy?
-    \item I know that I’ll never stand a chance of appearing in the Economist
-    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
-      \begin{itemize}
-      \item But does that make me any less important? I’m a dummy! But I enjoy being a copy
-      \item But does that make me any less important? I’m a dummy! But I enjoy being a copy
-      \end{itemize}
-    \end{itemize}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Slide Title}
-  \begin{columns}[onlytextwidth]
-    \column{0.32\hsize}\parskip\medskipamount
-    {\color{KITgreen}\bfseries\Large I am a dummy copy. And I’ve been a dummy copy since my birth.\par}
-
-    \bigskip\large
-    It took me a long time to realize what it means to be a dummy copy: you make no
-    sense. You stand out now and then by being completely out of context.
-    
-    \begin{itemize}
-    \item But does that make me a bad copy?
-    \item I know that I’ll never stand a chance of appearing in the Economist
-    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
-    \end{itemize}
-    \column{0.33\hsize}
-    \column{0.33\hsize}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[b]{Slide Title\vrule width0pt height15.5\baselineskip}
-  \begin{columns}[onlytextwidth]
-    \column{0.5\hsize}
-    \column{0.5\hsize}\parskip\medskipamount
-
-    \large
-    It took me a long time to realize what it means to be a dummy copy: you make no
-    sense. You stand out now and then by being completely out of context.
-
-    \bigskip
-    \begin{itemize}
-    \item But does that make me a bad copy?
-    \item I know that I’ll never stand a chance of appearing in the Economist
-    \end{itemize}
-  \end{columns}
-\end{frame}
-
-\section{Slides with images}
-\subsection{Within the text area}
-
-\begin{frame}{Slide Title}
-  \begin{columns}[onlytextwidth]
-    \column[b]{0.32\hsize}
-    \includegraphics[width=\hsize]{beamericonbook}
-    
-    \medskip\large
-    It took me a long time to realize what it means to be a dummy copy: you make no
-    sense. 
-    \column[b]{0.32\hsize}
-    \begin{figure}
-      \includegraphics[width=\hsize,trim=0 0.9 0 0]{beamericonbook}
-      \caption{An image with a caption}
-    \end{figure}
-    
-    \medskip\large
-    It took me a long time to realize what it means to be a dummy copy: you make no
-    sense. 
-    \column[b]{0.32\hsize}
-    Use special versions of the KIT logo when superimposed on pictures:\par\smallskip
-    \textcolor{KITforestgreen!75!black}{\rule[-0.5\baselineskip]{9em}{3\baselineskip}}\llap{\KITlogo*\kern1em}
-    \hfill
-    \textcolor{KITlightgreen!40}{\rule[-0.5\baselineskip]{9em}{3\baselineskip}}\llap{\KITlogo**\kern1em}
-
-    \bigskip
-    Superimposed picture sources should be colored adequately:\par\smallskip
-    \begin{pgfpicture}
-      \pgfdeclareverticalshading{myshadingD}{80pt}{color(0pt)=(KITblue!50!black); color(50pt)=(KITblue!20)}
-      \pgftext[at=\pgfpoint{1cm}{0cm}] {\pgfuseshading{myshadingD}}
-    \end{pgfpicture}\raise1mm\llap{\textcolor{KITwhite}{\tiny\textcopyright{} TikZ and PGF manual}\kern1mm}
-    
-    \medskip\large
-    It took me a long time to realize what it means to be a dummy copy: you make no
-    sense. 
-  \end{columns}
-\end{frame}
-
-\subsection{Exceeding the text area}
-
-{\setbeamertemplate{navigation symbols}{}
-\begin{frame}[b,whiteKITlogo]{Slide Title}%<- changig the color of the KIT logo in the footline
-  \begin{columns}
-    \column[b]{0.34\hsize}
-    It took me a long time to realize what it means to be a dummy copy: you make no sense.
-    You stand out now and then by being completely out of context.
-
-    \bigskip
-    \begin{itemize}
-    \item But does that make me a bad copy?
-    \item I know that I’ll never stand a chance of appearing in the Economist
-    \item But does that make me any less important? I’m a dummy! But I enjoy being a copy.
-    \end{itemize}
-    \vspace*{7\baselineskip}
-    \column[b]{0.33\hsize}
-    \fbox{\includegraphics[width=\hsize,trim=0.5 0.9 0.8 1]{beamericonbook}}%
-    \column[b]{0.33\hsize}
-    \smash[t]{\fbox{\includegraphics[width=\hsize,trim=0.5 0.9 0.8 1]{beamericonbook}}}\\[-1pt]
-    \fbox{\includegraphics[width=\hsize,trim=0.5 0.9 0.8 1]{beamericonbook}}%
-  \end{columns}%
-  \vspace*{-7.2mm}%
-\end{frame}}
-
-\begin{frame}{A full-width image}
-  \framesubtitle{(next slide shows a full-size image)}
-  \hspace*{-4.96mm}%
-  \includegraphics[width=\paperwidth,height=0.85\textheight,trim=3.7 3.6 2.8 2.9]{beamericononline}\kern-4.72mm
-\end{frame}
 
 %Here is an example for a full-page image:
 {\setbeamertemplate{background}
@@ -396,25 +258,6 @@ return 0;
 \end{verbatim}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Video Display}
-  \centering
-  %Here are 4 video examples:
-  %1. Simple link to a video file:
-      %\href{./video.avi}{\includegraphics[width=0.4\hsize]{beamericononline}}
-  %2. Link to a video file with the help of beamer/multimedia (multimedia package required):
-      %\movie[externalviewer]{\includegraphics[width=0.4\hsize]{beamericononline}}{example-movie.mp4}
-  %3. Video embedding with the help of the media9 package:
-      % \includemedia[
-      %  width=0.4\linewidth,height=0.4\linewidth,keepaspectratio,
-      %  addresource=example-movie.mp4,
-      %  flashvars={source=example-movie.mp4}
-      %  ]{\includegraphics[width=0.4\hsize]{beamericononline}}{VPlayer.swf}
-  %4. Video embedding without using flash player:
-      %\simplemedia[showGUI=true]{\fboxsep1.5bp\colorbox{white}{\includegraphics[width=0.4\hsize]{beamericononline}}}{example-movie.mp4}{video/mp4}
-  %See the MpiCcpPo doc for further information.
-\end{frame}
-
 \begin{frame}{Slide Title}
   \begin{KITtabular}{lll}
     Column title & Column title & Column title \\\midrule
@@ -478,29 +321,6 @@ return 0;
     10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\\KITsumrule
     10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ & 10\,000,00\,€ \\
   \end{KITtabular}
-\end{frame}
-
-\begin{frame}{Formulas}
-  $\frac{1}{k}\log_2 c(f)\;\tfrac{1}{k}\log_2 c(f)\; \sqrt{\frac{1}{k}\log_2 c(f)}\;\sqrt{\dfrac{1}{k}\log_2 c(f)}$\hfill
-  $\displaystyle\sum_{\substack{0\le i\le m\\0<j<n}}P(i,j)$\hfill
-  $2^k-\binom{k}{1}2^{k-1}+\binom{k}{2}2^{k-2}$
-
-  $\biggl[\sum_i a_i\Bigl\lvert\sum_j x_{ij}\Bigr\rvert^p\biggr]^{1/p}$\hfill
-  $A_1=N_0(\lambda;\Omega’)-\phi(\lambda;\Omega’)$\hfill
-  $A \xleftarrow{n+\mu-1} B \xrightarrow[T]{n\pm i-1} C$
-  
-  A displayed equation:
-  \begin{equation}\label{e:barwq}\begin{split}
-      H_c&=\frac{1}{2n} \sum^n_{l=0}(-1)^{l}(n-{l})^{p-2}\sum_{l _1+\dots+ l _p=l}\prod^p_{i=1} \binom{n_i}{l _i}\\[-1ex]
-      &\quad\cdot[(n-l )-(n_i-l _i)]^{n_i-l _i}\cdot\Bigl[(n-l )^2-\sum^p_{j=1}(n_i-l _i)^2\Bigr].
-    \end{split}\end{equation}
-  
-  A group of displayed equations:
-  \begin{align}
-    x&=y  & X&=Y  & a&=b+c\\
-    x’&=y’  & X’&=Y’  & a’&=b\\
-    x+x’&=y+y’ & X+X’&=Y+Y’ & a’b&=c’b
-  \end{align}
 \end{frame}
 
 \def\KITpanel#1{{%

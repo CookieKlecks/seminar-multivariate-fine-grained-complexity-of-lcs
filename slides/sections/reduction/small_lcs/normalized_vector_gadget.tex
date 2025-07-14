@@ -1,11 +1,32 @@
 \begin{frame}
 	\frametitle{Reduction}
 	\framesubtitle{Normalized Vector Gadget}
+	
+	\begin{columns}[onlytextwidth]
+	\column[c]{0.6\textwidth}
+		\begin{figure}
+		\centering
+		\only<1-5>{
+		\input{./sections/reduction/small_lcs/normalized_vector_gadget_0}
+		}
+		\end{figure}
+	
+	\column[c]{0.4\textwidth}
+	\visible<2->{
+	\begin{theorem}
+	For any two vectors $a_i$, $b_j$ and appropriate $\rho_0 > \rho_1$:
+	\[
+	L(\nvg{a_i}, \nvg{b_j}) = \begin{cases}
+		(d+1)\rho_0 & if \langle a_i, b_j \rangle = 0\\
+		d\rho_0 + \rho_1 & otherwise
+	\end{cases}
+	\]
+	\end{theorem}
+	}
+	
+	\end{columns}
 
-	\begin{figure}
-	\centering
-	\input{./sections/reduction/small_lcs/normalized_vector_gadget_0}
-	\end{figure}
+	
 %	
 %	\only<3->{
 %	\begin{theorem}

@@ -1,3 +1,32 @@
 \begin{frame}
+\frametitle{Reduction}
+\framesubtitle{Show Span of Parameter Space}
+
+\begin{alertblock}{What to do?}
+    For every parameter setting $\mathbf{\alpha}$ show:
+    
+    Reduced instance admits parameter setting, i.e., is in $\lcsy{\mathbb{\alpha}}$
+\end{alertblock}
+
+\begin{definition}[Parameter Setting (recall)]
+		\begin{itemize}
+			\setlength{\itemindent}{1em}
+			\item Set of parameters $\mathcal{P}$,\quad $\mathbf{\alpha} := \alpha_{p \in \mathcal{P}}$
+			\item $\lcsy{\mathbf{\alpha}}$ defined as problem of computing LCS of $x$ and $y$, where:
+			\begin{displaymath}
+				\frac{n^{\alpha_p}}{\gamma} \leq p(x,y) \leq n^{\alpha_p}\gamma, \quad \text{for all } p \in \mathcal{P}
+			\end{displaymath}
+		\end{itemize}
+\end{definition}
+
+\begin{exampleblock}{Notation}
+    Given a parameter setting $\mathbf{\alpha}$, we write $p = n^{\alpha_p}$ for $p \in \mathcal{P}$ as \emphBeamer{target value} of this parameter.
+    
+    $p(x,y)\, \hat{=}$ actual parameter value of constructed instance $x$, $y$
+
+	\vspace{2ex}    
+    
+    $\Rightarrow$ Show for any $\alpha$, $n \geq 1$: \quad\quad\quad $p(x,y) \leq \bigO{p}$
+\end{exampleblock}
 
 \end{frame}

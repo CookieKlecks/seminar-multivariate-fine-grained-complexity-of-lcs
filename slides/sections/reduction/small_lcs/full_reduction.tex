@@ -1,0 +1,118 @@
+\newcommand{\sLCSnvg}[2]{%
+	\node[base, number, input, minimum width=4.5em] (#1) at (base) {$\nvg{#2}$};
+}
+\newcommand{\sLCSnvgWithGuard}[3]{%
+	\sLCSnvg{#1}{#2}
+	\node[base, number, guard] (#3) at ($(#1.east)$) {$0^\gamma$};
+}
+
+\begin{frame}
+	\frametitle{Reduction}
+	\framesubtitle{Final Step}
+	
+\begin{exampleblock}{Final Construction}
+For an OV instance $\mathcal{A} = \{a_1, \ldots, a_A\}$, $\mathcal{B} = \{b_1, \ldots, b_B\}$, we define:
+
+\vspace{2ex}
+
+\begin{figure}
+	\centering
+	\only<1->{
+	\begin{tikzpicture}[x=1.5em]
+		\tikzstyle{base} = [minimum width=1.5em, inner sep=1pt, anchor=west]
+		\tikzstyle{text element} = []
+		\tikzstyle{number} = [minimum height=14pt]  
+		\tikzstyle{guard} = [fill=KITicegray]  
+		\tikzstyle{guard edge} = [color=KITicegray]
+		\tikzstyle{big guard} = [fill=KITicegray!75!black]
+		\tikzstyle{big guard edge} = [color=KITicegray!75!black]
+		\tikzstyle{input} = [fill=KITgreen]
+		\tikzstyle{input edge} = [color=KITgreen]
+		\tikzstyle{cell} = [draw, minimum width=1.5em, fill=KITwhite]
+		
+		\node[base, text element] (eqX) at (0,0) {$=$};
+		\node[base, text element, anchor=east] (x) at (eqX.west) {$x$};
+		
+		\coordinate (base) at ($(eqX.east) + (2,0)$);
+		\sLCSnvgWithGuard{a1_1}{a_1}{a_g1_1}
+		
+		\node[base, minimum width=3em] (a_dots_1) at (a_g1_1.east) {$\cdots$};
+		
+		
+		\node[base, number, guard] (a_gn_left_1) at (a_dots_1.east) {$0^\gamma$};
+		\coordinate (base) at (a_gn_left_1.east);
+		\sLCSnvgWithGuard{an_1}{a_A}{a_gn_1}
+		\coordinate (base) at (a_gn_1.east);
+		\sLCSnvgWithGuard{a1_2}{a_1}{a_g1_2}
+		
+		\node[base, minimum width=3em] (a_dots_2) at (a_g1_2.east) {$\cdots$};
+		
+		\node[base, number, guard] (a_g2_2) at (a_dots_2.east) {$0^\gamma$};
+		\coordinate (base) at (a_g2_2.east);
+		\sLCSnvg{an_2}{a_A}
+		
+		
+		\node[base, text element] (eqY) at (0,-1.2) {$=$};
+		\node[base, text element, anchor=east] (y) at (eqY.west) {$y$};
+		
+		
+		\coordinate (base) at ($(eqY.east)$);
+		\node[base, number, guard, minimum width=3em] (b_left) at (base) {$0^{A\gamma'}$};
+		\coordinate (base) at (b_left.east);
+		\sLCSnvgWithGuard{b1}{b_1}{b_g1}
+		\coordinate (base) at (b_g1.east);
+		\node[base, number, input, minimum width=6em] (b2) at (base) {$\nvg{b_{2}}$};
+		\node[base, number, guard] (b_g2) at (b2.east) {$0^\gamma$};
+		
+		\node[base, minimum width=4.5em] (b_dots_1) at (b_g2.east) {$\cdots$};
+		
+		\coordinate (base) at (b_dots_1.east);
+		\node[base, number, guard] (b_g3) at (base) {$0^\gamma$};
+		\node[base, number, input, minimum width=6em] (b3) at (b_g3.east) {$\nvg{b_{B-1}}$};
+		\node[base, number, guard] (b_g4) at (b3.east) {$0^\gamma$};
+		\coordinate (base) at (b_g4.east);
+		\sLCSnvg{bB}{b_{B}}
+		\node[base, number, guard, minimum width=3em] (b_right) at (bB.east) {$0^{A\gamma'}$};
+		
+		\only<2->{
+			\path[draw, guard edge] (a_g1_1.south) edge (b_left.north);
+			%\path[draw, guard edge] (a_dots_1.south) edge (b_left.north);
+			\path[draw, guard edge] (a_gn_left_1.south) edge (b_left.north);
+			
+			\path[draw, input edge] (an_1.south) edge (b1.north);
+			
+			\path[draw, guard edge] (a_gn_1.south) edge (b_g1.north);
+			
+			\path[draw, input edge] (a1_2.south) edge (b2.north);
+			
+			\path[draw, guard edge] (a_g1_2.south) edge (b_g2.north);
+			%\path[draw, guard edge] (a_dots_2.south west) edge (b_g3.north);
+			
+			\path[draw, input edge] (a_dots_2.south) edge (b3.north);
+			\path[draw, guard edge] (a_g2_2.south) edge (b_g4.north);
+			\path[draw, input edge] (an_2.south) edge (bB.north);
+			
+		}
+	
+	\end{tikzpicture}
+	}
+\end{figure}
+\end{exampleblock}
+	
+\vspace{2ex}
+
+\only<2->{
+\begin{theorem}
+	For any OV instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \geq B$ and dimension $D$, we can construct the strings $x, y$ in time $\bigO{AD}$, satisfying:
+
+	\vspace{2ex}
+
+	\begin{enumerate}[label=]
+    \item<3-> (1)\; $L(x,y) \geq \rho \Leftrightarrow \exists a_i, b_j:\; \langle a_i,b_j \rangle = 0$ \quad\quad (for some appropriate $\rho$)
+
+    \item<4-> (2)\; $|x|, |y| = \bigO{AD}$
+	\end{enumerate}
+\end{theorem}	
+}	
+	
+\end{frame}

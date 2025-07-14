@@ -53,7 +53,11 @@
 
 
 \path ($(a_1.south)!0.5!(s_1.south)$) ++(0,-2.2) coordinate (base);
+\alt<4-5>{%
+\vgWithDummy{b}{$\cgZeroY$}{$\cgOneY$}{$\cgOneY$}{$\cgOneY$}{$\cgOneY$}{-}
+}{%
 \vgWithDummy{b}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{-}
+}
 \node[below=2pt of b_box.south] (vgbj) {$\vg{b_j}$}; 
 
 \begin{pgfonlayer}{bg}
@@ -61,19 +65,29 @@
     \node[below=2pt of nvgbj.south] {$\nvg{b_j}$}; 
 \end{pgfonlayer}
 
-
+\only<3,6->{
 \draw[good edge] (a_1.south) edge node[fill=KITwhite] {$\rho_0$} (b_1.north);
 \draw[good edge] (a_2.south) edge node[fill=KITwhite] {$\rho_0$} (b_2.north);
 \draw[good edge] (a_3.south) edge node[fill=KITwhite] {$\rho_0$} (b_3.north);
 \draw[good edge] (a_4.south) edge node[fill=KITwhite] {$\rho_0$} (b_4.north);
 \draw[good edge] (a_dummy.south) edge node[fill=KITwhite] {$\rho_0$} (b_dummy.north);
+}
 
+\only<4>{
+\draw[good edge] (a_1.south) edge node[fill=KITwhite] {$\rho_0$} (b_1.north);
+\draw[bad edge] (a_2.south) edge node[fill=KITwhite] {$\rho_1$} (b_2.north);
+\draw[good edge] (a_3.south) edge node[fill=KITwhite] {$\rho_0$} (b_3.north);
+\draw[bad edge] (a_4.south) edge node[fill=KITwhite] {$\rho_1$} (b_4.north);
+\draw[good edge] (a_dummy.south) edge node[fill=KITwhite] {$\rho_0$} (b_dummy.north);
+}
 
+\only<5,6->{
 \draw[good edge] (s_1.south) edge node[fill=KITwhite] {$\rho_0$} (b_1.north);
 \draw[good edge] (s_2.south) edge node[fill=KITwhite] {$\rho_0$} (b_2.north);
 \draw[good edge] (s_3.south) edge node[fill=KITwhite] {$\rho_0$} (b_3.north);
 \draw[good edge] (s_4.south) edge node[fill=KITwhite] {$\rho_0$} (b_4.north);
 \draw[bad edge] (s_dummy.south) edge node[fill=KITwhite] {$\rho_1$} (b_dummy.north);
+}
 
 
 % Top NVG(a_i)

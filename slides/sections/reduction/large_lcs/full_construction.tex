@@ -1,0 +1,35 @@
+\begin{frame}
+\frametitle{Reduction - Large LCS}
+\framesubtitle{Construction}
+
+\begin{theorem}
+Let  $a_1, \dots, a_A, b_1, \dots, b_B \subseteq \{0,1\}^D$ be given with $A \mid B$. 
+
+Construct strings 
+\begin{align*}
+	x_i &= 1^\ell0^{\ell + 1}\nvg{a_i}&		y_j &= 0^{\ell +1}\nvg{b_j}			&&(\text{Recall: }\nvg{a_i} \text{ is the \emphBeamer{normalized vector gadget})}
+\end{align*}
+
+%, and integers $\rho_0, \rho_1$ as in Lemma 9.5 and define
+
+Set \emphTheorem{$P := 2B + 3A$} and \emphTheorem{$Q := B + 2A$} and define:
+
+\begin{align*}
+\tilde{x} &:= (\tilde{x}_1, \ldots, \tilde{x}_P) = \overbrace{(x_1, \ldots, x_A, x_1, \ldots, x_A, \ldots, x_1, \ldots, x_A)}^{2 \cdot (B/A) + 3 \text{ groups of size } A} 	&	x &:= \bigcirc_i G(\tilde{x}_i)\\
+%
+\tilde{y} &:= (\tilde{y}_1, \ldots, \tilde{y}_Q) = \underbrace{(y_1, \ldots, y_1}_{A \text{ copies of } y_1}, y_1, \ldots, y_B, \underbrace{y_1, \ldots, y_B}_{A \text{ copies of } y_1})	&	y &:= \bigcirc_j G(\tilde{y}_j)
+\end{align*}
+
+The strings $x$ and $y$ satisfies the following properties:
+
+\begin{itemize}
+    \item[(i)] For every $i \in [A], j \in [B]$, there is a $(1,2)$-alignment $\Lambda \in \Lambda^{1,2}_{P,Q}$ such that some $\ell \in [Q]$ is uniquely aligned to some $k \in [P]$ with $\tilde{x}_k = x_i$ and $\tilde{y}_\ell = y_j$.
+
+    \item[(ii)] We have $L(x,y) \geq Q(\gamma_1 + \gamma_2 + 3\gamma_3) + (A - 1)\rho_1 + \rho_0 + (Q - A)\ell_Y$ if and only if there are $i \in [A], j \in [B]$ with $\langle a_i, b_j \rangle = 0$.
+
+    \item[(iii)] We have $|y| \leq |x| \leq \mathcal{O}(B \cdot D)$ and $\delta(x, y) = \mathcal{O}(A \cdot D)$.
+\end{itemize}
+
+\end{theorem}
+
+\end{frame}
