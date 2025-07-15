@@ -1,0 +1,96 @@
+\begin{frame}
+\frametitle{Longest Common Subsequence}
+\framesubtitle{Problem Definition}
+
+\textbf{Input:}
+
+Two strings $x$, $y$ over the alphabet $\Sigma$.
+
+\textbf{Output:}
+
+Longest string $z$ such that there exist indices $i_k, j_k$ with $i_k \leq j_k < i_{k+1}$ \only<3->{and $i'_k, j'_k$ with $i'_k \leq j'_k < i'_{k+1}$} such that:
+
+\begin{itemize}
+	\item<2-> $z = x[i_{1}..j_{1}] \cdot x[i_{2}..j_{2}] \cdots x[i_{K}..j_{K}]$
+	\item<3-> $z = y[i'_{1}..j'_{1}] \cdot y[i'_{2}..j'_{2}] \cdots y[i'_{K'}..j'_{K'}]$
+\end{itemize}
+
+
+\visible<4-6>{
+\begin{example}
+
+\begin{figure}
+\centering
+\color{black}
+\visible<4-6>{
+\begin{tikzpicture}
+	\tikzstyle{base} = []
+	\tikzstyle{text element} = [base]
+	\tikzstyle{cell} = [base, minimum width=1.5em, inner sep=1pt, anchor=west, draw, minimum height=14pt]  
+	\tikzstyle{hide} = [draw=KITwhite!75!black, text=KITwhite!75!black]
+	\tikzstyle{marked} = [fill=KITgreen, draw=KITgreen]
+	
+	
+	\node[text element] (eqX) at (0,0) {$=$};
+	\node[text element, anchor=east] (x) at (eqX.west) {$x$};
+	
+	\node[cell] (x1) at ($(eqX.east) + (1.5em,0)$) {a};
+	\alt<4>{
+		\node[cell] (x2) at (x1.east) {b};
+	}{
+		\node[cell, marked] (x2) at (x1.east) {b};
+	}	
+	\node[cell] (x3) at (x2.east) {b};
+	\alt<4>{
+		\node[cell] (x4) at (x3.east) {c};
+		\node[cell] (x5) at (x4.east) {a};
+	}{
+		\node[cell, marked] (x4) at (x3.east) {c};
+		\node[cell, marked] (x5) at (x4.east) {a};
+	}
+	\node[cell] (x6) at (x5.east) {a};
+	
+	
+	\node[text element] (eqY) at (0,-1) {$=$};
+	\node[text element, anchor=east] (y) at (eqY.west) {$y$};
+	
+	\alt<4>{
+		\node[cell] (y1) at ($(eqY.east) + (1.5em,0)$) {b};
+	}{
+		\node[cell, marked] (y1) at ($(eqY.east) + (1.5em,0)$) {b};
+	}
+	\alt<4-5>{
+		\node[cell] (y2) at (y1.east) {d};
+	}{
+		\node[cell, hide] (y2) at (y1.east) {d};
+	}	
+	\alt<4>{
+		\node[cell] (y3) at (y2.east) {c};
+	}{
+		\node[cell, marked] (y3) at (y2.east) {c};
+	}
+	\node[cell] (y4) at (y3.east) {b};
+	\alt<4>{
+		\node[cell] (y5) at (y4.east) {a};
+	}{
+		\node[cell, marked] (y5) at (y4.east) {a};
+	}
+	
+	
+	\node<5->[text element] (z) at ($(eqX)!0.5!(eqY) + (5,0)$) {$LCS(x,y) = bca$};
+	
+	
+	\only<5->{
+		\path[draw] (x2) edge (y1);	
+		\path[draw] (x4) edge (y3);	
+		\path[draw] (x5) edge (y5);	
+	}
+
+\end{tikzpicture}
+}
+\end{figure}
+
+\end{example}
+}
+
+\end{frame}

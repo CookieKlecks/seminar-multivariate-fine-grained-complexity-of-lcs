@@ -1,0 +1,172 @@
+\begin{frame}
+\frametitle{Reduction - Small LCS}
+\framesubtitle{Superconstant Alphabet}
+
+\only<1-2>{
+\begin{exampleblock}{Reduction for $\alpha_\Sigma > 0$}
+For an OV instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \geq B$, we partition $\mathcal{A}$
+\begin{align*}
+	\mathcal{A} &=: A_1 \cup A_2 \cup \cdots \cup A_t	&	& \text{with } t=\lceil A/B \rceil \text{ and } |A_i| = B
+\end{align*}
+
+Use previous reduction for $1 \leq i \leq t$ with OV instance $(A_i, B)$ $\Rightarrow x_i, y_i$.
+
+%\begin{align*}
+%	x &:= x_1\uparrow\Sigma_1 \; x_2\uparrow \Sigma_2 \cdots x_t\uparrow \Sigma_t		&		&\text{with disjoint } \Sigma_i \text{ and } |\Sigma_i| = 2\\
+%	y &:= y_t\uparrow \Sigma_t \; y_{t-1}\uparrow \Sigma_{t-1} \cdots y_1\uparrow \Sigma_1
+%\end{align*} 
+
+\begin{columns}
+	\column[t]{0.7\textwidth}
+\begin{figure}
+\centering
+\color{black}
+\begin{tikzpicture}
+		\tikzstyle{base} = [minimum width=4em, inner sep=1pt, anchor=west, minimum height=14pt]
+		\tikzstyle{text element} = []
+		\tikzstyle{number} = []  
+		\tikzstyle{guard} = [fill=KITicegray]  
+		\tikzstyle{guard edge} = [color=KITicegray]
+		\tikzstyle{big guard} = [fill=KITicegray!75!black]
+		\tikzstyle{big guard edge} = [color=KITicegray!75!black]
+		\tikzstyle{input} = [fill=KITgreen]
+		\tikzstyle{input edge} = [color=KITgreen]
+		\tikzstyle{cell} = [draw, fill=KITwhite]
+		
+		\node[text element] (eqX) at (0,0) {$:=$};
+		\node[text element, anchor=east] (x) at (eqX.west) {$x$};
+		
+		
+		\coordinate (base) at ($(eqX.east) + (1em,0)$);
+		\node[base, cell] (x1) at (base) {$x_1\uparrow\Sigma_1$};
+		\node[base, cell] (x2) at (x1.east) {$x_2\uparrow\Sigma_2$};
+		\node[base] (x_dots) at (x2.east) {$\cdots$};
+		\node[base, cell] (xt1) at (x_dots.east) {$x_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base, cell] (xt) at (xt1.east) {$x_t\uparrow\Sigma_t$};
+		
+		
+		
+		\node[text element] (eqY) at (0,-1) {$:=$};
+		\node[text element, anchor=east] (y) at (eqY.west) {$y$};
+		
+		\coordinate (base) at ($(eqY.east) + (1em,0)$);
+		\node[base, cell] (y1) at (base) {$y_t\uparrow\Sigma_t$};
+		\node[base, cell] (y2) at (y1.east) {$y_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base] (y_dots) at (y2.east) {$\cdots$};
+		\node[base, cell] (yt1) at (y_dots.east) {$y_2\uparrow\Sigma_2$};
+		\node[base, cell] (yt) at (yt1.east) {$x_1\uparrow\Sigma_1$};
+\end{tikzpicture}
+\end{figure}
+	\column[t]{0.3\textwidth}
+	\vspace{10ex}
+	
+	with disjoint $\Sigma_i$ and $|\Sigma_i| = 2$
+\end{columns}
+\end{exampleblock}
+}
+
+\only<3->{
+\begin{exampleblock}{Reduction for $\alpha_\Sigma > 0$}
+For an OV instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \geq B$, we partition $\mathcal{A}$ in $t=\lceil A/B \rceil$ partitions of size $|A_i| = B$
+
+Use previous reduction for $1 \leq i \leq t$ with OV instance $(A_i, B)$ $\Rightarrow x_i, y_i$.
+
+\begin{columns}
+	\column[t]{0.7\textwidth}
+\begin{figure}
+\centering
+\color{black}
+\only<3-9>{
+\begin{tikzpicture}
+		\tikzstyle{base} = [minimum width=4em, inner sep=1pt, anchor=west, minimum height=14pt]
+		\tikzstyle{text element} = []
+		\tikzstyle{number} = []  
+		\tikzstyle{guard} = [fill=KITicegray]  
+		\tikzstyle{guard edge} = [color=KITicegray]
+		\tikzstyle{big guard} = [fill=KITicegray!75!black]
+		\tikzstyle{big guard edge} = [color=KITicegray!75!black]
+		\tikzstyle{input} = [fill=KITgreen]
+		\tikzstyle{input edge} = [color=KITgreen]
+		\tikzstyle{cell} = [draw, fill=KITwhite]
+		\tikzstyle{hide} = [draw=KITwhite!75!black, text=KITwhite!75!black]
+		\tikzstyle{marked} = [fill=KITgreen]
+		
+		\node[text element] (eqX) at (0,0) {$:=$};
+		\node[text element, anchor=east] (x) at (eqX.west) {$x$};
+		
+		
+		\coordinate (base) at ($(eqX.east) + (1em,0)$);
+		\node[base, cell] (x1) at (base) {$x_1\uparrow\Sigma_1$};
+		\node[base, cell] (x2) at (x1.east) {$x_2\uparrow\Sigma_2$};
+		\node[base] (x_dots) at (x2.east) {$\cdots$};
+		\node[base, cell] (xt1) at (x_dots.east) {$x_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base, cell] (xt) at (xt1.east) {$x_t\uparrow\Sigma_t$};
+		
+		
+		\only<9->{	
+		\node[base, cell, hide] (x1) at (base) {$x_1\uparrow\Sigma_1$};
+		\node[base, cell, hide] (x2) at (x1.east) {$x_2\uparrow\Sigma_2$};
+		\node[base, cell, marked] (xt1) at (x_dots.east) {$x_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base, cell, hide] (xt) at (xt1.east) {$x_t\uparrow\Sigma_t$};
+		}	
+		
+		
+		\node[text element] (eqY) at (0,-1) {$:=$};
+		\node[text element, anchor=east] (y) at (eqY.west) {$y$};
+		
+		\coordinate (base) at ($(eqY.east) + (1em,0)$);
+		\node[base, cell] (y1) at (base) {$y_t\uparrow\Sigma_t$};
+		\node[base, cell] (y2) at (y1.east) {$y_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base] (y_dots) at (y2.east) {$\cdots$};
+		\node[base, cell] (yt1) at (y_dots.east) {$y_2\uparrow\Sigma_2$};
+		\node[base, cell] (yt) at (yt1.east) {$x_1\uparrow\Sigma_1$};
+		
+		\only<8->{
+		\node[base, cell, hide] (y1) at (base) {$y_t\uparrow\Sigma_t$};
+		\node[base, cell, marked] (y2) at (y1.east) {$y_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base, cell, hide] (yt1) at (y_dots.east) {$y_2\uparrow\Sigma_2$};
+		\node[base, cell, hide] (yt) at (yt1.east) {$x_1\uparrow\Sigma_1$};
+		}
+		
+		\only<9->{
+		\path[input edge] (y2) edge (xt1);
+		}
+\end{tikzpicture}
+}
+\end{figure}
+	\column[t]{0.3\textwidth}
+	\vspace{10ex}
+	with disjoint $\Sigma_i$ and $|\Sigma_i| = 2$
+\end{columns}
+\end{exampleblock}
+}
+
+
+\visible<2->{
+\begin{theorem}
+	Let $\mathbf{\alpha}$ be a parameter setting with \emphTheorem{$\alpha_\Sigma > 0$} and \emphTheorem{$\alpha_\delta = \alpha_m$}. 
+	There is $\gamma \geq 1$ such that $\lcsy{\mathbf{\alpha}}$ takes time $d^{1-o(1)}$, unless OVH fails.
+\end{theorem}	
+}	
+
+
+\visible<3->{
+\begin{proof}
+\textbf{Given:} parameter setting $\mathbf{\alpha}$ and $n \geq 1$.
+\vspace{-1ex}
+\begin{columns}
+	\column[t]{0.01\textwidth}
+	\column[t]{0.99\textwidth}
+	\begin{itemize}
+		\item<4-> use construction with \emphTheorem{$A := \left\lfloor \frac{d}{\min\{L, \sqrt{d}\} \cdot D} \right\rfloor$} and \emphTheorem{$B := \left\lfloor \frac{\min\{L, \sqrt{d}\}}{D} \right\rfloor$}
+		\item<5-> UOVH implies lower bound for running time: $(AB)^{1 - o(1)} = (d/D^2)^{1 - o(1)} = n^{\alpha_d - o(1)} = d^{1 - o(1)}$.
+		\item<6-> reduction time $\bigO{AD} \leq \bigO{d^{1-\varepsilon}}$
+		\item<7-> seen before: $L(x_i,y_i) \geq \rho \Leftrightarrow \exists a_i' \in A_i, b_j \in B: \langle a_i',b_j \rangle = 0$
+	\end{itemize}		
+\end{columns}
+\end{proof}
+
+}
+
+
+\end{frame}

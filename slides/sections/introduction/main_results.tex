@@ -1,0 +1,77 @@
+\begin{frame}
+\frametitle{Main Results}
+\framesubtitle{Large Alphabets}
+
+\begin{theorem}[Hardness for Large Alphabets]
+For any LCS with non-trivial parameter settings, any algorithm requires time 
+\[
+\min\{d, \delta \Delta, \delta m\}^{1 - \mathcal{O}(1)},
+\] 
+unless OVH fails.
+
+This is matched by the known algorithms with running times $\tildeBigO{n + d}$, $\tildeBigO{n + \delta L}$ and $\tildeBigO{n + \delta\Delta}$
+\end{theorem}
+
+\pause
+
+\begin{exampleblock}{Note:}
+\vspace{-1ex}
+\begin{columns}
+	\column[t]{0.01\textwidth}
+	\column[t]{0.99\textwidth}
+	\begin{itemize}
+		\item Trivial lower bound of $\Omega(n)$
+	\end{itemize}
+\end{columns}
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Main Results}
+\framesubtitle{Constant Alphabet Size}
+
+\begin{theorem}
+For $|\Sigma| \geq 3$ same lower bound of $\min\{d, \delta \Delta, \delta m\}^{1 - \mathcal{O}(1)}$ remains.
+\end{theorem}
+
+\pause
+
+\begin{theorem}[Hardness for Binary Alphabets]
+For any LCS with non-trivial parameter settings and $|\Sigma| = 2$, any algorithm requires time 
+\[
+\min\{d, \delta \Delta, \delta\frac{M}{n}\}^{1 - \mathcal{O}(1)},
+\] 
+unless OVH fails.
+
+There is an algorithm for $|\Sigma| = 2$ with running time $\bigO{n + \delta M / n}$.
+\end{theorem}
+
+\pause
+
+\begin{exampleblock}{Note:}
+\vspace{-1ex}
+\begin{columns}
+	\column[t]{0.01\textwidth}
+	\column[t]{0.99\textwidth}
+	\begin{itemize}
+		\item This is a weaker lower bound as for $|\Sigma| \geq 3$, as:
+		\begin{itemize}
+			\item<4-> trivially $M \leq mn$ \visible<5->{$\Rightarrow \frac{M}{n} \leq m \Rightarrow \delta \frac{M}{n} \leq \delta m$}
+		\end{itemize}
+	\end{itemize}
+\end{columns}
+\end{exampleblock}
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}
+
+\end{frame}

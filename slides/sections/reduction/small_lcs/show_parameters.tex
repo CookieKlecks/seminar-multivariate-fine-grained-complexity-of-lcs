@@ -2,27 +2,24 @@
 \frametitle{Reduction}
 \framesubtitle{Show Span of Parameter Space}
 
-\begin{alertblock}{What to do?}
-    For every parameter setting $\mathbf{\alpha}$ show:
+\begin{alertblock}{Todo}
+    For every parameter setting $\mathbf{\alpha}$ with \emphTheorem{$\alpha_\Sigma = 0$} and \emphTheorem{$\alpha_\delta = \alpha_m$} show:
     
-    Reduced instance admits parameter setting, i.e., is in $\lcsy{\mathbb{\alpha}}$
+    Reduced instance is in $\lcsy{\mathbb{\alpha}}$
 \end{alertblock}
 
-\begin{definition}[Parameter Setting (recall)]
-		\begin{itemize}
-			\setlength{\itemindent}{1em}
-			\item Set of parameters $\mathcal{P}$,\quad $\mathbf{\alpha} := \alpha_{p \in \mathcal{P}}$
-			\item $\lcsy{\mathbf{\alpha}}$ defined as problem of computing LCS of $x$ and $y$, where:
-			\begin{displaymath}
-				\frac{n^{\alpha_p}}{\gamma} \leq p(x,y) \leq n^{\alpha_p}\gamma, \quad \text{for all } p \in \mathcal{P}
-			\end{displaymath}
-		\end{itemize}
-\end{definition}
+
+\pause
 
 \begin{exampleblock}{Notation}
-    Given a parameter setting $\mathbf{\alpha}$, we write $p = n^{\alpha_p}$ for $p \in \mathcal{P}$ as \emphBeamer{target value} of this parameter.
-    
-    $p(x,y)\, \hat{=}$ actual parameter value of constructed instance $x$, $y$
+    \begin{columns}
+	\column[t]{0.01\textwidth}
+	\column[t]{0.99\textwidth}
+	\begin{itemize}
+		\item $p = n^{\alpha_p}$ for $p \in \mathcal{P}$ as \emphBeamer{target value} of this parameter
+		\item $p(x,y)\, \hat{=}$ actual parameter value of constructed instance $x$, $y$
+	\end{itemize}
+    \end{columns}
 
 	\vspace{2ex}    
     
@@ -30,3 +27,81 @@
 \end{exampleblock}
 
 \end{frame}
+
+
+\begin{frame}[t]
+\frametitle{Reduction}
+\framesubtitle{Show Span of Parameter Space}
+
+\begin{exampleblock}{Final Construction}
+For an OV instance $\mathcal{A} = \{a_1, \ldots, a_A\}$, $\mathcal{B} = \{b_1, \ldots, b_B\}$, we define:
+
+\vspace{2ex}
+\begin{columns}
+\column[t]{0.75\textwidth}
+
+\begin{figure}
+	\centering
+	\only<1->{
+	\begin{tikzpicture}[x=1.5em, y=0.7cm]
+		\sLCSFinalConstruction	
+	\end{tikzpicture}
+	}
+\end{figure}
+
+\column[t]{0.25\textwidth}
+For parameter setting $\mathbf{\alpha}$ with \emphTheorem{$\alpha_\delta = \alpha_m$} and \emphTheorem{$\alpha_\Sigma = 0$}, we set:
+\begin{align*}
+	A &:= \lfloor L/D \rfloor \\
+	B &:= \lfloor d/(LD) \rfloor
+\end{align*}
+
+\end{columns}
+\end{exampleblock}
+
+\pause
+
+
+\begin{columns}
+\column[t]{0.49\textwidth}
+\setlength{\parskip}{1em}
+\textbf{Parameters $L,m,n$:}\\
+\vspace{1ex}
+$L(x,y) \leq m(x,y) \leq n(x,y) = |x|$ \visible<3->{$\leq \bigO{AD} = \bigO{L} \leq \bigO{m} \leq \bigO{n}$}
+
+\visible<4->{
+\textbf{Parameters $\delta, \Delta$:}\\
+\vspace{1ex}
+$\delta(x, y) \leq \Delta(x, y) \leq n(x, y) \leq \bigO{m}$ \visible<5->{$= \bigO{\delta} \leq \bigO{\Delta}$}\\
+{\visible<5->{\color{KITicegray!75!black} Note: current case assumes $\alpha_\delta = \alpha_m$}}
+}
+
+\visible<6->{
+\textbf{Parameter $\Sigma$:}\\
+\vspace{1ex}
+$|\Sigma(x,y)| = 2 \leq \bigO{n^{\alpha_\Sigma}}$
+}
+
+% =================================================================
+
+\column[t]{0.49\textwidth}
+\setlength{\parskip}{1em}
+\visible<7->{
+\textbf{Parameter $M$:}\\
+\vspace{1ex}
+$M(x,y) \leq n(x,y)^2 = \bigO{(AD)^2} = \bigO{L^2}$\\
+\vspace{1ex}
+\visible<8->{From parameter relations:\quad $M \geq L^2/|\Sigma|$}\\
+\vspace{1ex}
+\visible<9->{Since $\alpha_\Sigma = 0$:\quad $L^2 \leq \bigO{M}$}
+}
+
+
+\visible<10->{
+\textbf{Parameter $d$:}\\
+\vspace{1ex}
+$d(x,y) \leq \bigO{L(x,y) \cdot \#_1(y)} \leq \bigO{AD \cdot BD} = \bigO{d}$\\
+}
+\end{columns}
+\end{frame}
+

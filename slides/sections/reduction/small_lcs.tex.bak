@@ -1,3 +1,5 @@
+\input{sections/reduction/small_lcs/final_construction_tikz}
+
 \section{Reduction}
 \subsection{Small LCS}
 
@@ -7,20 +9,20 @@
 	
 	\begin{definition}[Orthogonal Vectors Problem (OV)]
 		\begin{description}
-			\item[Given:] Sets $A, B \subset \{0,1\}^D$ \\
-				with $|A| = n$, $|B| = m$ 
+			\item[Given:] Sets $\mathcal{A}, \mathcal{B} \subset \{0,1\}^D$ \\
+				with $|\mathcal{A}| = A$, $|\mathcal{B}| = B$ 
 			
-			\item[Decide:] Exists $a \in A$, $b \in B$ with $\langle a,b\rangle = 0$
+			\item[Decide:] Exists $a \in \mathcal{A}$, $\mathcal{B} \in B$ with $\langle a,b\rangle = 0$
 		\end{description}				
 	\end{definition}
 	
 	\begin{definition}[Unbalanced Orthogonal Vectors Hypothesis (UOVH)]
-		The following problem requires time $(n  m)^{1-o(1)}$:
+		The following problem requires time $(AB)^{1-o(1)}$:
 		
 		Given a \textbf{number} $\mathbf{N}$, solve an OV instance with:	
 \begin{align*} 
 	D &= N^{o(1)} \\ 
-	|A| &= n \leq N,\quad |B| = m \leq N
+	|\mathcal{A}| &= A \leq N,\quad |\mathcal{B}| = B \leq N
 \end{align*}
   	\end{definition}
   	
@@ -29,11 +31,102 @@
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Reduction}
+\framesubtitle{Overview}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+	\tikzstyle{overview step} = [rounded corners, rectangle split, rectangle split parts=2, draw, anchor=west]
+	
+	\node[overview step, rectangle split parts=1] (ov) at (0,0) {%
+		\Large
+		OV instance with vectors
+		$a_1, \ldots, a_A, b_1, \ldots, b_B$
+	};
+	
+	\node[overview step] (coordinate) at ($(ov.south) + (-1,-1)$) {%
+		\Large
+		Encode single coordinate
+		\nodepart{two}
+		Derive from LCS the product ($0$ or $1$)
+	};
+	
+	\node[overview step] (vector) at ($(coordinate.south) + (0,-1)$) {%
+		\Large
+		Encode single vector
+		\nodepart{two}
+		Goal: $L(\vg{a_i}, \vg{b_j}) \geq \rho_0 \Leftrightarrow \langle a_i,b_j\rangle = 0$
+	};
+	
+	\node[overview step] (normal_vector) at ($(vector.south) + (0,-1)$) 
+		{\Large Normalize vectors
+		\nodepart{two}
+			Goal: $L(\nvg{a_i}, \nvg{b_j}) \in \{\rho_0, \rho_1\}$
+	};
+	
+	\node[overview step] (arrange) at ($(normal_vector.south) + (0,-1)$) {%
+		\Large
+		Arrange set of vectors
+		\nodepart{two}
+		Goal: Matching of every vector pair possible
+	};
+	
+	\path[draw, ->] ($(ov.south) - (2,0)$) |- (coordinate);
+	\path[draw, ->] ($(coordinate.south) - (1,0)$) |- (vector);
+	\path[draw, ->] ($(vector.south) - (1,0)$) |- (normal_vector);
+	\path[draw, ->] ($(normal_vector.south) - (1,0)$) |- (arrange);
+
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+%		$
+%		L(\nvg{a_i}, \nvg{b_j}) = \begin{cases}
+%			\rho_0	& , if \langle a_i,b_j\rangle = 0\\
+%			\rho_1	& otherwise
+%		\end{cases}
+%		$
+
 \input{./sections/reduction/small_lcs/coordinate_gadget}
 \input{./sections/reduction/small_lcs/vector_gadget}
 \input{./sections/reduction/small_lcs/normalized_vector_gadget}
 \input{./sections/reduction/small_lcs/full_reduction}
 
-%todo: Overview
+\begin{frame}
+	\frametitle{Reduction}
+	\framesubtitle{Overview - Methodology}	
+	
+	\begin{columns}[onlytextwidth]
+	\column[t]{0.3\textwidth}
+	\KITpanel{1. Define Parameters}{%
+		\begin{itemize}
+			\item List parameters of problem $\mathbb{B}$
+		\end{itemize}
+	}{KITlightgreen}
+	
+	\column[t]{0.3\textwidth}
+	\KITpanel{2. Find Parameter Relations}{%
+		\begin{itemize}
+			\item Bound parameters of $\mathbb{B}$
+			\item Proof non-triviality of fully bounded parameter space
+		\end{itemize}
+	}{KITlightgreen}
+	
+	\column[t]{0.3\textwidth}
+	\KITpanel{\color{KITwhite}3. Find Reduction(s) from $\mathbb{A} \rightarrow \mathbb{B}$}{%
+		\begin{itemize}
+		\color{KITwhite}
+			\item Check reductions span full parameter space
+			\item Derive lower bound for all parameter setting
+		\end{itemize}
+	}{KITdarkblue}
+	\end{columns}
+\end{frame}
 
 \input{./sections/reduction/small_lcs/show_parameters}
+
+
+\input{./sections/reduction/small_lcs/superconstant_alphabet}
+

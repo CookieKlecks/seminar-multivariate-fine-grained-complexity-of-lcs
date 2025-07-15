@@ -6,10 +6,22 @@
 		\begin{itemize}
 			\setlength{\itemindent}{1em}
 			\item Set of parameters $\mathcal{P}$,\quad $\mathbf{\alpha} := \alpha_{p \in \mathcal{P}}$
+			\pause
 			\item $\lcsy{\mathbf{\alpha}}$ defined as problem of computing LCS of $x$ and $y$, where:
 			\begin{displaymath}
 				\frac{n^{\alpha_p}}{\gamma} \leq p(x,y) \leq n^{\alpha_p}\gamma, \quad \text{for all } p \in \mathcal{P}
 			\end{displaymath}
+			\pause
+			\item Parameter setting $\mathbf{\alpha}$ is \emph{trivial} if for all $\gamma \geq 1$: $\lcsy{\mathbf{\alpha}}$ has finitely many instances.
 		\end{itemize}
 	\end{definition}
+	\pause
+	
+	\begin{alertblock}{Todo:}
+		Show that every parameter setting within bounds is non-trivial, i.e., has infinitely many instances.
+	\end{alertblock}
+	
+	\begin{example}
+		$x := 1^{\Delta + 1}$ and $y := 1$ proves non-triviality for parameter $\Delta$.
+	\end{example}
 \end{frame}
