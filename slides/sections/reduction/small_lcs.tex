@@ -5,7 +5,7 @@
 
 
 \begin{frame}[t]
-	\frametitle{Reduction}
+	\frametitle{Reduction - Small LCS}
 	
 	\begin{definition}[Orthogonal Vectors Problem (OV)]
 		\begin{description}
@@ -28,11 +28,17 @@
   	
   	%For any $\alpha, \beta \in (0,1]$, and computable functions $f(n) = n^{\alpha - o(1)}$, $g(n) = n^{\beta - o(1)}$, the following problem requires time $n^{\alpha + \beta - o(1)}$: Given a number $n$, solve a given OV instance with $D = n^{o(1)}$ and $|A| = f(n)$ and $|B| = g(n)$
 
+	\begin{alertblock}{Note}
+		The following reductions are split into the cases:
+		
+		1. $\alpha_d = \alpha_m$ (Small LCS)
+		2. $\alpha_L = \alpha_m$ (Large LCS)
+	\end{alertblock}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Reduction}
+\frametitle{Reduction - Small LCS}
 \framesubtitle{Overview}
 
 \begin{figure}
@@ -92,6 +98,60 @@
 \input{./sections/reduction/small_lcs/coordinate_gadget}
 \input{./sections/reduction/small_lcs/vector_gadget}
 \input{./sections/reduction/small_lcs/normalized_vector_gadget}
+
+
+\begin{frame}
+\frametitle{Reduction - Small LCS}
+\framesubtitle{Overview}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+	\tikzstyle{overview step} = [rounded corners, rectangle split, rectangle split parts=2, draw, anchor=west]
+	
+	\node[overview step, rectangle split parts=1, fill=KITgreen] (ov) at (0,0) {%
+		\Large
+		OV instance with vectors
+		$a_1, \ldots, a_A, b_1, \ldots, b_B$
+	};
+	
+	\node[overview step, fill=KITgreen] (coordinate) at ($(ov.south) + (-1,-1)$) {%
+		\Large
+		Encode single coordinate
+		\nodepart{two}
+		Derive from LCS the product ($0$ or $1$)
+	};
+	
+	\node[overview step, fill=KITgreen] (vector) at ($(coordinate.south) + (0,-1)$) {%
+		\Large
+		Encode single vector
+		\nodepart{two}
+		Goal: $L(\vg{a_i}, \vg{b_j}) \geq \rho_0 \Leftrightarrow \langle a_i,b_j\rangle = 0$
+	};
+	
+	\node[overview step, fill=KITgreen] (normal_vector) at ($(vector.south) + (0,-1)$) 
+		{\Large Normalize vectors
+		\nodepart{two}
+			Goal: $L(\nvg{a_i}, \nvg{b_j}) \in \{\rho_0, \rho_1\}$
+	};
+	
+	\node[overview step] (arrange) at ($(normal_vector.south) + (0,-1)$) {%
+		\Large
+		Arrange set of vectors
+		\nodepart{two}
+		Goal: Matching of every vector pair possible
+	};
+	
+	\path[draw, ->] ($(ov.south) - (2,0)$) |- (coordinate);
+	\path[draw, ->] ($(coordinate.south) - (1,0)$) |- (vector);
+	\path[draw, ->] ($(vector.south) - (1,0)$) |- (normal_vector);
+	\path[draw, ->] ($(normal_vector.south) - (1,0)$) |- (arrange);
+
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+
 \input{./sections/reduction/small_lcs/full_reduction}
 
 \begin{frame}

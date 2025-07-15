@@ -1,127 +1,127 @@
-\begin{frame}
-	\frametitle{Reduction}
-	\framesubtitle{Vector Gadget}
-	
-	\begin{definition}[Guarding of Input Strings]
-		For strings $x_1, ..., x_n$ and $y_1, ..., y_m$ with $n \geq m$, we define:
-		\begin{columns}[onlytextwidth]
-	    \column[t]{0.7\hsize}
-	    \vspace{-8pt}
-		\begin{align*}
-			\guardX{x_1, ..., x_n} &:=& 				  &G(x_1)\; 0^{\gamma_3}\; G(x_2)\; 0^{\gamma_3}\; \cdots\; G(x_{n-1})\; 0^{\gamma_3}\; G(x_n) \\
-			\guardY{y_1, ..., y_m} &:=& 0^{n\gamma_4}\; &G(y_1)\; 0^{\gamma_3}\; G(y_2)\; 0^{\gamma_3}\; \cdots\; G(y_{m-1})\; 0^{\gamma_3}\; G(y_m)\; 0^{n\gamma_4}
-		\end{align*}
-
-	    \column[t]{0.29\hsize}
-	    \vspace{3pt}
-		\begin{displaymath}
-			G(x) = 1^{\gamma_2}0^{\gamma_1}x0^{\gamma_1}1^{\gamma_2}
-		\end{displaymath}
-		\end{columns}
-		
-		with sufficiently large $\gamma_1, \gamma_2, \gamma_3, \gamma_4$
-	
-	\end{definition}
-	
-	\visible<2->{
-	\begin{example}
-	\begin{figure}
-	\centering
-	\only<2-4>{
-	\begin{tikzpicture}[x=1.5em]
-		\tikzstyle{base} = [minimum width=1.5em, inner sep=1pt]
-		\tikzstyle{text element} = []
-		\tikzstyle{number} = [minimum height=14pt]  
-		\tikzstyle{guard} = [fill=KITicegray]  
-		\tikzstyle{guard edge} = [color=KITicegray]
-		\tikzstyle{big guard} = [fill=KITicegray!75!black]
-		\tikzstyle{big guard edge} = [color=KITicegray!75!black]
-		\tikzstyle{input} = [fill=KITgreen]
-		\tikzstyle{input edge} = [color=KITgreen]
-		
-		\node[base, text element] (eqX) at (0,0) {$=$};
-		\node[base, text element, anchor=east] (gx) at (eqX.west) {$\guardX{w,v,w}$};
-		
-		
-		
-		
-		\exVGguardOne{eqX}{4}{x_first_left_one}
-		\exVGguardZero{eqX}{5}{}
-		\node[base, number, input] (x1) at ($(eqX) + (6,0)$) {$w$};
-		\exVGguardZero{eqX}{7}{}
-		\exVGguardOne{eqX}{8}{x_first_right_one}
-		
-		\exVGbigGuardZero{eqX}{9}{x_first_big_guard}
-		
-		\exVGguardOne{eqX}{10}{x_second_left_one}
-		\exVGguardZero{eqX}{11}{}
-		\node[base, number, input] (x2) at ($(eqX) + (12,0)$) {$v$};
-		\exVGguardZero{eqX}{13}{}
-		\exVGguardOne{eqX}{14}{x_second_right_one}
-		
-		\exVGbigGuardZero{eqX}{15}{x_second_big_guard}
-		
-		\exVGguardOne{eqX}{16}{x_third_left_one}
-		\exVGguardZero{eqX}{17}{}
-		\node[base, number, input] (x3) at ($(eqX) + (18,0)$) {$w$};
-		\exVGguardZero{eqX}{19}{}
-		\exVGguardOne{eqX}{20}{x_third_right_one}
-		
-		
-		
-		\node[base, text element] (eqY) at (0,-1.5) {$=$};
-		\node[base, text element, anchor=east] (gy) at (eqY.west) {$\guardY{w,w}$};
-		\exVGendGuardY{eqY}{2}{y_left_end_guard}
-		
-		\exVGguardOne{eqY}{6}{y_first_left_one}
-		\exVGguardZero{eqY}{7}{}
-		\node[base, number, input] (y1) at ($(eqY) + (8,0)$) {$w$};
-		\exVGguardZero{eqY}{9}{}
-		\exVGguardOne{eqY}{10}{y_first_right_one}
-		
-		\exVGbigGuardZero{eqY}{12}{y_first_big_guard}
-		
-		\exVGguardOne{eqY}{14}{y_second_left_one}
-		\exVGguardZero{eqY}{15}{}
-		\node[base, number, input] (y2) at ($(eqY) + (16,0)$) {$w$};
-		\exVGguardZero{eqY}{17}{}
-		\exVGguardOne{eqY}{18}{y_second_right_one}
-		
-		\exVGendGuardY{eqY}{22}{y_right_end_guard}
-		
-		\only<3>{
-			\path[draw, guard edge] (y_first_left_one.north east) -- (x_first_left_one.south east);
-			\path[draw, input edge] (x1.south) edge (y1.north);
-			\path[draw, guard edge] (y_first_right_one.north west) -- (x_first_right_one.south west);
-			
-			\path[draw, big guard edge] (x_first_big_guard.south) edge (y_first_big_guard.north);
-			
-			\path[draw, guard edge] (y_second_left_one.north east) -- (x_third_left_one.south east);
-			\path[draw, input edge] (x3.south) edge (y2.north);
-			\path[draw, guard edge] (y_second_right_one.north west) -- (x_third_right_one.south west);
-		}
-		
-		\only<4>{
-			\path[draw, big guard edge] (x_first_big_guard.south) edge (y_left_end_guard.north);
-			
-			\path[draw, guard edge] (y_first_left_one.north east) -- (x_second_left_one.south east);
-			\path[draw, input edge] (x2.south) edge (y1.north);
-			\path[draw, guard edge] (y_first_right_one.north west) -- (x_second_right_one.south west);
-			
-			\path[draw, big guard edge] (x_second_big_guard.south) edge (y_first_big_guard.north);
-			
-			\path[draw, guard edge] (y_second_left_one.north east) -- (x_third_left_one.south east);
-			\path[draw, input edge] (x3.south) edge (y2.north);
-			\path[draw, guard edge] (y_second_right_one.north west) -- (x_third_right_one.south west);
-		}
-	
-	\end{tikzpicture}
-	}
-	\end{figure}
-	\end{example}
-	}
-
-\end{frame}
+%\begin{frame}
+%	\frametitle{Reduction}
+%	\framesubtitle{Vector Gadget}
+%	
+%	\begin{definition}[Guarding of Input Strings]
+%		For strings $x_1, ..., x_n$ and $y_1, ..., y_m$ with $n \geq m$, we define:
+%		\begin{columns}[onlytextwidth]
+%	    \column[t]{0.7\hsize}
+%	    \vspace{-8pt}
+%		\begin{align*}
+%			\guardX{x_1, ..., x_n} &:=& 				  &G(x_1)\; 0^{\gamma_3}\; G(x_2)\; 0^{\gamma_3}\; \cdots\; G(x_{n-1})\; 0^{\gamma_3}\; G(x_n) \\
+%			\guardY{y_1, ..., y_m} &:=& 0^{n\gamma_4}\; &G(y_1)\; 0^{\gamma_3}\; G(y_2)\; 0^{\gamma_3}\; \cdots\; G(y_{m-1})\; 0^{\gamma_3}\; G(y_m)\; 0^{n\gamma_4}
+%		\end{align*}
+%
+%	    \column[t]{0.29\hsize}
+%	    \vspace{3pt}
+%		\begin{displaymath}
+%			G(x) = 1^{\gamma_2}0^{\gamma_1}x0^{\gamma_1}1^{\gamma_2}
+%		\end{displaymath}
+%		\end{columns}
+%		
+%		with sufficiently large $\gamma_1, \gamma_2, \gamma_3, \gamma_4$
+%	
+%	\end{definition}
+%	
+%	\visible<2->{
+%	\begin{example}
+%	\begin{figure}
+%	\centering
+%	\only<2-4>{
+%	\begin{tikzpicture}[x=1.5em]
+%		\tikzstyle{base} = [minimum width=1.5em, inner sep=1pt]
+%		\tikzstyle{text element} = []
+%		\tikzstyle{number} = [minimum height=14pt]  
+%		\tikzstyle{guard} = [fill=KITicegray]  
+%		\tikzstyle{guard edge} = [color=KITicegray]
+%		\tikzstyle{big guard} = [fill=KITicegray!75!black]
+%		\tikzstyle{big guard edge} = [color=KITicegray!75!black]
+%		\tikzstyle{input} = [fill=KITgreen]
+%		\tikzstyle{input edge} = [color=KITgreen]
+%		
+%		\node[base, text element] (eqX) at (0,0) {$=$};
+%		\node[base, text element, anchor=east] (gx) at (eqX.west) {$\guardX{w,v,w}$};
+%		
+%		
+%		
+%		
+%		\exVGguardOne{eqX}{4}{x_first_left_one}
+%		\exVGguardZero{eqX}{5}{}
+%		\node[base, number, input] (x1) at ($(eqX) + (6,0)$) {$w$};
+%		\exVGguardZero{eqX}{7}{}
+%		\exVGguardOne{eqX}{8}{x_first_right_one}
+%		
+%		\exVGbigGuardZero{eqX}{9}{x_first_big_guard}
+%		
+%		\exVGguardOne{eqX}{10}{x_second_left_one}
+%		\exVGguardZero{eqX}{11}{}
+%		\node[base, number, input] (x2) at ($(eqX) + (12,0)$) {$v$};
+%		\exVGguardZero{eqX}{13}{}
+%		\exVGguardOne{eqX}{14}{x_second_right_one}
+%		
+%		\exVGbigGuardZero{eqX}{15}{x_second_big_guard}
+%		
+%		\exVGguardOne{eqX}{16}{x_third_left_one}
+%		\exVGguardZero{eqX}{17}{}
+%		\node[base, number, input] (x3) at ($(eqX) + (18,0)$) {$w$};
+%		\exVGguardZero{eqX}{19}{}
+%		\exVGguardOne{eqX}{20}{x_third_right_one}
+%		
+%		
+%		
+%		\node[base, text element] (eqY) at (0,-1.5) {$=$};
+%		\node[base, text element, anchor=east] (gy) at (eqY.west) {$\guardY{w,w}$};
+%		\exVGendGuardY{eqY}{2}{y_left_end_guard}
+%		
+%		\exVGguardOne{eqY}{6}{y_first_left_one}
+%		\exVGguardZero{eqY}{7}{}
+%		\node[base, number, input] (y1) at ($(eqY) + (8,0)$) {$w$};
+%		\exVGguardZero{eqY}{9}{}
+%		\exVGguardOne{eqY}{10}{y_first_right_one}
+%		
+%		\exVGbigGuardZero{eqY}{12}{y_first_big_guard}
+%		
+%		\exVGguardOne{eqY}{14}{y_second_left_one}
+%		\exVGguardZero{eqY}{15}{}
+%		\node[base, number, input] (y2) at ($(eqY) + (16,0)$) {$w$};
+%		\exVGguardZero{eqY}{17}{}
+%		\exVGguardOne{eqY}{18}{y_second_right_one}
+%		
+%		\exVGendGuardY{eqY}{22}{y_right_end_guard}
+%		
+%		\only<3>{
+%			\path[draw, guard edge] (y_first_left_one.north east) -- (x_first_left_one.south east);
+%			\path[draw, input edge] (x1.south) edge (y1.north);
+%			\path[draw, guard edge] (y_first_right_one.north west) -- (x_first_right_one.south west);
+%			
+%			\path[draw, big guard edge] (x_first_big_guard.south) edge (y_first_big_guard.north);
+%			
+%			\path[draw, guard edge] (y_second_left_one.north east) -- (x_third_left_one.south east);
+%			\path[draw, input edge] (x3.south) edge (y2.north);
+%			\path[draw, guard edge] (y_second_right_one.north west) -- (x_third_right_one.south west);
+%		}
+%		
+%		\only<4>{
+%			\path[draw, big guard edge] (x_first_big_guard.south) edge (y_left_end_guard.north);
+%			
+%			\path[draw, guard edge] (y_first_left_one.north east) -- (x_second_left_one.south east);
+%			\path[draw, input edge] (x2.south) edge (y1.north);
+%			\path[draw, guard edge] (y_first_right_one.north west) -- (x_second_right_one.south west);
+%			
+%			\path[draw, big guard edge] (x_second_big_guard.south) edge (y_first_big_guard.north);
+%			
+%			\path[draw, guard edge] (y_second_left_one.north east) -- (x_third_left_one.south east);
+%			\path[draw, input edge] (x3.south) edge (y2.north);
+%			\path[draw, guard edge] (y_second_right_one.north west) -- (x_third_right_one.south west);
+%		}
+%	
+%	\end{tikzpicture}
+%	}
+%	\end{figure}
+%	\end{example}
+%	}
+%
+%\end{frame}
 
 
 % ============================================================================
@@ -181,7 +181,7 @@
 	%Let $a_i = (0,0,1)$ and $b_j = (1,1,0)$.
 	\begin{figure}
 	\centering
-	\only<1-4>{
+	\only<1-3>{
 	\begin{tikzpicture}[x=1.5em]
 		\tikzstyle{base} = [minimum width=1.5em, inner sep=1pt]
 		\tikzstyle{text element} = []
@@ -251,7 +251,7 @@
 		
 		\exVGendGuardY{eqY}{21}{y_right_end_guard}
 		
-		\only<3->{
+		\only<2->{
 			\path[draw, guard edge] (y_first_left_one.north east) -- (x_first_left_one.south east);
 			\path[draw, input edge] (x1.south) edge (y1.north);
 			\path[draw, guard edge] (y_first_right_one.north west) -- (x_first_right_one.south west);
@@ -274,7 +274,7 @@
 	\end{example}
 	} % end of only
 	
-	\only<4->{
+	\only<3->{
 	\begin{theorem}
 		For any two vectors $a_i, b_j \in \{0,1\}^D$, we can construct \emphBeamer{vector gadgets} $\vg{a_i}$ and $\vg{b_j}$, such that:
 		\begin{align*}

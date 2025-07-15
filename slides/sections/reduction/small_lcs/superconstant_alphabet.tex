@@ -58,7 +58,7 @@ Use previous reduction for $1 \leq i \leq t$ with OV instance $(A_i, B)$ $\Right
 \end{tikzpicture}
 \end{figure}
 	\column[t]{0.3\textwidth}
-	\vspace{10ex}
+	\vspace{5ex}
 	
 	with disjoint $\Sigma_i$ and $|\Sigma_i| = 2$
 \end{columns}
@@ -135,7 +135,8 @@ Use previous reduction for $1 \leq i \leq t$ with OV instance $(A_i, B)$ $\Right
 }
 \end{figure}
 	\column[t]{0.3\textwidth}
-	\vspace{10ex}
+	\vspace{5ex}
+	
 	with disjoint $\Sigma_i$ and $|\Sigma_i| = 2$
 \end{columns}
 \end{exampleblock}
@@ -167,6 +168,102 @@ Use previous reduction for $1 \leq i \leq t$ with OV instance $(A_i, B)$ $\Right
 \end{proof}
 
 }
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+% ==========================================================================================
+% ==========================================================================================
+% ==========================================================================================
+% ==========================================================================================
+% ==========================================================================================
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Reduction - Small LCS}
+\framesubtitle{Superconstant Alphabet}
+
+\begin{exampleblock}{Reduction for $\alpha_\Sigma > 0$}
+For an OV instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \geq B$, we partition $\mathcal{A}$ in $t=\lceil A/B \rceil$ partitions of size $|A_i| = B$
+
+Use previous reduction for $1 \leq i \leq t$ with OV instance $(A_i, B)$ $\Rightarrow x_i, y_i$.
+
+\begin{columns}
+	\column[t]{0.7\textwidth}
+\begin{figure}
+\centering
+\color{black}
+\begin{tikzpicture}
+		\tikzstyle{base} = [minimum width=4em, inner sep=1pt, anchor=west, minimum height=14pt]
+		\tikzstyle{text element} = []
+		\tikzstyle{number} = []  
+		\tikzstyle{guard} = [fill=KITicegray]  
+		\tikzstyle{guard edge} = [color=KITicegray]
+		\tikzstyle{big guard} = [fill=KITicegray!75!black]
+		\tikzstyle{big guard edge} = [color=KITicegray!75!black]
+		\tikzstyle{input} = [fill=KITgreen]
+		\tikzstyle{input edge} = [color=KITgreen]
+		\tikzstyle{cell} = [draw, fill=KITwhite]
+		\tikzstyle{hide} = [draw=KITwhite!75!black, text=KITwhite!75!black]
+		\tikzstyle{marked} = [fill=KITgreen]
+		
+		\node[text element] (eqX) at (0,0) {$:=$};
+		\node[text element, anchor=east] (x) at (eqX.west) {$x$};
+		
+		
+		\coordinate (base) at ($(eqX.east) + (1em,0)$);
+		\node[base, cell] (x1) at (base) {$x_1\uparrow\Sigma_1$};
+		\node[base, cell] (x2) at (x1.east) {$x_2\uparrow\Sigma_2$};
+		\node[base] (x_dots) at (x2.east) {$\cdots$};
+		\node[base, cell] (xt1) at (x_dots.east) {$x_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base, cell] (xt) at (xt1.east) {$x_t\uparrow\Sigma_t$};
+		
+		
+		\node[text element] (eqY) at (0,-1) {$:=$};
+		\node[text element, anchor=east] (y) at (eqY.west) {$y$};
+		
+		\coordinate (base) at ($(eqY.east) + (1em,0)$);
+		\node[base, cell] (y1) at (base) {$y_t\uparrow\Sigma_t$};
+		\node[base, cell] (y2) at (y1.east) {$y_{t-1}\uparrow\Sigma_{t-1}$};
+		\node[base] (y_dots) at (y2.east) {$\cdots$};
+		\node[base, cell] (yt1) at (y_dots.east) {$y_2\uparrow\Sigma_2$};
+		\node[base, cell] (yt) at (yt1.east) {$x_1\uparrow\Sigma_1$};
+		
+\end{tikzpicture}
+\end{figure}
+	\column[t]{0.3\textwidth}
+	\vspace{3ex}
+	
+	with disjoint $\Sigma_i$ and $|\Sigma_i| = 2$
+	
+%	and $A := \left\lfloor \frac{d}{\min\{L, \sqrt{d}\} \cdot D} \right\rfloor}$, \emphTheorem{$B := \left\lfloor \frac{\min\{L, \sqrt{d}\}}{D} \right\rfloor}$
+\end{columns}
+\end{exampleblock}
+
+\textbf{Parameters $L,m,n$:}\\
+\vspace{1ex}
+\begin{align*}
+	\delta(x,y) \leq M(x,y) &\leq \sum_{i=1}^{t} M(x_i, y_i)	\\
+							&\visible<2->{\leq t \cdot |x_i| \cdot |y_i|}		\\
+							&\visible<3->{= t \cdot \bigO{(BD)^2} = \bigO{AD} \cdot BD) = \bigO{d} \leq \bigO{M} }
+\end{align*}
+%$\delta(x,y) \leq M(x,y) \leq \sum_{i=1}^{t} M(x_i, y_i) \leq t \cdot |x_i| \cdot |y_i| = t \cdot \bigO{(BD)^2} = \bigO{AD} \cdot BD) = \bigO{d} \leq \bigO(M)$
 
 
 \end{frame}

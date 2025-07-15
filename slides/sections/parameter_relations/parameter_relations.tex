@@ -1,7 +1,10 @@
+\section{Find Parameter Relations}
+
 \begin{frame}
 	\frametitle{Find Parameter Relations}
 	
 	\begin{columns}[onlytextwidth]
+	\column[t]{0.1\textwidth}
 	\column[t]{0.49\textwidth}
 	\begin{tabular}{ll}
 		\toprule
@@ -29,8 +32,16 @@
 		\bottomrule
 	\end{tabular}
 	
-	\column[t]{0.49\textwidth}
-	Todo: Overview/Explanation of parameters
+	\column[t]{0.3\textwidth}
+\begin{align*}
+n(x,y)      &:= |x|, \quad m(x,y) := |y| \\
+L(x,y)      &:= \text{Length of LCS} \\
+\delta(x,y) &:= \text{Deletions in smaller string} \\
+\Delta(x,y) &:= \text{Deletions in larger string} \\
+\Sigma(x,y) &:= \text{Alphabet} \\
+M(x,y)      &:= \text{Matching pairs } := \#\{(i,j) \mid x[i] = y[j]\} \\
+d(x,y)	 	 &:= \text{ Dominant pairs, i.e., matching pairs that are an LCS candidate}
+\end{align*}
 	\end{columns}
 
 \end{frame}
