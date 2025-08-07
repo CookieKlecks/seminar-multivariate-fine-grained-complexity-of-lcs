@@ -1,0 +1,57 @@
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipics-v2021}
+%This is a template for producing LIPIcs articles. 
+%See lipics-v2021-authors-guidelines.pdf for further information.
+%for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+%for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+%for section-numbered lemmas etc., use "numberwithinsect"
+%for enabling cleveref support, use "cleveref"
+%for enabling autoref support, use "autoref"
+%for anonymousing the authors (e.g. for double-blind review), add "anonymous"
+%for enabling thm-restate support, use "thm-restate"
+%for enabling a two-column layout for the author/affilation part (only applicable for > 6 authors), use "authorcolumns"
+%for producing a PDF according the PDF/A standard, add "pdfa"
+
+%\pdfoutput=1 %uncomment to ensure pdflatex processing (mandatatory e.g. to submit to arXiv)
+\hideLIPIcs  %uncomment to remove references to LIPIcs series (logo, DOI, ...), e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+\title{Summary: Multivariate Fine-Grained Complexity of Longest Common Subsequence}
+\author{Cedrico Knoesel}{Karlsruhe Institute of Technology}{cedrico.knoesel@student.kit.edu}{}{}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+% Abstract
+\end{abstract}
+% Main Contents of Your Summary
+\section{Sections look like this}
+\subsection{And Subsections like this}
+An enumeration
+\begin{enumerate}
+    \item can be
+    \item done
+    \item like this
+\end{enumerate}
+
+\begin{theorem}
+    Theorems can be easily created by the \texttt{theorem} environment.
+\end{theorem}
+
+\begin{lemma}
+    The same goes for lemmas!
+\end{lemma}
+
+\begin{definition}
+    Definitions are also included.
+\end{definition}
+
+This is an example for a citation\cite{DBLP:conf/focs/HopcroftPV75}.
+\cite[Lemma 1]{Bringman.2018}
+\bibliography{summary}
+\end{document}
