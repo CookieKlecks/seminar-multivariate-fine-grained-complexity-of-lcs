@@ -1,0 +1,19 @@
+\section{Multivariate Analysis of \lcs}
+Apart from the actual results in the form of conditional lower bounds for \lcs{}, it also offers a general approach on how to tackle multivariate fine-grained complexity analysis.
+This part will present the general steps to take by using the analysis of \lcs{} as an example.
+
+A general methodology for proving multivariate fine-grained complexity can be split into the following three steps:
+\begin{enumerate}
+	\item Define Parameters
+	\item Find Parameter Relations
+	\item Find Reductions
+\end{enumerate}
+Step one has the goal to properly scope the analysis by specifying the interesting parameters.
+The second step then bounds the parameter space by showing which parameter combinations are actually valid and non-trivial.
+The last step is then to find reductions that span the full parameter space.
+Each of the steps will be explained in more detail in the following.
+
+
+\input{sections/main_part/1_define_parameters}
+
+\input{sections/main_part/2_parameter_relations}
