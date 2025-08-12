@@ -1,0 +1,39 @@
+\subsection{Find Reductions}
+
+
+
+\subsubsection{Large LCS}
+
+We now assume that $\alpha_L = \alpha_m$, i.e., $L = \Theta(m)$.
+This means that our constructed instances should match almost the full smaller string $y$ in an \lcs{}.
+In the previous construction there were large unmatched parts, hence, this construction will not work in this case.
+However, we will still use the \emph{normalized vector gadgets} from the previous construction, but we will change how we are embedding them into a full string.
+Therefore, the authors created a so called \emph{1vs1/2vs1 gadget} \cite[section 9.2.1]{Bringman.2018}.
+We will present this gadget in the following.
+
+\paragraph{1vs1/2vs1 gadget}
+The idea is to have two sets of strings $x_1, x_2, \ldots, x_P$ and $y_1, y_2, \ldots, y_Q$ embedded into $x$ and $y$.
+This is done in such a way, that in an \lcs{} each gadget for $y_i$ is either matched with one or two gadgets from $x$.
+In the former case the \lcs{} will only depend on the \lcs{} of the underlying string pairs and in the latter case, the full gadget for $y_i$ will be matched.
+To formalize this, the authors presented the following lemma \cite[Lemma 9.6]{Bringman.2018}.
+
+\begin{lemma}[see ]
+Given strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_Q$, construct
+\begin{align*}
+	x &:= \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
+	y &:= \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_P}
+\end{align*}
+where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$. \todo{is the citing sufficient as it is basically a direct cite of the paper?}
+In the case $P \geq 2Q$, it holds
+\[
+	L(x,y) = |y| =
+\]
+
+and in the case $P = Q$ it holds
+\[
+	L(x,y) = \sum
+\]
+\end{lemma}
+
+
+
