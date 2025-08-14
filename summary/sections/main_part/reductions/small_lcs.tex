@@ -1,0 +1,65 @@
+\subsubsection{Small LCS}
+For the first reduction, we assume $\alpha_\delta = \alpha_m$, i.e., the number of deleted symbols in the smaller strings is asymptotically the same as the length of the smaller string.
+This reduction is the same as used in a previous fine-grained analysis of \lcs{} \cite{Bringmann.2015}.
+
+
+
+
+\begin{theorem}[Normalized Vector Gadget]
+For any two vectors $a$ and $b$ of dimension $D$, there are two strings $\nvg{a}$ and $\nvg{b}$ with length $\bigO{D}$ such that
+\[
+L(\nvg{a}, \nvg{b}) = \begin{cases}
+		\rho_0 & if \langle a, b \rangle = 0\\
+		\rho_1 & otherwise
+	\end{cases}
+\]
+for an appropriate $\rho_0 > \rho_1$.
+\end{theorem}
+
+
+\begin{theorem}
+	For an OV instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \geq B$ and dimension $D$, we can construct the strings
+\begin{align*}
+	x &=& &\nvg{a_1}\ 0^\gamma\ \nvg{a_2}\ 0^\gamma\ \cdots\ 0^\gamma\ \nvg{a_A}\\
+	y&=& 0^{A\gamma'}\ &\nvg{b_1}\ 0^{\gamma}\ \nvg{b_2}\ 0^\gamma\ \cdots\ 0^\gamma\ \nvg{b_B}\ 0^{A\gamma'}
+\end{align*}
+
+in time $\bigO{AD}$ with large enough $\gamma, \gamma' \geq |\nvg{a_i} + |\nvg{b_j}|$, satisfying:
+
+\begin{enumerate}[(i)]
+    \item $L(x,y) \geq \rho \Leftrightarrow \exists a_i, b_j:\; \langle a_i,b_j \rangle = 0$ \quad\quad (for some appropriate $\rho$)
+
+    \item $|x|, |y| = \bigO{AD}$
+\end{enumerate}
+\end{theorem}	
+
+
+\input{sections/main_part/reductions/small_lcs/or_gadget}
+
+\begin{figure}
+\begin{tikzpicture}
+	\sLCSOr{}
+	
+
+	\path[draw, guard edge] (a_g1.south) edge (b_left.north);
+	%\path[draw, guard edge] (a_dots_1.south) edge (b_left.north);
+	\path[draw, guard edge] (a_gj_left.south) edge (b_left.north);
+	
+	\path[draw, input edge] (aj.south) edge (b1.north);
+	
+	\path[draw, guard edge] (a_gj.south) edge (b_g1.north);
+	
+	\path[draw, input edge] (ajB.south) edge (b2.north);
+	
+	\path[draw, guard edge] (a_gjB.south) edge (b_g2.north);
+	%\path[draw, guard edge] (a_dots_2.south west) edge (b_g3.north);
+	
+	\path[draw, input edge] (a_dots_2.south) edge (b3.north);
+	\path[draw, guard edge] (a_gA_left.south) edge (b_g4.north);
+	\path[draw, input edge] (aA.south) edge (bB.north);
+\end{tikzpicture}
+\end{figure}
+
+We will not prove this theorem here, but only provide an intuition for its correctness.
+The blocks of $0^\gamma$ guard each normalized vector gadget such that for any \lcs{} no $\nvg{a_i}$ or $\nvg{b_j}$ will match with multiple \nvgName{}s.
+The blocks of zero at the start and end of $y$ allow to skip \nvgName{}s of $x$ to align the $B$ \nvgName{}s of $y$ with any subsequence of $B$ \nvgName{}s of $x$.

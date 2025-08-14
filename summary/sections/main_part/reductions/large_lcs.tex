@@ -1,0 +1,69 @@
+\subsubsection{Large LCS}
+
+We now assume that $\alpha_L = \alpha_m$, i.e., $L = \Theta(m)$.
+This means that our constructed instances should match almost the full smaller string $y$ in an \lcs{}.
+In the previous construction there were large unmatched parts, hence, this construction will not work in this case.
+However, we will still use the \emph{normalized vector gadgets} from the previous construction, but we will change how we are embedding them into a full string.
+Therefore, the authors created a so called \emph{1vs1/2vs1 gadget} \cite[section 9.2.1]{Bringman.2018}.
+We will present this gadget in the following.
+
+\paragraph{1vs1/2vs1 gadget}
+The idea is to have two sets of strings $x_1, x_2, \ldots, x_P$ and $y_1, y_2, \ldots, y_Q$ embedded into $x$ and $y$.
+This is done in such a way, that in an \lcs{} each gadget for $y_i$ is either matched with one or two gadgets from $x$.
+In the former case the \lcs{} will only depend on the \lcs{} of the underlying string pairs and in the latter case, the full gadget for $y_i$ will be matched.
+To formalize this, the authors presented the following lemma \cite[Lemma 9.6]{Bringman.2018}.
+
+\input{sections/main_part/reductions/large_lcs/1vs1-2vs1-gadget-tikz}
+
+\begin{lemma}[see ]
+For $P$, $Q$ and $0 \leq N \leq Q$ with $P = 2Q - N$ and strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$, construct
+\begin{align*}
+	x &:= \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
+	y &:= \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
+\end{align*}
+where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$. \todo{is the citing sufficient as it is basically a direct cite of the paper?}
+It holds:
+
+\[
+L(x,y) = Q(\gamma_1 + \gamma_2 + 3\gamma_3) + (Q - N)\ell_y + \max_{I \in \binom{[Q]}{N}} \sum_{i \in I} L(x_i, y_i)
+\]
+\end{lemma}
+
+Intuitively the three summands can be interpreted as follows.
+The first term is the sum of all guarding strings that can always be matched.
+The second term is for the gadgets for $y_i$ that fully match with two $x$-Gadgets.
+The third term represents the direct matching.
+
+
+\begin{proof}
+Note that to show (\ref{lemma:1v1gadget:1}) it suffices to show that $L(\gLargeLCS{x_i}\gLargeLCS{x_{i+1}}, \gLargeLCS{y_j}) = |y_j|$.
+
+\end{proof}
+
+
+
+
+\begin{lemma}
+Let $\rho_0 > \rho_1$ and $P, Q \geq 1$ with $P = 2Q - N$ where $0 \leq N \leq Q$.
+For any strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$ with $L(x_i, y_j) \in \{\rho_0, \rho_1\}$ for all pairs of strings $x_i$ and $y_j$, construct
+\begin{align*}
+	x &:= \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
+	y &:= \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
+\end{align*}
+where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$.
+It holds:
+
+\begin{enumerate}[(i)]
+\item $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
+\item $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0$ if and only if there are $j \in \indexSet{Q}$ and $\lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$
+\end{enumerate}
+%
+where $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
+
+\end{lemma}
+
+\begin{proof}
+We first show that for $N=0$ it holds that $L(x,y) = |y| = Q\gamma + Q\ell_y$
+
+\end{proof}
+

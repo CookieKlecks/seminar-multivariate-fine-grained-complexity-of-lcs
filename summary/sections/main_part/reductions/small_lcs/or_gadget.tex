@@ -1,0 +1,70 @@
+\newcommand{\sLCSnvg}[3]{%
+	\node[base, number, input, minimum width=4.5em, #3] (#1) at (base) {$\nvg{#2}$};
+}
+\newcommand{\sLCSnvgWithGuard}[4]{%
+	\sLCSnvg{#1}{#2}{#4}
+	\node[base, number, guard] (#3) at ($(#1.east)$) {$0^\gamma$};
+}
+
+
+\newcommand{\sLCSOr}{%
+		\tikzstyle{base} = [minimum width=1.5em, inner sep=1pt, anchor=west]
+		\tikzstyle{text element} = []
+		\tikzstyle{number} = [minimum height=14pt]  
+		\tikzstyle{guard} = [fill=lightgray]  
+		\tikzstyle{guard edge} = [color=lightgray]
+		\tikzstyle{big guard} = [fill=lightgray!75!black]
+		\tikzstyle{big guard edge} = [color=lightgray!75!black]
+		\tikzstyle{input} = [fill=cyan]
+		\tikzstyle{input edge} = [color=cyan]
+		\tikzstyle{cell} = [draw, minimum width=1.5em, fill=white]
+		\tikzstyle{skipped} = [fill = lightgray!75!white]
+		
+		\node[base, text element] (eqX) at (0,0) {$=$};
+		\node[base, text element, anchor=east] (x) at (eqX.west) {$x$};
+		
+		\coordinate (base) at ($(eqX.east) + (0.5,0)$);
+		\sLCSnvgWithGuard{a1}{a_1}{a_g1}{skipped}
+		
+		\node[base, minimum width=3em] (a_dots_1) at (a_g1.east) {$\cdots$};
+		
+		
+		\node[base, number, guard] (a_gj_left) at (a_dots_1.east) {$0^\gamma$};
+		\coordinate (base) at (a_gj_left.east);
+		\sLCSnvgWithGuard{aj}{a_j}{a_gj}{}
+		
+		\node[base, minimum width=3em] (a_dots_2) at (a_gj.east) {$\cdots$};		
+		\node[base, number, guard] (a_gjB_left) at (a_dots_2.east) {$0^\gamma$};
+		
+		\coordinate (base) at (a_gjB_left.east);
+		\sLCSnvgWithGuard{ajB}{a_{j+B-1}}{a_gjB}{}
+		
+		\node[base, minimum width=3em] (a_dots_3) at (a_gjB.east) {$\cdots$};
+		
+		\node[base, number, guard] (a_gA_left) at (a_dots_3.east) {$0^\gamma$};
+		\coordinate (base) at (a_gA_left.east);
+		\sLCSnvg{aA}{a_A}{skipped}
+		
+		
+		\node[base, text element] (eqY) at (0,-1.2) {$=$};
+		\node[base, text element, anchor=east] (y) at (eqY.west) {$y$};
+		
+		
+		\coordinate (base) at ($(eqY.east) + (0.5,0)$);
+		\node[base, number, guard, minimum width=3em] (b_left) at (base) {$0^{A\gamma'}$};
+		\coordinate (base) at (b_left.east);
+		\sLCSnvgWithGuard{b1}{b_1}{b_g1}{}
+		\coordinate (base) at (b_g1.east);
+		\node[base, number, input, minimum width=6em] (b2) at (base) {$\nvg{b_{2}}$};
+		\node[base, number, guard] (b_g2) at (b2.east) {$0^\gamma$};
+		
+		\node[base, minimum width=4.5em] (b_dots_1) at (b_g2.east) {$\cdots$};
+		
+		\coordinate (base) at (b_dots_1.east);
+		\node[base, number, guard] (b_g3) at (base) {$0^\gamma$};
+		\node[base, number, input, minimum width=6em] (b3) at (b_g3.east) {$\nvg{b_{B-1}}$};
+		\node[base, number, guard] (b_g4) at (b3.east) {$0^\gamma$};
+		\coordinate (base) at (b_g4.east);
+		\sLCSnvg{bB}{b_{B}}{}
+		\node[base, number, guard, minimum width=3em] (b_right) at (bB.east) {$0^{A\gamma'}$};
+}
