@@ -1,5 +1,5 @@
 \subsection{Small LCS}
-For the first reduction, we assume $\alpha_\delta = \alpha_m$, i.e., the number of deleted symbols in the smaller strings is asymptotically the same as its length.
+For the first reduction, we assume $\alpha_\delta = \alpha_m$, i.e., the number of deleted symbols in the smaller string is asymptotically the same as its length.
 This reduction is similar to one in a previous fine-grained analysis of \lcs{} \cite{Bringmann.2015}.
 We first present a gadget to embed vectors into strings.
 This gadget will also be used in the other reductions.
@@ -84,16 +84,14 @@ This should motivate the correctness of our construction.
 
 
 \paragraph*{Reduction}
-We now use the previous lemma to instantiate the actual reductions with the desired bounds.
-Let $n \geq 1$ be arbitrary and consider target values $p = n^{\alpha_p}$ for all parameters $p \in \mathcal{P}$.
+We now use the previous theorem to instantiate the actual reductions with the desired bounds.
+Let $n \geq 1$ be arbitrary and consider any parameter setting $\alpha$ satisfying \autoref{tab:restrictions} and $\alpha_\delta = \alpha_m$.
 We construct strings $x$ and $y$ as in \autoref{thm:small_lcs_construction} with $D = n^{o(1)}$, $A := \lfloor \frac{L}{D} \rfloor$ and $B := \lfloor \frac{m^2}{LD} \rfloor$.\footnote{In the original paper they used $B := \lfloor \frac{d}{LD} \rfloor$. We however simplified this, because we later restrict us to a reduced parameter space for simplicity reasons.}
 Note that \uovh{} implies a lower bound of $(AB)^{1-o(1)} = n^{2\alpha_m - o(1)} = m^{2 - o(1)} = (\delta m)^{1-o(1)}$ where the last equality holds in the current case $\alpha_\delta = \alpha_m$.
 By \autoref{thm:small_lcs_construction} (\ref{thm:small_lcs_construction:infer}) we can infer from $L(x,y)$ whether any vectors are orthogonal.
 Further the running time of the reduction is $\bigO{AD} = \bigO{L} \leq \bigO{\delta m}$ since trivially $L \leq m$.
-This proves a lower bound for any algorithm for $\lcsy{\mathbb{\alpha}}$ of $(\delta m)^{1-o(1)}$.
-
-
-What now remains to be shown is the parameter space that this reduction spans, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
+This proves a lower bound for any algorithm for $\lcsy{\mathbb{\alpha}}$ of $(\delta m)^{1-o(1)}$ assuming we span the full parameter space.
+The latter part now remains to be shown, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
 
 
 
