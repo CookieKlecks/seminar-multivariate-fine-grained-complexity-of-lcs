@@ -1,0 +1,33 @@
+\subsubsection{Matching Pairs Reduction}
+
+Before we lift the assumption $\alpha_M = 2$, we present why it was necessary in the previous reduction.
+Let $(x,y)$ be the constructed \lcs{} instance as before.
+Per definition of matching pairs, we know $M(x,y) \geq \numSymbols{0}{x} \cdot \numSymbols{0}{y}$.
+Looking at the construction, we have $\bigO{A}$ blocks $O^\gamma$ in $x$.
+From \autoref{thm:small_lcs_construction} and \autoref{thm:nvg} we further know $\gamma \geq |\nvg{a_i}| = \Theta(D)$. 
+Hence, $\numSymbols{0}{x} \geq \bigO{AD} = \bigO{n(x,y)}$.
+In $y$ we have one block $0^{A\gamma'}$ at the beginning of $y$, so $\numSymbols{0}{y} \geq |0^{A\gamma'}| = A\gamma' \geq \bigO{AD} = \bigO{n(x,y)}$ where we bounded $\gamma'$ similar to $\gamma$.
+In total we have $M(x,y) \geq \bigO{n(x,y)^2}$ and therefore $\alpha_M \geq 2$.
+However, there is a parameter setting with $\alpha_M < 2$, e.g., for $\Sigma = \{ \sigma_1, \ldots, \sigma_n \}$ we can define $x = y := \sigma_1 \cdots \sigma_n$.
+In this case, we have $\alpha_m = \alpha_L \alpha_\Sigma = \alpha_d = 1$, $\alpha_\delta = \alpha_\Delta = 0$ and $\alpha_M = 1 < 2$.
+
+
+To reduce our matching pairs, we can look at the parameter relation from \autoref{sec:fin_param_rels} specifically \autoref{thm:matching_pairs_lb}.
+Here we have shown that $M \geq \frac{L^2}{|\Sigma|}$.
+Hence, we have the chance to reduce $M$ by increasing the alphabet size.
+The authors used therefore the following lemma
+\footnote{Copied from \cite[Lemma 9.3]{Bringman.2018}. The proof can be seen there.}.
+
+\begin{lemma}[Crossing Alphabets]
+Let $\Sigma_1,\ldots,\Sigma_k$ be disjoint alphabets and let $x_i,y_i$ be strings
+over alphabet $\Sigma_i$. Consider $x := x_1 \cdots x_k$ and $y := y_k \cdots y_1$,
+i.e., the order in $y$ is reversed. For any parameter $p \in \{n,m,|\Sigma|,M,d\}$
+we have
+\(
+  p(x,y) \;=\; \sum_{i=1}^k p(x_i,y_i).
+\)
+Moreover,
+\(
+  L(x,y) \;=\; \max_i L(x_i,y_i).
+\)
+\end{lemma}

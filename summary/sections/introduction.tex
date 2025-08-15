@@ -17,5 +17,29 @@ Todo: Define notations for:
 $\#_\sigma(x)$
 
 
+\subsection{Technical Tools}
+In this section we state lemmata from the original paper that are needed for later proofs.
+Due to size constraints, we do not prove them here.
+
+\begin{lemma}[Greedy Prefix Matching]\footnote{Copied from \cite[Lemma 7.1]{Bringman.2018}}
+\label{lem:greedy_prefix_match}
+For any strings $w, x, y$, we have
+\(
+L(wx, wy) = |w| + L(x, y)
+\)
+and
+\(
+d(wx, wy) = |w| + d(x, y).
+\)
+\end{lemma}
+
+\begin{lemma}\footnote{Copied from \cite[Lemma 7.6]{Bringman.2018}}
+\label{lem:guards}
+For any strings $x, y, z$ and $\ell \geq \numSymbols{0}{x} + |z|$ we have
+\(
+L\left(x0^{\ell}y,\,0^{\ell}z\right) = \ell + L\left(0^{\#_{0}(x)}y,\,z\right).
+\)
+\end{lemma}
+
 \subsection{Related Work}
 

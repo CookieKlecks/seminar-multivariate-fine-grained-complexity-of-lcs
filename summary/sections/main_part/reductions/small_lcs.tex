@@ -8,6 +8,7 @@ Then we show how to build the full \lcs{} instances from \ov{} instances by usin
 
 
 \begin{theorem}[Normalized Vector Gadget]
+\label{thm:nvg}
 For any two vectors $a$ and $b$ of dimension $D$, there are two strings $\nvg{a}$ and $\nvg{b}$ with length $\Theta(D)$ such that
 \[
 L(\nvg{a}, \nvg{b}) = \begin{cases}
@@ -42,37 +43,37 @@ in time $\bigO{AD}$ with large enough $\gamma, \gamma' \geq |\nvg{a_i}| + |\nvg{
 \begin{enumerate}[(i)]
     \item\label{thm:small_lcs_construction:infer} $L(x,y) \geq \rho \Leftrightarrow \exists a_i, b_j:\; \langle a_i,b_j \rangle = 0$ \quad\quad (for some appropriate $\rho$)
 
-    \item $|x|, |y| = \bigO{AD}$
+    \item\label{thm:small_lcs_construction:size} $|x|, |y| = \bigO{AD}$
 \end{enumerate}
 \end{theorem}	
 
 
 \input{sections/main_part/reductions/small_lcs/or_gadget}
 
-\begin{figure}
-\begin{tikzpicture}
-	\sLCSOr{}
-	
-
-	\path[draw, guard edge] (a_g1.south) edge (b_left.north);
-	%\path[draw, guard edge] (a_dots_1.south) edge (b_left.north);
-	\path[draw, guard edge] (a_gj_left.south) edge (b_left.north);
-	
-	\path[draw, input edge] (aj.south) edge (b1.north);
-	
-	\path[draw, guard edge] (a_gj.south) edge (b_g1.north);
-	
-	\path[draw, input edge] (ajB.south) edge (b2.north);
-	
-	\path[draw, guard edge] (a_gjB.south) edge (b_g2.north);
-	%\path[draw, guard edge] (a_dots_2.south west) edge (b_g3.north);
-	
-	\path[draw, input edge] (a_dots_2.south) edge (b3.north);
-	\path[draw, guard edge] (a_gA_left.south) edge (b_g4.north);
-	\path[draw, input edge] (aA.south) edge (bB.north);
-\end{tikzpicture}
-\caption{Visualization of }
-\end{figure}
+%\begin{figure}
+%\begin{tikzpicture}
+%	\sLCSOr{}
+%	
+%
+%	\path[draw, guard edge] (a_g1.south) edge (b_left.north);
+%	%\path[draw, guard edge] (a_dots_1.south) edge (b_left.north);
+%	\path[draw, guard edge] (a_gj_left.south) edge (b_left.north);
+%	
+%	\path[draw, input edge] (aj.south) edge (b1.north);
+%	
+%	\path[draw, guard edge] (a_gj.south) edge (b_g1.north);
+%	
+%	\path[draw, input edge] (ajB.south) edge (b2.north);
+%	
+%	\path[draw, guard edge] (a_gjB.south) edge (b_g2.north);
+%	%\path[draw, guard edge] (a_dots_2.south west) edge (b_g3.north);
+%	
+%	\path[draw, input edge] (a_dots_2.south) edge (b3.north);
+%	\path[draw, guard edge] (a_gA_left.south) edge (b_g4.north);
+%	\path[draw, input edge] (aA.south) edge (bB.north);
+%\end{tikzpicture}
+%\caption{Visualization of }
+%\end{figure}
 
 We will not prove this theorem here, but only provide an intuition for its correctness.
 The blocks of $0^\gamma$ guard each normalized vector gadget such that for any \lcs{} every $\nvg{b_j}$ will align with an $\nvg{a_i}$ and will not match with multiple \nvgName{}s.
@@ -106,6 +107,15 @@ Note that the monotonicity is not trivial and even fails for the case $|\Sigma| 
 
 %Recall that we remain with the assumption $\alpha_\delta = \alpha_m$, i.e., $\bigO{\delta} = \bigO{m}$.
 
-In this summary and we will use a reduced parameter set of $P' = \{n, m, L, \Sigma, M\}$ for this case.
+We will now show this using a reduced parameter set of $P' = \{n, m, L, \Sigma, M\}$ for the current case.
 For a proof of the full parameter set we refer to the original paper \cite[section 9.1.2]{Bringman.2018}.
+We have trivially and by definition $L(x,y) \leq m(x,y) \leq n(x,y)$.
+With \autoref{thm:small_lcs_construction} (\ref{thm:small_lcs_construction:size}) and the definition of $A$ we can further bound $n(x,y) \leq \bigO{AD} = \bigO{L} \leq \bigO{m} \leq \bigO{n}$ where we again used $L \leq m \leq n$.
+We further have $|\Sigma(x,y)| = 2 \leq \bigO{n^{\alpha_\Sigma}}$.
+We can bound the number of matching pairs by $M(x,y) \leq n(x,y)^2 \leq \bigO{n^{\alpha_M}}$ where we used that $\alpha_M = 2$ holds in the current case.
 
+In total we have shown that $p(x,y) \leq \bigO{p}$ for all $p \in P'$.
+Hence, we have shown a conditional lower bound for every instance in $\lcsy{\mathbb{\alpha}}$ where $\mathbb{\alpha}$ satisfies \autoref{tab:restrictions}, $\alpha_\delta = \alpha_m$ and $\alpha_M = 2$.
+In the next section, we now show how to lift the restriction $\alpha_M = 2$.
+
+\input{sections/main_part/reductions/small_lcs/matching_pairs_reduction}

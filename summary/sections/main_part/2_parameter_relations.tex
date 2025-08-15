@@ -1,4 +1,5 @@
 \section{Find Parameter Relations}
+\label{sec:fin_param_rels}
 The goal of this step is to find valid and non-trivial parameter combinations.
 This is important as we want to restrict the parameter space that must be spanned by the reductions in the next step.
 
@@ -18,12 +19,51 @@ A parameter setting $\mathbb{\alpha}$ is called \emph{trivial}, if $\lcsy{\alpha
 To give an example, the LCS instances $x=a^{k}b^{k}$ and $y = ba^k$ for $k\geq 1$ are in $\lcsy{\mathbb{\alpha}}$ for all $\gamma \geq 4$, with the parameter setting $\mathbb{\alpha}$ being $\alpha_m = \alpha_L = \alpha_\Delta = 1$, $\alpha_\delta = 0$, $\alpha_M = 2$ and $\alpha_d = 1$.\todo{Example, maybe unnecessary?}
 
 
-The full set of parameter relations is given in Table x\todo{add table with alpha values}.
+\begin{table}[t]
+\centering
+%\setlength{\tabcolsep}{10pt}
+%\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Restriction} \\
+\midrule
+\(m\) & \(0 \le \alpha_m \le 1\) \\ \midrule
+\(L\) & \(0 \le \alpha_L \le \alpha_m\) \\ \midrule
+\(\delta\) &
+\(
+\begin{cases}
+0 \le \alpha_\delta \le \alpha_m & \text{if } \alpha_L = \alpha_m,\\
+\alpha_\delta = \alpha_m          & \text{otherwise}
+\end{cases}
+\) \\ \midrule
+\(\Delta\) &
+\(
+\begin{cases}
+\alpha_\delta \le \alpha_\Delta \le 1 & \text{if } \alpha_L=\alpha_m=1,\\
+\alpha_\Delta = 1                     & \text{otherwise}
+\end{cases}
+\) \\ \midrule
+\(|\Sigma|\) & \(0 \le \alpha_{\Sigma} \le \alpha_m\) \\ \midrule
+\(d\) & \(\max\{\alpha_L,\alpha_{\Sigma}\} \le \alpha_d \le
+\min\{\,2\alpha_L+\alpha_{\Sigma},\,\alpha_L+\alpha_m,\,\alpha_L+\alpha_\Delta\,\}\) \\ \midrule
+\(M\) &
+\(
+\max\{1,\alpha_d,\,2\alpha_L-\alpha_{\Sigma}\} \le \alpha_M \le \alpha_L+1
+\) \\
+\bottomrule
+\end{tabular}
+\caption{Full set of parameter relations. Every parameter setting satisfying these relations is non-trivial.}
+\label{tab:restrictions}
+\end{table}
+
+
+The full set of parameter relations is given in \autoref{tab:restrictions}.
 Here we can see some trivial bounds, like $\alpha_L \leq \alpha m \leq \alpha_n$, which is due to the trivial relations $L \leq m \leq n$ which are true for every \lcs{} instance.
 All of the relations are proven in the original paper \cite[section 6]{Bringman.2018}, but in this summary we will only proof the relations $2\alpha_L - \alpha_\Sigma \leq \alpha_M$.
 Note that therefore it suffices to prove $\frac{L^2}{|\Sigma|} \leq M$.
 
 \begin{theorem}
+\label{thm:matching_pairs_lb}
 For every \lcs{} instance the number of matching pairs is bounded by
 \begin{displaymath}
 	\dfrac{L^2}{|\Sigma|} \leq M .

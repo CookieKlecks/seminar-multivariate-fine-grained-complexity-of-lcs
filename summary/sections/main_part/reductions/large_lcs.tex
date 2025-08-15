@@ -1,4 +1,4 @@
-\subsubsection{Large LCS}
+\subsection{Large LCS}
 
 We now assume that $\alpha_L = \alpha_m$, i.e., $L = \Theta(m)$.
 This means that our constructed instances should match almost the full smaller string $y$ in an \lcs{}.
@@ -7,12 +7,12 @@ However, we will still use the \emph{normalized vector gadgets} from the previou
 Therefore, the authors created a so called \emph{1vs1/2vs1 gadget} \cite[section 9.2.1]{Bringman.2018}.
 We will present this gadget in the following.
 
-\paragraph{1vs1/2vs1 gadget}
+\subsubsection{1vs1/2vs1 gadget}
 The idea is to have two sets of strings $x_1, x_2, \ldots, x_P$ and $y_1, y_2, \ldots, y_Q$ embedded into $x$ and $y$.
 This is done in such a way, that in an \lcs{} each gadget for $y_j$ is either matched with one or two gadgets from $x$.
 In the former case the \lcs{} will only depend on the \lcs{} of the underlying string pairs $x_i$ and $y_j$ and in the latter case, the full gadget for $y_j$ will be matched.
 See \autoref{fig:12vs1gadget} for a visualization of this.
-To formalize the idea, the authors presented a lemma \cite[Lemma 9.6]{Bringman.2018} similar to the following.
+To formalize the idea, the authors presented a lemma \cite[Lemma 9.6]{Bringman.2018} similar to the following. \todo{Maybe split lemma in def and several lemma}
 
 \input{sections/main_part/reductions/large_lcs/1vs1-2vs1-gadget-tikz}
 
@@ -20,7 +20,8 @@ To formalize the idea, the authors presented a lemma \cite[Lemma 9.6]{Bringman.2
 
 
 \begin{lemma}
-Let $\rho_0 > \rho_1$ and $P, Q \geq 1$ with $P = 2Q - N$ where $0 \leq N \leq Q$.
+\label{lem:1-2vs1gadget}
+Let $\rho_0 > \rho_1$ and $P, Q \geq 1$ with $P = 2Q - N$.
 For any strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$ with $L(x_i, y_j) \in \{\rho_0, \rho_1\}$ for all pairs of strings $x_i$ and $y_j$, construct
 \begin{align*}
 	x &:= \lLCSGadget{x_1, \ldots, x_P} := \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
@@ -31,36 +32,98 @@ We define $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
 It holds:
 %
 \begin{enumerate}[(i)]
-\item\label{lem:1-2vs1gadget-1} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
-\item\label{lem:1-2vs1gadget-2} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0 \Leftrightarrow \exists j \in \indexSet{Q - N},1 \leq \lambda \leq \min\{N, j\}: L(x_{2j-\lambda}, y_j) = \rho_0$
+\item\label{lem:1-2vs1gadget:not-ortho} if $L(x_i, y_j) = \rho_1$ for all $i,j$: 
+\[ 
+L(x,y) \leq Q\Gamma + (Q-N)\ell_y + N\rho_1
+\]
+\item\label{lem:1-2vs1gadget:ortho} if there is $j \in \indexSet{Q}, \lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$: 
+\[
+L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0
+\]
+
+
+%\item\label{lem:1-2vs1gadget-1} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
+%\item\label{lem:1-2vs1gadget-2} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0 \Leftrightarrow \exists j \in \indexSet{Q - N},1 \leq \lambda \leq \min\{N, j\}: L(x_{2j-\lambda}, y_j) = \rho_0$
 \end{enumerate}
 %
-if and only if there are $j \in \indexSet{Q}$ and $j - Q + N \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
+%if and only if there are $j \in \indexSet{Q}$ and $j - Q + N \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
 
 \end{lemma}
 
 \begin{proof}
-We first show that for $N=0$, i.e., $P=2Q$, it holds that $L(x,y) = |y| = Q\Gamma + Q\ell_y$.
-Observe therefore, that $L(\gLargeLCS{x_i}\gLargeLCS{x_{i+1}}, \gLargeLCS{y_j}) = |\gLargeLCS{y_j}|$ as $0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}$ is a prefix of $\gLargeLCS{x_i}$, $y_i$ is a substring of $(01)^{\gamma_3}$ ($\gamma_3 \geq \ell_y$) and $1^{\gamma_3}$ is a suffix of $\gLargeLCS{x_{i+1}}$. See the orange part in \autoref{fig:12vs1gadget} for a visualization of this.
-As $P = 2Q$, we can hence split $x$ and $y$ in $Q$ parts such that
+%We first show that for $N=0$, i.e., $P=2Q$, it holds that $L(x,y) = |y| = Q\Gamma + Q\ell_y$.
+%Observe therefore, that $L(\gLargeLCS{x_i}\gLargeLCS{x_{i+1}}, \gLargeLCS{y_j}) = |\gLargeLCS{y_j}|$ as $0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}$ is a prefix of $\gLargeLCS{x_i}$, $y_i$ is a substring of $(01)^{\gamma_3}$ ($\gamma_3 \geq \ell_y$) and $1^{\gamma_3}$ is a suffix of $\gLargeLCS{x_{i+1}}$. See the orange part in \autoref{fig:12vs1gadget} for a visualization of this.
+%As $P = 2Q$, we can hence split $x$ and $y$ in $Q$ parts such that
+%\[
+%	L(x,y) \geq \sum_{1\leq j \leq Q} L(\gLargeLCS{x_{2j-1}}\gLargeLCS{x_{2j}}, \gLargeLCS{y_j}) = \sum_{1\leq j \leq Q} |\gLargeLCS{y_j}| = |y| = Q\Gamma + Q\ell_y.
+%\]
+%Equality follows as $|y|$ is the maximal \lcs{} size.
+%
+%We now show that $L(x,y) \geq Q\Gamma + N\rho_1$ for $N=Q$, i.e., $P=2Q - N = Q$.
+%Note that $L(\gLargeLCS{x_i}, \gLargeLCS{y_j}) = \Gamma + L(x_i, y_j) \geq \Gamma + \rho_1$ per definition of $G$.
+%The claim now follows by again splitting $x$ and $y$ in $Q$ parts such that
+%\[
+%	L(x,y) \geq \sum_{1\leq i \leq Q} L(\gLargeLCS{x_i}, \gLargeLCS{y_i}) \geq \sum_{1 \leq i \leq Q} \Gamma + \rho_1 = Q\Gamma + Q\rho_1 = Q\Gamma + N\rho_1.
+%\]
+
+
+
+% ====================== Proof non-ortho =======================
+To prove (\ref{lem:1-2vs1gadget:not-ortho}), we define $x =: z_1z_2 \cdots z_Q$ such that $L(x,y) = \sum_{j=1}^Q L(z_j, \gLargeLCS{y_j}$.
+We say that $x_i$ is aligned with $y_j$ if and only if $z_j$ contains strictly more than half of the prefix $0^{\gamma_1}$ of $\gLargeLCS{x_i}$.
+Note that every $x_i$ is assigned to at most one $y_j$.
+We say that $y_j$ is $k$-aligned if $k$ different $x_{i_1}, \ldots, x_{i_k}$ are aligned with $y_j$.
+For the following, we define $H(w) := 1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$
+
+First consider any $0$-aligned $y_j$.
+Per definition is $z_j$ a subsequence of $0^{\gamma_1 / 2}H(x_i)0^{\gamma / 2}$.
+By using greedy prefix matching (\autoref{lem:greedy_prefix_match}), we can bound
 \[
-	L(x,y) \geq \sum_{1\leq j \leq Q} L(\gLargeLCS{x_{2j-1}}\gLargeLCS{x_{2j}}, \gLargeLCS{y_j}) = \sum_{1\leq j \leq Q} |\gLargeLCS{y_j}| = |y| = Q\Gamma + Q\ell_y.
+	L(z_j,\gLargeLCS{y_j}) \leq L(0^{\gamma_1 / 2}H(x_i)0^{\gamma / 2}, 0^{\gamma_1}H(y_j)) \leq \frac{\gamma_1}{2} + L(H(x_i)0^{\gamma / 2}, 0^{\gamma_1 / 2}H(y_j))
 \]
-Equality follows as $|y|$ is the maximal \lcs{} size.
-
-We now show that $L(x,y) \geq Q\Gamma + N\rho_1$ for $N=Q$, i.e., $P=2Q - N = Q$.
-Note that $L(\gLargeLCS{x_i}, \gLargeLCS{y_j}) = \Gamma + L(x_i, y_j) \geq \Gamma + \rho_1$ per definition of $G$.
-The claim now follows by again splitting $x$ and $y$ in $Q$ parts such that
+By \autoref{lem:guards} with $\ell := \gamma_{1}/2 \geq 2\gamma_{2} + 6\gamma_{3} + \ell_{X} + \ell_{Y}
+= |H(x_{i})| + |H(y_{j})| \geq \numSymbols{0}{H(x_{i})} + |H(y_{j})|$, 
 \[
-	L(x,y) \geq \sum_{1\leq i \leq Q} L(\gLargeLCS{x_i}, \gLargeLCS{y_i}) \geq \sum_{1 \leq i \leq Q} \Gamma + \rho_1 = Q\Gamma + Q\rho_1 = Q\Gamma + N\rho_1.
+L\left(H(x_{i})0^{\gamma_{1}/2}, 0^{\gamma_{1}/2}H(y_{j})\right)
+= \frac{\gamma_{1}}{2} + L\left(0^{\numSymbols{0}{H(x_{i})}}, H(y_{j})\right)
+\leq \frac{\gamma_{1}}{2} + \numSymbols{0}{H(y_{j}} 
+\leq \frac{\gamma_{1}}{2} + \gamma_{3} + \ell_{Y}.
 \]
+Together we have $L(z_j,\gLargeLCS{y_j}) \leq \gamma_1 + \gamma_3 + \ell_y =: L_0$.
+
+With a similar analysis we can show, that when $y_j$ is $1$-aligned with $x_i$ we have
+\[
+	L(z_j, \gLargeLCS{y_j}) \leq \Gamma + L(x_i, y_j) = \gamma_1 + \gamma_2 + 3\gamma_3 + \rho_1 =: L_1
+\]
+where we used the assumption that $L(x_{i'}, y_{j'}) = \rho_1$ for every $i', j'$.
+
+In the case that $y_j$ is $k$-aligned for $k \geq 2$, we can trivially bound $L(z_j, \gLargeLCS{y_j}) \leq |\gLargeLCS{y_j}| = \Gamma + \ell_y =: L_k$.
+
+Let now $n_i$ be the number of $i$-aligned $y_j$.
+We set $n_k := \sum_{2\leq i} n_i$.
+Because ever $y_j$ has exactly one alignment category, we have $n_0 + n_1 + n_k = Q$.
+Further $2n_k + n_1 \leq P$ as every $k$-aligned $y_j$ uses $k$ unique $x_i$s.
+By the previous bounds, we can bound
+\[
+	L(x,y) = \sum_{j=1}^Q L(z_j, \gLargeLCS{y_j} \leq n_0 L_0 + n_1 L_1 + n_k L_k
+\]
+To find the maximum of this bound, note first $L_0 < L_1 \leq L_k$.
+Hence, we should maximize $n_k$.
+However, note also that $L_0 + L_k = 2\gamma_1 + \gamma_2 + 4\gamma_3 + 2\ell_y < 2\Gamma \leq 2L_1$.
+This shows that it is better to maximize $n_1$ such that $n_0 = 0$ instead of increasing both $n_0$ and $n_k$ by one.
+In total, we maximize the above bound by setting $n_k = Q-N$ and $n_1 = N$ which gives us the desired bound. \todo{improve maximize argument}
 
 
-% =================== (i) =================================
-We now prove (\ref{lem:1-2vs1gadget-1}).
+% ========================== Claim =============================
+Before proving (\ref{lem:1-2vs1gadget:ortho}), we first show the following claim.
+\begin{claim}
+\label{claim:1-2vs1-gadget-lb}
+We have $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
+\end{claim} 
 Let therefore $N$ be arbitrary.
+Observe that for $N=0$, i.e., $P=2Q$, it holds that $L(x,y) = |y| = Q\Gamma + Q\ell_y$ and $L(x,y) \geq Q\Gamma + \sum_i L(x_i, y_i) \geq Q\Gamma + Q\rho_1$ for $N=Q$, i.e., $P = Q$.
 The idea is now to split $x$ and $y$ into two parts: one where every $y$-gadget can match with two $x$-gadgets and one where there is a 1-to-1 mapping.
-We can then use both above claims to follow (\ref{lem:1-2vs1gadget-1}).
+We can then use both observations to follow the claim.
 Therefore, we define $Q_1 := Q-N$, $P_1 := P-N = 2(Q-N) = 2Q_1$.
 Because $\mathcal{G}$ is linear, we can split $x$ and $y$ into the two parts
 \begin{align*}
@@ -69,7 +132,7 @@ x &= \lLCSGadget{x_1, \ldots, x_{P_1}}\lLCSGadget{x_{P_1+1}, \ldots, x_{P}} =: x
 y &= \lLCSGadget{y_1, \ldots, y_{Q_1}}\lLCSGadget{y_{Q_1+1}, \ldots, y_{Q}} =: y_{2vs1}y_{1vs1}.
 \end{align*}
 %
-Now we can use the claims before as $P_1 = 2Q_1$ and $P - P_1 = Q - Q_1 = N$ to limit 
+Now we can use the observations as $P_1 = 2Q_1$ and $Q_2 := Q - Q_11 = N = P - P_1$ to limit 
 \begin{align*}
 L(x_{2vs1}, y_{2vs1}) &\geq Q_1\Gamma + Q_1\ell_y %
 & \text{and}\\
@@ -78,14 +141,15 @@ L(x_{1vs1}, y_{1vs1}) &\geq Q_2\Gamma + Q_2\rho_1 = Q_2\Gamma + N\rho_1,
 \end{align*}
 with which we can obtain the desired bound
 \begin{align*}
-L(x,y) &\geq L(\lLCSGadget{x^1_1, \ldots, x^1_{P_1}}, \lLCSGadget{y^1_1, \ldots, y^1_{Q_1}}) + L(\lLCSGadget{x^2_1, \ldots, x^2_{P_2}}, \lLCSGadget{y^2_1, \ldots, y^2_{Q_2}}) \\
+L(x,y) &\geq L(x_{2vs1}, y_{2vs1}) + L(x_{1vs1}, y_{1vs1}) \\
 	&\geq Q_1\Gamma + Q_1\ell_y + Q_2\Gamma + N\rho_1 = Q\Gamma + (Q-N)\ell_y + N\rho_1.
 \end{align*}
 
 
-% =================== (ii) =================================
-We finalize our proof by showing (\ref{lem:1-2vs1gadget-2}).
-Therefore, first assume there are $j \in \indexSet{Q}$ and $1 \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
+
+% ============================ ortho ===========================
+Let us now prove (\ref{lem:1-2vs1gadget:ortho}).
+Therefore, first assume there are $j \in \indexSet{Q}$ and $\lambda \in \indexSet{N}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
 Let $i := 2j - \lambda$.
 We now split the input strings $x$ and $y$ as follows:
 \begin{align*}
@@ -94,31 +158,116 @@ x &= \lLCSGadget{x_1, \ldots, x_{i-1}} \cdot \gLargeLCS{x_i} \cdot \lLCSGadget{x
 y &= \lLCSGadget{y_1, \ldots, y_{j-1}} \cdot \gLargeLCS{y_j} \cdot \lLCSGadget{y_{j+1}, \ldots, y_Q} %
 =: \lLCSGadget{\hat{y}_1, \ldots, \hat{y}_{Q'}} \cdot \gLargeLCS{y_j} \cdot \lLCSGadget{\tilde{y}_{1}, \ldots, \tilde{y}_{Q''}}
 \end{align*}
-We want to apply (\ref{lem:1-2vs1gadget-1}) to the first and third part of this separation.
-To do this we must first show that there is a $0 \leq N' \leq Q'$ such that $P' = 2Q' - N'$ and similarly an $N''$ for $P''$ and $Q''$.
+We want to apply \autoref{claim:1-2vs1-gadget-lb} to the first and third part of this separation.
+To do this we must first show that there is a $N'$ such that $P' = 2Q' - N'$ and similarly an $N''$ for $P''$ and $Q''$.
 Per definition $Q' = j-1$ and hence for $P'$ it follows that 
 \[
-P' = 2j - \lambda - 1 = 2(j-1) - (\lambda - 1) = 2Q' - N'
+P' = i - 1 = 2j - \lambda - 1 = 2(j-1) - (\lambda - 1) = 2Q' - N'
 \] 
-for $N' = \lambda - 1$. Because $\lambda \leq j$ it follows that $N' \leq j - 1 = Q'$.
-
+for $N' = \lambda - 1$. Note that $\lambda \geq 1$.
+%
 We further have $Q'' = Q - j$ and 
 \[
 P'' = P - i = 2Q - N - 2j + \lambda = 2(Q-j) - (N - \lambda) = 2Q'' - N''
 \]
-for $N'' := N - \lambda$.
-It remains to show that $0 \leq N'' \leq Q''$.
-Because $1 \leq \lambda \leq N$ the first inequality is clear.
-Further, $N - \lambda \leq N \leq Q - j \leq Q''$ where the second inequality is due to $j \leq Q - N$.
+for $N'' := N - \lambda$ which is non-negative as $\lambda \leq N$.
+Hence, \autoref{claim:1-2vs1-gadget-lb} is applicable and we can bound
+\begin{align*}
+	L(x,y) &\geq L\left( \lLCSGadget{\hat{x}_1, \ldots, \hat{x}_{P'}}, \lLCSGadget{\hat{y}_1, \ldots, \hat{y}_{Q'}} \right) + L(\gLargeLCS{x_i}, \gLargeLCS{y_j}) + L\left(\lLCSGadget{\tilde{x}_{1}, \ldots, \tilde{x}_{P''}}, \lLCSGadget{\tilde{y}_{1}, \ldots, \tilde{y}_{Q''}} \right)\\
+	%
+	&\geq Q'\Gamma + (Q' - N')\ell_y + N'\rho_1  + Q''\Gamma + (Q'' - N'')\ell_y + N''\rho_1 + L(\gLargeLCS{x_i}, \gLargeLCS{y_j})\\
+	&\geq (Q-1)\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + L(\gLargeLCS{x_i}, \gLargeLCS{y_j})
+\end{align*}
+as $Q' + Q'' = Q-1$, $N' + N'' = N - 1$ and $(Q' - N') + (Q'' - N'') = (Q-1) - (N -1) = Q-N$.
+With the bound $L(\gLargeLCS{x_i}, \gLargeLCS{y_j}) \geq \Gamma + L(x_i, y_j)$ and the assumption that $L(x_i, y_j) = \rho_0$ it follows (\ref{lem:1-2vs1gadget:ortho}).
+%
+%
+%
+%
+%
+%
+%
+%
+%
+% =================== (i) =================================
+%We now prove (\ref{lem:1-2vs1gadget-1}).
+%Let therefore $N$ be arbitrary.
+%The idea is now to split $x$ and $y$ into two parts: one where every $y$-gadget can match with two $x$-gadgets and one where there is a 1-to-1 mapping.
+%We can then use both above claims to follow (\ref{lem:1-2vs1gadget-1}).
+%Therefore, we define $Q_1 := Q-N$, $P_1 := P-N = 2(Q-N) = 2Q_1$.
+%Because $\mathcal{G}$ is linear, we can split $x$ and $y$ into the two parts
+%\begin{align*}
+%x &= \lLCSGadget{x_1, \ldots, x_{P_1}}\lLCSGadget{x_{P_1+1}, \ldots, x_{P}} =: x_{2vs1}x_{1vs1} \\
+%%
+%y &= \lLCSGadget{y_1, \ldots, y_{Q_1}}\lLCSGadget{y_{Q_1+1}, \ldots, y_{Q}} =: y_{2vs1}y_{1vs1}.
+%\end{align*}
+%%
+%Now we can use the claims before as $P_1 = 2Q_1$ and $P - P_1 = Q - Q_1 = N$ to limit 
+%\begin{align*}
+%L(x_{2vs1}, y_{2vs1}) &\geq Q_1\Gamma + Q_1\ell_y %
+%& \text{and}\\
+%%
+%L(x_{1vs1}, y_{1vs1}) &\geq Q_2\Gamma + Q_2\rho_1 = Q_2\Gamma + N\rho_1, 
+%\end{align*}
+%with which we can obtain the desired bound
+%\begin{align*}
+%L(x,y) &\geq L(\lLCSGadget{x^1_1, \ldots, x^1_{P_1}}, \lLCSGadget{y^1_1, \ldots, y^1_{Q_1}}) + L(\lLCSGadget{x^2_1, \ldots, x^2_{P_2}}, \lLCSGadget{y^2_1, \ldots, y^2_{Q_2}}) \\
+%	&\geq Q_1\Gamma + Q_1\ell_y + Q_2\Gamma + N\rho_1 = Q\Gamma + (Q-N)\ell_y + N\rho_1.
+%\end{align*}
 
 
-
-
-
-
-% ==============================================================
-We now assume that there is no $j$ and $\lambda$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
-
-
+% =================== (ii) =================================
+%We finalize our proof by showing (\ref{lem:1-2vs1gadget-2}).
+%Therefore, first assume there are $j \in \indexSet{Q}$ and $1 \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
+%Let $i := 2j - \lambda$.
+%We now split the input strings $x$ and $y$ as follows:
+%\begin{align*}
+%x &= \lLCSGadget{x_1, \ldots, x_{i-1}} \cdot \gLargeLCS{x_i} \cdot \lLCSGadget{x_{i+1}, \ldots, x_P} %
+%=: \lLCSGadget{\hat{x}_1, \ldots, \hat{x}_{P'}} \cdot \gLargeLCS{x_i} \cdot \lLCSGadget{\tilde{x}_{1}, \ldots, \tilde{x}_{P''}}\\
+%y &= \lLCSGadget{y_1, \ldots, y_{j-1}} \cdot \gLargeLCS{y_j} \cdot \lLCSGadget{y_{j+1}, \ldots, y_Q} %
+%=: \lLCSGadget{\hat{y}_1, \ldots, \hat{y}_{Q'}} \cdot \gLargeLCS{y_j} \cdot \lLCSGadget{\tilde{y}_{1}, \ldots, \tilde{y}_{Q''}}
+%\end{align*}
+%We want to apply (\ref{lem:1-2vs1gadget-1}) to the first and third part of this separation.
+%To do this we must first show that there is a $0 \leq N' \leq Q'$ such that $P' = 2Q' - N'$ and similarly an $N''$ for $P''$ and $Q''$.
+%Per definition $Q' = j-1$ and hence for $P'$ it follows that 
+%\[
+%P' = 2j - \lambda - 1 = 2(j-1) - (\lambda - 1) = 2Q' - N'
+%\] 
+%for $N' = \lambda - 1$. Because $\lambda \leq j$ it follows that $N' \leq j - 1 = Q'$.
+%
+%We further have $Q'' = Q - j$ and 
+%\[
+%P'' = P - i = 2Q - N - 2j + \lambda = 2(Q-j) - (N - \lambda) = 2Q'' - N''
+%\]
+%for $N'' := N - \lambda$.
+%It remains to show that $0 \leq N'' \leq Q''$.
+%Because $1 \leq \lambda \leq N$ the first inequality is clear.
+%Further, $N - \lambda \leq N \leq Q - j \leq Q''$ where the second inequality is due to $j \leq Q - N$.
+%
+%
+%
+%
+%
+%
+%% ==============================================================
+%We now assume that there is no $j$ and $\lambda$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
+%
 \end{proof}
+
+We now use this lemma to construct our instances as follows.
+For an \ov{} instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \mid B$
+
+
+
+\paragraph*{Reduction}
+We now use \autoref{lem:1-2vs1gadget} to instantiate the actual reductions with the desired bounds.
+Let $n \geq 1$ be arbitrary and consider target values $p = n^{\alpha_p}$ for all parameters $p \in \mathcal{P}$.
+We construct strings $x$ and $y$ as in \autoref{lem:1-2vs1gadget} with $D = n^{o(1)}$, $A := \lfloor \frac{d}{mD} \rfloor$ and $B := \lfloor \frac{m^2}{LD} \rfloor$.\footnote{In the original paper they used $B := \lfloor \frac{d}{LD} \rfloor$. We however simplified this, because we later restrict us to a reduced parameter space for simplicity reasons.}
+Note that \uovh{} implies a lower bound of $(AB)^{1-o(1)} = n^{2\alpha_m - o(1)} = m^{2 - o(1)} = (\delta m)^{1-o(1)}$ where the last equality holds in the current case $\alpha_\delta = \alpha_m$.
+By \autoref{thm:small_lcs_construction} (\ref{thm:small_lcs_construction:infer}) we can infer from $L(x,y)$ whether any vectors are orthogonal.
+Further the running time of the reduction is $\bigO{AD} = \bigO{L} \leq \bigO{\delta m}$ since trivially $L \leq m$.
+This proves a lower bound for any algorithm for $\lcsy{\mathbb{\alpha}}$ of $(\delta m)^{1-o(1)}$.
+
+
+What now remains to be shown is the parameter space that this reduction spans, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
 
