@@ -9,36 +9,12 @@ We will present this gadget in the following.
 
 \paragraph{1vs1/2vs1 gadget}
 The idea is to have two sets of strings $x_1, x_2, \ldots, x_P$ and $y_1, y_2, \ldots, y_Q$ embedded into $x$ and $y$.
-This is done in such a way, that in an \lcs{} each gadget for $y_i$ is either matched with one or two gadgets from $x$.
-In the former case the \lcs{} will only depend on the \lcs{} of the underlying string pairs and in the latter case, the full gadget for $y_i$ will be matched.
-To formalize this, the authors presented the following lemma \cite[Lemma 9.6]{Bringman.2018}.
+This is done in such a way, that in an \lcs{} each gadget for $y_j$ is either matched with one or two gadgets from $x$.
+In the former case the \lcs{} will only depend on the \lcs{} of the underlying string pairs $x_i$ and $y_j$ and in the latter case, the full gadget for $y_j$ will be matched.
+See \autoref{fig:12vs1gadget} for a visualization of this.
+To formalize the idea, the authors presented a lemma \cite[Lemma 9.6]{Bringman.2018} similar to the following.
 
 \input{sections/main_part/reductions/large_lcs/1vs1-2vs1-gadget-tikz}
-
-\begin{lemma}[see ]
-For $P$, $Q$ and $0 \leq N \leq Q$ with $P = 2Q - N$ and strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$, construct
-\begin{align*}
-	x &:= \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
-	y &:= \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
-\end{align*}
-where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$. \todo{is the citing sufficient as it is basically a direct cite of the paper?}
-It holds:
-
-\[
-L(x,y) = Q(\gamma_1 + \gamma_2 + 3\gamma_3) + (Q - N)\ell_y + \max_{I \in \binom{[Q]}{N}} \sum_{i \in I} L(x_i, y_i)
-\]
-\end{lemma}
-
-Intuitively the three summands can be interpreted as follows.
-The first term is the sum of all guarding strings that can always be matched.
-The second term is for the gadgets for $y_i$ that fully match with two $x$-Gadgets.
-The third term represents the direct matching.
-
-
-\begin{proof}
-Note that to show (\ref{lemma:1v1gadget:1}) it suffices to show that $L(\gLargeLCS{x_i}\gLargeLCS{x_{i+1}}, \gLargeLCS{y_j}) = |y_j|$.
-
-\end{proof}
 
 
 
@@ -47,15 +23,15 @@ Note that to show (\ref{lemma:1v1gadget:1}) it suffices to show that $L(\gLargeL
 Let $\rho_0 > \rho_1$ and $P, Q \geq 1$ with $P = 2Q - N$ where $0 \leq N \leq Q$.
 For any strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$ with $L(x_i, y_j) \in \{\rho_0, \rho_1\}$ for all pairs of strings $x_i$ and $y_j$, construct
 \begin{align*}
-	x &:= \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
-	y &:= \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
+	x &:= \lLCSGadget{x_1, \ldots, x_P} := \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
+	y &:= \lLCSGadget{y_1, \ldots, y_Q} := \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
 \end{align*}
 where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$.
 It holds:
 
 \begin{enumerate}[(i)]
-\item $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
-\item $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0$ if and only if there are $j \in \indexSet{Q}$ and $\lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$
+\item\label{lem:1-2vs1gadget-1} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
+\item\label{lem:1-2vs1gadget-2} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0$ if and only if there are $j \in \indexSet{Q}$ and $\lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$
 \end{enumerate}
 %
 where $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
@@ -63,7 +39,59 @@ where $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
 \end{lemma}
 
 \begin{proof}
-We first show that for $N=0$ it holds that $L(x,y) = |y| = Q\gamma + Q\ell_y$
+We first show that for $N=0$, i.e., $P=2Q$, it holds that $L(x,y) = |y| = Q\Gamma + Q\ell_y$.
+Observe therefore, that $L(\gLargeLCS{x_i}\gLargeLCS{x_{i+1}}, \gLargeLCS{y_j}) = |\gLargeLCS{y_j}|$ as $0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}$ is a prefix of $\gLargeLCS{x_i}$, $y_i$ is a substring of $(01)^{\gamma_3}$ ($\gamma_3 \geq \ell_y$) and $1^{\gamma_3}$ is a suffix of $\gLargeLCS{x_{i+1}}$. See the orange part in \autoref{fig:12vs1gadget} for a visualization of this.
+As $P = 2Q$, we can hence split $x$ and $y$ in $Q$ parts such that
+\[
+	L(x,y) \geq \sum_{1\leq j \leq Q} L(\gLargeLCS{x_{2j-1}}\gLargeLCS{x_{2j}}, \gLargeLCS{y_j}) = \sum_{1\leq j \leq Q} |\gLargeLCS{y_j}| = |y| = Q\Gamma + Q\ell_y.
+\]
+Equality follows as $|y|$ is the maximal \lcs{} size.
 
+We now show that $L(x,y) \geq Q\Gamma + N\rho_1$ for $N=Q$, i.e., $P=2Q - N = Q$.
+Note that $L(\gLargeLCS{x_i}, \gLargeLCS{y_j}) = \Gamma + L(x_i, y_j) \geq \Gamma + \rho_1$ per definition of $G$.
+The claim now follows by again splitting $x$ and $y$ in $Q$ parts such that
+\[
+	L(x,y) \geq \sum_{1\leq i \leq Q} L(\gLargeLCS{x_i}, \gLargeLCS{y_i}) \geq \sum_{1 \leq i \leq Q} \Gamma + \rho_1 = Q\Gamma + Q\rho_1 = Q\Gamma + N\rho_1.
+\]
+
+
+% =================== (i) =================================
+We now prove (\ref{lem:1-2vs1gadget-1}).
+Let therefore $N$ be arbitrary.
+The idea is now to split $x$ and $y$ into two parts: one where every $y$-gadget can match with two $x$-gadgets and one where there is a 1-to-1 mapping.
+We can then use both above claims to follow (\ref{lem:1-2vs1gadget-1}).
+Therefore, we define $Q_1 := Q-N$, $P_1 := P-N = 2(Q-N) = 2Q_1$.
+Note that $Q = Q_1 + Q_2$ and $P = P_1 + P_2$, hence, we can further define
+\begin{align*}
+x^1_1, \ldots, x^1_{P_1} &:= x_1, \ldots, x_{P_1} %
+& %
+x^2_1, \ldots, x^2_{P_2} &:= x_{P_1 + 1}, \ldots, x_{P}\\
+%
+y^1_1, \ldots, y^1_{Q_1} &:= y_1, \ldots, y_{Q_1} %
+& %
+y^2_1, \ldots, y^2_{Q_2} &:= y_{Q_1 + 1}, \ldots, y_{Q},
+\end{align*}
+which then defines our split of $x$ and $y$ in
+\begin{align*}
+x &= \lLCSGadget{x^1_1, \ldots, x^1_{P_1}}\lLCSGadget{x^2_1, \ldots, x^2_{P_2}} \\
+%
+y &= \lLCSGadget{y^1_1, \ldots, y^1_{Q_1}}\lLCSGadget{y^2_1, \ldots, y^2_{Q_2}}.
+\end{align*}
+%
+Now we can use the claims before as $P_1 = 2Q_1$ and $P_2=Q_2$ to limit 
+\begin{align*}
+L(\lLCSGadget{x^1_1, \ldots, x^1_{P_1}}, \lLCSGadget{y^1_1, \ldots, y^1_{Q_1}}) &\geq Q_1\Gamma + Q_1\ell_y %
+\quad \text{and}\\
+%
+L(\lLCSGadget{x^2_1, \ldots, x^2_{P_2}}, \lLCSGadget{y^2_1, \ldots, y^2_{Q_2}}) &\geq Q_2\Gamma + Q_2\rho_1 = Q_2\Gamma + N\rho_1, 
+\end{align*}
+with which we can obtain the desired bound
+\begin{align*}
+L(x,y) &\geq L(\lLCSGadget{x^1_1, \ldots, x^1_{P_1}}, \lLCSGadget{y^1_1, \ldots, y^1_{Q_1}}) + L(\lLCSGadget{x^2_1, \ldots, x^2_{P_2}}, \lLCSGadget{y^2_1, \ldots, y^2_{Q_2}}) \\
+	&\geq Q_1\Gamma + Q_1\ell_y + Q_2\Gamma + N\rho_1 = Q\Gamma + (Q-N)\ell_y + N\rho_1.
+\end{align*}
+
+
+% =================== (ii) =================================
 \end{proof}
 
