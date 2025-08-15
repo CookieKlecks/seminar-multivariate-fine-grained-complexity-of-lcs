@@ -35,6 +35,8 @@
 % Hyperref für Hyperlink und Sprungtexte
 \usepackage{xcolor,hyperref}
 
+% for \enquote
+\usepackage{csquotes}
 
 % Autoref names anpassen:
 %\addto\extrasenglish{%
@@ -47,4 +49,10 @@
 \usepackage{todonotes} % for todos
 %\renewcommand{\todo}[1]{{\footnotesize(\textcolor{orange}{Notiz: #1})}}
 %\renewcommand{\todo}[1]{}
+
+
+% Define a background layer
+\pgfdeclarelayer{bg}
+\pgfdeclarelayer{mid}
+\pgfsetlayers{bg,mid,main}
 

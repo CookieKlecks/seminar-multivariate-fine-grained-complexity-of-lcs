@@ -1,0 +1,199 @@
+% Coordinate gadgets
+\newcommand{\cgZeroX}{\mathbf{0_x}}
+\newcommand{\cgOneX}{\mathbf{1_x}}
+\newcommand{\cgZeroY}{\mathbf{0_y}}
+\newcommand{\cgOneY}{\mathbf{1_y}}
+\newcommand{\cg}[2]{\text{\textsc{Cg}}(#1,#2)}
+
+
+% Vector Gadges
+\newcommand{\guardX}[1]{G_X(#1)}
+\newcommand{\guardY}[1]{G_Y(#1)}
+% example:
+\newcommand{\exVGguardOne}[3]{\node[base, number, guard] (#3) at ($(#1) + (#2,0)$) {$1^{\gamma_2}$};}
+\newcommand{\exVGguardZero}[3]{
+		\node[base, number, guard] (#3) at ($(#1) + (#2,0)$) {$0^{\gamma_1}$};}
+\newcommand{\exVGbigGuardZero}[3]{
+		\node[base, number, big guard] (#3) at ($(#1) + (#2,0)$) {$0^{\gamma_3}$};}
+\newcommand{\exVGendGuardY}[3]{
+		\node[base, number, big guard] (#3) at ($(#1) + (#2,0)$) {$0^{n\gamma_4}$};}
+		
+		
+\newcommand{\vg}[1]{\text{\textsc{Vg}}(#1)}
+
+
+\newcommand{\vgWithDummy}[7]{%
+	\node[cell] (#1_1) at (base) {#2};
+	\node[cell] (#1_2) at ($(base) + (1,0)$) {#3};
+	\node[cell] (#1_3) at ($(base) + (2,0)$) {#4};
+    \node (#1_dots) at ($(base) + (3,0)$) {$\cdots$};
+    \node[cell] (#1_4) at ($(base) + (4,0)$) {#5};
+    \node[cell] (#1_dummy) at ($(base) + (5,0)$) {#6};
+        
+    \node[] (#1_vector) at ($(base) + (2,0) #7 (0,12pt)$) {coordinates};
+        
+    \coordinate (#1_line_top) at ($(#1_dummy.west) + (0,14pt)$);
+    \coordinate (#1_line_bot) at ($(#1_dummy.west) - (0,14pt)$);
+    \path[draw, thick] (#1_line_top) -- (#1_line_bot);
+        
+    \node[] (#1_dummy_text) at ($(base) + (5.2,0) #7 (0,12pt)$) {};
+    
+		\begin{pgfonlayer}{mid}
+    \node[box vg, fit=(#1_1) (#1_vector) (#1_dummy_text) (#1_line_top.north) (#1_line_bot.south)] (#1_box) {};
+    \end{pgfonlayer}
+}
+
+\newcommand{\vgDummyS}[6]{%
+	\node[cell] (#1_1) at (base) {#2};
+	\node[cell] (#1_2) at ($(base) + (1,0)$) {#3};
+    \node (#1_dots) at ($(base) + (2,0)$) {$\cdots$};
+    \node[cell] (#1_4) at ($(base) + (3,0)$) {#4};
+    \node[cell] (#1_dummy) at ($(base) + (4,0)$) {#5};
+        
+    \node[] (#1_vector) at ($(base) + (1.5,0) #6 (0,12pt)$) {zero vector};
+        
+    \coordinate (#1_line_top) at ($(#1_dummy.west) + (0,14pt)$);
+    \coordinate (#1_line_bot) at ($(#1_dummy.west) - (0,14pt)$);
+    \path[draw, thick] (#1_line_top) -- (#1_line_bot);
+        
+    \node[] (#1_dummy_text) at ($(base) + (4.2,0) #6 (0,12pt)$) {};
+    
+		\begin{pgfonlayer}{mid}
+    \node[box vg, fit=(#1_1) (#1_vector) (#1_dummy_text) (#1_line_top.north) (#1_line_bot.south)] (#1_box) {};
+    \end{pgfonlayer}
+}
+
+\tikzset{
+    cell/.style = {
+        draw, fill=white, rounded corners=0, rectangle,
+        minimum width=2em, minimum height=14pt,
+        anchor=center, inner sep=1pt
+    },
+    box vg/.style = {
+        draw, fill=lightgray, inner sep=5pt, rounded corners
+    },
+    box nvg/.style = {
+        draw, fill=lightgray!60!white, inner sep=5pt, rounded corners
+    },
+    good edge/.style = {
+        draw, color=teal
+    },
+    bad edge/.style = {
+        draw, color=orange
+    }
+}
+
+\begin{figure}
+
+    \centering
+    % First subfigure
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, fill=blue!10, inner sep=3pt},
+    edge/.style={green!70!black, thick},
+    labelstyle/.style={font=\scriptsize},
+    x=1.6em
+]
+
+\coordinate (base) at (0,2);
+\vgWithDummy{a}{$\cgZeroX$}{$\cgOneX$}{$\cgZeroX$}{$\cgOneX$}{$\cgZeroX$}{+}
+\node[above=2pt of a_box.north] (vgai) {$\vg{a_i}$}; 
+
+\coordinate (base) at ($(a_dummy.east) + (1.5,0)$);
+\vgDummyS{s}{$\cgZeroX$}{$\cgZeroX$}{$\cgZeroX$}{$\cgOneX$}{+}
+\node[above=2pt of s_box.north] (S) {$S$}; 
+
+
+\begin{pgfonlayer}{bg}
+    \node[box nvg, draw, fit=(a_box) (s_box) (vgai) (S)] (nvgai) {};
+    \node[above=2pt of nvgai.north] {$\nvg{a_i}$}; 
+\end{pgfonlayer}
+ 
+
+
+
+
+\path ($(a_1.south)!0.5!(s_1.south)$) ++(0,-2.2) coordinate (base);
+
+\vgWithDummy{b}{$\cgZeroY$}{$\cgOneY$}{$\cgOneY$}{$\cgOneY$}{$\cgOneY$}{-}
+
+\vgWithDummy{b}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{-}
+
+\node[below=2pt of b_box.south] (vgbj) {$\vg{b_j}$}; 
+
+\begin{pgfonlayer}{bg}
+    \node[box nvg, draw, fit=(b_box) (vgbj)] (nvgbj) {};
+    \node[below=2pt of nvgbj.south] {$\nvg{b_j}$}; 
+\end{pgfonlayer}
+
+
+\draw[good edge] (a_1.south) edge node[fill=white] {$\rho_0$} (b_1.north);
+\draw[good edge] (a_2.south) edge node[fill=white] {$\rho_0$} (b_2.north);
+\draw[good edge] (a_3.south) edge node[fill=white] {$\rho_0$} (b_3.north);
+\draw[good edge] (a_4.south) edge node[fill=white] {$\rho_0$} (b_4.north);
+\draw[good edge] (a_dummy.south) edge node[fill=white] {$\rho_0$} (b_dummy.north);
+
+\end{tikzpicture}
+        \caption{First subfigure}
+        \label{fig:nvg:ortho}
+    \end{subfigure}
+    \hfill
+    % Second subfigure
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, fill=blue!10, inner sep=3pt},
+    edge/.style={green!70!black, thick},
+    labelstyle/.style={font=\scriptsize},
+    x=1.6em
+]
+
+\coordinate (base) at (0,2);
+\vgWithDummy{a}{$\cgZeroX$}{$\cgOneX$}{$\cgZeroX$}{$\cgOneX$}{$\cgZeroX$}{+}
+\node[above=2pt of a_box.north] (vgai) {$\vg{a_i}$}; 
+
+\coordinate (base) at ($(a_dummy.east) + (1.5,0)$);
+\vgDummyS{s}{$\cgZeroX$}{$\cgZeroX$}{$\cgZeroX$}{$\cgOneX$}{+}
+\node[above=2pt of s_box.north] (S) {$S$}; 
+
+
+\begin{pgfonlayer}{bg}
+    \node[box nvg, draw, fit=(a_box) (s_box) (vgai) (S)] (nvgai) {};
+    \node[above=2pt of nvgai.north] {$\nvg{a_i}$}; 
+\end{pgfonlayer}
+ 
+
+
+
+
+\path ($(a_1.south)!0.5!(s_1.south)$) ++(0,-2.2) coordinate (base);
+
+\vgWithDummy{b}{$\cgZeroY$}{$\cgOneY$}{$\cgOneY$}{$\cgOneY$}{$\cgOneY$}{-}
+
+\vgWithDummy{b}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{$\cgZeroY$}{$\cgOneY$}{-}
+
+\node[below=2pt of b_box.south] (vgbj) {$\vg{b_j}$}; 
+
+\begin{pgfonlayer}{bg}
+    \node[box nvg, draw, fit=(b_box) (vgbj)] (nvgbj) {};
+    \node[below=2pt of nvgbj.south] {$\nvg{b_j}$}; 
+\end{pgfonlayer}
+
+
+\draw[good edge] (s_1.south) edge node[fill=white] {$\rho_0$} (b_1.north);
+\draw[good edge] (s_2.south) edge node[fill=white] {$\rho_0$} (b_2.north);
+\draw[good edge] (s_dots.south) edge node[fill=white] {$\rho_0$} (b_3.north);
+\draw[good edge] (s_4.south) edge node[fill=white] {$\rho_0$} (b_4.north);
+\draw[bad edge] (s_dummy.south) edge node[fill=white] {$\rho_1$} (b_dummy.north);
+
+
+\end{tikzpicture}
+        \caption{Second subfigure}
+        \label{fig:nvg:non-ortho}
+    \end{subfigure}
+    \caption{Visualization of the normalized vector gadget.}
+    \label{fig:nvg}
+
+\end{figure}
+

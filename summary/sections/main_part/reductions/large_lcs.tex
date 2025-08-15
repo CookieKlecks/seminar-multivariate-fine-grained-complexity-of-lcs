@@ -27,14 +27,15 @@ For any strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots
 	y &:= \lLCSGadget{y_1, \ldots, y_Q} := \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
 \end{align*}
 where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$.
+We define $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
 It holds:
-
+%
 \begin{enumerate}[(i)]
 \item\label{lem:1-2vs1gadget-1} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
-\item\label{lem:1-2vs1gadget-2} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0$ if and only if there are $j \in \indexSet{Q}$ and $\lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$
+\item\label{lem:1-2vs1gadget-2} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0 \Leftrightarrow \exists j \in \indexSet{Q - N},1 \leq \lambda \leq \min\{N, j\}: L(x_{2j-\lambda}, y_j) = \rho_0$
 \end{enumerate}
 %
-where $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
+if and only if there are $j \in \indexSet{Q}$ and $j - Q + N \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
 
 \end{lemma}
 
@@ -61,29 +62,19 @@ Let therefore $N$ be arbitrary.
 The idea is now to split $x$ and $y$ into two parts: one where every $y$-gadget can match with two $x$-gadgets and one where there is a 1-to-1 mapping.
 We can then use both above claims to follow (\ref{lem:1-2vs1gadget-1}).
 Therefore, we define $Q_1 := Q-N$, $P_1 := P-N = 2(Q-N) = 2Q_1$.
-Note that $Q = Q_1 + Q_2$ and $P = P_1 + P_2$, hence, we can further define
+Because $\mathcal{G}$ is linear, we can split $x$ and $y$ into the two parts
 \begin{align*}
-x^1_1, \ldots, x^1_{P_1} &:= x_1, \ldots, x_{P_1} %
-& %
-x^2_1, \ldots, x^2_{P_2} &:= x_{P_1 + 1}, \ldots, x_{P}\\
+x &= \lLCSGadget{x_1, \ldots, x_{P_1}}\lLCSGadget{x_{P_1+1}, \ldots, x_{P}} =: x_{2vs1}x_{1vs1} \\
 %
-y^1_1, \ldots, y^1_{Q_1} &:= y_1, \ldots, y_{Q_1} %
-& %
-y^2_1, \ldots, y^2_{Q_2} &:= y_{Q_1 + 1}, \ldots, y_{Q},
-\end{align*}
-which then defines our split of $x$ and $y$ in
-\begin{align*}
-x &= \lLCSGadget{x^1_1, \ldots, x^1_{P_1}}\lLCSGadget{x^2_1, \ldots, x^2_{P_2}} \\
-%
-y &= \lLCSGadget{y^1_1, \ldots, y^1_{Q_1}}\lLCSGadget{y^2_1, \ldots, y^2_{Q_2}}.
+y &= \lLCSGadget{y_1, \ldots, y_{Q_1}}\lLCSGadget{y_{Q_1+1}, \ldots, y_{Q}} =: y_{2vs1}y_{1vs1}.
 \end{align*}
 %
-Now we can use the claims before as $P_1 = 2Q_1$ and $P_2=Q_2$ to limit 
+Now we can use the claims before as $P_1 = 2Q_1$ and $P - P_1 = Q - Q_1 = N$ to limit 
 \begin{align*}
-L(\lLCSGadget{x^1_1, \ldots, x^1_{P_1}}, \lLCSGadget{y^1_1, \ldots, y^1_{Q_1}}) &\geq Q_1\Gamma + Q_1\ell_y %
-\quad \text{and}\\
+L(x_{2vs1}, y_{2vs1}) &\geq Q_1\Gamma + Q_1\ell_y %
+& \text{and}\\
 %
-L(\lLCSGadget{x^2_1, \ldots, x^2_{P_2}}, \lLCSGadget{y^2_1, \ldots, y^2_{Q_2}}) &\geq Q_2\Gamma + Q_2\rho_1 = Q_2\Gamma + N\rho_1, 
+L(x_{1vs1}, y_{1vs1}) &\geq Q_2\Gamma + Q_2\rho_1 = Q_2\Gamma + N\rho_1, 
 \end{align*}
 with which we can obtain the desired bound
 \begin{align*}
@@ -93,5 +84,41 @@ L(x,y) &\geq L(\lLCSGadget{x^1_1, \ldots, x^1_{P_1}}, \lLCSGadget{y^1_1, \ldots,
 
 
 % =================== (ii) =================================
+We finalize our proof by showing (\ref{lem:1-2vs1gadget-2}).
+Therefore, first assume there are $j \in \indexSet{Q}$ and $1 \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
+Let $i := 2j - \lambda$.
+We now split the input strings $x$ and $y$ as follows:
+\begin{align*}
+x &= \lLCSGadget{x_1, \ldots, x_{i-1}} \cdot \gLargeLCS{x_i} \cdot \lLCSGadget{x_{i+1}, \ldots, x_P} %
+=: \lLCSGadget{\hat{x}_1, \ldots, \hat{x}_{P'}} \cdot \gLargeLCS{x_i} \cdot \lLCSGadget{\tilde{x}_{1}, \ldots, \tilde{x}_{P''}}\\
+y &= \lLCSGadget{y_1, \ldots, y_{j-1}} \cdot \gLargeLCS{y_j} \cdot \lLCSGadget{y_{j+1}, \ldots, y_Q} %
+=: \lLCSGadget{\hat{y}_1, \ldots, \hat{y}_{Q'}} \cdot \gLargeLCS{y_j} \cdot \lLCSGadget{\tilde{y}_{1}, \ldots, \tilde{y}_{Q''}}
+\end{align*}
+We want to apply (\ref{lem:1-2vs1gadget-1}) to the first and third part of this separation.
+To do this we must first show that there is a $0 \leq N' \leq Q'$ such that $P' = 2Q' - N'$ and similarly an $N''$ for $P''$ and $Q''$.
+Per definition $Q' = j-1$ and hence for $P'$ it follows that 
+\[
+P' = 2j - \lambda - 1 = 2(j-1) - (\lambda - 1) = 2Q' - N'
+\] 
+for $N' = \lambda - 1$. Because $\lambda \leq j$ it follows that $N' \leq j - 1 = Q'$.
+
+We further have $Q'' = Q - j$ and 
+\[
+P'' = P - i = 2Q - N - 2j + \lambda = 2(Q-j) - (N - \lambda) = 2Q'' - N''
+\]
+for $N'' := N - \lambda$.
+It remains to show that $0 \leq N'' \leq Q''$.
+Because $1 \leq \lambda \leq N$ the first inequality is clear.
+Further, $N - \lambda \leq N \leq Q - j \leq Q''$ where the second inequality is due to $j \leq Q - N$.
+
+
+
+
+
+
+% ==============================================================
+We now assume that there is no $j$ and $\lambda$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
+
+
 \end{proof}
 
