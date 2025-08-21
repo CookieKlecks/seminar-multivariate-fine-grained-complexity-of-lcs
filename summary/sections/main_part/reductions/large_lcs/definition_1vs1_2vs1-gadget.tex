@@ -1,0 +1,34 @@
+\begin{definition}
+Fix $P, Q \geq 1$ with $P = 2Q - N$.
+For $\rho_0 > \rho_1 \leq 0$ and any strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$ with $L(x_i, y_j) \in \{\rho_0, \rho_1\}$ for all pairs of strings $x_i$ and $y_j$, we define
+\begin{align*}
+	\lLCSGadget{x_1, \ldots, x_P} &:= \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
+	\lLCSGadget{y_1, \ldots, y_Q} &:= \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
+\end{align*}
+where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$.
+We further define $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
+We say that $\lLCSGadgetName$ is the 1vs1/2vs1 gadget of these strings.
+\end{definition}
+
+
+\begin{lemma}
+\label{lem:1-2vs1-gadget-edge-cases}
+For $N = 0$ and $N = Q$, i.e., $P = 2Q$ and $P = Q$ respectively, we have
+\begin{enumerate}[(i)]
+\item\label{lem:1-2vs1-gadget-edge-cases:P=2Q} if $P = 2Q$: $L(\lLCSGadget{x_1, \ldots, x_P}, \lLCSGadget{y_1, \ldots, y_Q}) \geq Q(\Gamma + \ell_y)$
+\item\label{lem:1-2vs1-gadget-edge-cases:P=Q} if $P = Q$: $L(\lLCSGadget{x_1, \ldots, x_P}, \lLCSGadget{y_1, \ldots, y_Q}) \geq Q\Gamma + \sum_{i = 1}^{Q} L(x_i, y_i)$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+For (\ref{lem:1-2vs1-gadget-edge-cases:P=2Q}) observe that $L(\gLargeLCS{u}\gLargeLCS{u'}, \gLargeLCS{v}) \geq |\gLargeLCS{w}|$.
+Hence, if we split the strings such that we always match two $x$-gadgets with one $y$-gadget, we can match the full $y$ string and $|\lLCSGadget{y_1, \ldots, y_Q}| = Q(\Gamma + \ell_y)$.
+Analogous for (\ref{lem:1-2vs1-gadget-edge-cases:P=Q}) with $L(\gLargeLCS{u}, \gLargeLCS{v}) \geq \Gamma + L(u,v)$.
+This is because we can greedily match all guarding blocks.
+Both cases are visualized in \autoref{fig:12vs1gadget}.
+\end{proof}
+
+
+We will now prove some properties of this gadget.
+As notation we use in the following $x := \lLCSGadget{x_1, \ldots, x_P}$ and $y := \lLCSGadget{y_1, \ldots, y_Q}$ for any appropriate $P$, $Q$ and strings $x_i$ and $y_j$.
+We show an upper bound for the case that $L(x_i, y_i) = \rho_1$ for all $x_i$ and $y_j$ and a lower bound when one $L(x_i, y_j) = \rho_0$ for appropriate $x_i$ and $y_j$ exists.
+This will later translate to the cases where no orthogonal vectors or one $\langle a_i, b_j \rangle = 0$ exists respectively.

@@ -1,0 +1,65 @@
+\begin{lemma}
+\label{lem:1-2vs1:ortho-lower-bound}
+If there are $N < j \leq Q-N$ and $\lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$, we have
+\[ 
+L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1.
+\]
+We define $i := 2j - \lambda$, i.e., $L(x_i, y_j) = \rho_0$.
+\end{lemma}
+
+\begin{proof}
+We split the input strings into the three parts
+\begin{align*}
+(x_1, \ldots, x_P) &= (x^L_1, \ldots, x^L_{P'}, \hat{x}_1, \ldots, \hat{x}_N, x^R_1, \ldots, x^R_{P''}) \quad\text{and}\\
+(y_1, \ldots, y_Q) &= (y^L_1, \ldots, y^L_{Q'}, \hat{y}_1, \ldots, \hat{y}_N, y^R_1, \ldots, y^R_{Q''}),
+\end{align*}
+where $Q' = j - \lambda$, $P' = 2(j - \lambda)$, $Q'' = Q - Q' - N$ and $P'' = P - P' - N$.
+Note that
+\begin{align*}
+P' = 2j - 2\lambda &<& &2j - \lambda = i& &\leq 2j - 2\lambda + N = P' + N \quad\text{and}\\
+Q' = j - \lambda &<& &j& &\leq j - \lambda + N = Q' + N,
+\end{align*}
+where we used $1 \leq \lambda \leq N$.
+Hence, we can claim that $x_i$ and $y_j$ are in the middle part, i.e., $x_i = \hat{x}_{i'}$ and $y_j = \hat{y}_{j'}$ for some $i', j' \in \indexSet{N}$.
+Note further that $P' = 2Q'$ and $P'' = 2Q''$.
+We now bound the LCS with
+\begin{align*}
+L(x,y) \geq &\ L(\lLCSGadget{x^L_1, \ldots, x^L_{P'}}, \lLCSGadget{y^L_1, \ldots, y^L_{Q'}}) \\
+&+ L(\lLCSGadget{\hat{x}_1, \ldots, \hat{x}_N}, \lLCSGadget{\hat{y}_1, \ldots, \hat{y}_N}) \\
+&+ L(\lLCSGadget{x^R_1, \ldots, x^R_{P''}}, \lLCSGadget{y^R_1, \ldots, y^R_{Q''}}).
+\end{align*}
+\end{proof}
+
+
+
+
+\begin{lemma}
+\label{lem:1-2vs1gadget}
+Let $\rho_0 > \rho_1$ and $P, Q \geq 1$ with $P = 2Q - N$.
+For any strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$ with $L(x_i, y_j) \in \{\rho_0, \rho_1\}$ for all pairs of strings $x_i$ and $y_j$, construct
+\begin{align*}
+	x &:= \lLCSGadget{x_1, \ldots, x_P} := \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
+	y &:= \lLCSGadget{y_1, \ldots, y_Q} := \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
+\end{align*}
+where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$.
+We define $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
+It holds:
+%
+\begin{enumerate}[(i)]
+\item\label{lem:1-2vs1gadget:not-ortho} if $L(x_i, y_j) = \rho_1$ for all $i \in \indexSet{P}, j \in \indexSet{Q}$: 
+\[ 
+L(x,y) \leq Q\Gamma + (Q-N)\ell_y + N\rho_1
+\]
+\item\label{lem:1-2vs1gadget:ortho} if there is $j \in \indexSet{Q}, \lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$: 
+\[
+L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0
+\]
+
+
+%\item\label{lem:1-2vs1gadget-1} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
+%\item\label{lem:1-2vs1gadget-2} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0 \Leftrightarrow \exists j \in \indexSet{Q - N},1 \leq \lambda \leq \min\{N, j\}: L(x_{2j-\lambda}, y_j) = \rho_0$
+\end{enumerate}
+%
+%if and only if there are $j \in \indexSet{Q}$ and $j - Q + N \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
+
+\end{lemma}
