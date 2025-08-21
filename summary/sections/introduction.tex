@@ -1,48 +1,87 @@
 \section{Introduction}
+Finding longest common subsequences (LCS) in strings is a well-studied field with applications running from file comparisons to DNA sequence analysis\todo{add citations}.
+The task is to find for two strings $x$ and $y$ over the alphabet $\Sigma$ a common subsequence $z$ of maximal length.
+The problem can be solved with dynamic programming in $\bigO{n^2}$ where $n$ is the length of the input strings.
+Only a logarithmic improvement to this is known\todo{cite} and a fine-grained analysis showed that polynomial improvements would refute the Strong Exponential Time Hypothesis\todo{cite}.
 
-This multivariate analysis of the LCS problem, studied the following parameters.
-The input size $n := \max\{|x|, |y|\}$ of the longer and $m := \min\{|x|, |y|\}$ of the shorter string, the size of the underlying alphabet $|\Sigma|$, the length $L$ of a longest common subsequence
+However there are still new algorithms being developed.
+They are often inspired by real-world applications where we can observe specific properties of the strings.
+For example for file comparisons it is often the case that $x$ and $y$ only differ at few positions.
+That enables to develop algorithms that exploit this property to achieve faster running times for these instances.
+This motivates a multivariate fine-grained complexity analysis of LCS where the goal is to find lower bounds for the running times depending on a set of parameters, not only the input length $n$.
 
+In the following we will use the notation $\numSymbols{\sigma}{x}$ for the number of occurrences of the symbol $\sigma$ in the string $x$.
 
-
-Todo:
-
-\begin{itemize}
-\item Motivation
-\item Define LCS
-\item Define \uovh{}
-\end{itemize}
-
-
-\subsection{Notations}
-Todo: Define notations for:
-
-$\#_\sigma(x)$
-
-
-\subsection{Technical Tools}
-In this section we state lemmata from the original paper that are needed for later proofs.
-Due to size constraints, we do not prove them here.
-
-\begin{lemma}[Greedy Prefix Matching]\footnote{Copied from \cite[Lemma 7.1]{Bringman.2018}}
-\label{lem:greedy_prefix_match}
-For any strings $w, x, y$, we have
-\(
-L(wx, wy) = |w| + L(x, y)
-\)
-and
-\(
-d(wx, wy) = |w| + d(x, y).
-\)
-\end{lemma}
-
-\begin{lemma}\footnote{Copied from \cite[Lemma 7.6]{Bringman.2018}}
-\label{lem:guards}
-For any strings $x, y, z$ and $\ell \geq \numSymbols{0}{x} + |z|$ we have
-\(
-L\left(x0^{\ell}y,\,0^{\ell}z\right) = \ell + L\left(0^{\#_{0}(x)}y,\,z\right).
-\)
-\end{lemma}
 
 \subsection{Related Work}
+
+\autoref{tab:related_work} shows an overview of the related work on multivariate LCS.
+
+\begin{table}[hb]
+\centering
+\begin{tabular}{@{}p{0.48\linewidth}p{0.45\linewidth}@{}}
+\toprule
+\textbf{Reference} & \textbf{Running Time} \\
+\midrule
+Wagner and Fischer~[84]\todo{add citations} & $\mathcal{O}(mn)$ \\
+Hunt and Szymanski~[47] & $\mathcal{O}((n+M)\log n)$ \\
+Hirschberg~[45] & $\mathcal{O}(n\log n + Ln)$ \\
+Hirschberg~[45] & $\mathcal{O}(n\log n + L\delta\log n)$ \\
+Masek and Paterson~[65] & $\mathcal{O}(n + nm/\log^{2} n)\ \text{assuming } |\Sigma|=\mathcal{O}(1)$ \\
+& $\mathcal{O}\!\left(n + nm\cdot(\frac{\log\log n}{\log n})^{2}\right)$\footnote{todo} \\
+Nakatsu, Kambayashi and Yajima~[71] & $\mathcal{O}(n\delta)$ \\
+Apostolico~[13] & $\mathcal{O}\!\left(n\log n + d\log\!\left(\tfrac{mn}{d}\right)\right)$ \\
+Myers~[70] & $\mathcal{O}(n\log n + \Delta^{2})$ \\
+Apostolico and Guerra~[14] & $\mathcal{O}\!\left(n\log n + Lm\min\{\log m,\log(n/m)\}\right)$ \\
+Wu, Manber, Myers and Miller~[87] & $\mathcal{O}(n\log n + \delta\Delta)^{\;3}$ \\
+Eppstein, Galil, Giancarlo and Italiano~[37] & $\mathcal{O}\!\left(n\log n + d\log\log\min\{d, nm/d\}\right)$ \\
+Iliopoulos and Rahman~[50] & $\mathcal{O}(n + M\log\log n)$ \\
+\bottomrule
+\end{tabular}
+\vspace{1em}
+\caption{Taken from \cite{Bringman.2018}. Overview of selected LCS algorithms. The parameters are defined in \autoref{sec:def-params}.}
+\label{tab:related_work}
+\end{table}
+
+
+
+
+\subsection{Hardness Hypothesis}
+As basis for the reductions the \emph{Orthogonal Vectors} (OV) problem is used.
+Here two sets $\mathcal{A}, \mathcal{B} \subseteq \{0,1\}^D$ are given and the task is to decide whether there are $a \in \mathcal{A}, b \in \mathcal{B}$ s.t. $\langle a,b \rangle := \sum_{i=1}^D a[i]\cdot b[i] = 0$.
+Based on this problem, the authors of the original paper proof the lower bounds based on the following hypothesis.
+%
+\begin{definition}[Unbalanced Orthogonal Vectors Hypothesis (UOVH)]
+For any $\alpha, \beta \in (0,1]$, the following problem requires time $n^{\alpha + \beta - o(1)}$:
+Given a number $n$, solve a given OV instance with 
+$D = n^{o(1)}$ and $|\mathcal{A}| = \bigO{n^\alpha}$ and $|\mathcal{B}| = \bigO{n^\beta}$.
+\end{definition}
+%
+They prove that this hypothesis is equivalent to the \emph{Orthogonal Vectors Hypothesis} (see \cite[Lemma 5.1]{Bringman.2018}), which itself implies the \emph{Strong Exponential Time Hypothesis}.
+
+
+%\subsection{Technical Tools}
+%In this section we state lemmata from the original paper that are needed for later proofs.
+%Due to size constraints, we do not prove them here.
+%
+%\begin{lemma}[Greedy Prefix Matching]\footnote{Copied from \cite[Lemma 7.1]{Bringman.2018}}
+%\label{lem:greedy_prefix_match}
+%For any strings $w, x, y$, we have
+%\(
+%L(wx, wy) = |w| + L(x, y)
+%\)
+%and
+%\(
+%d(wx, wy) = |w| + d(x, y).
+%\)
+%\end{lemma}
+%
+%\begin{lemma}\footnote{Copied from \cite[Lemma 7.6]{Bringman.2018}}
+%\label{lem:guards}
+%For any strings $x, y, z$ and $\ell \geq \numSymbols{0}{x} + |z|$ we have
+%\(
+%L\left(x0^{\ell}y,\,0^{\ell}z\right) = \ell + L\left(0^{\#_{0}(x)}y,\,z\right).
+%\)
+%\end{lemma}
+
 
