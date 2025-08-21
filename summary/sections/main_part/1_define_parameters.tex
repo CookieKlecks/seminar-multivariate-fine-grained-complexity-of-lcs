@@ -1,13 +1,29 @@
 \section{Define Parameters}
+\label{sec:def-params}
 To properly scope the multivariate analysis it is necessary to define the parameters of the problem that are being analyzed.
-Here in the case of the \lcs{} problem, the most studied parameters are included in the analysis (see \cite{Bergroth.2000}, \cite{Paterson.1994}). 
-These are:
-\begin{itemize}
-	\item the input size $n = |x|$ of the longer string and $m = |y|$ of the shorter string
-	\item the length $L$ of a longest subsequence
-	\item the size $|\Sigma|$ of the underlying alphabet used for $x$ and $y$
-	\item the number $\Delta = n - L$ of deletions in the smaller and $\delta = m - L$ of deletions in the shorter string
-	\item the number of matching pairs $M$ and dominant pairs $d$ \todo{Add formal definitions $M$ and $d$}
-\end{itemize}
+Here in the case of the \lcs{} problem, the most studied parameters in this field are included in the analysis (see \cite{Bergroth.2000}, \cite{Paterson.1994}). 
+These are the input size $n$ of the longer and $m$ of the shorter string, 
+the length $L$ of a longest common subsequence,
+the size $|\Sigma|$ of the underlying alphabet,
+the number $\Delta$ of deletions in the larger and $\delta$ of deletions in the shorter string.
+Further the two similarity measures number of matching pairs $M$ and dominant pairs $d$ are included.
+
+
+
 Note, that we always assume $x$ to be the longer string. Otherwise we could just swap $x$ and $y$.\todo{Add Motivation matching pairs and dominant pairs}
-We will use the notation $p(x,y)$ for a parameter $p$ to refer to the value of this parameter for the strings $x$ and $y$.
+We will use the notation $p(x,y)$ to refer to the value of the parameter $p$ for the strings $x$ and $y$.
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Definition} & \textbf{Description} \\
+\midrule
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+Row 3, Col 1 & Row 3, Col 2 & Row 3, Col 3 \\
+\bottomrule
+\end{tabular}
+\caption{Definition and explanation of all parameters.}
+\end{table}

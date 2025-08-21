@@ -1,5 +1,5 @@
 \subsection{Small LCS}
-For the first reduction, we assume $\alpha_\delta = \alpha_m$, i.e., the number of deleted symbols in the smaller string is asymptotically the same as its length.
+For the first reduction, we assume $\alpha_\delta = \alpha_m$ and $\alpha_M = 2$. %, i.e., the number of deleted symbols in the smaller string is asymptotically the same as its length.
 This reduction is similar to one in a previous fine-grained analysis of \lcs{} \cite{Bringmann.2015}.
 We first present a gadget to embed vectors into strings.
 This gadget will also be used in the other reductions.
@@ -23,9 +23,9 @@ for an appropriate $\rho_0 > \rho_1$.
 
 We refer to the previous fine-grained analysis \cite{Bringmann.2015} for the proof.
 See \autoref{fig:nvg} for a visualization of an \nvgName{}.
-Note however, that we can now infer from the \lcs{} of two of the \nvgName{}s whether the respective vectors are orthogonal.
-Because the \lcs{} only admits two specific values, we can also infer from the sum of \lcs{} lengths of multiple vector pairs whether any of these pairs are orthogonal.
-We now use this fact to build the final construction.
+Note however, that we can now infer from the \lcs{} whether the respective vectors are orthogonal.
+%Because the \lcs{} only admits two specific values, we can also infer from the sum of \lcs{} lengths of multiple vector pairs whether any of these pairs are orthogonal.
+We now use this to build the final construction.
 
 
 % =============================== OR Gadget ========================
@@ -37,7 +37,7 @@ We now use this fact to build the final construction.
 	\nvg{a_1}\ 0^\gamma\ \cdots\ 0^\gamma\ \nvg{a_A}\\
 	y&=& 0^{A\gamma'}\ \nvg{b_1}\ 0^{\gamma}\ \nvg{b_2}\ &0^\gamma\ \cdots\ 0^\gamma\ \nvg{b_B}\ 0^{A\gamma'}
 \end{align*}
-
+%
 in time $\bigO{AD}$ with large enough $\gamma, \gamma' \geq |\nvg{a_i}| + |\nvg{b_j}|$, satisfying:
 
 \begin{enumerate}[(i)]
@@ -76,44 +76,43 @@ in time $\bigO{AD}$ with large enough $\gamma, \gamma' \geq |\nvg{a_i}| + |\nvg{
 %\end{figure}
 
 We will not prove this theorem here, but only provide an intuition for its correctness.
-The blocks of $0^\gamma$ guard each normalized vector gadget such that for any \lcs{} every $\nvg{b_j}$ will align with an $\nvg{a_i}$ and will not match with multiple \nvgName{}s.
+The blocks of $0^\gamma$ align every $\nvg{b_j}$ with an $\nvg{a_i}$ without matching multiple \nvgName{}s.
 The blocks of zeroes at the start and end of $y$ allow to \enquote{skip} \nvgName{}s of $x$ to align the $B$ \nvgName{}s of $y$ with any consecutive subsequence of $B$ \nvgName{}s of $x$.
-Because of the repeated structure of $x$, an \lcs{} can then \enquote{pick} an alignment where a desired $\nvg{a_i}$ and $\nvg{b_j}$ align, i.e., one where $\langle a_i, b_j \rangle = 0$ if existing.
-We can then use $L(\nvg{a_i}, \nvg{b_j}) \in \{\rho_0, \rho_1\}$ to find an appropriate $\rho$ as decision boundary to decide the $\ov$ instance.
-This should motivate the correctness of our construction.
+If now $\langle a_i, b_j \rangle = 0$ for two vectors $a_i, b_j$, there is an alignment of $\nvg{a_i}$ and $\nvg{b_j}$ because of the repeated structure of $x$.
+Because in this case $L(\nvg{a_i}, \nvg{b_j}) = \rho_0 > \rho_1$, we can see that there is an appropriate $\rho$ as decision boundary to decide the $\ov$ instance.
+%Because of the repeated structure of $x$, an \lcs{} can then \enquote{pick} an alignment where a desired $\nvg{a_i}$ and $\nvg{b_j}$ align, i.e., one where $\langle a_i, b_j \rangle = 0$ if existing.
+%This should motivate the correctness of our construction.
 
 
 \paragraph*{Reduction}
-We now use the previous theorem to instantiate the actual reductions with the desired bounds.
+We now use the previous theorem to instantiate the actual reduction with the desired bounds.
 Let $n \geq 1$ be arbitrary and consider any parameter setting $\alpha$ satisfying \autoref{tab:restrictions} and $\alpha_\delta = \alpha_m$.
 We construct strings $x$ and $y$ as in \autoref{thm:small_lcs_construction} with $D = n^{o(1)}$, $A := \lfloor \frac{L}{D} \rfloor$ and $B := \lfloor \frac{m^2}{LD} \rfloor$.\footnote{In the original paper they used $B := \lfloor \frac{d}{LD} \rfloor$. We however simplified this, because we later restrict us to a reduced parameter space for simplicity reasons.}
 Note that \uovh{} implies a lower bound of $(AB)^{1-o(1)} = n^{2\alpha_m - o(1)} = m^{2 - o(1)} = (\delta m)^{1-o(1)}$ where the last equality holds in the current case $\alpha_\delta = \alpha_m$.
 By \autoref{thm:small_lcs_construction} (\ref{thm:small_lcs_construction:infer}) we can infer from $L(x,y)$ whether any vectors are orthogonal.
 Further the running time of the reduction is $\bigO{AD} = \bigO{L} \leq \bigO{\delta m}$ since trivially $L \leq m$.
 This proves a lower bound for any algorithm for $\lcsy{\mathbb{\alpha}}$ of $(\delta m)^{1-o(1)}$ assuming we span the full parameter space.
-The latter part now remains to be shown, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
+%The latter part now remains to be shown, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
 
 
 
 \paragraph*{Parameter Space}
-For a multivariate analysis we want to have reductions that span the full (non-trivial) parameter space to show conditional lower bounds for any parameter combination.
-Hence, our goal is now to show that given a target parameter setting $\mathbf{\alpha}$, we can create instances that are in $\lcsy{\mathbf{\alpha}}$.
-We write $p = n^{\alpha_p}$ as the target value for any parameter $p \in \mathcal{P}$ and $p(x,y)$ as the actual value for the \lcs{} instance $(x,y)$.
-
-The authors of the original paper have shown monotonicity of the parameter space \cite[section 4.2]{Bringman.2018}, i.e., it suffices to show that $p(x,y) \leq \bigO{p}$ for every possible target value of $p \in \mathcal{P}$.
-Note that the monotonicity is not trivial and even fails for the case $|\Sigma| = 2$, but we do not handle this case here.
+For a multivariate analysis we need reductions that span the full (non-trivial) parameter space to show multivariate conditional lower bounds.
+Hence, we now want to show that given a target parameter setting $\mathbf{\alpha}$, we can create instances in $\lcsy{\mathbf{\alpha}}$.
+For parameter $p \in \mathcal{P}$ we write $p = n^{\alpha_p}$ as the target and $p(x,y)$ as the actual value of the \lcs{} instance $(x,y)$.
+%
+The authors of the original paper have shown monotonicity of the parameter space \cite[section 4.2]{Bringman.2018}, i.e., it suffices to show that $p(x,y) \leq \bigO{p}$.\footnote{Note that monotonicity is not trivial and even fails for the case $|\Sigma| = 2$, but we do not handle this case here.}
 
 %Recall that we remain with the assumption $\alpha_\delta = \alpha_m$, i.e., $\bigO{\delta} = \bigO{m}$.
 
-We will now show this using a reduced parameter set of $P' = \{n, m, L, \Sigma, M\}$ for the current case.
-For a proof of the full parameter set we refer to the original paper \cite[section 9.1.2]{Bringman.2018}.
+We will now show this for a reduced parameter set\footnote{For a proof of the full parameter set we refer to the original paper \cite[section 9.1.2]{Bringman.2018}.} of $P' = \{n, m, L, \Sigma, M\}$ for the current case.
 We have trivially and by definition $L(x,y) \leq m(x,y) \leq n(x,y)$.
-With \autoref{thm:small_lcs_construction} (\ref{thm:small_lcs_construction:size}) and the definition of $A$ we can further bound $n(x,y) \leq \bigO{AD} = \bigO{L} \leq \bigO{m} \leq \bigO{n}$ where we again used $L \leq m \leq n$.
+With \autoref{thm:small_lcs_construction} (\ref{thm:small_lcs_construction:size}) and the definition of $A$ we can further bound $n(x,y) \leq \bigO{AD} = \bigO{L} \leq \bigO{m} \leq \bigO{n}$. %where we again used $L \leq m \leq n$.
 We further have $|\Sigma(x,y)| = 2 \leq \bigO{n^{\alpha_\Sigma}}$.
 We can bound the number of matching pairs by $M(x,y) \leq n(x,y)^2 \leq \bigO{n^{\alpha_M}}$ where we used that $\alpha_M = 2$ holds in the current case.
 
 In total we have shown that $p(x,y) \leq \bigO{p}$ for all $p \in P'$.
 Hence, we have shown a conditional lower bound for every instance in $\lcsy{\mathbb{\alpha}}$ where $\mathbb{\alpha}$ satisfies \autoref{tab:restrictions}, $\alpha_\delta = \alpha_m$ and $\alpha_M = 2$.
-In the next section, we now show how to lift the restriction $\alpha_M = 2$.
+In the next section, we give an intuition how to lift the restriction $\alpha_M = 2$.
 
 \input{sections/main_part/reductions/small_lcs/matching_pairs_reduction}

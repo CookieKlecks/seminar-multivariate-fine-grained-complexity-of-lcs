@@ -2,7 +2,6 @@
 \label{sec:fin_param_rels}
 The goal of this step is to find valid and non-trivial parameter combinations.
 This is important as we want to restrict the parameter space that must be spanned by the reductions in the next step.
-
 Before finding the actual relations, we first define a so called \emph{parameter setting} and its non-triviality.
 
 \begin{definition}[Parameter Setting]
@@ -10,13 +9,13 @@ Let $\mathcal{P}$ be the set of parameters.
 We define $\mathbb{\alpha} = (\alpha_p)_{p \in \mathcal{P}}$ as a \emph{parameter setting}.
 We further define $\lcsy{\mathbb{\alpha}}$ as the subset of \lcs{} instances, where the input strings $x$ and $y$ fulfill
 \begin{displaymath}
-	\forall p \in \mathcal{P}: \  \frac{n^{\alpha_p}}{\gamma} \leq p(x,y) \leq \gamma n^{\alpha_p},
+	\forall p \in \mathcal{P}: \  \frac{n^{\alpha_p}}{\gamma} \leq p(x,y) \leq \gamma n^{\alpha_p}.
 \end{displaymath}
-i.e., the parameters are polynomially bounded by the input size $n$ with $\alpha_p$ as exponent.
+%i.e., the parameters are polynomially bounded by the input size $n$ with $\alpha_p$ as exponent.
 A parameter setting $\mathbb{\alpha}$ is called \emph{trivial}, if $\lcsy{\alpha}$ has finite many instances for all $\gamma \geq 1$.
 \end{definition}
 %
-To give an example, the LCS instances $x=a^{k}b^{k}$ and $y = ba^k$ for $k\geq 1$ are in $\lcsy{\mathbb{\alpha}}$ for all $\gamma \geq 4$, with the parameter setting $\mathbb{\alpha}$ being $\alpha_m = \alpha_L = \alpha_\Delta = 1$, $\alpha_\delta = 0$, $\alpha_M = 2$ and $\alpha_d = 1$.\todo{Example, maybe unnecessary?}
+%To give an example, the LCS instances $x=a^{k}b^{k}$ and $y = ba^k$ for $k\geq 1$ are in $\lcsy{\mathbb{\alpha}}$ for all $\gamma \geq 4$, with the parameter setting $\mathbb{\alpha}$ being $\alpha_m = \alpha_L = \alpha_\Delta = 1$, $\alpha_\delta = 0$, $\alpha_M = 2$ and $\alpha_d = 1$.\todo{Example, maybe unnecessary?}
 
 
 \begin{table}[t]
@@ -65,9 +64,9 @@ Note that therefore it suffices to prove $\frac{L^2}{|\Sigma|} \leq M$.
 \begin{theorem}
 \label{thm:matching_pairs_lb}
 For every \lcs{} instance the number of matching pairs is bounded by
-\begin{displaymath}
+\(
 	\dfrac{L^2}{|\Sigma|} \leq M .
-\end{displaymath}
+\)
 \end{theorem}
 
 \begin{proof}
