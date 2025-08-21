@@ -2,64 +2,42 @@
 \label{lem:1-2vs1:ortho-lower-bound}
 If there are $N < j \leq Q-N$ and $\lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$, we have
 \[ 
-L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1.
+L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0.
 \]
 We define $i := 2j - \lambda$, i.e., $L(x_i, y_j) = \rho_0$.
 \end{lemma}
 
 \begin{proof}
-We split the input strings into the three parts
+Assume such $j$ and $\lambda$ exist.
+We split the strings $x$ and $y$ into the three parts
 \begin{align*}
-(x_1, \ldots, x_P) &= (x^L_1, \ldots, x^L_{P'}, \hat{x}_1, \ldots, \hat{x}_N, x^R_1, \ldots, x^R_{P''}) \quad\text{and}\\
-(y_1, \ldots, y_Q) &= (y^L_1, \ldots, y^L_{Q'}, \hat{y}_1, \ldots, \hat{y}_N, y^R_1, \ldots, y^R_{Q''}),
+x = \lLCSGadget{x_1, \ldots, x_P} &= \lLCSGadget{x^L_1, \ldots, x^L_{P'}} \lLCSGadget{x^M_1, \ldots, x^M_N} \lLCSGadget{x^R_1, \ldots, x^R_{P''}} =: \lLCSGadgetName^L_x\lLCSGadgetName^M_x\lLCSGadgetName^R_x \quad\text{and}\\
+y = \lLCSGadget{y_1, \ldots, y_Q} &= \lLCSGadget{y^L_1, \ldots, y^L_{Q'}} \lLCSGadget{y^M_1, \ldots, y^M_N} \lLCSGadget{y^R_1, \ldots, y^R_{Q''}} =: \lLCSGadgetName^L_y\lLCSGadgetName^M_y\lLCSGadgetName^R_y,
 \end{align*}
 where $Q' = j - \lambda$, $P' = 2(j - \lambda)$, $Q'' = Q - Q' - N$ and $P'' = P - P' - N$.
-Note that
+We now want to lower bound the three parts. %$L^L := L(\lLCSGadgetName^L_x, \lLCSGadgetName^L_y)$, $L^M := L(\lLCSGadgetName^M_x, \lLCSGadgetName^M_y)$ and $L^R := L(\lLCSGadgetName^R_x, \lLCSGadgetName^R_y)$.
+For the left and right part, note that $P' = 2Q'$ and $P'' = 2Q''$, hence we can apply \autoref{lem:1-2vs1-gadget-edge-cases} (\ref{lem:1-2vs1-gadget-edge-cases:P=2Q}) to have
 \begin{align*}
-P' = 2j - 2\lambda &<& &2j - \lambda = i& &\leq 2j - 2\lambda + N = P' + N \quad\text{and}\\
+L(\lLCSGadgetName^L_x, \lLCSGadgetName^L_y) &\geq Q'(\Gamma + \ell_y) \\
+L(\lLCSGadgetName^R_x, \lLCSGadgetName^R_y) &\geq Q''(\Gamma + \ell_y) = (Q - Q' - N)(\Gamma + \ell_y).
+\end{align*}
+For the middle part, we first show that $x_i$ and $y_j$ are in the middle part, i.e., $x_i = x^M_{i'}$ and $y_j = y^M_{j'}$ for some $i', j' \in \indexSet{N}$.
+Note therefore that
+\begin{align*}
+P' = 2j - 2\lambda &<& &2j - \lambda = i& &\leq 2j - \lambda - \lambda + N = P' + N \quad\text{and}\\
 Q' = j - \lambda &<& &j& &\leq j - \lambda + N = Q' + N,
 \end{align*}
 where we used $1 \leq \lambda \leq N$.
-Hence, we can claim that $x_i$ and $y_j$ are in the middle part, i.e., $x_i = \hat{x}_{i'}$ and $y_j = \hat{y}_{j'}$ for some $i', j' \in \indexSet{N}$.
-Note further that $P' = 2Q'$ and $P'' = 2Q''$.
-We now bound the LCS with
-\begin{align*}
-L(x,y) \geq &\ L(\lLCSGadget{x^L_1, \ldots, x^L_{P'}}, \lLCSGadget{y^L_1, \ldots, y^L_{Q'}}) \\
-&+ L(\lLCSGadget{\hat{x}_1, \ldots, \hat{x}_N}, \lLCSGadget{\hat{y}_1, \ldots, \hat{y}_N}) \\
-&+ L(\lLCSGadget{x^R_1, \ldots, x^R_{P''}}, \lLCSGadget{y^R_1, \ldots, y^R_{Q''}}).
-\end{align*}
-\end{proof}
-
-
-
-
-\begin{lemma}
-\label{lem:1-2vs1gadget}
-Let $\rho_0 > \rho_1$ and $P, Q \geq 1$ with $P = 2Q - N$.
-For any strings $x_1, x_2, \ldots, x_P$ of length $\ell_x$ and $y_1, y_2, \ldots, y_Q$ of length $\ell_y$ with $L(x_i, y_j) \in \{\rho_0, \rho_1\}$ for all pairs of strings $x_i$ and $y_j$, construct
-\begin{align*}
-	x &:= \lLCSGadget{x_1, \ldots, x_P} := \gLargeLCS{x_1}\gLargeLCS{x_2} \cdots \gLargeLCS{x_P}\\
-	y &:= \lLCSGadget{y_1, \ldots, y_Q} := \gLargeLCS{y_1}\gLargeLCS{y_2} \cdots \gLargeLCS{y_Q}
-\end{align*}
-where $\gLargeLCS{w} = 0^{\gamma_1}1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$ with $\gamma_3 = \ell_x + \ell_y$, $\gamma_2 = 8\gamma_3$ and $\gamma_1 = 6\gamma_2$.
-We define $\Gamma := \gamma_1 + \gamma_2 + 3\gamma_3$.
-It holds:
-%
-\begin{enumerate}[(i)]
-\item\label{lem:1-2vs1gadget:not-ortho} if $L(x_i, y_j) = \rho_1$ for all $i \in \indexSet{P}, j \in \indexSet{Q}$: 
-\[ 
-L(x,y) \leq Q\Gamma + (Q-N)\ell_y + N\rho_1
-\]
-\item\label{lem:1-2vs1gadget:ortho} if there is $j \in \indexSet{Q}, \lambda \in \indexSet{N}$ s.t. $L(x_{2j-\lambda}, y_j) = \rho_0$: 
+Now we can apply \autoref{lem:1-2vs1-gadget-edge-cases} (\ref{lem:1-2vs1-gadget-edge-cases:P=Q}) with $P=Q=N$ and use the fact that $L(x^M_{i'}, y^M_{j'}) = L(x_i, y_j) = \rho_0$ to bound
 \[
-L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0
+L(\lLCSGadgetName^M_x, \lLCSGadgetName^M_y) \geq N\Gamma + \sum_{k=1}^N L(x^M_k, y^M_k) \geq N\Gamma + (N-1)\rho_1 + \rho_0,
 \]
-
-
-%\item\label{lem:1-2vs1gadget-1} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + N\rho_1$
-%\item\label{lem:1-2vs1gadget-2} $L(x,y) \geq Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0 \Leftrightarrow \exists j \in \indexSet{Q - N},1 \leq \lambda \leq \min\{N, j\}: L(x_{2j-\lambda}, y_j) = \rho_0$
-\end{enumerate}
-%
-%if and only if there are $j \in \indexSet{Q}$ and $j - Q + N \leq \lambda \leq \min\{N, j\}$ such that $L(x_{2j-\lambda}, y_j) = \rho_0$.
-
-\end{lemma}
+where we used that $L(x^M_k, y^M_k) \geq \rho_1$ for all $k \in \indexSet{N}$.
+Finally, we obtain
+\begin{align*}
+L(x,y) &\geq L(\lLCSGadgetName^L_x, \lLCSGadgetName^L_y) + L(\lLCSGadgetName^M_x, \lLCSGadgetName^M_y) + L(\lLCSGadgetName^R_x, \lLCSGadgetName^R_y)\\
+	&\geq Q'(\Gamma + \ell_y) + N\Gamma + (N-1)\rho_1 + \rho_0 + (Q - Q' - N)(\Gamma + \ell_y) \\
+	&= Q\Gamma + (Q-N)\ell_y + (N-1)\rho_1 + \rho_0,
+\end{align*}
+which is the desired bound.
+\end{proof}
