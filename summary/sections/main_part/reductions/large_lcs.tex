@@ -28,7 +28,7 @@ We now use these lemmas to define our construction for reducing \ov{} instances 
 
 \begin{lemma}
 \label{lem:large_lcs_reduce}
-For an \ov{} instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \mid B$, we define strings $x_i := \nvg{a_i}$ for $i \in \indexSet{A}$ and $y_j := \nvg{b_j}$ for $j \in \indexSet{B}$ with lengths $\ell_x, \ell_y = \bigO{D}$ and construct
+For an \ov{} instance $\mathcal{A} = \{a_1, \ldots, a_A\}$ and $\mathcal{B} = \{b_1, \ldots, b_B\}$ with $A \mid B$, we define strings $x_i := \nvg{a_i}$  and $y_j := \nvg{b_j}$ for $i \in \indexSet{A}, j \in \indexSet{B}$ and construct
 \begin{align*}
 \tilde{x} &:= (\tilde{x}_1, \ldots, \tilde{x}_P) 
 = \overbrace{\left(x_1, \ldots, x_A, x_1, \ldots, x_A, \ldots, x_1, \ldots, x_A\right)}^{\text{$2\cdot(B/A)+3$ groups of size $A$}} 
@@ -39,11 +39,13 @@ y_1, \ldots, y_B,
 \underbrace{y_1, \ldots, y_1)}_{\text{$A$ copies of $y_1$}}
 ,
 \end{align*}
-where $P := 2B + 3A$ and $Q := B + 2A$, i.e., $P = 2Q - A$. The strings $x := \lLCSGadget{\tilde{x_1}, \ldots, \tilde{x_P}}$ and $y := \lLCSGadget{\tilde{y_1}, \ldots, \tilde{y_P}}$ satisfy the following:
+where $P := 2B + 3A$ and $Q := B + 2A$.
+We define $\rho := Q\Gamma + (Q-A)\ell_y + (A-1)\rho_1 + \rho_0$.
+The strings $x := \lLCSGadget{\tilde{x_1}, \ldots, \tilde{x_P}}$ and $y := \lLCSGadget{\tilde{y_1}, \ldots, \tilde{y_P}}$ satisfy:
 
 \begin{enumerate}[(i)]
 \item\label{lem:large_lcs_reduce:infer}
-$L(x,y) \geq Q\Gamma + (Q-A)\ell_y + (A-1)\rho_1 + \rho_0 =: \rho$ if and only if there are $i \in \indexSet{A}, j \in \indexSet{B}$ with $\langle a_i, b_j \rangle = 0$.
+$L(x,y) \geq \rho$ if and only if there are $i \in \indexSet{A}, j \in \indexSet{B}$ with $\langle a_i, b_j \rangle = 0$.
 %
 \item\label{lem:large_lcs_reduce:size}
 It holds that $|y|, |x| = \bigO{BD}$ and $\delta(x,y) = \bigO{AD}$
@@ -52,15 +54,16 @@ It holds that $|y|, |x| = \bigO{BD}$ and $\delta(x,y) = \bigO{AD}$
 
 \begin{proof}
 To show (\ref{lem:large_lcs_reduce:infer}) we first assume that no $i \in \indexSet{A}, j \in \indexSet{B}$ with $\langle a_i, b_j \rangle = 0$ exist.
-By definition of \nvgName{} we have $L(x_i, y_j) = L(\nvg{a_i}, \nvg{b_j}) = \rho_1$ for all $i \in \indexSet{A}, j \in \indexSet{B}$.
+By \autoref{thm:nvg} we have $L(x_i, y_j) = L(\nvg{a_i}, \nvg{b_j}) = \rho_1$ for all $i \in \indexSet{A}, j \in \indexSet{B}$.
 With $\rho_0 > \rho_1$ and \autoref{lem:1-2vs1:non-ortho-upper-bound} it follows that $L(x,y) < \rho$.
 
-Now assume there is $i \in \indexSet{A}, j \in \indexSet{B}$ with $\langle a_i, b_j \rangle = 0$.
-Note that there is a $j' \in \indexSet{Q}$ with $j' \geq A$ s.t. $\tilde{y}_{j'} = y_j$.
-It remains to show that there is a $\lambda \in \indexSet{A}$ with $\tilde{x}_{2j - \lambda} = x_i$.
-To show this, note that $(\tilde{x}_{2j - 1}, \tilde{x}_{2j - 2}, \ldots, \tilde{x}_{2j - A})$ is a consecutive sequence of $A$ strings in $\tilde{x}$.
-Due to the cyclic structure of $\tilde{x}$ we know that this sequence includes every $x_i$ for $i \in \indexSet{A}$.
-This concludes the proof for (\ref{lem:large_lcs_reduce:infer}) with \autoref{lem:1-2vs1gadget} (\ref{lem:1-2vs1gadget:ortho}).
+Now assume there are $i \in \indexSet{A}, j \in \indexSet{B}$ with $\langle a_i, b_j \rangle = 0$.
+We show the requirements of \autoref{lem:1-2vs1:ortho-lower-bound}.
+Per construction there is a $A < j' \leq Q - A$ such that $\tilde{y}_{j'} = y_j$.
+We define $X := \{\tilde{x}_{2j' - \lambda} \mid \lambda \in \indexSet{A}\}$, which is a consecutive section of $\tilde{x}$.
+Because of the cyclic structure of $\tilde{x}$ and $|X| = A$ we know that $x_i \in X$.
+Hence, there is an $\lambda$ s.t. $L(\tilde{x}_{2j' - \lambda}, y_{j'}) = L(x_i, y_j) = \rho_0$.
+With this we can apply \autoref{lem:1-2vs1:ortho-lower-bound} with $N = A$ to prove (\ref{lem:large_lcs_reduce:infer}).
 
 To prove (\ref{lem:large_lcs_reduce:size}) first observe that $Q \leq P \leq \bigO{B}$ as $A \leq B$. With $\ell_x, \ell_y \leq \bigO{D}$ we obtain $|x|,|y| \leq \bigO{BD}$.
 For the bound of $\delta(x,y)$ we can use \autoref{claim:1-2vs1-gadget-lb} for
@@ -77,7 +80,7 @@ We now use \autoref{lem:large_lcs_reduce} to instantiate the actual reductions w
 Let $n \geq 1$ be arbitrary and consider any parameter setting $\alpha$ with $\alpha_L = \alpha_m$.
 We write $\lfloor x \rfloor_2$ for the largest power of $2$ less or equal to $x$.
 We construct strings $x$ and $y$ as in \autoref{lem:large_lcs_reduce} with $D = n^{o(1)}$, $A := \lfloor \frac{\min\{\delta, d\}}{mD} \rfloor_2$ and $B := \lfloor \frac{m}{D} \rfloor_2$.\footnote{In the original paper they used slightly different values for $A$ and $B$. We however simplified this, because we later restrict us to a reduced parameter space for simplicity reasons.}
-Note that \uovh{} implies a lower bound of $(AB)^{1-o(1)} \leq n^{\alpha_d - o(1)} = d^{1 - o(1)}$ which is one of the lower bounds of the main result.\todo{mention lemma with main result}
+Note that \uovh{} implies a lower bound of $(AB)^{1-o(1)} \leq n^{\alpha_d - o(1)} = d^{1 - o(1)}$.
 To use \autoref{lem:large_lcs_reduce} we have to show $A \leq B$ which implies $A \mid B$.
 This follows from $\delta \leq m$.
 Hence, we can infer from $L(x,y)$ whether any vectors are orthogonal by \autoref{lem:large_lcs_reduce} (\ref{lem:large_lcs_reduce:infer}).
@@ -85,7 +88,7 @@ Further the running time of the reduction is $\bigO{BD} = \bigO{m} = \bigO{L} \l
 This proves a lower bound for any algorithm for $\lcsy{\mathbb{\alpha}}$ of $d^{1-o(1)}$.
 
 
-What now remains to be shown is the parameter space that this reduction spans, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
+%What now remains to be shown is the parameter space that this reduction spans, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
 
 
 
@@ -94,10 +97,8 @@ What now remains to be shown is the parameter space that this reduction spans, i
 
 
 \paragraph*{Parameter Space}
-Recall that in the current case we assume $\alpha_L = \alpha_m$ and we write $p = n^{\alpha_p}$ as the target value for any parameter $p \in \mathcal{P}$ and $p(x,y)$ as the actual value for the \lcs{} instance $(x,y)$.
-Further our goal is again to show that given a target parameter setting $\mathbf{\alpha}$, we can create instances that are in $\lcsy{\mathbf{\alpha}}$.
-We will now show this using a reduced parameter set of $P' = \{n, m, L, \delta\}$ for the current case.
-For a proof of the full parameter set we refer to the original paper \cite[section 9.2.2]{Bringman.2018}.
+Recall that in the current case we assume $\alpha_L = \alpha_m$ and our goal is again to show that given $\mathbf{\alpha}$ satisfying $\alpha_m = \alpha_L$, we can create instances that are in $\lcsy{\mathbf{\alpha}}$.
+We again use a reduced parameter set\footnote{For a proof of the full parameter set we refer to the original paper \cite[section 9.2.2]{Bringman.2018}.} of $P' = \{n, m, L, \delta\}$ for the current case.
 We have trivially and by definition $L(x,y) \leq m(x,y) \leq n(x,y)$.
 With \autoref{lem:large_lcs_reduce} (\ref{lem:large_lcs_reduce:size}) and the definition of $B$ we can further bound $n(x,y) \leq \bigO{BD} = \bigO{m} \leq \bigO{n}$ where we again used $m \leq n$.
 Using \autoref{lem:large_lcs_reduce} (\ref{lem:large_lcs_reduce:size}) we can bound $\delta(x,y) \leq \bigO{AD} \leq \bigO{\delta}$.
@@ -107,4 +108,4 @@ Hence, we have shown a conditional lower bound for every instance in $\lcsy{\mat
 %
 Note that we ignored here the parameter $M$.
 If we would have considered matching pairs we would have a similar problem as in the case of $\alpha_\delta = \alpha_m$.
-Therefore, the authors provided again an adaption that increases the used alphabet size (see \cite[section 9.2.3]{Bringman.2018}).
+The authors provided again an adaption that increases the used alphabet size for this case (see \cite[Section 9.2.3]{Bringman.2018}).

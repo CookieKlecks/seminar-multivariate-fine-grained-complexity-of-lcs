@@ -12,43 +12,30 @@ L(x,y) \leq Q\Gamma + (Q-N)\ell_y + N\rho_1
 We define $x =: z_1z_2 \cdots z_Q$ such that $L(x,y) = \sum_{j=1}^Q L(z_j, \gLargeLCS{y_j})$.
 We say that $x_i$ is aligned with $y_j$ if and only if $z_j$ contains strictly more than half of the prefix $0^{\gamma_1}$ of $\gLargeLCS{x_i}$.
 Note that every $x_i$ is assigned to at most one $y_j$.
-We say that $y_j$ is $k$-aligned if $k$ different $x_{i_1}, \ldots, x_{i_k}$ are aligned with $y_j$.
-For the following, we define $H(w) := 1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$.
-
-First consider any $0$-aligned $y_j$.
-Per definition is $z_j$ a subsequence of $0^{\frac{\gamma_1}{2}}H(x_i)0^{\frac{\gamma_1}{2}}$.
-It is possible to show that we can bound
-\[
-L(z_j, \gLargeLCS{y_j}) = L(0^{\frac{\gamma_1}{2}}H(x_i)0^{\frac{\gamma_1}{2}}, 0^{\gamma_1}H(y_j)) \leq \gamma_1 + \gamma_3 + \ell_y =: L_0.
-\]
-For a full proof of this, we refer to the original paper \cite[Lemma 9.6\footnote{Lemma 9.6 combines this and the following lemma in this summary. The proof of the claim is in the proof for the second inequality of Lemma 9.6.}]{Bringman.2018}.
+We say that $y_j$ is $k$-aligned if $k$ different $x_i$s are aligned with it.
+%For the following, we define $H(w) := 1^{\gamma_2}(01)^{\gamma_3}w1^{\gamma_3}$.
+%
+It is possible to show the following bounds:
+\begin{align*}
+	\text{if $y_j$ is $0$-aligned:}&& L(z_j, \gLargeLCS{y_j}) &\leq \gamma_1 + \gamma_3 + \ell_y =: L_0 \\
+	\text{if $y_j$ is $1$-aligned:}&& L(z_j, \gLargeLCS{y_j}) &\leq \Gamma + L(x_i, y_j) = \Gamma + \rho_1 =: L_1 \\
+	\text{if $y_j$ is $k$-aligned for $k>2$:}&& L(z_j, \gLargeLCS{y_j}) &\leq |\gLargeLCS{y_j}| = \Gamma + \ell_y =: L_k
+\end{align*}
+We will not prove them here but refer to the original paper \cite[Lemma 9.6\footnote{Lemma 9.6 combines this and the following lemma in this summary. The proof of the claim is in the proof for the second inequality of Lemma 9.6.}]{Bringman.2018}.
+\footnote{Comment for proof reading: Before I gave the following intuition for $0$-aligned $y_j$, but because size constraints I removed it:
 But to give an intuition observe, that $y_1$ is chosen so big, that it is always optimal to match the full $0^{\gamma_1}$ block.
 This match also stretches over $H(x_i)$.
 The remainder $H(y_j)$ then can only match with remaining zeroes in the right $0^{\frac{\gamma_1}{2}}$ block.
-With $\numSymbols{0}{H(y_j)} \leq y_3 + \ell_y$ we obtain the bound.
+With $\numSymbols{0}{H(y_j)} \leq y_3 + \ell_y$ we obtain the bound.}
 
-
-Due to appropriate $\gamma_1$, $\gamma_2$ and $\gamma_3$, one can further show that when $y_j$ is $1$-aligned we have
-\[
-	L(z_j, \gLargeLCS{y_j}) \leq \Gamma + L(x_i, y_j) = \Gamma + \rho_1 =: L_1,
-\]
-where we used the assumption that $L(x_{i'}, y_{j'}) = \rho_1$ for every $i', j'$.
-For a full proof we again refer to the original paper.
-%
-Further when $y_j$ is $k$-aligned for $k \geq 2$, we can trivially bound 
-\[
-L(z_j, \gLargeLCS{y_j}) \leq |\gLargeLCS{y_j}| = \Gamma + \ell_y =: L_k.
-\]
 
 Let now $n_0$, $n_1$ and $n_k$ be the number of $0$-, $1$- and $k$-aligned $y_j$ ($k \geq 2$).
-Because ever $y_j$ has exactly one alignment category, we have $n_0 + n_1 + n_k = Q$.
-Further $2n_k + n_1 \leq P$ as every $k$-aligned $y_j$ is aligned with $k$ unique $x_i$s and every $x_i$ with at most one $y_j$.
-By the previous bounds, we obtain
+With the previous bounds, we obtain
 \begin{equation}
 \label{eq:1-2vs1:non-ortho-upper-bound:eq-ns}
 	L(x,y) = \sum_{j=1}^Q L(z_j, \gLargeLCS{y_j} \leq n_0 L_0 + n_1 L_1 + n_k L_k 
 \end{equation}
-It remains to show that this is bounded by $Q\Gamma + (Q-N)\ell_y + N\rho_1$. 
+It remains to bound this by $Q\Gamma + (Q-N)\ell_y + N\rho_1$. 
 For this we show the following claim.
 \begin{claim}
 Setting $n_0 = \hat{n}_0 := 0$, $n_1 = \hat{n}_1 := N$ and $n_k = \hat{n}_k := (Q-N)$ maximizes
@@ -57,16 +44,17 @@ Setting $n_0 = \hat{n}_0 := 0$, $n_1 = \hat{n}_1 := N$ and $n_k = \hat{n}_k := (
 \]
 under the assumptions $n_0 + n_1 + n_k = Q$ and $2n_k + n_1 \leq P = 2Q - N$.
 \end{claim}
-Observe first that these specific values satisfy the assumptions.
+The assumptions are because every $y_j$ has exactly one alignment category and every $k$-aligned $y_j$ is aligned with $k$ unique $x_i$s respectively.
+Observe first that the claimed values satisfy the assumptions.
 Now assume $n_0 > 0$ would maximize $\mathcal{L}(n_0, n_1, n_k)$ for any $n_1$ and $n_k$.
 If we define $n'_0 := n_0 - 1$, $n'_1 := n_1 + 2$ and $n'_k := n_k - 1$, we have
 \[
 	\mathcal{L}(n'_0, n'_1, n'_k) = \mathcal{L}(n_0, n_1, n_k) + 2L_1 - L_0 - L_k > \mathcal{L}(n_0, n_1, n_k),
 \]
 as $L_0 + L_k = \Gamma + \gamma_1 + \gamma_3 + 2\ell_y < \Gamma + \gamma_1 + \gamma_2 + \gamma_3 < 2\Gamma \leq 2L_1$.
-That is a contradiction, hence, $n_0 = 0$ if we want to maximize $\mathcal{L}(n_0, n_1, n_k)$.
+That is a contradiction, hence, $\hat{n}_0 = 0$.
 Now we obtain from the first assumption $n_1 \leq Q - n_k$.
-Putting this into the second assumption, we obtain
+Putting this into the second assumption, we get
 \begin{align*}
 2n_k + Q - n_k &\leq 2Q - N %
 &\Leftrightarrow& %
@@ -74,17 +62,15 @@ Putting this into the second assumption, we obtain
 \end{align*}
 Hence, $\mathcal{L}(n_0, n_1, n_k)$ is maximized for $n_k = Q-N$, because $L_k \geq L_1 \geq 0$. 
 The claim follows.
-
-
-
-Now we can further bound \autoref{eq:1-2vs1:non-ortho-upper-bound:eq-ns} by
+%
+%
+To finalize our full proof, we can further bound \autoref{eq:1-2vs1:non-ortho-upper-bound:eq-ns} by
 \begin{align*}
-L(x,y) \leq \hat{n}_0 L_0 + \hat{n}_1 L_1 + \hat{n}_k L_k &= NL_1 + (Q-N) L_k  \\
-	&= N\Gamma + N\rho_1 + (Q-N)(\Gamma + \ell_y) \\
+L(x,y) \leq \hat{n}_0 L_0 + \hat{n}_1 L_1 + \hat{n}_k L_k &= NL_1 + (Q-N) L_k  = N\Gamma + N\rho_1 + (Q-N)(\Gamma + \ell_y) \\
 	&= Q\Gamma + (Q-N)\ell_y + N\rho_1
-\end{align*}
-\end{proof}
-
+\end{align*}%
+\end{proof}%
+%
 
 
 
