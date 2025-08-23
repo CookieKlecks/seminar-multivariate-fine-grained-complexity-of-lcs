@@ -9,6 +9,61 @@
 }
 
 
+@misc{Abboud.28.01.2015,
+ abstract = {Two important similarity measures between sequences are the longest common subsequence (LCS) and the dynamic time warping distance (DTWD). The computations of these measures for two given sequences are central tasks in a variety of applications. Simple dynamic programming algorithms solve these tasks in {\$}O(n{\^{}}2){\$} time, and despite an extensive amount of research, no algorithms with significantly better worst case upper bounds are known.  In this paper, we show that an {\$}O(n{\^{}}{2-\epsilon}){\$} time algorithm, for some {\$}$\backslash$epsilon{\textgreater}0{\$}, for computing the LCS or the DTWD of two sequences of length $n$ over a constant size alphabet, refutes the popular Strong Exponential Time Hypothesis (SETH). Moreover, we show that computing the LCS of $k$ strings over an alphabet of size {\$}O(k){\$} cannot be done in {\$}O(n{\^{}}{k-\epsilon}){\$} time, for any {\$}$\backslash$epsilon{\textgreater}0{\$}, under SETH. Finally, we also address the time complexity of approximating the DTWD of two strings in truly subquadratic time.},
+ author = {Abboud, Amir and Backurs, Arturs and Williams, Virginia Vassilevska},
+ date = {28.01.2015},
+ title = {Quadratic-Time Hardness of LCS and other Sequence Similarity Measures},
+ url = {https://arxiv.org/pdf/1501.07053},
+ file = {Abboud, Backurs et al. 28.01.2015 - Quadratic-Time Hardness of LCS:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Abboud, Backurs et al. 28.01.2015 - Quadratic-Time Hardness of LCS.pdf:pdf}
+}
+
+
+@article{Altschul.1990,
+ abstract = {A new approach to rapid sequence comparison, basic local alignment search tool (BLAST), directly approximates alignments that optimize a measure of local similarity, the maximal segment pair (MSP) score. Recent mathematical results on the stochastic properties of MSP scores allow an analysis of the performance of this method as well as the statistical significance of alignments it generates. The basic algorithm is simple and robust; it can be implemented in a number of ways and applied in a variety of contexts including straightforward DNA and protein sequence database searches, motif searches, gene identification searches, and in the analysis of multiple regions of similarity in long DNA sequences. In addition to its flexibility and tractability to mathematical analysis, BLAST is an order of magnitude faster than existing sequence comparison tools of comparable sensitivity.},
+ author = {Altschul, S. F. and Gish, W. and Miller, W. and Myers, E. W. and Lipman, D. J.},
+ year = {1990},
+ title = {Basic local alignment search tool},
+ pages = {403--410},
+ volume = {215},
+ number = {3},
+ issn = {0022-2836},
+ journal = {Journal of molecular biology},
+ doi = {10.1016/S0022-2836(05)80360-2},
+ file = {http://www.ncbi.nlm.nih.gov/pubmed/2231712}
+}
+
+
+@article{Apostolico.1986,
+ author = {Apostolico, Alberto},
+ year = {1986},
+ title = {Improving the worst-case performance of the Hunt-Szymanski strategy for the longest common subsequence of two strings},
+ pages = {63--69},
+ volume = {23},
+ number = {2},
+ issn = {0020-0190},
+ journal = {Information Processing Letters},
+ doi = {10.1016/0020-0190(86)90044-x},
+ file = {Apostolico 1986 - Improving the worst-case performance:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Apostolico 1986 - Improving the worst-case performance.pdf:pdf}
+}
+
+
+@article{Apostolico.1987,
+ abstract = {This paper re-examines, in a unified framework, two classic approaches to the problem of finding a longest common subsequence (LCS) of two strings, and proposes faster implementations for both. Letl be the length of an LCS between two strings of lengthm andn $\geq$m, respectively, and let s be the alphabet size. The first revised strategy follows the paradigm of a previousO(ln) time algorithm by Hirschberg. The new version can be implemented in timeO(lm · min logs, logm, log(2n/m)), which is profitable when the input strings differ considerably in size (a looser bound for both versions isO(mn)). The second strategy improves on the Hunt-Szymanski algorithm. This latter takes timeO((r +n) logn), wherer$\leq$mn is the total number of matches between the two input strings. Such a performance is quite good (O(n logn)) whenr$\sim$n, but it degrades to \textgreek{J}(mn logn) in the worst case. On the other hand the variation presented here is never worse than linear-time in the productmn. The exact time bound derived for this second algorithm isO(m logn +d log(2mn/d)), whered $\leq$r is the number ofdominant matches (elsewhere referred to asminimal candidates) between the two strings. Both algorithms require anO(n logs) preprocessing that is nearly standard for the LCS problem, and they make use of simple and handy auxiliary data structures.},
+ author = {Apostolico, A. and Guerra, C.},
+ year = {1987},
+ title = {The longest common subsequence problem revisited},
+ url = {https://link.springer.com/article/10.1007/bf01840365},
+ pages = {315--336},
+ volume = {2},
+ number = {1-4},
+ issn = {1432-0541},
+ journal = {Algorithmica},
+ doi = {10.1007/BF01840365},
+ file = {Apostolico, Guerra 1987 - The longest common subsequence problem:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Apostolico, Guerra 1987 - The longest common subsequence problem.pdf:pdf}
+}
+
+
 @inproceedings{Bergroth.2000,
  author = {Bergroth, L. and Hakonen, H. and Raita, T.},
  title = {A survey of longest common subsequence algorithms},
@@ -20,6 +75,19 @@
  address = {Los Alamitos, Calif.},
  doi = {10.1109/SPIRE.2000.878178},
  file = {http://ieeexplore.ieee.org/document/878178/}
+}
+
+
+@article{Bille.2008,
+ author = {Bille, Philip and Farach-Colton, Martin},
+ year = {2008},
+ title = {Fast and compact regular expression matching},
+ pages = {486--496},
+ volume = {409},
+ number = {3},
+ issn = {0304-3975},
+ journal = {Theoretical Computer Science},
+ doi = {10.1016/j.tcs.2008.08.042}
 }
 
 
@@ -127,6 +195,76 @@ and dominant pairs
 }
 
 
+@article{Eppstein.1992,
+ abstract = {Dynamic programming solutions to a number of different recurrence equations for sequence comparison and for RNA secondary structure prediction are considered. These recurrences are defined over a n...},
+ author = {Eppstein, David and Galil, Zvi and Giancarlo, Raffaele and Italiano, Giuseppe F.},
+ year = {1992},
+ title = {Sparse dynamic programming I},
+ pages = {519--545},
+ volume = {39},
+ number = {3},
+ issn = {0004-5411},
+ journal = {Journal of the ACM},
+ doi = {10.1145/146637.146650},
+ file = {Eppstein, Galil et al. 1992 - Sparse dynamic programming I:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Eppstein, Galil et al. 1992 - Sparse dynamic programming I.pdf:pdf}
+}
+
+
+@article{Hirschberg.1977,
+ author = {Hirschberg, Daniel S.},
+ year = {1977},
+ title = {Algorithms for the Longest Common Subsequence Problem},
+ pages = {664--675},
+ volume = {24},
+ number = {4},
+ issn = {0004-5411},
+ journal = {Journal of the ACM},
+ doi = {10.1145/322033.322044},
+ file = {Hirschberg 1977 - Algorithms for the Longest Common:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Hirschberg 1977 - Algorithms for the Longest Common.pdf:pdf}
+}
+
+
+@book{Hunt.1976,
+ author = {Hunt, James Wayne and MacIlroy, M. Douglas},
+ year = {1976},
+ title = {An algorithm for differential file comparison},
+ url = {https://www.cs.dartmouth.edu/doug/diff.pdf},
+ publisher = {{Murray Hill: Bell Laboratories}},
+ file = {An algorithm for differential file 1976:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\An algorithm for differential file 1976.pdf:pdf}
+}
+
+
+@article{Hunt.1977,
+ abstract = {Previously published algorithms for finding the longest common subsequence of two sequences of length n have had a best-case running time of O(n2). An algorithm for this problem is presented which ...},
+ author = {Hunt, James W. and Szymanski, Thomas G.},
+ year = {1977},
+ title = {A fast algorithm for computing longest common subsequences},
+ pages = {350--353},
+ volume = {20},
+ number = {5},
+ issn = {0001-0782},
+ journal = {Communications of the ACM},
+ doi = {10.1145/359581.359603},
+ file = {Hunt, Szymanski 1977 - A fast algorithm for computing:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Hunt, Szymanski 1977 - A fast algorithm for computing.pdf:pdf}
+}
+
+
+@article{Iliopoulos.2009,
+ abstract = {The Longest Common Subsequence (LCS) problem is a classic and well-studied problem in computer science. The LCS problem is a common task in DNA sequence analysis with many applications to genetics and molecular biology. In this paper, we present a new and efficient algorithm for solving the LCS problem for two strings. Our algorithm runs in O(ℛlog log n+n) time, where ℛ is the total number of ordered pairs of positions at which the two strings match.},
+ author = {Iliopoulos, Costas S. and Rahman, M. Sohel},
+ year = {2009},
+ title = {A New Efficient Algorithm for Computing the Longest Common Subsequence},
+ url = {https://link.springer.com/article/10.1007/s00224-008-9101-6},
+ pages = {355--371},
+ volume = {45},
+ number = {2},
+ issn = {1433-0490},
+ journal = {Theory of Computing Systems},
+ doi = {10.1007/s00224-008-9101-6},
+ file = {Iliopoulos, Rahman 2009 - A New Efficient Algorithm:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Iliopoulos, Rahman 2009 - A New Efficient Algorithm.pdf:pdf}
+}
+
+
 @proceedings{InstituteofElectricalandElectronicsEngineers.2015,
  year = {2015},
  title = {2015 IEEE 56th Annual Symposium on Foundations of Computer Science (FOCS 2015): Berkeley, California, USA, 17 - 20 October 2015},
@@ -134,6 +272,64 @@ and dominant pairs
  publisher = {IEEE},
  isbn = {978-1-4673-8191-8},
  institution = {{Institute of Electrical and Electronics Engineers} and {IEEE Computer Society} and {Association for Computing Machinery}}
+}
+
+
+@article{Masek.1980,
+ author = {Masek, William J. and Paterson, Michael S.},
+ year = {1980},
+ title = {A faster algorithm computing string edit distances},
+ pages = {18--31},
+ volume = {20},
+ number = {1},
+ issn = {00220000},
+ journal = {Journal of Computer and System Sciences},
+ doi = {10.1016/0022-0000(80)90002-1}
+}
+
+
+@article{Miller.1985,
+ author = {Miller, Webb and Myers, Eugene W.},
+ year = {1985},
+ title = {A file comparison program},
+ pages = {1025--1040},
+ volume = {15},
+ number = {11},
+ issn = {0038-0644},
+ journal = {Software: Practice and Experience},
+ doi = {10.1002/spe.4380151102}
+}
+
+
+@article{Myers.1986,
+ abstract = {The problems of finding a longest common subsequence of two sequencesA andB and a shortest edit script for transformingA intoB have long been known to be dual problems. In this paper, they are shown to be equivalent to finding a shortest/longest path in an edit graph. Using this perspective, a simpleO(ND) time and space algorithm is developed whereN is the sum of the lengths ofA andB andD is the size of the minimum edit script forA andB. The algorithm performs well when differences are small (sequences are similar) and is consequently fast in typical applications. The algorithm is shown to haveO(N+D 2) expected-time performance under a basic stochastic model. A refinement of the algorithm requires onlyO(N) space, and the use of suffix trees leads to anO(N logN+D 2) time variation.},
+ author = {Myers, Eugene W.},
+ year = {1986},
+ title = {AnO(ND) difference algorithm and its variations},
+ url = {https://link.springer.com/article/10.1007/bf01840446},
+ pages = {251--266},
+ volume = {1},
+ number = {1-4},
+ issn = {1432-0541},
+ journal = {Algorithmica},
+ doi = {10.1007/BF01840446},
+ file = {Myers 1986 - AnOND difference algorithm and its:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Myers 1986 - AnOND difference algorithm and its.pdf:pdf}
+}
+
+
+@article{Nakatsu.1982,
+ abstract = {Efficient algorithms for computing the longest common subsequence (LCS for short) are discussed. O(pn) algorithm and O(p(m-p) log n) algorithm [Hirschberg 1977] seem to be best among previously known algorithms, where p is the length of an LCS and m and n are the lengths of given two strings (m≦n). There are many applications where the expected length of an LCS is close to m. In this paper, O(n(m-p)) algorithm is presented. When p is close to m (in other words, two given strings are similar), the algorithm presented here runs much faster than previously known algorithms.},
+ author = {Nakatsu, Narao and Kambayashi, Yahiko and Yajima, Shuzo},
+ year = {1982},
+ title = {A longest common subsequence algorithm suitable for similar text strings},
+ url = {https://link.springer.com/article/10.1007/bf00264437},
+ pages = {171--179},
+ volume = {18},
+ number = {2},
+ issn = {1432-0525},
+ journal = {Acta Informatica},
+ doi = {10.1007/BF00264437},
+ file = {Nakatsu, Kambayashi et al. 1982 - A longest common subsequence algorithm:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Nakatsu, Kambayashi et al. 1982 - A longest common subsequence algorithm.pdf:pdf}
 }
 
 
@@ -165,6 +361,35 @@ and dominant pairs
  series = {Lecture Notes in Computer Science},
  editor = {Pr{\'i}vara, Igor},
  doi = {10.1007/3-540-58338-6}
+}
+
+
+@article{Wagner.1974,
+ abstract = {The string-to-string correction problem is to determine the distance between two strings as measured by the minimum cost sequence of ``edit operations'' needed to change the one string into the other...},
+ author = {Wagner, Robert A. and Fischer, Michael J.},
+ year = {1974},
+ title = {The String-to-String Correction Problem},
+ pages = {168--173},
+ volume = {21},
+ number = {1},
+ issn = {0004-5411},
+ journal = {Journal of the ACM},
+ doi = {10.1145/321796.321811},
+ file = {Wagner, Fischer 1974 - The String-to-String Correction Problem:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Wagner, Fischer 1974 - The String-to-String Correction Problem.pdf:pdf}
+}
+
+
+@article{Wu.1990,
+ author = {Wu, Sun and Manber, Udi and Myers, Gene and Miller, Webb},
+ year = {1990},
+ title = {An O(NP) sequence comparison algorithm},
+ pages = {317--323},
+ volume = {35},
+ number = {6},
+ issn = {0020-0190},
+ journal = {Information Processing Letters},
+ doi = {10.1016/0020-0190(90)90035-v},
+ file = {Wu, Manber et al. 1990 - An ONP sequence comparison algorithm:C\:\\Users\\Cedrico\\Documents\\Citavi 6\\Projects\\SeminarFGC\\Citavi Attachments\\Wu, Manber et al. 1990 - An ONP sequence comparison algorithm.pdf:pdf}
 }
 
 

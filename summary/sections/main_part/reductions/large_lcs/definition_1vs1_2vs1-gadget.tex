@@ -11,9 +11,10 @@ We say that $\lLCSGadgetName$ is the 1vs1/2vs1 gadget of these strings.
 \end{definition}
 
 We will now prove some properties of this gadget.
-As notation we use in the following $x := \lLCSGadget{x_1, \ldots, x_P}$ and $y := \lLCSGadget{y_1, \ldots, y_Q}$ for any appropriate $P$, $Q$ and strings $x_i$ and $y_j$.
-We show an upper bound for the case that $L(x_i, y_i) = \rho_1$ for all $x_i$ and $y_j$ and a lower bound when one $L(x_i, y_j) = \rho_0$ for appropriate $x_i$ and $y_j$ exists.
-This will later translate to the cases where no orthogonal vectors or one $\langle a_i, b_j \rangle = 0$ exists respectively.
+As notation we use in the following $x := \lLCSGadget{x_1, \ldots, x_P}$ and $y := \lLCSGadget{y_1, \ldots, y_Q}$ for the respective $P$, $Q$ and strings $x_i$ and $y_j$.
+We show a lower bound if one $L(x_i, y_j) = \rho_0$ exists and an upper bound if $L(x_i, y_i) = \rho_1$ for all $x_i$ and $y_j$.
+This will later translate to the cases where the respective vectors are orthogonal or not as we use \nvgName{}s to encode the vectors.
+But first a preliminary lemma.
 
 
 \begin{lemma}

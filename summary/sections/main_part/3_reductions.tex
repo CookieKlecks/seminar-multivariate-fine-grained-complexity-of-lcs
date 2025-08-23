@@ -1,5 +1,8 @@
 \section{Find Reductions}
-Todo: Overview of case distinction.
+In the final step, the authors construct reductions from \ov{} to \lcs{} that span the full non-trivial parameter space.  
+They distinguish two main cases depending on whether the longest common subsequence nearly covers the shorter string ($\alpha_L = \alpha_m$, i.e., \enquote{large \lcs{}}) or not ($\alpha_\delta = \alpha_m$, i.e., \enquote{small \lcs{}}).  
+For each case, specialized gadgets are designed to embed \ov{} instances into \lcs{}, ensuring that the relevant parameters are preserved.  
+Together, these reductions establish conditional lower bounds across all valid parameter settings.
 
 \input{sections/main_part/reductions/small_lcs}
 

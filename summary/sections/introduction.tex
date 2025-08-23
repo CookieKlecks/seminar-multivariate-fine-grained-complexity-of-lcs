@@ -1,44 +1,51 @@
 \section{Introduction}
-Finding longest common subsequences (LCS) in strings is a well-studied field with applications running from file comparisons to DNA sequence analysis\todo{add citations}.
-The task is to find for two strings $x$ and $y$ over the alphabet $\Sigma$ a common subsequence $z$ of maximal length.
-The problem can be solved with dynamic programming in $\bigO{n^2}$ where $n$ is the length of the input strings.
-Only a logarithmic improvement to this is known\todo{cite} and a fine-grained analysis showed that polynomial improvements would refute the Strong Exponential Time Hypothesis\todo{cite}.
+Finding longest common subsequences (\lcs{}) in strings is a well-studied field with applications ranging from file comparisons~\cite{Hunt.1976,Miller.1985} to DNA sequence analysis~\cite{Altschul.1990}.
+The task is to find for two strings $x$ and $y$ of length $n$ a common subsequence $z$ of maximal length.
+\lcs{} can be solved with dynamic programming in $\bigO{n^2}$. 
+A fine-grained analysis showed that polynomial improvements would refute the \emph{Strong Exponential Time Hypothesis} (SETH)\cite{Abboud.28.01.2015,Bringmann.2015}.
 
-However there are still new algorithms being developed.
+However, there are still new algorithms being developed.
 They are often inspired by real-world applications where we can observe specific properties of the strings.
 For example for file comparisons it is often the case that $x$ and $y$ only differ at few positions.
 That enables to develop algorithms that exploit this property to achieve faster running times for these instances.
 This motivates a multivariate fine-grained complexity analysis of LCS where the goal is to find lower bounds for the running times depending on a set of parameters, not only the input length $n$.
-
+%
 In the following we will use the notation $\numSymbols{\sigma}{x}$ for the number of occurrences of the symbol $\sigma$ in the string $x$.
 
 
 \subsection{Main Results}
-
+The authors provide a complete multivariate fine-grained complexity classification of LCS. 
+They show that for all non-trivial parameter settings, the SETH-based conditional lower bounds obtained match the best known algorithms up to subpolynomial factors.
+They prove that for alphabets of size $|\Sigma|\geq 3$, the optimal running time is $(n + \min\{d, \delta \Delta, \delta m\})^{1 - o(1)}$, while for binary alphabets the lower bound weakens\footnote{It is weaker because $\frac{\delta M}{n}$ is at most $\delta m$, because of the trivial bound $M \leq nm$.} to $(n + \min\{d, \delta \Delta, \tfrac{\delta M}{n}\})^{1-o(1)}$. 
+In addition, they give a matching algorithm for $|\Sigma|=2$ with running time $\bigO(n + \tfrac{\delta M}{n})$, which constitutes the first polynomial improvement for a special case of LCS since 1990.
+%These results show that polynomial improvements beyond these bounds would contradict SETH, and the results reveal a genuine complexity gap between binary and larger alphabets.
+In this summary, we will only discuss the case $|\Sigma| \geq 3$.
 
 \subsection{Related Work}
+See \autoref{tab:related_work} for an overview of different \lcs{} algorithms on multivariate LCS progressing through time.
+They either use dynamic programming approaches \cite{Wagner.1974,Hunt.1977,Hirschberg.1977,Masek.1980,Nakatsu.1982,Apostolico.1986,Apostolico.1987,Eppstein.1992,Iliopoulos.2009} or shortest paths on the edit graph of the input strings \cite{Myers.1986,Wu.1990}.
+Note that the progress was restricted to log-factor improvements since 1990 \cite{Wu.1990}.
+This motivates a fine-grained complexity analysis as it seems unlikely to find further polynomial improvements.
 
-\autoref{tab:related_work} shows an overview of the related work on multivariate LCS.
-
-\begin{table}[hb]
+\begin{table}[ht]
 \centering
 \begin{tabular}{@{}p{0.48\linewidth}p{0.45\linewidth}@{}}
 \toprule
 \textbf{Reference} & \textbf{Running Time} \\
 \midrule
-Wagner and Fischer~[84]\todo{add citations} & $\mathcal{O}(mn)$ \\
-Hunt and Szymanski~[47] & $\mathcal{O}((n+M)\log n)$ \\
-Hirschberg~[45] & $\mathcal{O}(n\log n + Ln)$ \\
-Hirschberg~[45] & $\mathcal{O}(n\log n + L\delta\log n)$ \\
-Masek and Paterson~[65] & $\mathcal{O}(n + nm/\log^{2} n)\ \text{assuming } |\Sigma|=\mathcal{O}(1)$ \\
-& $\mathcal{O}\!\left(n + nm\cdot(\frac{\log\log n}{\log n})^{2}\right)$\footnote{todo} \\
-Nakatsu, Kambayashi and Yajima~[71] & $\mathcal{O}(n\delta)$ \\
-Apostolico~[13] & $\mathcal{O}\!\left(n\log n + d\log\!\left(\tfrac{mn}{d}\right)\right)$ \\
-Myers~[70] & $\mathcal{O}(n\log n + \Delta^{2})$ \\
-Apostolico and Guerra~[14] & $\mathcal{O}\!\left(n\log n + Lm\min\{\log m,\log(n/m)\}\right)$ \\
-Wu, Manber, Myers and Miller~[87] & $\mathcal{O}(n\log n + \delta\Delta)^{\;3}$ \\
-Eppstein, Galil, Giancarlo and Italiano~[37] & $\mathcal{O}\!\left(n\log n + d\log\log\min\{d, nm/d\}\right)$ \\
-Iliopoulos and Rahman~[50] & $\mathcal{O}(n + M\log\log n)$ \\
+Wagner and Fischer, 1974 \cite{Wagner.1974} & $\mathcal{O}(mn)$ \\
+Hunt and Szymanski, 1977 \cite{Hunt.1977} & $\mathcal{O}((n+M)\log n)$ \\
+Hirschberg, 1977 \cite{Hirschberg.1977} & $\mathcal{O}(n\log n + Ln)$ \\
+Hirschberg, 1977 \cite{Hirschberg.1977} & $\mathcal{O}(n\log n + L\delta\log n)$ \\
+Masek and Paterson, 1980 \cite{Masek.1980} & $\mathcal{O}(n + nm/\log^{2} n)\ \text{assuming } |\Sigma|=\mathcal{O}(1)$ \\
+& $\mathcal{O}\!\left(n + nm\cdot(\frac{\log\log n}{\log n})^{2}\right)$\footnote{See \cite{Bille.2008} for the extension to non-constant alphabet}\\
+Nakatsu, Kambayashi and Yajima, 1982 \cite{Nakatsu.1982} & $\mathcal{O}(n\delta)$ \\
+Apostolico, 1986 \cite{Apostolico.1986} & $\mathcal{O}\!\left(n\log n + d\log\!\left(\tfrac{mn}{d}\right)\right)$ \\
+Myers, 1986 \cite{Myers.1986} & $\mathcal{O}(n\log n + \Delta^{2})$ \\
+Apostolico and Guerra, 1987 \cite{Apostolico.1987} & $\mathcal{O}\!\left(n\log n + Lm\min\{\log m,\log(n/m)\}\right)$ \\
+Wu, Manber, Myers and Miller, 1990 \cite{Wu.1990} & $\mathcal{O}(n\log n + \delta\Delta)^{\;3}$ \\
+Eppstein, Galil, Giancarlo and Italiano, 1992 \cite{Eppstein.1992} & $\mathcal{O}\!\left(n\log n + d\log\log\min\{d, nm/d\}\right)$ \\
+Iliopoulos and Rahman, 2009 \cite{Iliopoulos.2009} & $\mathcal{O}(n + M\log\log n)$ \\
 \bottomrule
 \end{tabular}
 \vspace{1em}
@@ -48,19 +55,18 @@ Iliopoulos and Rahman~[50] & $\mathcal{O}(n + M\log\log n)$ \\
 
 
 
-
 \subsection{Hardness Hypothesis}
 As basis for the reductions the \emph{Orthogonal Vectors} (OV) problem is used.
 Here two sets $\mathcal{A}, \mathcal{B} \subseteq \{0,1\}^D$ are given and the task is to decide whether there are $a \in \mathcal{A}, b \in \mathcal{B}$ s.t. $\langle a,b \rangle := \sum_{i=1}^D a[i]\cdot b[i] = 0$.
 Based on this problem, the authors of the original paper proof the lower bounds based on the following hypothesis.
 %
-\begin{definition}[Unbalanced Orthogonal Vectors Hypothesis (UOVH)]
+\begin{definition}[Unbalanced Orthogonal Vectors Hypothesis (\uovh)]
 For any $\alpha, \beta \in (0,1]$, the following problem requires time $n^{\alpha + \beta - o(1)}$:
 Given a number $n$, solve a given OV instance with 
 $D = n^{o(1)}$ and $|\mathcal{A}| = \bigO{n^\alpha}$ and $|\mathcal{B}| = \bigO{n^\beta}$.
 \end{definition}
 %
-They prove that this hypothesis is equivalent to the \emph{Orthogonal Vectors Hypothesis} (see \cite[Lemma 5.1]{Bringman.2018}), which itself implies the \emph{Strong Exponential Time Hypothesis}.
+\uovh{} is equivalent to the \emph{Orthogonal Vectors Hypothesis} \cite[Lemma 5.1]{Bringman.2018} that implies SETH.
 
 
 %\subsection{Technical Tools}

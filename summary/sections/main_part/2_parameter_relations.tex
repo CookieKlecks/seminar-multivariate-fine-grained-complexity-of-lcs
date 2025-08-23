@@ -1,13 +1,13 @@
 \section{Find Parameter Relations}
 \label{sec:fin_param_rels}
-The goal of this step is to find valid and non-trivial parameter combinations.
-This is important as we want to restrict the parameter space that must be spanned by the reductions in the next step.
+The goal of this step is to find all valid and non-trivial parameter combinations.
+With this we can restrict the actual parameter space and hence the space to span by the reductions.
 Before finding the actual relations, we first define a so called \emph{parameter setting} and its non-triviality.
 
 \begin{definition}[Parameter Setting]
 Let $\mathcal{P}$ be the set of parameters.
 We define $\mathbb{\alpha} = (\alpha_p)_{p \in \mathcal{P}}$ as a \emph{parameter setting}.
-We further define $\lcsy{\mathbb{\alpha}}$ as the subset of \lcs{} instances, where the input strings $x$ and $y$ fulfill
+We further define $\lcsy{\mathbb{\alpha}}$ as the subset of \lcs{} instances, where %the input strings $x$ and $y$ fulfill
 \begin{displaymath}
 	\forall p \in \mathcal{P}: \  \frac{n^{\alpha_p}}{\gamma} \leq p(x,y) \leq \gamma n^{\alpha_p}.
 \end{displaymath}
@@ -57,22 +57,22 @@ A parameter setting $\mathbb{\alpha}$ is called \emph{trivial}, if $\lcsy{\alpha
 
 
 The full set of parameter relations is given in \autoref{tab:restrictions}.
-Here we can see some trivial bounds, like $\alpha_L \leq \alpha_m \leq \alpha_n$, which is due to the trivial relations $L \leq m \leq n$ which are true for every \lcs{} instance.
-All of the relations are proven in the original paper \cite[section 6]{Bringman.2018}, but in this summary we will only proof the relations $2\alpha_L - \alpha_\Sigma \leq \alpha_M$.
-Note that therefore it suffices to prove $\frac{L^2}{|\Sigma|} \leq M$.
+Here we can see some trivial bounds, like $\alpha_L \leq \alpha_m \leq \alpha_n$, which is due to the relations $L \leq m \leq n$ true for every \lcs{} instance.
+All of the relations are proven in the original paper \cite[section 6]{Bringman.2018}, but in this summary we will only show $\frac{L^2}{|\Sigma|} \leq M$ which implies $2\alpha_L - \alpha_\Sigma \leq \alpha_M$.
 
 \begin{theorem}
 \label{thm:matching_pairs_lb}
 For every \lcs{} instance the number of matching pairs is bounded by
 \(
-	\dfrac{L^2}{|\Sigma|} \leq M .
+	M \geq \dfrac{L^2}{|\Sigma|}.
 \)
 \end{theorem}
 
 \begin{proof}
 Per definition of matching pairs, we have $M = \sum_{\sigma \in \Sigma} \numSymbols{\sigma}{x} \numSymbols{\sigma}{y}$.
-We can lower bound this by replacing $x$ and $y$ with one of their \lcs{} $z$.
-Hence, $M \geq \sum_{\sigma \in \Sigma} \numSymbols{\sigma}{z}^2$.\todo{finish proof}
+With $z$ being an \lcs{} of $x$ and $y$, we obtain $M \geq \sum_{\sigma \in \Sigma} \numSymbols{\sigma}{z}^2$.
+Further $L = \sum_{\sigma \in \Sigma} \numSymbols{\sigma}{z}$. 
+With the arithmetic-quadratic mean inequality we have $M / |\Sigma| \geq \left(L/|\Sigma|\right)^2$ and the claim follows.
 \end{proof}
 
 

@@ -1,12 +1,13 @@
 \subsubsection{Matching Pairs Reduction}
+\label{sec:small_lcs:matching_pairs_reduction}
 
-Before we lift the assumption $\alpha_M = 2$, we present why it was necessary in the previous reduction.
-Let $(x,y)$ be the constructed \lcs{} instance as before.
+We first present why $\alpha_M = 2$ was necessary in the previous reduction.
+Let $(x,y)$ be the constructed \lcs{} instance.
 Per definition of matching pairs, we know $M(x,y) \geq \numSymbols{0}{x} \cdot \numSymbols{0}{y}$.
-Looking at the construction, we have $\bigO{A}$ blocks of $O^\gamma$ in $x$.
-From \autoref{thm:small_lcs_construction} and \ref{thm:nvg} we further know $\gamma \geq |\nvg{a_i}| = \Theta(D)$. 
+We further have $\bigO{A}$ $O^\gamma$-blocks in $x$.
+From \autoref{thm:small_lcs_construction} and \ref{thm:nvg} we know $\gamma = \Theta(D)$. 
 Hence, $\numSymbols{0}{x} \geq \bigO{AD}$.
-In $y$ we have one block $0^{A\gamma'}$ at the beginning of $y$, so $\numSymbols{0}{y} \geq A\gamma' \geq \bigO{AD}$ where we bounded $\gamma'$ similar to $\gamma$.
+In $y$ we have two $0^{A\gamma'}$-blocks, so $\numSymbols{0}{y} \geq A\gamma' \geq \bigO{AD}$. %where we used $\gamma' = \Theta(D)$.
 In total we have $M(x,y) \geq \bigO{(AD)^2} = \bigO{n(x,y)^2}$ and therefore $\alpha_M \geq 2$.
 However, there is a parameter setting with $\alpha_M < 2$, e.g., for $\Sigma = \{ \sigma_1, \ldots, \sigma_n \}$ we can define $x = y := \sigma_1 \cdots \sigma_n$.
 In this case, we have $\alpha_m = \alpha_L = \alpha_\Sigma = \alpha_d = 1$, $\alpha_\delta = \alpha_\Delta = 0$ and $\alpha_M = 1 < 2$.
@@ -16,7 +17,7 @@ To reduce our matching pairs, we can look at the parameter relation from \autore
 Here we have shown that $M \geq \frac{L^2}{|\Sigma|}$.
 Hence, we have the chance to reduce $M$ by increasing the alphabet size.
 Therefore, the authors split the input vector sets into multiple partitions.
-They then used the previous reduction on each partition.
-They combine these constructed strings while shifting them to different alphabets.
-This is done in such a way that correctness remains while the used alphabet size increases, hence $M$ decreases for the constructed instances.
+They then used the previous reduction on each partition and shift to disjoint alphabets.
+Carefully combining these constructed strings remains the correctness while the used alphabet size increases.
+Hence, $M$ decreases for the constructed instances.
 For the full construction and proof we refer to the original paper \cite[Section 9.1.3]{Bringman.2018}.

@@ -1,8 +1,12 @@
 \section{Conclusion}
+This summary presented the main ideas and results of the multivariate fine-grained complexity analysis of \lcs{}~\cite{Bringman.2018}.  
+The authors established tight conditional lower bounds for all non-trivial parameter settings.
+They used a general three-step approach consisting of defining parameters, finding parameter relations, and constructing reductions, which can also serve as a blueprint for analyzing other problems.  
 
-ToDo:
-\begin{itemize}
-\item Mention that we had no reduction proving a LB of $(\delta\Delta)^{1-o(1)}$ as we used reduced parameter sets.
-\item overview of general multivariate approach
-\item Maybe mention what was excluded in this summary
-\end{itemize}
+In this work we only focused on the case $|\Sigma| \geq 3$, which is arguably the more interesting case.
+We also simplified some of the proofs especially when showing the parameter space that the reductions span.
+Here we used a reduced parameter set.
+This is also the reason why no reduction was provided that proves a lower bound of $(\delta \Delta)^{1-o(1)}$.
+In the original paper the reduction for the case of large \lcs{} implies a lower bound of $\min\{d, \delta \Delta, \delta m\})^{1 - o(1)}$.
+
+

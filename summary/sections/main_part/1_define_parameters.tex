@@ -1,29 +1,36 @@
 \section{Define Parameters}
 \label{sec:def-params}
-To properly scope the multivariate analysis it is necessary to define the parameters of the problem that are being analyzed.
-Here in the case of the \lcs{} problem, the most studied parameters in this field are included in the analysis (see \cite{Bergroth.2000}, \cite{Paterson.1994}). 
+To properly scope the analysis it is necessary to define the parameters that are being analyzed.
+Here the most studied parameters for \lcs{} are included in the analysis \cite{Bergroth.2000,Paterson.1994}. 
 These are the input size $n$ of the longer and $m$ of the shorter string, 
-the length $L$ of a longest common subsequence,
+the length $L$ of an \lcs{},
 the size $|\Sigma|$ of the underlying alphabet,
 the number $\Delta$ of deletions in the larger and $\delta$ of deletions in the shorter string.
-Further the two similarity measures number of matching pairs $M$ and dominant pairs $d$ are included.
-
-
-
-Note, that we always assume $x$ to be the longer string. Otherwise we could just swap $x$ and $y$.\todo{Add Motivation matching pairs and dominant pairs}
-We will use the notation $p(x,y)$ to refer to the value of the parameter $p$ for the strings $x$ and $y$.
+Further the number of matching pairs $M$ and dominant pairs $d$ are included.
+See \autoref{tab:parameter_definitions} for a formal definition and description of each parameter.
+%
+%Note, that we always assume $x$ to be the longer string. Otherwise we could just swap $x$ and $y$.
+We will use the notation $p(x,y)$ to refer to the value of the parameter $p$ for the strings $x$ and $y$. 
+%\todo{add Motivation matching pairs and dominant pairs}
 
 
 \begin{table}[ht]
 \centering
-\begin{tabular}{lll}
+\begin{tabular}{p{6.5cm}p{6.5cm}}
 \toprule
-\textbf{Parameter} & \textbf{Definition} & \textbf{Description} \\
+\textbf{Parameter and Definition} & \textbf{Description} \\
 \midrule
-Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
-Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
-Row 3, Col 1 & Row 3, Col 2 & Row 3, Col 3 \\
+$n(x,y) := |x|$ & Length of the longer string. \\
+$m(x,y) := |y|$ & Length of the shorter string. \\
+$L(x,y) := |\text{LCS}(x,y)|$ & Length of a longest common subsequence. \\
+$\Sigma(x,y) := |\Sigma|$ & Size of the shared alphabet $\Sigma$ of the input strings. \\
+$\Delta(x,y) := |x| - L(x,y)$ & Number of deletions in the longer string. \\
+$\delta(x,y) := |y| - L(x,y)$ & Number of deletions in the shorter string. \\
+$M(x,y) := \#\{(i,j) \mid x[i] = y[j]\}$ & Number of matching pairs. They count the number of possible candidates in an \lcs{}. \\
+$d(x,y) := \#\{(i,j) \mid\;L[i,j] > L[i-1,j] \text{ and }$\newline 
+$\phantom{d(x,y) := \#\{(i,j) \mid\;}\; L[i,j] > L[i,j-1]\}$ & Number of dominant pairs. These are the matching pairs $(i,j)$ where $L(x[1..i],y[1..j])$ increases, i.e., an even more refined number of \lcs{} candidates. \\
 \bottomrule
 \end{tabular}
-\caption{Definition and explanation of all parameters.}
+\caption{Definition and explanation of all parameters. We used $L[i,j] := |LCS(x[1..i], y[1..j])|$. Note that we always assume $x$ to be the larger string. As all parameters are symmetrical, we can otherwise just swap $x$ and $y$.}
+\label{tab:parameter_definitions}
 \end{table}

@@ -1,14 +1,13 @@
 \subsection{Large LCS}
 
-We now assume that $\alpha_L = \alpha_m$.
-This means that our constructed instances should match almost the full smaller string $y$ in an \lcs{}.
-In the previous construction there were large unmatched parts, hence, that construction would not work in this case.
-However, we will still use the \emph{normalized vector gadgets} as basis, but change how we are embedding them into a full string.
+We now assume that $\alpha_L = \alpha_m$, i.e., our constructed instances should match almost the full string $y$.
+The previous construction had large unmatched parts, proving it unsuitable here.
+However, we will still use the \nvgName{}s as basis, but change how we are embedding them into a full string.
 Therefore, the authors created a so called \emph{1vs1/2vs1 gadget} \cite[section 9.2.1]{Bringman.2018}.
 %We will present this gadget in the following.
 
 \subsubsection{1vs1/2vs1 gadget}
-The idea is to embed the strings $x_1, x_2, \ldots, x_P$ and $y_1, y_2, \ldots, y_Q$ into $x$ and $y$ s.t. in an \lcs{} each gadget for $y_j$ is either matched with one or two from $x$.
+The idea is to embed the strings $x_1, x_2, \ldots, x_P$ and $y_1, y_2, \ldots, y_Q$ into $x$ and $y$, s.t. in an \lcs{} each gadget for $y_j$ is either matched with one or two from $x$.
 In the former case the \lcs{} will only depend on the \lcs{} of the underlying $x_i$ and $y_j$ and in the latter case, the full gadget for $y_j$ will be matched.
 See \autoref{fig:12vs1gadget} for a visualization of this.
 
@@ -65,18 +64,18 @@ Because of the cyclic structure of $\tilde{x}$ and $|X| = A$ we know that $x_i \
 Hence, there is an $\lambda$ s.t. $L(\tilde{x}_{2j' - \lambda}, y_{j'}) = L(x_i, y_j) = \rho_0$.
 With this we can apply \autoref{lem:1-2vs1:ortho-lower-bound} with $N = A$ to prove (\ref{lem:large_lcs_reduce:infer}).
 
-To prove (\ref{lem:large_lcs_reduce:size}) first observe that $Q \leq P \leq \bigO{B}$ as $A \leq B$. With $\ell_x, \ell_y \leq \bigO{D}$ we obtain $|x|,|y| \leq \bigO{BD}$.
-For the bound of $\delta(x,y)$ we can use \autoref{claim:1-2vs1-gadget-lb} for
+For (\ref{lem:large_lcs_reduce:size}) first observe that $Q \leq P \leq \bigO{B}$ as $A \leq B$. With $\ell_x, \ell_y \leq \bigO{D}$ we obtain $|x|,|y| \leq \bigO{BD}$.
+For $\delta(x,y)$ we can use \autoref{lem:1-2vs1-gadget-edge-cases} (\ref{lem:1-2vs1-gadget-edge-cases:P=2Q}) on a prefix of $x$ and $y$ to bound
 \[
-L(x,y) \geq Q\Gamma + (Q - A)\ell_y \geq Q\Gamma + Q\ell_y - \bigO{A\ell_y} = |y| - \bigO{AD}
+L(x,y) \geq (Q-A)(\Gamma + \ell_y) \geq Q(\Gamma + \ell_y) - \bigO{A\ell_y} = |y| - \bigO{AD}
 \]
-which implies $\delta(x,y) = |y| - L(x,y) \leq \bigO{AD}$
+where we used $P - A = 2(Q-A)$. This implies $\delta(x,y) = |y| - L(x,y) \leq \bigO{AD}$
 \end{proof}
 
 
 
 \paragraph*{Reduction}
-We now use \autoref{lem:large_lcs_reduce} to instantiate the actual reductions with the desired bounds.
+We now use \autoref{lem:large_lcs_reduce} to instantiate the actual reductions. %with the desired bounds.
 Let $n \geq 1$ be arbitrary and consider any parameter setting $\alpha$ with $\alpha_L = \alpha_m$.
 We write $\lfloor x \rfloor_2$ for the largest power of $2$ less or equal to $x$.
 We construct strings $x$ and $y$ as in \autoref{lem:large_lcs_reduce} with $D = n^{o(1)}$, $A := \lfloor \frac{\min\{\delta, d\}}{mD} \rfloor_2$ and $B := \lfloor \frac{m}{D} \rfloor_2$.\footnote{In the original paper they used slightly different values for $A$ and $B$. We however simplified this, because we later restrict us to a reduced parameter space for simplicity reasons.}
@@ -84,8 +83,8 @@ Note that \uovh{} implies a lower bound of $(AB)^{1-o(1)} \leq n^{\alpha_d - o(1
 To use \autoref{lem:large_lcs_reduce} we have to show $A \leq B$ which implies $A \mid B$.
 This follows from $\delta \leq m$.
 Hence, we can infer from $L(x,y)$ whether any vectors are orthogonal by \autoref{lem:large_lcs_reduce} (\ref{lem:large_lcs_reduce:infer}).
-Further the running time of the reduction is $\bigO{BD} = \bigO{m} = \bigO{L} \leq \bigO{d}$ as our current case assumes $\alpha_m = \alpha_L$ and $L \leq d$ (see \autoref{tab:restrictions}).
-This proves a lower bound for any algorithm for $\lcsy{\mathbb{\alpha}}$ of $d^{1-o(1)}$.
+Further the running time of the reduction is $\bigO{BD} = \bigO{m} = \bigO{L} \leq \bigO{d}$ as we assume $\alpha_m = \alpha_L$ and $L \leq d$ (see \autoref{tab:restrictions}).
+This proves a lower bound for $\lcsy{\mathbb{\alpha}}$ of $d^{1-o(1)}$.
 
 
 %What now remains to be shown is the parameter space that this reduction spans, i.e., for what \lcs{} parameter combinations we can proof a conditional lower bound.
@@ -97,15 +96,15 @@ This proves a lower bound for any algorithm for $\lcsy{\mathbb{\alpha}}$ of $d^{
 
 
 \paragraph*{Parameter Space}
-Recall that in the current case we assume $\alpha_L = \alpha_m$ and our goal is again to show that given $\mathbf{\alpha}$ satisfying $\alpha_m = \alpha_L$, we can create instances that are in $\lcsy{\mathbf{\alpha}}$.
-We again use a reduced parameter set\footnote{For a proof of the full parameter set we refer to the original paper \cite[section 9.2.2]{Bringman.2018}.} of $P' = \{n, m, L, \delta\}$ for the current case.
-We have trivially and by definition $L(x,y) \leq m(x,y) \leq n(x,y)$.
-With \autoref{lem:large_lcs_reduce} (\ref{lem:large_lcs_reduce:size}) and the definition of $B$ we can further bound $n(x,y) \leq \bigO{BD} = \bigO{m} \leq \bigO{n}$ where we again used $m \leq n$.
+Recall that we now have to show that given $\mathbf{\alpha}$ satisfying \autoref{tab:restrictions} and $\alpha_m = \alpha_L$, we can create instances in $\lcsy{\mathbf{\alpha}}$.
+We again use a reduced parameter set of $P'' = \{n, m, L, \delta\}$.\footnote{For a proof of the full parameter set we refer to the original paper \cite[section 9.2.2]{Bringman.2018}.}
+We again have $L(x,y) \leq m(x,y) \leq n(x,y)$.
+With \autoref{lem:large_lcs_reduce} (\ref{lem:large_lcs_reduce:size}) and the definition of $B$ we can bound $n(x,y) \leq \bigO{BD} = \bigO{m} \leq \bigO{n}$ due to $m \leq n$.
 Using \autoref{lem:large_lcs_reduce} (\ref{lem:large_lcs_reduce:size}) we can bound $\delta(x,y) \leq \bigO{AD} \leq \bigO{\delta}$.
-
-In total we have shown that $p(x,y) \leq \bigO{p}$ for all $p \in P'$.
-Hence, we have shown a conditional lower bound for every instance in $\lcsy{\mathbb{\alpha}}$ where $\mathbb{\alpha}$ satisfies \autoref{tab:restrictions} and $\alpha_L = \alpha_m$.
 %
+In total we have shown that $p(x,y) \leq \bigO{p}$ for all $p \in P''$.
+Hence, we have a conditional lower bound for every instance in $\lcsy{\mathbb{\alpha}}$. %where $\mathbb{\alpha}$ satisfies \autoref{tab:restrictions} and $\alpha_L = \alpha_m$.
+
 Note that we ignored here the parameter $M$.
 If we would have considered matching pairs we would have a similar problem as in the case of $\alpha_\delta = \alpha_m$.
 The authors provided again an adaption that increases the used alphabet size for this case (see \cite[Section 9.2.3]{Bringman.2018}).
